@@ -1,3 +1,4 @@
+import sys
 def trim(docstring):
     if not docstring:
         return ''
@@ -28,3 +29,5 @@ class SetEncoder(json.JSONEncoder):
         if isinstance(obj, set):
             return list(obj)
         return json.JSONEncoder.default(self, obj)
+    
+

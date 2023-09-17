@@ -64,6 +64,15 @@ def fetchDefinitions( items ):
     )
     return result
 import utils
+
+
+def defaultClassDict( label = ""):
+    return {
+            "label" : label or "NotSet",
+            "members" : [],
+            "methods" : [],
+            "subclasses" : {},
+            "inherits": set()}
 def createDefinitionDict( definitions ):
     cacheFile = Path("definitionDictCache.json")
 
@@ -75,10 +84,8 @@ def createDefinitionDict( definitions ):
     for definition in definitions:
         wikiObject = wikitextparser.parse( definition )
         className = "NoLabelFound"
-        classDict = {
-            "members" : [],
-            "methods" : [],
-            "inherits": set()}
+        classDict = defaultClassDict()
+        
         for template in wikiObject.templates:
             templateDict = {
                 argument.name : argument.value.strip() for argument in template.arguments
@@ -101,7 +108,20 @@ def createDefinitionDict( definitions ):
                 classDict["members"].append(templateDict)
             if templateName in ["ClassMethod"]:
                 classDict["methods"].append(templateDict)
-        outputdict[className] = classDict
+        
+        pathName = className.split(".")
+
+        if len(pathName) <= 1:
+            outputdict[className] = classDict
+        else:
+            nextDict = outputdict.setdefault( pathName.pop(0), defaultClassDict() )
+            for everyOtherEnty in pathName:
+                nextSubclass:dict = nextDict["subclasses"]
+                nextDict = nextSubclass.setdefault( everyOtherEnty, defaultClassDict(label = everyOtherEnty))
+                classDict["label"] = everyOtherEnty
+            nextDict.update( classDict )
+            
+            
 
     #We will have to order this. The file gets large and pylance has issues making sense of the order.
 
@@ -110,7 +130,40 @@ def createDefinitionDict( definitions ):
     )
     return outputdict
          
+def clearDefinitionDict( definitionDict):
+    for classDefinition in definitionDict.values():
+        for member in classDefinition["members"]:
+            if member["type"] in definitionDict: continue
+            try:
+                eval( member["type"] ) is type
+            except:
+                member["type"] = "any"
+    return definitionDict
 
+def writeClassToFile( element, fileHandler, depth = 0):
+    offset = "\t" * depth
+    fileHandler.write(
+                f"{offset}class {element['label']}({','.join(element['inherits'])}):\n"
+    )
+
+    #Summary needs to be cleared up a little. They are all over the place!
+
+    #builtinsFile.write(
+    #   f'\t"""{element.get("summary", element.get("label"))}"""\n'
+     #)
+    for member in element["members"]:
+        annotation = utils.trim(member["text"])
+        fileHandler.write(
+            f'{offset}\t{member["name"]}:Annotated[{member["type"] or "any"},"""{annotation}"""]\n'
+        )   
+                #builtinsFile.write(
+                #    f'\t{member["name"]}:{member["type"]}\n'
+                #)   
+    for subclass in element["subclasses"].values():
+        writeClassToFile(subclass, fileHandler, depth=depth+1)
+
+    fileHandler.write(f"{offset}\tpass")
+    fileHandler.write(f"{offset}\n\n\n")
 
 def writeBultinFile(definitionDict):
     builtinsFileHandler = Path("types", "__builtins__.py")
@@ -127,34 +180,14 @@ def writeBultinFile(definitionDict):
         for element in definitionDict.values():
             if not "label" in element:
                 continue
-            builtinsFile.write(
-                f"class {element['label']}({','.join(element['inherits'])}):\n"
-            )
-
-            #Summary needs to be cleared up a little. They are all over the place!
-
-            #builtinsFile.write(
-            #   f'\t"""{element.get("summary", element.get("label"))}"""\n'
-            #)
-            for member in element["members"]:
-
-                #Again, same is true for texts here, also types sometimes are inconsisten.
-
-                #builtinsFile.write(
-                #    f'\t{member["name"]}:Annotated[{member["type"] or "any"},"""{member["text"]}"""]\n'
-                #)   
-                builtinsFile.write(
-                    f'\t{member["name"]}:any\n'
-                )   
-                
-            builtinsFile.write("\tpass")
-            builtinsFile.write("\n\n\n")
+            writeClassToFile( element, builtinsFile)
             
 def main():
     items = fetchItemNames()
     definitions = fetchDefinitions( items )
-    definitionDict = createDefinitionDict( definitions )
-    writeBultinFile( definitionDict )
+    definitionDict = createDefinitionDict(  definitions ) 
+    cleanDefinitionDict = clearDefinitionDict( definitionDict )
+    writeBultinFile( cleanDefinitionDict )
 
 
 if __name__ == "__main__":
