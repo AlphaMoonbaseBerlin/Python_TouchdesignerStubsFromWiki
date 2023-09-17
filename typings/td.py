@@ -7,15 +7,18 @@ app : any
 ext : any
 """Reference to the extension searching object. See [[extensions]] for more information."""
 families : dict
-"""A dictionary containing a list of [[OP Class|operator]] types for each operator family.
+"""A dictionary containing a list of [[OP Class|operator]] types for each operator family. 
 
 ```python
 
+
 for a in families['SOP']:
 
-        # do something with a
+	# do something with a
 
-```"""
+
+```
+"""
 licenses : any
 """Reference to the currently installed [[Licenses Class|licences]]."""
 mod : any
@@ -41,13 +44,16 @@ Returns the first OP whose path matches the given pattern, relative to ```root``
 
 ```python
 
+
 b = op('project1')
 
 b = op('foot* ', 'hand* ')
 
 b = op(154)
 
+
 ```
+
 
 </blockquote>
 
@@ -57,29 +63,35 @@ b = op(154)
 
 :An operator specified with by a [[Global OP Shortcut]]. If no operator exists an exception is raised. These shortcuts are global, and must be unique. That is, cutting and pasting an operator with a Global OP Shortcut specified will lead to a name conflict. One shortcut must be renamed in that case. Furthermore, only components can be given Global OP Shortcuts.
 
-:* ```shortcut``` - Corresponds to the Global OP Shortcut parameter specified in the target operator.
+: * ```shortcut``` - Corresponds to the Global OP Shortcut parameter specified in the target operator.
 
 ```python
 
-b = op.Videoplayer
+
+b = op.Videoplayer 
+
 
 ```
+
 
 To list all Global OP Shortcuts:
 
 ```python
 
+
 for x in op:
 
-        print(x)
+	print(x)
+
 
 ```
+
 
 </blockquote>"""
 parent : OP
 """The [[Parent Shortcut|Parent Shortcut]] object, for accessing parent components through indices or shortcuts.
 
-
+    
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]].
 
@@ -95,9 +107,12 @@ The nth parent of the current operator. If n not specified, returns the parent. 
 
 ```python
 
+
 p = parent(2) #grandfather
 
+
 ```
+
 
 ```parent.shortcut  OP```
 
@@ -109,21 +124,24 @@ A parent component specified with a shortcut. If no parent exists an exception i
 
 ```python
 
+
    n = parent.Videoplayer
 
+
 ```
+
 
 See also Parent Shortcut for more examples."""
 iop : OP
 """The Internal Operator Shortcut object, for accessing internal shortcuts.
 
-
+    
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]]."""
 ipar : OP
 """The Internal Operator Parameter Shortcut object, for accessing internal shortcuts.
 
-
+    
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]]."""
 project : any
@@ -147,7 +165,9 @@ Note a version of this method that searches relative to an operator is also in t
 
 ```python
 
+
 newlist = n.ops('arm* ', 'leg* ', 'leg5/foot* ')
+
 
 ```"""
 	pass
@@ -184,7 +204,9 @@ def fetchStamp(key, default) -> any:
 
 ```python
 
+
 v = fetchStamp('sides', 3)
+
 
 ```"""
 	pass

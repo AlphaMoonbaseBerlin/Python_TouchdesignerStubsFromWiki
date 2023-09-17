@@ -11,6 +11,7 @@ Examples of creating a vector:
 
 ```python
 
+
 v = tdu.Vector() # starts as (0, 0, 0)
 
 v2 = tdu.Vector(0, 0, -1)
@@ -27,7 +28,9 @@ print(v3[1])	# same as v3.y
 
 v3[2] = 1		# same as v3.z
 
-```"""
+
+```
+"""
 	x : float
 	"""Gets or sets the X component of the vector."""
 	y : float
@@ -39,7 +42,9 @@ v3[2] = 1		# same as v3.z
 
 ```python
 
+
 d = v.angle(v2)
+
 
 ```"""
 		pass
@@ -50,7 +55,9 @@ d = v.angle(v2)
 
 ```python
 
+
 v.scale(1, 2, 1)
+
 
 ```"""
 		pass
@@ -59,7 +66,9 @@ v.scale(1, 2, 1)
 
 ```python
 
+
 m.normalize()
+
 
 ```"""
 		pass
@@ -68,7 +77,9 @@ m.normalize()
 
 ```python
 
+
 l = m.length()
+
 
 ```"""
 		pass
@@ -77,7 +88,9 @@ l = m.length()
 
 ```python
 
+
 l = v.lengthSquared()
+
 
 ```"""
 		pass
@@ -86,7 +99,9 @@ l = v.lengthSquared()
 
 ```python
 
+
 newV = v.copy()
+
 
 ```"""
 		pass
@@ -95,7 +110,9 @@ newV = v.copy()
 
 ```python
 
+
 l = v.distance(v2)
+
 
 ```"""
 		pass
@@ -104,7 +121,9 @@ l = v.distance(v2)
 
 ```python
 
+
 l = v.lerp(v2, t)
+
 
 ```"""
 		pass
@@ -113,7 +132,9 @@ l = v.lerp(v2, t)
 
 ```python
 
+
 l = v.slerp(v2, t)
+
 
 ```"""
 		pass
@@ -124,7 +145,9 @@ l = v.slerp(v2, t)
 
 ```python
 
+
 d = v.dot(otherV)
+
 
 ```"""
 		pass
@@ -135,7 +158,9 @@ d = v.dot(otherV)
 
 ```python
 
+
 c = v.cross(otherV)
+
 
 ```"""
 		pass
@@ -146,7 +171,9 @@ c = v.cross(otherV)
 
 ```python
 
+
 v.project(v1, v2)
+
 
 ```"""
 		pass
@@ -155,7 +182,9 @@ v.project(v1, v2)
 
 ```python
 
+
 v.reflect(v2)
+
 
 ```"""
 		pass
@@ -181,7 +210,7 @@ class Undo():
 	def addCallback(self, callback, info=None) -> None: 
 		"""Add a Python callback into the undo block
 
-*  callback - user defined callback in the form of <syntaxhighlight lang=python inline>callback(isUndo, info)```
+*  callback - user defined callback in the form of <syntaxhighlight lang=python inline>callback(isUndo, info)</syntaxhighlight>
 
 *  info - this argument will be passed back to user in the callback"""
 		pass
@@ -218,11 +247,12 @@ class TextLine():
 
 
 class tdu():
-	"""The ```tdu``` module is a generic utility module containing all miscellaneous functions that don't refer specifically to TouchDesigner data structures.  ```tdu``` is imported by default when the application launches."""
+	"""The ```tdu</code> module is a generic utility module containing all miscellaneous functions that don't refer specifically to TouchDesigner data structures.  <code>tdu``` is imported by default when the application launches."""
 	fileTypes : dict
 	"""A dictionary of all supported file types, organized by category.
 
 ```python
+
 
 # example of various file types accepted by Movie File In TOP
 
@@ -230,25 +260,33 @@ tdu.fileTypes['movie']
 
 tdu.fileTypes['image']
 
+
 ```
 
+
 ```python
+
 
 # other file types
 
 tdu.fileTypes['audio']
 
+
 ```
 
-Note: Acceptable file types can be both uppercase and lowercase, so if ```suffix``` is a suffix string, you need to force it to lowercase by using ```suffix.lower()```:
+
+Note: Acceptable file types can be both uppercase and lowercase, so if ```suffix</code> is a suffix string, you need to force it to lowercase by using <code>suffix.lower()```:
 
 ```python
 
+
 for suffix.lower() in tdu.fileTypes['movie']:
 
-        print(suffix)
+	print(suffix)
 
-```"""
+
+```
+"""
 	Matrix : any
 	"""The [[Matrix Class|Matrix]] definition class."""
 	Position : any
@@ -294,11 +332,13 @@ Utility properties include:
 
 ```python
 
+
 tdu.rand(me) # return a specific random number based on path
 
 tdu.rand(5) # return a specific random number
 
 tdu.rand(absTime.frame) # return a different number every frame
+
 
 ```"""
 		pass
@@ -310,7 +350,9 @@ tdu.rand(absTime.frame) # return a different number every frame
 
 ```python
 
+
 tdu.remap(0.5, 0, 1,  -180, 180)  #remap slider value to angle range
+
 
 ```"""
 		pass
@@ -321,19 +363,24 @@ tdu.remap(0.5, 0, 1,  -180, 180)  #remap slider value to angle range
 
 ```python
 
+
 tdu.base('arm123') # returns 'arm'
 
 tdu.base('arm123/leg456') # returns 'leg'
 
+
 ```
+
 
 Note this method will work on any string, but when given a specific operator, its more efficient to use its local base member:
 
 ```python
 
+
 n = op('arm123/leg456')
 
 b = n.base #returns 'leg'
+
 
 ```"""
 		pass
@@ -341,6 +388,7 @@ b = n.base #returns 'leg'
 		"""Returns the numeric value of the last consecutive group of digits in the string, or None if not found. The search begins after the last slash if any are present. The digits do not nessearily need to be at the end of the string.
 
 ```python
+
 
 tdu.digits('arm123') # returns 123
 
@@ -350,15 +398,19 @@ tdu.digits('arm123/leg') # returns None, searching is only done after the last /
 
 tdu.digits('arm123/456leg') # returns 456
 
+
 ```
+
 
 Note this method will work on any string, but when given a specific operator, its more efficient to use its local digits member:
 
 ```python
 
+
 n = op('arm123/leg456')
 
 d = n.digits # returns 456
+
 
 ```"""
 		pass
@@ -369,7 +421,9 @@ d = n.digits # returns 456
 
 ```python
 
+
 tdu.validName('a#bc def') # returns 'a_bc_def'
+
 
 ```"""
 		pass
@@ -378,7 +432,9 @@ tdu.validName('a#bc def') # returns 'a_bc_def'
 
 ```python
 
+
 tdu.validPath('/a#bc d/ef') # returns '/a_bc_d/ef'
+
 
 ```"""
 		pass
@@ -387,7 +443,9 @@ tdu.validPath('/a#bc d/ef') # returns '/a_bc_d/ef'
 
 ```python
 
+
 tdu.expand('A[1-3] B[xyz]') # return ['A1', 'A2', 'A3', 'Bx', 'By', 'Bz']
+
 
 ```"""
 		pass
@@ -396,7 +454,9 @@ tdu.expand('A[1-3] B[xyz]') # return ['A1', 'A2', 'A3', 'Bx', 'By', 'Bz']
 
 ```python
 
+
 tdu.expandPath('movies:/test.bmp') # looks at project.paths for 'movies' entry.
+
 
 ```"""
 		pass
@@ -405,9 +465,12 @@ tdu.expandPath('movies:/test.bmp') # looks at project.paths for 'movies' entry.
 
 ```python
 
+
 tdu.collapsePath('C:/downloads/test.bmp') # looks at project.paths for any entries matching the path, and removes current folder from prefix.
 
+
 ```
+
 
 * path - The path to be shortened.
 
@@ -422,18 +485,22 @@ tdu.collapsePath('C:/downloads/test.bmp') # looks at project.paths for any entri
 
 ```python
 
+
 split('1 2.3 None fred 'one \'2\'' '[1,2]'') #yields ['1', '2.3', 'None', 'fred', 'one '2'', '[1, 2]']
 
 split('1 2.3 None fred 'one \'2\'' '[1,2]'', True) #yields [1, 2.3, None, 'fred', 'one '2'', [1, 2]]
+
 
 ```"""
 		pass
 	def match(self, pattern, inputList, caseSensitive=True) -> list: 
 		"""Return a subset of inputList, in which each element matches the pattern. Wildcards are supported.
 
-```pythontdu.match('foo* ', ['foo', 'bar']) # return ['foo']
+```python
+tdu.match('foo* ', ['foo', 'bar']) # return ['foo']
 
-tdu.match('ba?', ['foo', 'bar']) # return ['bar']```"""
+tdu.match('ba?', ['foo', 'bar']) # return ['bar']
+```"""
 		pass
 	def calibrateCamera(self, ) -> None: 
 		"""Returns a set of values based on the input calibration data. This Method is not necessary anymore due to the inclusion of [[openCV]] in TouchDesigner. Refer to [http://docs.opencv.org/3.1.0/d4/d94/tutorial_camera_calibration.html OpenCV Documentation]"""
@@ -450,11 +517,13 @@ This is a one-liner try/except function for use in parameter expressions to hand
 
 ```python
 
+
     tdu.tryExcept(lambda: 1/me.par.w, 0.0) # second argument is simply 0.0
 
     tdu.tryExcept(lambda: 1/me.par.w, me.GetDefaultValue)   # Good:  me.GetDefaultValue not called until needed.
 
-    tdu.tryExcept(lambda: 1/me.par.w, me.GetDefaultValue()) # >> INCORRECT <<.  Always calls second function even if not needed.```"""
+    tdu.tryExcept(lambda: 1/me.par.w, me.GetDefaultValue()) # >> INCORRECT <<.  Always calls second function even if not needed.
+```"""
 		pass
 	def ParMenu(self, menuNames, menuLabels=None) -> any: 
 		"""This method uses a list of strings to create an object meant to be used as a [[Par Class|parameter]] menu source.
@@ -484,11 +553,13 @@ Generally you will use this in the menuSource field in the Component Editor as f
 
 ```python
 
+
     tdu.TableMenu(op('table1')) # use the first column of table1 as a list of menu names and labels
 
     tdu.TableMenu(op('table2'), nameCol='names', labelCol='labels') # from table2, use the column labeled 'names' as menu names, and the column labeled 'labels' as menu names
 
     tdu.TableMenu(op('table3'), labelCol=1, includeFirstRow=True) # from table3, use the first column as menu names and the second column as menu labels. Include the first row of the table in those lists
+
 
 ```"""
 		pass
@@ -574,15 +645,18 @@ n.setLength(600) # sets the length to 10 seconds for a Timecode with 60 FPS.
 
 
 class SysInfo():
-	"""The SysInfo class describes current system information. '''Note:''' It can be accessed with the <syntaxhighlight lang=python inline=true>sysinfo``` object, found in the automatically imported [[td Module|td module]].
+	"""The SysInfo class describes current system information. '''Note:''' It can be accessed with the <syntaxhighlight lang=python inline=true>sysinfo</syntaxhighlight> object, found in the automatically imported [[td Module|td module]].
 
 ```python
+
 
 # return the amount of available ram
 
 sysinfo.ram
 
-```"""
+
+```
+"""
 	numCPUs : int
 	"""The number of CPUs/cores on the system."""
 	ram : float
@@ -652,6 +726,7 @@ class Runs():
 
 ```python
 
+
 print(len(runs))	# number of active run objects 
 
 print(runs[0])		# first run object
@@ -660,7 +735,9 @@ for r in runs:
 
 	r.kill()		# kill all run objects
 
-```"""
+
+```
+"""
 	pass
 
 
@@ -670,6 +747,7 @@ class Quaternion():
 
 
 ```python
+
 
 # From Euler Angles
 
@@ -689,7 +767,9 @@ q = tdu.Quaternion(x, y, z, w)
 
 
 
+
 ```
+
 
 
 
@@ -697,11 +777,14 @@ Quaternions can be used like simple Python lists:
 
 ```python
 
+
 print(q[1])		# same as q.y
 
 q[2] = 0		# same as q.z
 
+
 ```
+
 
 
 
@@ -723,7 +806,9 @@ The interpolation factor must be between 0 and 1.
 
 ```python
 
+
 q3 = q.lerp(q2, factor)
+
 
 ```"""
 		pass
@@ -732,7 +817,9 @@ q3 = q.lerp(q2, factor)
 
 ```python
 
+
 l = q.length()
+
 
 ```"""
 		pass
@@ -743,7 +830,9 @@ The quaternion argument can be anything from which a quaternion can be derived i
 
 ```python
 
+
 l = q.cross(q2)
+
 
 ```"""
 		pass
@@ -752,7 +841,9 @@ l = q.cross(q2)
 
 ```python
 
+
 v2 = q.rotate(v1)
+
 
 ```"""
 		pass
@@ -763,7 +854,9 @@ The quaternion argument can be anything from which a quaternion can be derived i
 
 ```python
 
+
 q3 = q.slerp(q2, factor)
+
 
 ```"""
 		pass
@@ -772,21 +865,27 @@ q3 = q.slerp(q2, factor)
 
 ```python
 
+
 r = q.eulerAngles(order='xyz')
+
 
 ```"""
 		pass
 	def fromEuler(self, order='xyz') -> tuple: 
 		"""Returns and set the current quaternion from euler angles in degrees as a 3 inputs argument (i.e. pitch as x, yaw as y, roll as z). The 'order' argument can be set to any valid rotation order which by default is set to 'xyz'.
 
-```pythonr = q.fromEuler(order='xyz')```"""
+```python
+r = q.fromEuler(order='xyz')
+```"""
 		pass
 	def axis(self, ) -> any: 
 		"""Returns the rotation axis vector of the quaternion.
 
 ```python
 
+
 v = q.axis()
+
 
 ```"""
 		pass
@@ -797,7 +896,9 @@ The quaternion argument can be anything from which a quaternion can be derived i
 
 ```python
 
+
 l = q.dot(q2)
+
 
 ```"""
 		pass
@@ -806,7 +907,9 @@ l = q.dot(q2)
 
 ```python
 
+
 q2 = q.exp()
+
 
 ```"""
 		pass
@@ -818,7 +921,9 @@ q2 = q.exp()
 
 ```python
 
+
 l = q.log()
+
 
 ```"""
 		pass
@@ -827,7 +932,9 @@ l = q.log()
 
 ```python
 
+
 q.inverse()
+
 
 ```"""
 		pass
@@ -836,7 +943,9 @@ q.inverse()
 
 ```python
 
+
 a = q.angle()
+
 
 ```"""
 		pass
@@ -845,9 +954,11 @@ a = q.angle()
 
 ```python
 
+
 # apply rotation of q2 to q1
 
 q1 * = q2
+
 
 ```"""
 		pass
@@ -883,7 +994,9 @@ class Preferences():
 
 ```python
 
+
 a = len(ui.preferences)
+
 
 ```"""
 		pass
@@ -892,9 +1005,11 @@ a = len(ui.preferences)
 
 ```python
 
+
 v = ui.preferences['dats.autoindent']
 
 ui.preferences['dats.autoindent'] = 0
+
 
 ```"""
 		pass
@@ -903,9 +1018,11 @@ ui.preferences['dats.autoindent'] = 0
 
 ```python
 
+
 for p in ui.preferences:
 
         print(p) # print the name of all preferences
+
 
 ```"""
 		pass
@@ -923,6 +1040,7 @@ Examples of creating a position:
 
 ```python
 
+
 p = tdu.Position() # starts as (0, 0, 0)
 
 p2 = tdu.Position(1, 5, 0)
@@ -931,7 +1049,9 @@ values = [0, 1, 0]
 
 p3 = tdu.Position(values)
 
-```"""
+
+```
+"""
 	x : float
 	"""Gets or sets the X component of the position."""
 	y : float
@@ -945,7 +1065,9 @@ p3 = tdu.Position(values)
 
 ```python
 
+
 p.translate(5, 2, 0)
+
 
 ```"""
 		pass
@@ -956,7 +1078,9 @@ p.translate(5, 2, 0)
 
 ```python
 
+
 p.scale(1, 2, 1)
+
 
 ```"""
 		pass
@@ -965,7 +1089,9 @@ p.scale(1, 2, 1)
 
 ```python
 
+
 newV = v.copy()
+
 
 ```"""
 		pass
@@ -986,13 +1112,14 @@ class ParGroupPulse():
 
 For pulse type parameters no value is specified or used.
 
-*  value - (Optional) The tuple to pulse this parGroup with, default is <syntaxhighlight lang=python inline=true>[1]```.
+*  value - (Optional) The tuple to pulse this parGroup with, default is <syntaxhighlight lang=python inline=true>[1]</syntaxhighlight>.
 
 *  frames - (Optional) Number of frames before restoring the parameter to its original value.
 
 *  seconds - (Optional) Number of seconds before restoring the parameter to its original value.
 
 ```python
+
 
 op('moviein1').parGroup.reload.pulse([1]) # set the reload toggle, then cook
 
@@ -1003,6 +1130,7 @@ op('geo1').parGroup.t.pulse([0,2,0], frames=120) # pulse geometry transform for 
 op('text1').parGroup.text.pulse(['GO!'], seconds=3) # pulse text TOP string field, for 3 seconds
 
 op('noise').parGroup.type.pulse(['random'], seconds=0.5) # pulse noise menu type for half a second
+
 
 ```"""
 		pass
@@ -1032,9 +1160,11 @@ Example
 
 ```python
 
+
     p = ui.panes.createFloating(type=PaneType.NETWORKEDITOR, name='Output')
 
     p.owner = op('/project1/base1')
+
 
 ```"""
 		pass
@@ -1043,7 +1173,9 @@ Example
 
 ```python
 
+
 a = len(ui.panes)
+
 
 ```"""
 		pass
@@ -1052,9 +1184,11 @@ a = len(ui.panes)
 
 ```python
 
+
 p = ui.panes[0]
 
 p = ui.panes['pane1']
+
 
 ```"""
 		pass
@@ -1063,9 +1197,11 @@ p = ui.panes['pane1']
 
 ```python
 
+
 for n in ui.panes:
 
         # do something with n
+
 
 ```"""
 		pass
@@ -1082,7 +1218,9 @@ class Options():
 
 ```python
 
+
 a = len(ui.options)
+
 
 ```"""
 		pass
@@ -1091,9 +1229,11 @@ a = len(ui.options)
 
 ```python
 
+
 v = ui.options['DAT.width']
 
 ui.options['DAT.width'] = 50
+
 
 ```"""
 		pass
@@ -1102,9 +1242,11 @@ ui.options['DAT.width'] = 50
 
 ```python
 
+
 for n in ui.options:
 
         print(n) # print the name of all options
+
 
 ```"""
 		pass
@@ -1134,11 +1276,14 @@ class OP():
 	ext : any
 	"""The object to search for parent [[Extensions|extensions]].
 
-```python
+```'python'
+
 
 me.ext.MyClass
 
-```"""
+
+```
+"""
 	mod : any
 	"""Get a [[MOD Class|module on demand]] object that searches for DAT modules relative to this operator."""
 	pages : list
@@ -1146,7 +1291,8 @@ me.ext.MyClass
 	parGroup : tuple
 	"""An intermediate [[ParGroupCollection Class|parameter collection]] object, from which a specific [[ParGroup Class|parameter group]] can be found.
 
-```python
+```'python'
+
 
 n.parGroup.t
 
@@ -1154,11 +1300,14 @@ n.parGroup.t
 
 n.parGroup['t']
 
-```"""
+
+```
+"""
 	par : any
 	"""An intermediate [[ParCollection Class|parameter collection]] object, from which a specific [[Par Class|parameter]] can be found.
 
-```python
+```'python'
+
 
 n.par.tx
 
@@ -1166,7 +1315,9 @@ n.par.tx
 
 n.par['tx']
 
-```"""
+
+```
+"""
 	builtinPars : list or par
 	"""A list of all [[Par Class|built-in parameters]]."""
 	customParGroups : any
@@ -1186,13 +1337,16 @@ n.par['tx']
 
 The set is a regular python set, and can be accessed accordingly:
 
-```python
+```'python'
+
 
 n.tags = ['effect', 'image filter']
 
 n.tags.add('darken')
 
-```"""
+
+```
+"""
 	children : list
 	"""A list of [[OP Class|operators]] contained within this operator. Only [[COMP Class|component]] operators have children, otherwise an empty list is returned."""
 	numChildren : int
@@ -1204,7 +1358,7 @@ n.tags.add('darken')
 
 
 
-```'''op(pattern1, pattern2..., includeUtility=False)'''``` &rarr; <code class='return'>[[OP Class|OP]] or None```
+```'''op(pattern1, pattern2..., includeUtility=False)'''</code> &rarr; <code class='return'>[[OP Class|OP]] or None```
 
 <blockquote>
 
@@ -1216,7 +1370,8 @@ Returns the first OP whose path matches the given pattern, relative to the insid
 
 
 
-```python
+```'python'
+
 
 b = op('project1')
 
@@ -1226,33 +1381,41 @@ b = op('foot*  hand* ')  #space separated
 
 b = op(154)
 
+
 ```
+
 
 </blockquote>
 
-```'''op.shortcut'''``` &rarr; ```OP```
+```'''op.shortcut'''</code> &rarr; <code>OP```
 
 <blockquote>
 
 :An operator specified with by a [[Global OP Shortcut]]. If no operator exists an exception is raised. These shortcuts are global, and must be unique. That is, cutting and pasting an operator with a Global OP Shortcut specified will lead to a name conflict. One shortcut must be renamed in that case. Furthermore, only components can be given Global OP Shortcuts.
 
-:* ```shortcut``` - Corresponds to the Global OP Shortcut parameter specified in the target operator.
+: * ```shortcut``` - Corresponds to the Global OP Shortcut parameter specified in the target operator.
 
-```python
+```'python'
 
-b = op.Videoplayer
+
+b = op.Videoplayer 
+
 
 ```
+
 
 To list all Global OP Shortcuts:
 
-```python
+```'python'
+
 
 for x in op:
 
-        print(x)
+	print(x)
+
 
 ```
+
 
 </blockquote>"""
 	parent : OP
@@ -1262,7 +1425,7 @@ for x in op:
 
 
 
-<code class='python'>parent(n)``` &rarr; <code class='return'>OP or None```
+<code class='python'>parent(n)</code> &rarr; <code class='return'>OP or None</code>
 
 <blockquote>
 
@@ -1270,15 +1433,18 @@ The nth parent of this operator. If n not specified, returns the parent. If n = 
 
 * n - (Optional) n is the number of levels up to climb. When n = 1 it will return the operator's parent.
 
-```python
+```'python'
+
 
 p = parent(2) #grandfather
 
+
 ```
+
 
 </blockquote>
 
-<code class='python'>parent.shortcut``` &rarr; <code class='return'>OP```
+<code class='python'>parent.shortcut</code> &rarr; <code class='return'>OP</code>
 
 <blockquote>
 
@@ -1286,11 +1452,14 @@ A parent component specified with a shortcut. If no parent exists an exception i
 
 * shortcut - Corresponds to the [[Parent Shortcut]] parameter specified in the target parent.
 
-```python
+```'python'
+
 
 n = parent.Videoplayer
 
+
 ```
+
 
 See also Parent Shortcut for more examples.</blockquote>"""
 	iop : OP
@@ -1302,13 +1471,16 @@ See also Parent Shortcut for more examples.</blockquote>"""
 	ipar : OP
 	"""The Internal Operator Parameter Shortcut object, for accessing internal shortcuts.  See also [[Internal Parameters]].
 
-
+    
 
 '''Note:''' a version of this method that searches relative to the current operator is also in the global [[td Module]]."""
 	currentPage : any
 	"""Get or set the currently displayed parameter page. It can be set by setting it to another page or a string label.
 
-```pythonn.currentPage = 'Common'```"""
+```'python'
+n.currentPage = 'Common'
+```
+"""
 	activeViewer : bool
 	"""Get or set [[Viewer Active Flag]]."""
 	allowCooking : bool
@@ -1448,13 +1620,18 @@ See also Parent Shortcut for more examples.</blockquote>"""
 
 * pattern - Is a string following the [[Pattern Matching]] rules, specifying which parameters to return.
 
-```python
+```'python'
+
 
 newlist = op('geo1').pars('t?', 'r?', 's?') #translate/rotate/scale parameters
 
-```Note: If searching for a single parameter given a name, it's much more efficient to use the subscript operator. For example:```pythonname = 'MyName1'
 
-op('geo1').par[name]```"""
+```
+Note: If searching for a single parameter given a name, it's much more efficient to use the subscript operator. For example:```'python'
+name = 'MyName1'
+
+op('geo1').par[name]
+```"""
 		pass
 	def cook(self, force=False, recurse=False, includeUtility=False) -> None: 
 		"""Cook the contents of the operator if required.
@@ -1474,9 +1651,11 @@ op('geo1').par[name]```"""
 
 * builtin - (Keyword, Optional) When True, built in parameters will be copied.
 
-```python
+```'python'
+
 
 op('geo1').copyParameters( op('geo2') )
+
 
 ```"""
 		pass
@@ -1485,11 +1664,13 @@ op('geo1').copyParameters( op('geo2') )
 
 * OPtype - The python class name of the operator type you want to change this operator to. This is not a string, but instead is a class defined in the global [[td Module|td module]].
 
-```python
+```'python'
+
 
 n = op('wave1').changeType(nullCHOP) #changes 'wave1' into a Null CHOP
 
 n = op('text1').changeType(tcpipDAT) #changes 'text1' operator into a TCPIP DAT
+
 
 ```"""
 		pass
@@ -1501,11 +1682,14 @@ n = op('text1').changeType(tcpipDAT) #changes 'text1' operator into a TCPIP DAT
 
 * str - The expression to evaluate.
 
-```python
+```'python'
+
 
 op('wave1').evalExpression('me.digits')  #returns 1
 
+
 ```
+
 
 If the expression already resides in a parameter, use that parameters [[Par Class|evalExpression()]] method instead."""
 		pass
@@ -1550,9 +1734,11 @@ Multiple patterns may be provided. Numeric OP ids may also be used.
 
 '''Note:''' a version of this method that searches relative to '/' is also in the global [[td Module|td module]].
 
-```python
+```'python'
+
 
 newlist = n.ops('arm* ', 'leg* ', 'leg5/foot* ')
+
 
 ```"""
 		pass
@@ -1593,9 +1779,11 @@ newlist = n.ops('arm* ', 'leg* ', 'leg5/foot* ')
 
 * error - Pattern to match when clearing errors
 
-```python
+```'python'
+
 
 op('/project1').clearScriptErrors(recurse=True)
+
 
 ```"""
 		pass
@@ -1613,11 +1801,13 @@ op('/project1').clearScriptErrors(recurse=True)
 
 * topMost - (Keyword, Optional) If True, any viewer window containing any parent of this OP is closed instead.
 
-```python
+```'python'
+
 
 op('wave1').closeViewer()
 
 op('wave1').closeViewer(topMost=True) # any viewer that contains 'wave1' will be closed.
+
 
 ```"""
 		pass
@@ -1628,9 +1818,11 @@ op('wave1').closeViewer(topMost=True) # any viewer that contains 'wave1' will be
 
 * borders - (Keyword, Optional) If true, the floating window containing the viewer will have borders.
 
-```python
+```'python'
+
 
 op('geo1').openViewer(unique=True, borders=False) # opens a new borderless viewer window for 'geo1'
+
 
 ```"""
 		pass
@@ -1639,9 +1831,11 @@ op('geo1').openViewer(unique=True, borders=False) # opens a new borderless viewe
 
 * recurse - (Keyword, Optional) If True, this is done for all children and sub-children as well.
 
-```python
+```'python'
+
 
 op('/').resetViewer(recurse=True) # reset the viewer for all operators in the entire file.
+
 
 ```"""
 		pass
@@ -1659,9 +1853,11 @@ op('/').resetViewer(recurse=True) # reset the viewer for all operators in the en
 
 * search - (Keyword, Optional) If True, the parent of each OP is searched recursively until a match is found
 
-```python
+```'python'
+
 
 v = n.fetch('sales5', 0.0)
+
 
 ```"""
 		pass
@@ -1670,9 +1866,11 @@ v = n.fetch('sales5', 0.0)
 
 * key - The key to the stored entry you are looking for.
 
-```python
+```'python'
+
 
 who = n.fetchOwner('sales5') #find the OP that has a storage entry called 'sales5'
+
 
 ```"""
 		pass
@@ -1683,11 +1881,13 @@ who = n.fetchOwner('sales5') #find the OP that has a storage entry called 'sales
 
 * value - The value/object to store.
 
-```python
+```'python'
+
 
 n.store('sales5', 34.5) # stores a floating point value 34.5.
 
 n.store('moviebank', op('/project1/movies')) # stores an OP for easy access later on.
+
 
 ```"""
 		pass
@@ -1696,9 +1896,11 @@ n.store('moviebank', op('/project1/movies')) # stores an OP for easy access late
 
 * keys - The name or pattern defining which key/value pairs to remove from the storage dictionary.
 
-```python
+```'python'
+
 
 n.unstore('sales* ') # removes all entries from this OPs storage that start with 'sales'
+
 
 ```"""
 		pass
@@ -1709,9 +1911,11 @@ n.unstore('sales* ') # removes all entries from this OPs storage that start with
 
 * value - The startup value/object to store.
 
-```python
+```'python'
+
 
 n.storeStartupValue('sales5', 1) # 'sales5' will have a value of 1 when the file starts up.
+
 
 ```"""
 		pass
@@ -1720,9 +1924,11 @@ n.storeStartupValue('sales5', 1) # 'sales5' will have a value of 1 when the file
 
 * keys - The name or pattern defining which key/value pairs to remove from the storage startup dictionary.
 
-```python
+```'python'
+
 
 n.unstoreStartupValue('sales* ') # removes all entries from this OPs storage startup that start with 'sales'
+
 
 ```"""
 		pass
@@ -1773,7 +1979,9 @@ class VFS():
 
 ```python
 
+
 p = op('base1').vfs['Banana.tif']
+
 
 ```"""
 		pass
@@ -1802,9 +2010,11 @@ p = op('base1').vfs['Banana.tif']
 
 ```python
 
+
 # VFS contains one file with name 'A/B.tif'
 
 COMP.vfs.export('C:/tmp') # returns ['C:/tmp/A/B.tif']
+
 
 ```"""
 		pass
@@ -1818,7 +2028,9 @@ COMP.vfs.export('C:/tmp') # returns ['C:/tmp/A/B.tif']
 
 ```python
 
+
 a = len(op('base1').vfs)
+
 
 ```"""
 		pass
@@ -1827,9 +2039,11 @@ a = len(op('base1').vfs)
 
 ```python
 
+
 for f in op('base1').vfs:
 
         debug(f) # print info of all virtual files on base1
+
 
 ```"""
 		pass
@@ -1862,11 +2076,14 @@ For Example:
 
 ```python
 
+
 # open the Midi Device Mapper Dialog
 
 ui.openMIDIDeviceMapper()
 
-```"""
+
+```
+"""
 	clipboard : str
 	"""Get or set the operating system clipboard text contents."""
 	colors : any
@@ -1900,9 +2117,12 @@ ui.openMIDIDeviceMapper()
 
 ```python
 
+
 ui.status = 'Operation Complete'
 
-```"""
+
+```
+"""
 	undo : any
 	"""Acess to application undo functions."""
 	windowWidth : int
@@ -1918,7 +2138,9 @@ ui.status = 'Operation Complete'
 
 * listOfOPs - A list containing one or more OPs to be copied.
 
-```pythonui.copyOPs( op('geo1').selected )```"""
+```python
+ui.copyOPs( op('geo1').selected )
+```"""
 		pass
 	def pasteOPs(self, COMP, x=None, y=None) -> None: 
 		"""Copy the contents of the operator clipboard into the specified component.
@@ -1929,7 +2151,9 @@ ui.status = 'Operation Complete'
 
 * y - see x
 
-```pythonl = ui.pasteOPs( op('geo2') )```"""
+```python
+l = ui.pasteOPs( op('geo2') )
+```"""
 		pass
 	def messageBox(self, title, message, buttons=['Ok']) -> int: 
 		"""This method will open a message dialog box with the specified message.  Returns the index of the button clicked.
@@ -1941,6 +2165,7 @@ ui.status = 'Operation Complete'
 * buttons - (Keyword, Optional) Specifies a list button labels to show in the dialog.
 
 ```python
+
 
 # basic usage
 
@@ -1964,6 +2189,7 @@ ui.messageBox('Please select:', 'Nodes:', buttons=[x.name for x in parent().chil
 
 ui.messageBox('Please select:', 'Cells:', buttons=op('table1').cells('* ','* '))
 
+
 ```"""
 		pass
 	def refresh(self, ) -> None: 
@@ -1971,11 +2197,13 @@ ui.messageBox('Please select:', 'Cells:', buttons=op('table1').cells('* ','* '))
 
 ```python
 
+
 for i in range(100):
 
         ui.status = str(i)
 
         ui.refresh()
+
 
 ```"""
 		pass
@@ -1994,6 +2222,7 @@ for i in range(100):
 
 ```python
 
+
 a = ui.chooseFile(start='python_examples.toe', fileTypes=['toe'], title='Select a toe') # specify extension
 
 a = ui.chooseFile(fileTypes=tdu.fileTypes['image'], title='Select an image') # any support image extension
@@ -2003,6 +2232,7 @@ path = ui.chooseFile(load=False,fileTypes=['txt'],title='Save table as:')
 if (path):
 
         op('table1').save(path)
+
 
 ```"""
 		pass
@@ -2017,9 +2247,11 @@ if (path):
 
 ```python
 
+
 a = ui.chooseFolder()
 
 a = ui.chooseFolder(title='Select a folder location.')
+
 
 ```"""
 		pass
@@ -2030,15 +2262,20 @@ a = ui.chooseFolder(title='Select a folder location.')
 
 ```python
 
+
 a = ui.viewFile('output.txt')
 
+
 ```
+
 
 * showInFolder - Show file as selected in Explorer or macOS Finder instead of launching an external application.
 
 ```python
 
+
 a = ui.viewFile('output.txt', showInFolder=True)
+
 
 ```"""
 		pass
@@ -2066,7 +2303,9 @@ a = ui.viewFile('output.txt', showInFolder=True)
 
 ```python
 
+
 ui.openDialogHelp('Window Placement Dialog')
+
 
 ```"""
 		pass
@@ -2165,11 +2404,13 @@ class TOP(OP):
 
 ```python
 
+
 r = n.sample(x=25,y=100)[0]   #The red component at pixel 25,100.
 
 g = n.sample(u=0.5,v=0.5)[1]  #The green component at the central location.
 
 b = n.sample(x=25,v=0.5)[2]  #The blue 25 pixels across, and half way down.
+
 
 ```"""
 		pass
@@ -2181,7 +2422,7 @@ b = n.sample(x=25,v=0.5)[2]  #The blue 25 pixels across, and half way down.
 * writable - (Keyword, Optional) If set to True, the memory in the numpy array will be allocated in such a way that writes to it arn't slow. By default the memory the numpy array holds can be allocated in such a way that is very slow to write to. Note that in either case, writing to the numpy array will * not*  change the data in the TOP."""
 		pass
 	def save(self, filepath, asynchronous=False, createFolders=False, quality=1.0, metadata=[]) -> any: 
-		"""Saves the image to the file system. Support file formats are: ```.tif```, ```.tiff```, ```.jpg```, ```.jpeg```, ```.bmp```, ```.png```, ```.exr``` and ```.dds```. Returns the filename and path used.
+		"""Saves the image to the file system. Support file formats are: ```.tif</code>, <code>.tiff</code>, <code>.jpg</code>, <code>.jpeg</code>, <code>.bmp</code>, <code>.png</code>, <code>.exr</code> and <code>.dds```. Returns the filename and path used.
 
 * filepath - (Optional) The path and filename to save to. If not given then a default filename will be used, and the file will be saved in the ```project.folder``` folder.
 
@@ -2195,16 +2436,18 @@ b = n.sample(x=25,v=0.5)[2]  #The blue 25 pixels across, and half way down.
 
 ```python
 
+
 name = n.save()   #save in default format with default name.
 
 n.save('picture.jpg')
 
 n.save('image.exr', metadata=[ ('my_key', 'my_value'), ('author_name', 'derivative') ] ); # save as .exr with custom metadata
 
+
 ```"""
 		pass
 	def saveByteArray(self, filetype, quality=1.0, metadata=[]) -> bytearray: 
-		"""Saves the image to a bytearray object in the requested file format. Support file formats are: .tif, .tiff, .jpg, .jpeg, .bmp, .png, .exr and .dds. Returns the bytearray object. To get the raw image data use ```numpyArray()``` or ```cudaArray()``` instead.
+		"""Saves the image to a bytearray object in the requested file format. Support file formats are: .tif, .tiff, .jpg, .jpeg, .bmp, .png, .exr and .dds. Returns the bytearray object. To get the raw image data use ```numpyArray()</code> or <code>cudaArray()``` instead.
 
 * filetype - (Optional) A string specifying the file type to save as. If not given the default file type '.tiff' will be used. Just the suffix of the string is used to determine the file type. E.g '.tiff', 'file.tiff', 'C:/Files/file.tiff' will all work. '''Suffix must include the period'''.
 
@@ -2214,11 +2457,13 @@ n.save('image.exr', metadata=[ ('my_key', 'my_value'), ('author_name', 'derivati
 
 ```python
 
+
 arr = n.saveByteArray() # save in default format.
 
 arr = n.saveByteArray('.jpg') # save as .jpg
 
 arr = n.saveByteArray('.exr', metadata=[ ('my_key', 'my_value'), ('author_name', 'derivative') ] ); # save as .exr with custom metadata
+
 
 ```"""
 		pass
@@ -2256,9 +2501,11 @@ class webrenderTOP(TOP,OP):
 
 ```python
 
+
 op('webrender1').interactMouse(0.5, 0.5) # roll over the middle of the webpage
 
 op('webrender1').interactMouse(0.5, 0.5, leftClick=2) # double click the middle of the webpage
+
 
 ```"""
 		pass
@@ -2282,9 +2529,11 @@ op('webrender1').interactMouse(0.5, 0.5, leftClick=2) # double click the middle 
 
 ```python
 
+
 op('webrender1').sendKey(65)      # sends the character 'A'
 
 op('webrender1').sendKey('left')  # sends the left arrow key
+
 
 ```"""
 		pass
@@ -2293,7 +2542,9 @@ op('webrender1').sendKey('left')  # sends the left arrow key
 
 ```python
 
+
 op('webrender1').sendString('TouchDesigner')  # sends the string TouchDesigner
+
 
 ```"""
 		pass
@@ -2449,15 +2700,18 @@ class td():
 	ext : any
 	"""Reference to the extension searching object. See [[extensions]] for more information."""
 	families : dict
-	"""A dictionary containing a list of [[OP Class|operator]] types for each operator family.
+	"""A dictionary containing a list of [[OP Class|operator]] types for each operator family. 
 
 ```python
 
+
 for a in families['SOP']:
 
-        # do something with a
+	# do something with a
 
-```"""
+
+```
+"""
 	licenses : any
 	"""Reference to the currently installed [[Licenses Class|licences]]."""
 	mod : any
@@ -2483,13 +2737,16 @@ Returns the first OP whose path matches the given pattern, relative to ```root``
 
 ```python
 
+
 b = op('project1')
 
 b = op('foot* ', 'hand* ')
 
 b = op(154)
 
+
 ```
+
 
 </blockquote>
 
@@ -2499,29 +2756,35 @@ b = op(154)
 
 :An operator specified with by a [[Global OP Shortcut]]. If no operator exists an exception is raised. These shortcuts are global, and must be unique. That is, cutting and pasting an operator with a Global OP Shortcut specified will lead to a name conflict. One shortcut must be renamed in that case. Furthermore, only components can be given Global OP Shortcuts.
 
-:* ```shortcut``` - Corresponds to the Global OP Shortcut parameter specified in the target operator.
+: * ```shortcut``` - Corresponds to the Global OP Shortcut parameter specified in the target operator.
 
 ```python
 
-b = op.Videoplayer
+
+b = op.Videoplayer 
+
 
 ```
+
 
 To list all Global OP Shortcuts:
 
 ```python
 
+
 for x in op:
 
-        print(x)
+	print(x)
+
 
 ```
+
 
 </blockquote>"""
 	parent : OP
 	"""The [[Parent Shortcut|Parent Shortcut]] object, for accessing parent components through indices or shortcuts.
 
-
+    
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]].
 
@@ -2537,9 +2800,12 @@ The nth parent of the current operator. If n not specified, returns the parent. 
 
 ```python
 
+
 p = parent(2) #grandfather
 
+
 ```
+
 
 ```parent.shortcut  OP```
 
@@ -2551,21 +2817,24 @@ A parent component specified with a shortcut. If no parent exists an exception i
 
 ```python
 
+
    n = parent.Videoplayer
 
+
 ```
+
 
 See also Parent Shortcut for more examples."""
 	iop : OP
 	"""The Internal Operator Shortcut object, for accessing internal shortcuts.
 
-
+    
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]]."""
 	ipar : OP
 	"""The Internal Operator Parameter Shortcut object, for accessing internal shortcuts.
 
-
+    
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]]."""
 	project : any
@@ -2589,7 +2858,9 @@ Note a version of this method that searches relative to an operator is also in t
 
 ```python
 
+
 newlist = n.ops('arm* ', 'leg* ', 'leg5/foot* ')
+
 
 ```"""
 		pass
@@ -2626,7 +2897,9 @@ newlist = n.ops('arm* ', 'leg* ', 'leg5/foot* ')
 
 ```python
 
+
 v = fetchStamp('sides', 3)
+
 
 ```"""
 		pass
@@ -2736,9 +3009,11 @@ class SOP(OP):
 
 ```python
 
+
 name = n.save()   #save in native format with default name.
 
 n.save('output.bgeo')  #alternate format compatible with some other modelling packages.
+
 
 ```"""
 		pass
@@ -2926,9 +3201,10 @@ class sequenceblendSOP(SOP,OP):
 
 
 class Sequence():
-	"""An object describing a set of sequential parameter blocks. Accessed via the ```sequence``` member of [[Par Class|parameters]]. You can use any parameter inside the sequence to retreive it's ```sequence``` object.
+	"""An object describing a set of sequential parameter blocks. Accessed via the ```sequence</code> member of [[Par Class|parameters]]. You can use any parameter inside the sequence to retreive it's <code>sequence``` object.
 
 ```python
+
 
 seq = op('/base1').par.iopshortcut1.sequence	# get the sequence object
 
@@ -2950,7 +3226,9 @@ seq.numBlocks += 1							    # add a new block of parameters (same as pressing +
 
 # A parameter block is a tuple of parameters that make up one block in a set of sequential parameters.
 
-```"""
+
+```
+"""
 	owner : OP
 	"""The OP to which this object belongs."""
 	numBlocks : int
@@ -2983,10 +3261,10 @@ class scriptSOP(SOP,OP):
 * sop - The SOP to copy geometry from. Geometry currently in this SOP will be removed."""
 		pass
 	def appendPoint(self, ) -> Point: 
-		"""Append a `~Point` to this SOP. The appended point will be returned."""
+		"""Append a [[Point Class|point]] to this SOP. The appended point will be returned."""
 		pass
 	def appendPoly(self, numVertices, closed=True, addPoints=True) -> Poly: 
-		"""Append a [[Poly Class|poly]] to this SOP. Returns the appended polygon. The returned polygon, is a list of vertices, and if ```addPoints=True```, then ```polygon[0].point.x``` can be set to the x value of the first point of the polygon, for example.
+		"""Append a [[Poly Class|poly]] to this SOP. Returns the appended polygon. The returned polygon, is a list of vertices, and if ```addPoints=True</code>, then <code>polygon[0].point.x``` can be set to the x value of the first point of the polygon, for example.
 
 * numVertices - Specifies the initial number of [[Vertex Class|vertices]].
 
@@ -3001,15 +3279,21 @@ class scriptSOP(SOP,OP):
 
 ```python
 
+
 scriptOp.appendBezier(6, closed=True) #closed, cubic, 6 vertices, or 2 spans
 
+
 ```
+
 
 ```python
 
+
 scriptOp.appendBezier(7) #open, cubic, 7 vertices, or 2 spans
 
+
 ```
+
 
 *  closed - (Keyword, Optional) Specifies whether or not the last [[Vertex Class|vertex]] of the curve will connect to the first. An open Bezier will be drawn as a line.
 
@@ -3039,9 +3323,11 @@ scriptOp.appendBezier(7) #open, cubic, 7 vertices, or 2 spans
 
 ```python
 
+
 page = scriptOp.appendCustomPage('Custom1')
 
 page.appendFloat('X1')
+
 
 ```"""
 		pass
@@ -3053,7 +3339,9 @@ page.appendFloat('X1')
 
 ```python
 
+
 scriptOp.sortCustomPages('Definition','Controls')
+
 
 ```"""
 		pass
@@ -3086,13 +3374,16 @@ They can be accessed from the [[Runs Class|runs]] object. Scripts can be execute
 
 ```python
 
+
 DAT.run()
 
 Cell.run()
 
 td.run()
 
-```"""
+
+```
+"""
 	active : bool
 	"""Get or set whether or not this script will execute once its target frame is reached."""
 	group : any
@@ -3233,17 +3524,20 @@ class Project():
 	saveOSVersion : str
 	"""The [[App Class|App]] operating system version when the project was last saved."""
 	paths : dict
-	"""A dictionary which can be used to define URL-syntax path prefixes, enabling you to move your media to different locations easily. This dictionary is saved and loaded in the ```.toe``` file.  Example: Run ```project.paths['movies'] = 'C:/MyMovies'```, and reference it with a parameter expression: ```movies://butterfly.jpg```. To manually convert between expanded and collapsed paths, use ```tdu.collapsePath()``` and ```tdu.expandPath``` from the [[Tdu Module]], for example ```tdu.expandPath('movies://butterfly.jpg')``` expands to ```C:/MyMovies/butterfly.jpg```. If you already have your paths setup, choosing files from file browsers in OPs will create paths using these shortcuts rather than full paths. Additionally, to enable you to have different media locations on different machines, you can put a JSON file in the same folder as your ```.toe``` that gets read on startup. This will override any existing locations saved in projects.paths to the new machine specific file paths specified in the .json. Only existing entries in ```project.paths``` will be used. If the .json contains path names not specified in ```project.paths```, those will be ignored. It would contain something like ```{ 'project.paths': { 'movies': 'M:/MyMovies' } }```. If your ```.toe``` file is called ```MyProject.10.toe```, the JSON file must be called ```MyProject.Settings.json```. The idea is that this .json would be unique to machines, and not commited to version control or shared between machines."""
+	"""A dictionary which can be used to define URL-syntax path prefixes, enabling you to move your media to different locations easily. This dictionary is saved and loaded in the ```.toe</code> file.  Example: Run <code>project.paths['movies'] = 'C:/MyMovies'</code>, and reference it with a parameter expression: <code>movies://butterfly.jpg</code>. To manually convert between expanded and collapsed paths, use <code>tdu.collapsePath()</code> and <code>tdu.expandPath</code> from the [[Tdu Module]], for example <code>tdu.expandPath('movies://butterfly.jpg')</code> expands to <code>C:/MyMovies/butterfly.jpg</code>. If you already have your paths setup, choosing files from file browsers in OPs will create paths using these shortcuts rather than full paths. Additionally, to enable you to have different media locations on different machines, you can put a JSON file in the same folder as your <code>.toe</code> that gets read on startup. This will override any existing locations saved in projects.paths to the new machine specific file paths specified in the .json. Only existing entries in <code>project.paths</code> will be used. If the .json contains path names not specified in <code>project.paths</code>, those will be ignored. It would contain something like <code>{ 'project.paths': { 'movies': 'M:/MyMovies' } }</code>. If your <code>.toe</code> file is called <code>MyProject.10.toe</code>, the JSON file must be called <code>MyProject.Settings.json```. The idea is that this .json would be unique to machines, and not commited to version control or shared between machines."""
 	cookRate : float
 	"""Get or set the maximum number of frames processed each second. In general you should not need to use this. It is preferred to look at the FPS of the root component to know the cooking rate. Individual [[COMP Class|components]] may have their own rates, specified by rate.
 
 ```python
 
-a = project.cookRate # get the current cook rate
+
+a = project.cookRate # get the current cook rate 
 
 project.cookRate = 30 # set the cook rate to 30 FPS
 
+
 ```
+
 
 Note: This is displayed and set in the user interface at the bottom-left: the 'FPS' field."""
 	realTime : bool
@@ -3251,11 +3545,14 @@ Note: This is displayed and set in the user interface at the bottom-left: the 'F
 
 ```python
 
+
 a = project.realTime
 
 project.realTime = False # turn off real time playback.
 
-```"""
+
+```
+"""
 	isPrivate : bool
 	"""True when the project networks cannot be directly viewed."""
 	isPrivateKey : bool
@@ -3271,7 +3568,7 @@ project.realTime = False # turn off real time playback.
 	windowStartMode : any
 	"""Get or set the window start mode.
 
-The mode is one of: ```WindowStartMode.AUTO```, ```WindowStartMode.FULL```, ```WindowStartMode.LEFT```, ```WindowStartMode.RIGHT``` or ```WindowStartMode.CUSTOM```."""
+The mode is one of: ```WindowStartMode.AUTO</code>, <code>WindowStartMode.FULL</code>, <code>WindowStartMode.LEFT</code>, <code>WindowStartMode.RIGHT</code> or <code>WindowStartMode.CUSTOM```."""
 	windowDraw : bool
 	"""Get or set the window drawing state."""
 	windowStartCustomWidth : int
@@ -3295,7 +3592,9 @@ The mode is one of: ```WindowStartMode.AUTO```, ```WindowStartMode.FULL```, ```W
 
 ```python
 
+
 project.load('test_demo.toe')
+
 
 ```"""
 		pass
@@ -3308,9 +3607,11 @@ project.load('test_demo.toe')
 
 ```python
 
+
 project.save('test_demo.toe')
 
 project.save()
+
 
 ```"""
 		pass
@@ -3323,9 +3624,11 @@ project.save()
 
 ```python
 
+
 project.quit()  #quit project, possibly prompting for unsaved changes if 'Prompt to Save on Exit' in Preferences dialog is enabled.
 
 project.quit(force=True)  #quit project immediately.
+
 
 ```"""
 		pass
@@ -3338,7 +3641,9 @@ Privacy can only be added to toes that currently have no privacy, and are using 
 
 ```python
 
+
 project.addPrivacy('secret')
+
 
 ```"""
 		pass
@@ -3349,7 +3654,9 @@ project.addPrivacy('secret')
 
 ```python
 
+
 project.removePrivacy('secret')
+
 
 ```"""
 		pass
@@ -3360,7 +3667,9 @@ project.removePrivacy('secret')
 
 ```python
 
+
 project.accessPrivateContents('secret')
+
 
 ```"""
 		pass
@@ -3372,7 +3681,9 @@ project.accessPrivateContents('secret')
 
 ```python
 
+
 print(project.stack())
+
 
 ```"""
 		pass
@@ -3381,7 +3692,9 @@ print(project.stack())
 
 ```python
 
+
 print(project.pythonStack())
+
 
 ```"""
 		pass
@@ -3402,7 +3715,9 @@ class Prims():
 
 ```python
 
+
 a = len(op('box1').prims)
+
 
 ```"""
 		pass
@@ -3411,7 +3726,9 @@ a = len(op('box1').prims)
 
 ```python
 
+
 n = op('box1').prims[0]
+
 
 ```"""
 		pass
@@ -3420,9 +3737,11 @@ n = op('box1').prims[0]
 
 ```python
 
+
 for m in op('box1').prims:
 
         # do something with m, which is a Prim
+
 
 ```"""
 		pass
@@ -3459,7 +3778,9 @@ class Prim():
 
 ```python
 
+
 center = op('box1').prim[0].eval(0.5, 0.5)
+
 
 ```"""
 		pass
@@ -3468,7 +3789,9 @@ center = op('box1').prim[0].eval(0.5, 0.5)
 
 ```python
 
+
 a = len(op('box1').prim[0])
+
 
 ```"""
 		pass
@@ -3477,7 +3800,9 @@ a = len(op('box1').prim[0])
 
 ```python
 
+
 n = op('box1').prims[5][0]
+
 
 ```"""
 		pass
@@ -3486,7 +3811,9 @@ n = op('box1').prims[5][0]
 
 ```python
 
+
 v = op('grid1').prims[2,3]
+
 
 ```"""
 		pass
@@ -3495,9 +3822,11 @@ v = op('grid1').prims[2,3]
 
 ```python
 
+
 for m in op('box1').prims[5]:
 
         # do something with m, which is a Vertex
+
 
 ```"""
 		pass
@@ -3552,7 +3881,9 @@ class Points():
 
 ```python
 
+
 a = len(op('box1').points)
+
 
 ```"""
 		pass
@@ -3561,7 +3892,9 @@ a = len(op('box1').points)
 
 ```python
 
+
 n = op('box1').points[0]
+
 
 ```"""
 		pass
@@ -3570,9 +3903,11 @@ n = op('box1').points[0]
 
 ```python
 
+
 for m in op('box1').points:
 
         # do something with m, which is a Point
+
 
 ```"""
 		pass
@@ -3590,11 +3925,14 @@ class Point():
 
 ```python
 
+
 point.P[0] = 5
 
 point.P = (1,0,1)
 
-```"""
+
+```
+"""
 	x : float
 	"""Get or set x coordinate value. This is the same as P[0]."""
 	y : float
@@ -3683,7 +4021,9 @@ class ParCollection():
 
 ```python
 
+
 p = op('base1').par['Myfloat5']
+
 
 ```"""
 		pass
@@ -3695,11 +4035,12 @@ class Par():
 	valid : bool
 	"""True if the referenced parameter currently exists, False if it has been deleted."""
 	val : any
-	"""Get or set the constant value of the parameter only. To get the parameter's current value, regardless of the [[Parameter Mode]] (constant, expression, export or bound), use the <syntaxhighlight lang=python inline>eval()``` method described below.
+	"""Get or set the constant value of the parameter only. To get the parameter's current value, regardless of the [[Parameter Mode]] (constant, expression, export or bound), use the <syntaxhighlight lang=python inline>eval()</syntaxhighlight> method described below.
 
 ```python
 
-op('geo1').par.tx.val   # the constant value
+
+op('geo1').par.tx.val   # the constant value 
 
 op('geo1').par.tx.eval()   # the evaluated parameter
 
@@ -3709,19 +4050,24 @@ op('geo1').par.tx = 5  # equivalent to above, more concise form
 
 op('parexec1').par.op = [parent(), parent(2)] # you can assign a list of ops to a parameter that allows multiple operators
 
+
 ```
+
 
 When setting this member, the parameter will also be placed in constant mode.  See mode member below.
 
 To set a menu value by its index, use the ```menuIndex``` member as described below."""
 	expr : str
-	"""Get or set the non-evaluated expression only. To get the parameter's current value, regardless of the [[Parameter Mode]] (constant, expression, export or bound), use the <syntaxhighlight lang=python inline>eval()``` method described below.
+	"""Get or set the non-evaluated expression only. To get the parameter's current value, regardless of the [[Parameter Mode]] (constant, expression, export or bound), use the <syntaxhighlight lang=python inline>eval()</syntaxhighlight> method described below.
 
 ```python
 
+
 op('geo1').par.tx.expr = 'absTime.frame'  #set to match current frame
 
+
 ```
+
 
 When setting this member, the parameter will also be placed in expression mode. See mode member below.
 
@@ -3731,11 +4077,14 @@ When setting this member, the parameter will also be placed in expression mode. 
 
 ```python
 
+
 p.enableExpr = 'me.par.X.menuIndex == 5'
 
 # Note the outside quotes, as this is an expression, not an object.
 
-```"""
+
+```
+"""
 	exportOP : any
 	"""The [[OP Class|operator]] exporting to this parameter."""
 	exportSource : any
@@ -3743,7 +4092,10 @@ p.enableExpr = 'me.par.X.menuIndex == 5'
 	bindExpr : any
 	"""Get or set an expression that returns a Parameter object. This can be used to bind this parameter's constant value to the referenced parameter.
 
-```pythonp.bindExpr = 'op('geo1').par.tx'```
+```python
+p.bindExpr = 'op('geo1').par.tx'
+```
+  
 
 Note the outside quotes, as bindExpr is an expression, not an object."""
 	bindMaster : any
@@ -3757,15 +4109,18 @@ Note the outside quotes, as bindExpr is an expression, not an object."""
 	index : int
 	"""A unique identifier for the parameter.  May change in the case of custom parameters."""
 	vecIndex : int
-	"""The parameter's vector index. For example, <syntaxhighlight lang=python inline>op('geo1').par.tz``` would have a value of 2."""
+	"""The parameter's vector index. For example, <syntaxhighlight lang=python inline>op('geo1').par.tz</syntaxhighlight> would have a value of 2."""
 	name : str
 	"""Get or set the parameter's unique name.
 
 ```python
 
-op('myOperator').par.Custompar.name = 'Translate'
+
+op('myOperator').par.Custompar.name = 'Translate' 
+
 
 ```
+
 
 Can only be set on [[Custom Parameters]]."""
 	label : str
@@ -3773,9 +4128,12 @@ Can only be set on [[Custom Parameters]]."""
 
 ```python
 
-op('myOperator').par.Custompar.label = 'Translate'
+
+op('myOperator').par.Custompar.label = 'Translate' 
+
 
 ```
+
 
 Can only be set on [[Custom Parameters]]."""
 	subLabel : str
@@ -3809,11 +4167,14 @@ Can only be set on [[Custom Parameters]]."""
 
 ```python
 
+
 # value defaults to this expression.
 
 op('base1').par.Size.defaultExpr = 'me.time.frame'
 
-```"""
+
+```
+"""
 	normMin : float
 	"""Get or set the parameter's minimum slider value if the parameter is a numerical slider. Can only be set on [[Custom Parameters]]."""
 	normMax : float
@@ -3833,11 +4194,14 @@ op('base1').par.Size.defaultExpr = 'me.time.frame'
 
 ```python
 
+
 op('geo1').par.tx.mode = ParMode.EXPRESSION
+
 
 ```
 
-The mode is one of:  ```ParMode.CONSTANT```, ```ParMode.EXPRESSION```, or ```ParMode.EXPORT```, or ```ParMode.BIND```.
+
+The mode is one of:  ```ParMode.CONSTANT</code>, <code>ParMode.EXPRESSION</code>, or <code>ParMode.EXPORT</code>, or <code>ParMode.BIND```.
 
 See [[Parameter_Dialog#Working_with_Parameter_Modes]] for more information."""
 	prevMode : any
@@ -3853,9 +4217,12 @@ See [[Parameter_Dialog#Working_with_Parameter_Modes]] for more information."""
 
 ```python
 
+
 p.menuSource = 'op('audiodevin1').par.device'
 
+
 ```
+
 
 Note the outside quotes, as menuSource is an expression, not an object."""
 	collapser : bool
@@ -3867,17 +4234,20 @@ Note the outside quotes, as menuSource is an expression, not an object."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
 	styleCloneImmune : bool
-	"""Get or set the parameter's style clone immunity. When ```False```, the parameter definition is matched to any matching master parameter its operator is cloned to. When ```True```, it is left unchanged."""
+	"""Get or set the parameter's style clone immunity. When ```False</code>, the parameter definition is matched to any matching master parameter its operator is cloned to. When <code>True```, it is left unchanged."""
 	lastScriptChange : tuple
 	"""Return information about when this parameter was last modified by a script. Cleared when the parameter is updated via the UI.
 
 ```python
 
+
 python >>> op('/level1').par.invert.lastScriptChange
 
 SetInfo(dat=type:textDAT path:/text1, function='<module>', line=1, frame=300061, timeStamp=1613150878)
 
-```"""
+
+```
+"""
 	isDefault : bool
 	"""True when the parameter value, expression and mode are in their default settings."""
 	isCustom : bool
@@ -3903,7 +4273,7 @@ SetInfo(dat=type:textDAT path:/text1, function='<module>', line=1, frame=300061,
 	isToggle : bool
 	"""True for toggle parameters."""
 	style : str
-	"""Describes the behavior and contents of the custom parameter. Example ```'Float'```, ```'Int'```, ```'Pulse'```, ```'XYZ'```, etc."""
+	"""Describes the behavior and contents of the custom parameter. Example ```'Float'</code>, <code>'Int'</code>, <code>'Pulse'</code>, <code>'XYZ'```, etc."""
 	def copy(self, Par) -> None: 
 		"""Copy the specified [[Par Class|parameter]].
 
@@ -3911,7 +4281,9 @@ SetInfo(dat=type:textDAT path:/text1, function='<module>', line=1, frame=300061,
 
 ```python
 
+
 op('geo1').par.tx.copy( op('geo2').par.tx )
+
 
 ```"""
 		pass
@@ -3920,9 +4292,12 @@ op('geo1').par.tx.copy( op('geo2').par.tx )
 
 ```python
 
+
 a = op('geo1').par.tx.eval()
 
+
 ```
+
 
 
 
@@ -3936,11 +4311,14 @@ Calling ```eval``` on an OP parameter that can hold multiple OPs will return a s
 
 ```python
 
+
 a = op('geo1').par.tx.evalExpression()
+
 
 ```
 
-'''Note''': the results of evalExpression is always the expression's Python return value, which can be slightly different than ```Par.eval()```. For example, in parameters that hold an operator, ```.eval()``` will always return an operator if it exists, even if the expression actually returns a string path. The evalExpression function would return the string path.
+
+'''Note''': the results of evalExpression is always the expression's Python return value, which can be slightly different than ```Par.eval()</code>. For example, in parameters that hold an operator, <code>.eval()``` will always return an operator if it exists, even if the expression actually returns a string path. The evalExpression function would return the string path.
 
 
 
@@ -3951,7 +4329,9 @@ To evaluate an arbitrary expression string, that is not inside a parameter, see 
 
 ```python
 
+
 a = op('geo1').par.tx.evalExport()
+
 
 ```"""
 		pass
@@ -3960,7 +4340,9 @@ a = op('geo1').par.tx.evalExport()
 
 ```python
 
+
 a = op('base1').par.Paths.evalOPs()
+
 
 ```"""
 		pass
@@ -3977,6 +4359,7 @@ For pulse type parameters no value is specified or used.
 
 ```python
 
+
 op('moviein1').par.reload.pulse(1) #set the reload toggle, then cook
 
 op('glsl1').par.loadvariablenames.pulse() #activate the pulse parameter
@@ -3986,6 +4369,7 @@ op('geo1').par.ty.pulse(2, frames=120) #pulse geometry ty for 120 frames
 op('text1').par.text.pulse('GO!', seconds=3) #pulse text TOP string field, for 3 seconds
 
 op('noise').par.type.pulse('random', seconds=0.5) #pulse noise meny type for half a second
+
 
 ```"""
 		pass
@@ -4027,9 +4411,12 @@ In addition to the above, this object contains a member for each panel value in 
 
 ```python
 
+
 a = op('button1').panel.u
 
-```"""
+
+```
+"""
 	pass
 
 
@@ -4050,6 +4437,7 @@ Pages can be accessed like a Python list of parameters:
 
 ```python
 
+
 page = op('button1').pages[0]	# get the page object
 
 print(len(page))				# number of parameters on the page 
@@ -4060,7 +4448,9 @@ for p in pages:
 
 	debug(m.description)		# print all the parameters on the page
 
-```"""
+
+```
+"""
 	name : bool
 	"""Get or set the name of the page."""
 	owner : OP
@@ -4470,13 +4860,15 @@ Returns the created [[ParGroup Class|parameter group]] object.
 	def sort(self, pargoup1, pargroup2, pargroup3, *args) -> None: 
 		"""Reorder custom parameter groups or parameters in specified order.
 
-```python
+```'python'
+
 
 n = op('base1')
 
 page = n.appendCustomPage('Custom1')
 
 page.sort('Speed','Color','Value')
+
 
 ```"""
 		pass
@@ -4496,7 +4888,10 @@ See also [[Custom Parameters]]."""
 
 Example:
 
-```pythonp.bindExpr = ('op('geo1').par.tx', 'op('geo1').par.ty', 'op('geo1').par.tz')```
+```python
+p.bindExpr = ('op('geo1').par.tx', 'op('geo1').par.ty', 'op('geo1').par.tz')
+```
+  
 
         Note the outside quotes, as bindExpr is an expression, not an object."""
 	bindMaster : tuple
@@ -4506,9 +4901,9 @@ Example:
 	bindReferences : tuple
 	"""The (possibly empty) lists of objects which bind to this parameter."""
 	clampMax : tuple
-	"""Get or set the parameter's numerical clamping behaviors. If set to <syntaxhighlight lang=python inline=true>clampMax = True```, the parameter will clamp on the upper end at the value specified in max Can only be set on Custom Parameters."""
+	"""Get or set the parameter's numerical clamping behaviors. If set to <syntaxhighlight lang=python inline=true>clampMax = True</syntaxhighlight>, the parameter will clamp on the upper end at the value specified in max Can only be set on Custom Parameters."""
 	clampMin : tuple
-	"""Get or set the parameter's numerical clamping behaviors. If set to <syntaxhighlight lang=python inline=true>clampMin = True```, the parameter will clamp on the lower end at the value specified in min Can only be set on Custom Parameters."""
+	"""Get or set the parameter's numerical clamping behaviors. If set to <syntaxhighlight lang=python inline=true>clampMin = True</syntaxhighlight>, the parameter will clamp on the lower end at the value specified in min Can only be set on Custom Parameters."""
 	collapsable : bool
 	"""Returns True if the parameter is collapsable."""
 	collapser : bool
@@ -4520,11 +4915,14 @@ Example:
 
 ```python
 
+
 # value defaults to this expression.
 
 op('base1').parGroup.Size.defaultExpr = ('me.time.frame', 'me.time.frame', 'me.time.frame')
 
-```"""
+
+```
+"""
 	enable : bool
 	"""Get or set the parameter's enable state. Can only be set on Custom Parameters."""
 	enableExpr : any
@@ -4532,9 +4930,12 @@ op('base1').parGroup.Size.defaultExpr = ('me.time.frame', 'me.time.frame', 'me.t
 
 ```python
 
+
 p.enableExpr = 'me.par.X.menuIndex == 5'
 
+
 ```
+
 
 Note the outside quotes, as this is an expression, not an object."""
 	exportOP : tuple
@@ -4546,11 +4947,14 @@ Note the outside quotes, as this is an expression, not an object."""
 
 ```python
 
-op('geo1').parGroup.t.expr = ('absTime.frame', 'absTime.frame', 'absTime.frame')
+
+op('geo1').parGroup.t.expr = ('absTime.frame', 'absTime.frame', 'absTime.frame')  
 
 # set to match current frame
 
+
 ```
+
 
 When setting this member, the parameter will also be placed in expression mode. See mode member below.
 
@@ -4586,13 +4990,16 @@ When setting this member, the parameter will also be placed in expression mode. 
 
 ```python
 
+
 op('myOperator').parGroup.Custompar.label = 'Translate'
 
+
 ```
+ 
 
 Can only be set on Custom Parameters."""
 	max : tuple
-	"""Get or set the parameter's numerical maximum values. The parameter's values will be clamped at that maximum if <syntaxhighlight lang=python inline=true>clampMax = True```. Can only be set on Custom Parameters."""
+	"""Get or set the parameter's numerical maximum values. The parameter's values will be clamped at that maximum if <syntaxhighlight lang=python inline=true>clampMax = True</syntaxhighlight>. Can only be set on Custom Parameters."""
 	menuIndex : tuple
 	"""Get or set a tuple of menu constant values by their indices."""
 	menuLabels : tuple
@@ -4600,19 +5007,22 @@ Can only be set on Custom Parameters."""
 	menuNames : tuple
 	"""Get or set a tuple of lists of all possible menu choice names. In the case of non menu parameters, None(s) are returned. Can only be set on Custom Parameters."""
 	menuSource : tuple
-	"""Get or set a tuple of expressions that returns objects with ```.menuItems``` ```.menuNames``` members.  This can be used to create a custom menu whose entries dynamically follow that of another menu for example."""
+	"""Get or set a tuple of expressions that returns objects with ```.menuItems</code> <code>.menuNames``` members.  This can be used to create a custom menu whose entries dynamically follow that of another menu for example."""
 	min : tuple
-	"""Get or set the parameter's numerical minimum values. The parameter's values will be clamped at that minimum if <syntaxhighlight lang=python inline=true>clampMin = True``` for the particular Par. Can only be set on Custom Parameters."""
+	"""Get or set the parameter's numerical minimum values. The parameter's values will be clamped at that minimum if <syntaxhighlight lang=python inline=true>clampMin = True</syntaxhighlight> for the particular Par. Can only be set on Custom Parameters."""
 	mode : tuple
 	"""Get or set the parameter's evaluation modes.
 
 ```python
 
+
 op('geo1').parGroup.t.mode = (ParMode.EXPRESSION, ParMode.EXPRESSION, ParMode.EXPRESSION)
+
 
 ```
 
-The modes are one of:  ```ParMode.CONSTANT```, ```ParMode.EXPRESSION```, or ```ParMode.EXPORT```, or ```ParMode.BIND```.
+
+The modes are one of:  ```ParMode.CONSTANT</code>, <code>ParMode.EXPRESSION</code>, or <code>ParMode.EXPORT</code>, or <code>ParMode.BIND```.
 
 See [[Parameter_Dialog#Working_with_Parameter_Modes]] for more information."""
 	name : any
@@ -4622,7 +5032,7 @@ See [[Parameter_Dialog#Working_with_Parameter_Modes]] for more information."""
 
 >op('myOperator').parGroup.Custompar.name = 'Translate'
 
-```
+</syntaxhighlight> 
 
 Can only be set on Custom Parameters."""
 	normMax : tuple
@@ -4654,11 +5064,12 @@ Can only be set on Custom Parameters."""
 	subLabel : tuple
 	"""Returns the names of the sub-label."""
 	val : tuple
-	"""Get or set the constant values of the parameter only. To get the parameter's current values, regardless of the Parameter Modes (```constant```, ```expression```, ```export``` or ```bound```), use the eval() method described below.
+	"""Get or set the constant values of the parameter only. To get the parameter's current values, regardless of the Parameter Modes (```constant</code>, <code>expression</code>, <code>export</code> or <code>bound```), use the eval() method described below.
 
 ```python
 
-op('geo1').parGroup.t.val   # the constant values
+
+op('geo1').parGroup.t.val   # the constant values 
 
 op('geo1').parGroup.t.eval()   # the evaluated parameter
 
@@ -4666,7 +5077,9 @@ op('geo1').parGroup.t.val = (1,2,3)
 
 op('geo1').parGroup.t = (1,2,3)  #equivalent to above, more concise form
 
+
 ```
+
 
 When setting this member, the parameter will also be placed in constant mode.  See mode member below.
 
@@ -4680,7 +5093,9 @@ To set a menu value by its index, use the menuIndex member as described below.""
 
 *  ParGroup - The parameter to copy.
 
-```pythonop('geo1').parGroup.t.copy( op('geo2').parGroup.t )```"""
+```python
+op('geo1').parGroup.t.copy( op('geo2').parGroup.t )
+```"""
 		pass
 	def destroy(self, ) -> None: 
 		"""Destroy the parameter referenced by this ParGroup. An exception will be raised if the parameter has already been destroyed. Only custom and sequential parameters can be destroyed.  Destroying a sequential parameter will destroy its entire block. Note: When any parameter is destroyed, any existing parameter objects will be invalid and should be re-fetched."""
@@ -4688,17 +5103,24 @@ To set a menu value by its index, use the menuIndex member as described below.""
 	def eval(self, ) -> tuple: 
 		"""Evaluate a parameter group. This value may be derived by the parameter group's constant value, expression, or export, dependent on its mode.
 
-```pythona = op('geo1').parGroup.t.eval()```"""
+```python
+a = op('geo1').parGroup.t.eval()
+```"""
 		pass
 	def evalExport(self, ) -> tuple: 
 		"""Evaluate the export portions of a parameter, if it contains any. This will ignore any expressions, etc.
 
-```pythona = op('geo1').parGroup.t.evalExport()```"""
+```python
+a = op('geo1').parGroup.t.evalExport()
+```"""
 		pass
 	def evalExpression(self, ) -> tuple: 
 		"""Evaluate the expression portions of a parameter, if it contains any. This will ignore any exports, etc.
 
-```pythona = op('geo1').parGroup.t.evalExpression()```
+```python
+a = op('geo1').parGroup.t.evalExpression()
+```
+
 
 To evaluate an arbitrary expression string, that is not inside a parameter, see [[OP Class#evalExpression|OP.evalExpression]]."""
 		pass
@@ -4708,7 +5130,9 @@ To evaluate an arbitrary expression string, that is not inside a parameter, see 
 	def evalOPs(self, ) -> any: 
 		"""Evaluate the parameter as series of operators. This is useful for a custom  parameter that specifies a list of operator paths for example.
 
-```pythona = op('base1').parGroup.Paths.evalOPs()```"""
+```python
+a = op('base1').parGroup.Paths.evalOPs()
+```"""
 		pass
 	def pars(self, pattern) -> list: 
 		"""Returns a (possibly empty) list of parameter objects that match the pattern.
@@ -4717,9 +5141,11 @@ To evaluate an arbitrary expression string, that is not inside a parameter, see 
 
 ```python
 
+
 # translate parameters
 
 newlist = op('geo1').parGroup.t.pars('t?')
+
 
 ```"""
 		pass
@@ -4776,6 +5202,7 @@ class Monitors():
 
 ```python
 
+
 print(len(monitors))		# number of monitors 
 
 print(monitors[0])			# first monitor in the list
@@ -4784,7 +5211,9 @@ for m in monitors:
 
 	print(m.description)	# print all installed monitors' descriptions
 
-```"""
+
+```
+"""
 	primary : int
 	"""The primary [[Monitor Class|monitor]] display."""
 	width : int
@@ -4867,13 +5296,17 @@ A matrix is created with this line, and will always be initialized to the identi
 
 ```python
 
+
 m = tdu.Matrix()
 
+
 ```
+
 
 You can also initialize a matrix with an initial set of values. Valid arguments for initialization is another tdu.Matrix, a list of 16 values or 4 lists of 4 values. The entries are specified column-by-column. For example the following lines of code will produce the shown matrix
 
 ```python
+
 
 m = tdu.Matrix([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
 
@@ -4881,9 +5314,12 @@ m = tdu.Matrix([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
 
 m = tdu.Matrix([1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16])
 
+
 ```
 
+
 ```python
+
 
 # matrix values
 
@@ -4895,7 +5331,9 @@ m = tdu.Matrix([1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16])
 
 4  8  12  16
 
+
 ```
+
 
 You can also get transformation and projection matrices from [[ObjectCOMP Class|Object COMP]] and [[CameraCOMP Class|Camera COMP]] by using the various methods such as ```transform(), pretransform(), projection()```."""
 	vals : float
@@ -4909,7 +5347,9 @@ You can also get transformation and projection matrices from [[ObjectCOMP Class|
 
 ```python
 
+
 m.transpose() # m now contains the transpose of the matrix
+
 
 ```"""
 		pass
@@ -4918,7 +5358,9 @@ m.transpose() # m now contains the transpose of the matrix
 
 ```python
 
+
 m2 = m.getTranspose()
+
 
 ```"""
 		pass
@@ -4927,7 +5369,9 @@ m2 = m.getTranspose()
 
 ```python
 
+
 m.invert() # m now contains the inverse of the matrix
+
 
 ```"""
 		pass
@@ -4936,7 +5380,9 @@ m.invert() # m now contains the inverse of the matrix
 
 ```python
 
+
 m2 = m.getInverse()
+
 
 ```"""
 		pass
@@ -4945,7 +5391,9 @@ m2 = m.getInverse()
 
 ```python
 
+
 l = m.determinant()
+
 
 ```"""
 		pass
@@ -4968,7 +5416,9 @@ l = m.determinant()
 
 ```python
 
+
 m.identity() # now contains the identity matrix
+
 
 ```"""
 		pass
@@ -4977,7 +5427,9 @@ m.identity() # now contains the identity matrix
 
 ```python
 
+
 newM = m.copy() # newM will have the same values as m, m is unchanged
+
 
 ```"""
 		pass
@@ -4990,9 +5442,11 @@ newM = m.copy() # newM will have the same values as m, m is unchanged
 
 ```python
 
+
 m = tdu.Matrix()
 
 m.translate(5, 0, 10)
+
 
 ```"""
 		pass
@@ -5006,6 +5460,7 @@ m.translate(5, 0, 10)
 * pivot - (Keyword, Optional) If given, the rotation will be applied around the given pivot. The pivot should be a Vector, Position or a list with 3 entries.
 
 ```python
+
 
 m = tdu.Matrix()
 
@@ -5024,6 +5479,7 @@ m = tdu.Matrix()
 p = tdu.Position(0, 5, 0)
 
 m.rotate(0, 90, 0, pivot=p)
+
 
 ```"""
 		pass
@@ -5049,6 +5505,7 @@ m.rotate(0, 90, 0, pivot=p)
 
 ```python
 
+
 m = tdu.Matrix()
 
 m.scale(2, 1, 1)
@@ -5067,6 +5524,7 @@ p = tdu.Position(0, 5, 0)
 
 m.scale(1, 2, 1, pivot=p)
 
+
 ```"""
 		pass
 	def lookat(self, eyePos, target, up) -> None: 
@@ -5080,6 +5538,7 @@ m.scale(1, 2, 1, pivot=p)
 
 ```python
 
+
 m = tdu.Matrix()
 
 eyeP = tdu.Position(0, 0, -5)
@@ -5090,6 +5549,7 @@ up = tdu.Position(0, 1, 0)
 
 m.lookat(eyeP, target, up)
 
+
 ```"""
 		pass
 	def decompose(self, ) -> any: 
@@ -5097,7 +5557,9 @@ m.lookat(eyeP, target, up)
 
 ```python
 
+
 s, r, t = m.decompose()
+
 
 ```"""
 		pass
@@ -5127,9 +5589,11 @@ s, r, t = m.decompose()
 
 ```python
 
+
 tx = m[0, 3]
 
 m[0, 3] = tx + 5
+
 
 ```"""
 		pass
@@ -5138,7 +5602,9 @@ m[0, 3] = tx + 5
 
 ```python
 
+
 newM = m1 *  m2
+
 
 ```"""
 		pass
@@ -5153,7 +5619,9 @@ newM = m1 *  m2
 
 ```python
 
+
 newV = M *  v
+
 
 ```"""
 		pass
@@ -5162,7 +5630,9 @@ newV = M *  v
 
 ```python
 
+
 newP = M *  p
+
 
 ```"""
 		pass
@@ -5177,6 +5647,7 @@ class ListAttributes():
 Access to individual List Attributes depends on what type: row, col, or cell:
 
 ```python
+
 
 rowAttribs = op('list1').rowAttribs		# get the ListAttributes object for rows
 
@@ -5206,7 +5677,9 @@ print(colAttribs[0,2].bgColor)			# cells are accessed by [row, col].
 
 										# This prints the background color settings for the cell in the first row, third column
 
+
 ```
+
 
 '''Note:''' The attributes above are the settings for List Component's hierarchical layout technique. This means that cell settings
 
@@ -5296,6 +5769,7 @@ class Licenses():
 
 ```python
 
+
 print(len(licenses))	# number of licenses 
 
 print(licenses[0])		# first license in the list
@@ -5304,7 +5778,9 @@ for l in licenses:
 
 	print(l.type)		# print all installed licenses' types
 
-```"""
+
+```
+"""
 	disablePro : bool
 	"""When True, the application will run as though no Pro licenses are available.  This can be used to test compatibility with lesser licenses. (See also: [[App Class#Methods|app.addNonCommercialLimit]])"""
 	dongles : list
@@ -5357,7 +5833,7 @@ class Group():
 
 
 
-A Group can be created with the [[Group SOP]] or using the <syntaxhighlight lang=python inline=True>createPointGroup(str)``` or <syntaxhighlight lang=python inline=True>createPrimGroup(str)``` methods of the [[ScriptSOP Class]]."""
+A Group can be created with the [[Group SOP]] or using the <syntaxhighlight lang=python inline=True>createPointGroup(str)</syntaxhighlight> or <syntaxhighlight lang=python inline=True>createPrimGroup(str)</syntaxhighlight> methods of the [[ScriptSOP Class]]."""
 	default : tuple
 	"""The default values associated with this Group. It returns a tuple item of group points."""
 	name : str
@@ -5377,7 +5853,7 @@ A Group can be created with the [[Group SOP]] or using the <syntaxhighlight lang
 
 
 class FileInfo():
-	"""The FileInfo object stores a file path and has a few utility properties to provide additional info. It is derived from str, so will work as a Python string, but can be differentiated from a regular string by using <syntaxhighlight lang=python inline=true>isinstance(tdu.FileInfo)```.
+	"""The FileInfo object stores a file path and has a few utility properties to provide additional info. It is derived from str, so will work as a Python string, but can be differentiated from a regular string by using <syntaxhighlight lang=python inline=true>isinstance(tdu.FileInfo)</syntaxhighlight>.
 
 
 
@@ -5408,6 +5884,7 @@ class DongleList():
 
 ```python
 
+
 dongles = licenses.dongles		# get the DongleList object
 
 print(len(dongles))				# number of Dongles 
@@ -5418,7 +5895,9 @@ for d in dongles:
 
 	print(d)					# print all Dongles
 
-```"""
+
+```
+"""
 	def refreshDongles(self, ) -> None: 
 		"""Refreshes the list of dongles connected to the system and their product codes."""
 		pass
@@ -5487,6 +5966,7 @@ For information about dependencies in mutable objects (lists, dicts, sets), see 
 
 ```python
 
+
 dep = tdu.Dependency({'fred': 33, 'wilma':39})
 
 print(dep['fred']) # prints '33'. The key to the dictionary works directly on the dependency object.
@@ -5495,13 +5975,14 @@ dep2 = tdu.Dependency(['a', 'd', 'g'])
 
 print(dep[2]) # prints 'g'. The index to the list works directly on the dependency object.
 
+
 ```"""
 		pass
 	pass
 
 
 class debug():
-	"""The ```debug``` module provides tools for use with TouchDesigner's builtin ```debug``` statement. It also contains utilities for customizing those statements and building customized debug output. It is a member of [[Tdu Module]].
+	"""The ```debug</code> module provides tools for use with TouchDesigner's builtin <code>debug``` statement. It also contains utilities for customizing those statements and building customized debug output. It is a member of [[Tdu Module]].
 
 
 
@@ -5509,7 +5990,7 @@ You can use the [[Palette:debugControl|debugControl]] component in the palette t
 	style : any
 	"""A namespace containing information about how to process ```debug``` statements. This data is not meant to be changed directly. Instead, use the setStyle function below."""
 	def debug(self, *args) -> None: 
-		"""Print all args and extra debug info (default is DAT and line number) to texport. To change behavior, use the [[Palette:debugControl|debugControl]] component or setStyle function (below).<br>'''TIP: Always use ```debug``` instead of ```print``` when debugging Python scripts.'''"""
+		"""Print all args and extra debug info (default is DAT and line number) to texport. To change behavior, use the [[Palette:debugControl|debugControl]] component or setStyle function (below).<br>'''TIP: Always use ```debug</code> instead of <code>print``` when debugging Python scripts.'''"""
 		pass
 	def setStyle(self, printStyle=None, showDAT=None, showFunction=None, showLineNo=None, timeStamp=' ', suppress=None, formatOverride=None, functionOverride=None) -> None: 
 		"""Set the style for the built in TD debug function. Any arguments passed as None will leave that feature unchanged.
@@ -5610,6 +6091,7 @@ When the connector is an output, a new connection is appended to the target.
 
 ```python
 
+
 # connect noise1 to lag1
 
 op('noise1').outputConnectors[0].connect(op('lag1'))
@@ -5628,12 +6110,14 @@ op('geo1').outputCOMPConnectors[0].connect(op('geo2'))
 
 op('geo2').inputCOMPConnectors[0].connect(op('geo1'))
 
+
 ```"""
 		pass
 	def disconnect(self, ) -> None: 
 		"""Disconnect this connector.
 
 ```python
+
 
 op('lag1').inputConnectors[0].disconnect()
 
@@ -5646,6 +6130,7 @@ op('lag1').outputConnectors[0].disconnect()
 op('geo1').outputCOMPConnectors[0].disconnect()
 
 op('geo2').inputCOMPConnectors[0].disconnect()
+
 
 ```"""
 		pass
@@ -5662,7 +6147,9 @@ class Colors():
 
 ```python
 
+
 a = len(ui.colors)
+
 
 ```"""
 		pass
@@ -5671,9 +6158,11 @@ a = len(ui.colors)
 
 ```python
 
+
 n = ui.colors['default.bg']
 
 ui.colors['default.bg'] = (1,0,0)
+
 
 ```"""
 		pass
@@ -5682,11 +6171,13 @@ ui.colors['default.bg'] = (1,0,0)
 
 ```python
 
+
 for n in ui.colors:
 
         print(n)
 
         ui.colors[n] = myColorsList[n]
+
 
 ```"""
 		pass
@@ -5698,6 +6189,7 @@ class Color():
 
 ```python
 
+
 v = tdu.Color() # starts as (0, 0, 0, 1)
 
 v2 = tdu.Color(0, 0, 1, 1)
@@ -5708,7 +6200,9 @@ v3 = tdu.Color(values)
 
 green = v3[1] # access individual elements by index. Same as v3.g
 
-```"""
+
+```
+"""
 	r : float
 	"""Gets or sets the red component of the color."""
 	g : float
@@ -5764,11 +6258,13 @@ To get the third sample from the channel, assuming the channel has 3 or more sam
 
 ```python
 
+
 n = op('pattern1')
 
 c = n['chan1'][2] # the third sample
 
 l = len(n['chan2']) # the total number of samples in the channel
+
 
 ```"""
 		pass
@@ -5821,7 +6317,7 @@ The [[DAT Class]] offers many ways of accessing its individual cells.
 
 
 
-'''IMPORTANT''':  ```op('table1')[1,2]``` is this python cell object which usually gets converted for you to the string in the cell. More safely use ```op('table1')[1,2].val``` which always gives you the string."""
+'''IMPORTANT''':  ```op('table1')[1,2]</code> is this python cell object which usually gets converted for you to the string in the cell. More safely use <code>op('table1')[1,2].val``` which always gives you the string."""
 	valid : bool
 	"""True if the referenced cell currently exists, False if it has been deleted."""
 	row : int
@@ -5860,9 +6356,11 @@ The [[DAT Class]] offers many ways of accessing its individual cells.
 
 ```python
 
+
 c = op('table1')['March', 'Sales']
 
 d = c.offset(-1, 2)  # one row up, two columns right of cell C
+
 
 ```"""
 		pass
@@ -5970,6 +6468,7 @@ class Bodies():
 
 ```python
 
+
 bodies = op('bsolver1/actor1').bodies	# get the Bodies object
 
 print(len(bodies))						# number of Bodies 
@@ -5980,7 +6479,9 @@ for b in bodies:
 
 	print(b)							# print all Bodies
 
-```"""
+
+```
+"""
 	pass
 
 
@@ -6044,9 +6545,11 @@ class Attributes():
 
 ```python
 
+
 attribs = scriptOP.pointAttribs # get the Attributes object
 
 normals = attribs['N']
+
 
 ```"""
 		pass
@@ -6062,6 +6565,7 @@ normals = attribs['N']
 Standard attributes are: N (normal), uv (texture), T (tangent), v (velocity), Cd (diffuse color).
 
 ```python
+
 
 # create a Normal attribute with implied defaults.
 
@@ -6084,6 +6588,7 @@ n = scriptOP.vertexAttribs.create('custom1', (0.0, 0.0) )
 # Create a Primitive Attribute called custom2 defaulting to 1
 
 n = scriptOP.primAttribs.create('custom2', 1 )
+
 
 ```"""
 		pass
@@ -6120,7 +6625,9 @@ Lists of attributes for the [[SOP Class|SOP]] are described with the [[Attribute
 
 ```python
 
+
 n = scriptOP.pointAttribs['N'].destroy()
+
 
 ```"""
 		pass
@@ -6132,15 +6639,20 @@ class ArcBall():
 
 ```python
 
+
 a = tdu.ArcBall(forCamera=False)
 
-```"""
+
+```
+"""
 	def beginPan(self, u, v) -> None: 
 		"""Begin a pan at at the given u and v.
 
 ```python
 
+
 m.beginPan(.1, .2)
+
 
 ```"""
 		pass
@@ -6149,7 +6661,9 @@ m.beginPan(.1, .2)
 
 ```python
 
+
 m.beginRotate(.1, .2)
+
 
 ```"""
 		pass
@@ -6158,7 +6672,9 @@ m.beginRotate(.1, .2)
 
 ```python
 
+
 m.beginDolly(.1, .2)
+
 
 ```"""
 		pass
@@ -6167,7 +6683,9 @@ m.beginDolly(.1, .2)
 
 ```python
 
+
 m.pan(.1, .2)
+
 
 ```"""
 		pass
@@ -6178,7 +6696,9 @@ m.pan(.1, .2)
 
 ```python
 
+
 m.panTo(.1, .2)
+
 
 ```"""
 		pass
@@ -6189,7 +6709,9 @@ m.panTo(.1, .2)
 
 ```python
 
+
 m.rotateTo(.1, .2)
+
 
 ```"""
 		pass
@@ -6198,7 +6720,9 @@ m.rotateTo(.1, .2)
 
 ```python
 
+
 m.dolly(.3)
+
 
 ```"""
 		pass
@@ -6209,7 +6733,9 @@ m.dolly(.3)
 
 ```python
 
+
 m.dollyTo(.1, .2)
+
 
 ```"""
 		pass
@@ -6218,7 +6744,9 @@ m.dollyTo(.1, .2)
 
 ```python
 
+
 m.transform()
+
 
 ```"""
 		pass
@@ -6227,7 +6755,9 @@ m.transform()
 
 ```python
 
+
 m.setTransform(m)
+
 
 ```"""
 		pass
@@ -6236,7 +6766,9 @@ m.setTransform(m)
 
 ```python
 
+
 m.identity()
+
 
 ```"""
 		pass
@@ -6248,7 +6780,7 @@ class App():
 
 
 
-'''NOTE:''' See also [[Variables]] and Dialogs -> Variables where more built-in paths and strings are available via expressions in the form ```var('DESKTOP')```, ```var('MYDOCUMENTS')``` and ```var('TOENAME')```."""
+'''NOTE:''' See also [[Variables]] and Dialogs -> Variables where more built-in paths and strings are available via expressions in the form ```var('DESKTOP')</code>, <code>var('MYDOCUMENTS')</code> and <code>var('TOENAME')```."""
 	architecture : str
 	"""The architecture of the compile.  Generally 32 or 64 bit."""
 	binFolder : str
@@ -6280,9 +6812,12 @@ class App():
 
 ```python
 
+
 app.power = False #turn off the power button.
 
-```"""
+
+```
+"""
 	preferencesFolder : str
 	"""Folder where the preferences file is located."""
 	product : str
@@ -6306,9 +6841,11 @@ app.power = False #turn off the power button.
 
 ```python
 
+
 app.addNonCommercialLimit('secret123')  #undoable with password
 
 app.addNonCommercialLimit()  #permanent during length of session.
+
 
 ```"""
 		pass
@@ -6319,7 +6856,9 @@ app.addNonCommercialLimit()  #permanent during length of session.
 
 ```python
 
+
 app.removeNonCommercialLimit('secret123')
+
 
 ```"""
 		pass
@@ -6334,9 +6873,11 @@ app.removeNonCommercialLimit('secret123')
 
 ```python
 
+
 app.addResolutionLimit(600, 480, 'secret123')  #undoable with password
 
 app.addResolutionLimit()  #permanent during length of session.
+
 
 ```"""
 		pass
@@ -6347,7 +6888,9 @@ app.addResolutionLimit()  #permanent during length of session.
 
 ```python
 
+
 app.removeResolutionLimit('secret123')
+
 
 ```"""
 		pass
@@ -6359,6 +6902,7 @@ class Actors():
 
 ```python
 
+
 actors = op('bsolver1').actors	# get the Actors object
 
 print(len(actors))				# number of Actors 
@@ -6369,7 +6913,9 @@ for a in actors:
 
 	print(a)					# print all Actors
 
-```"""
+
+```
+"""
 	pass
 
 
@@ -6380,11 +6926,14 @@ class AbsTime():
 
 ```python
 
+
 Example: absTime.frame
 
 Example: tdu.rand(absTime.frame + .1) # a unique random number that is consistent across all nodes, changing every frame
 
-```"""
+
+```
+"""
 	seconds : float
 	"""Absolute total seconds played since the application started. Paused only with the power On/Off or with power()."""
 	step : float
@@ -6456,11 +7005,13 @@ class animationCOMP(COMP,OP):
 
 ```python
 
+
 n = op('animation1')
 
 n.deleteKeyframe(50) # remove keyframe on all channels
 
 n.deleteKeyframe(75, channel='tz') # modify specific keyframe
+
 
 ```"""
 		pass
@@ -6500,7 +7051,7 @@ class attributeSOP(SOP,OP):
 class audiobandeqCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -6519,7 +7070,7 @@ class audiodeviceoutCHOP(CHOP,OP):
 class audiodynamicsCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -6533,7 +7084,7 @@ class audiofileinCHOP(CHOP,OP):
 class audiofilterCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -6551,14 +7102,14 @@ class audiomovieCHOP(CHOP,OP):
 class audiooscillatorCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
 class audioparaeqCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -6789,7 +7340,8 @@ class CHOP(OP):
 	def [nameOrIndex] -> Channel: 
 		"""[[Channel Class|Channels]] may be easily accessed from a CHOP using the [] subscript operator.
 
-* nameOrIndex - Must be an exact string name, or it may be a numeric channel index. Wildcards are not supported. Refer to the help on channels to see how to use the returned [[Channel Class|Channel]] object.```python
+* nameOrIndex - Must be an exact string name, or it may be a numeric channel index. Wildcards are not supported. Refer to the help on channels to see how to use the returned [[Channel Class|Channel]] object.```'python'
+
 
 n = op('pattern1')
 
@@ -6797,11 +7349,15 @@ c = n[4]
 
 c = n['chan2']
 
-```and to get the third sample from the channel, assuming the channel has 3 or more samples:```python
+
+```
+and to get the third sample from the channel, assuming the channel has 3 or more samples:```'python'
+
 
 n = op('pattern1')
 
 c = n['chan2'][2]
+
 
 ```"""
 		pass
@@ -6814,7 +7370,8 @@ Multiple patterns may be specified which are all added to the search.
 
 * caseSensitive - (Optional) Specifies whether or not case sensitivity is used.
 
-```python
+```'python'
+
 
 n = op('pattern1')
 
@@ -6823,6 +7380,7 @@ c = n.chan(4)
 c = n.chan('chan* ')
 
 c = n.chan('chan3zall', caseSensitive=False)
+
 
 ```"""
 		pass
@@ -6833,13 +7391,15 @@ c = n.chan('chan3zall', caseSensitive=False)
 
 * caseSensitive - (Optional) Specifies whether or not case sensitivity is used.
 
-```python
+```'python'
+
 
 n = op('pattern1')
 
 newlist = n.chans() # get all channels in the CHOP
 
 newlist = n.chans('a* ', 3,4,5, 'd* ')
+
 
 ```"""
 		pass
@@ -6854,7 +7414,7 @@ The resultant [[animationCOMP Class|animationCOMP]] is returned.
 * tolerance - (Keyword, Optional) If this is not given, the default value is 0.1. It may be overridden for higher accuracy match between the source channels and the resulting keyframed channels."""
 		pass
 	def save(self, filepath, createFolders=False) -> any: 
-		"""Saves the channel to the file system. Supported file formats are ```.clip, .bclip, .chan, .bchan``` and ```.aiff```.
+		"""Saves the channel to the file system. Supported file formats are ```.clip, .bclip, .chan, .bchan</code> and <code>.aiff```.
 
 Returns the file path used.
 
@@ -6862,7 +7422,8 @@ Returns the file path used.
 
 * createFolders - (Keyword, Optional) If True, it creates the not existent directories provided by the filepath.
 
-```python
+```'python'
+
 
 n = op('pattern1')
 
@@ -6871,6 +7432,7 @@ name = n.save()   #save in native format with default name
 n.save('output.chan')  #ascii readable tab delimited format
 
 n.save('output.aiff')  #supported audio format
+
 
 ```"""
 		pass
@@ -6885,7 +7447,7 @@ class zedCHOP(CHOP,OP):
 class waveCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -6904,7 +7466,7 @@ class trimCHOP(CHOP,OP):
 class triggerCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -6965,7 +7527,7 @@ class timerCHOP(CHOP,OP):
 	masterSample : int
 	"""Get or set the master time expressed in samples. See ```.masterSeconds```."""
 	masterSeconds : float
-	"""Get or set the master time expressed in seconds. It counts from 0 when you Start, ```.masterSeconds``` is slowed/sped by the Speed parameter, and paused by the Play parameter. It jumps to the appropriate time when you scrub. This is the main clock in the Timer CHOP and can be set directly using python (```OP.masterSeconds = ''val''```), or use the ```.goTo()``` function which has more options. When multi-segments are specified to the Timer CHOP, it reflects the time as if you ran through the segments without interrupting it. If in any segment Cycle is on and Cycle Limit is off, it calculates as if the cycle runs only once."""
+	"""Get or set the master time expressed in seconds. It counts from 0 when you Start, ```.masterSeconds</code> is slowed/sped by the Speed parameter, and paused by the Play parameter. It jumps to the appropriate time when you scrub. This is the main clock in the Timer CHOP and can be set directly using python (<code>OP.masterSeconds = ''val''</code>), or use the <code>.goTo()``` function which has more options. When multi-segments are specified to the Timer CHOP, it reflects the time as if you ran through the segments without interrupting it. If in any segment Cycle is on and Cycle Limit is off, it calculates as if the cycle runs only once."""
 	masterFraction : float
 	"""Get or set the master time expressed in fractional form. See ```.masterSeconds```."""
 	masterTimecode : any
@@ -7076,14 +7638,14 @@ class switchCHOP(CHOP,OP):
 class stretchCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
 class springCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -7095,7 +7657,7 @@ class spliceCHOP(CHOP,OP):
 class speedCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -7122,7 +7684,7 @@ class shuffleCHOP(CHOP,OP):
 class shiftCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -7154,7 +7716,7 @@ class selectCHOP(CHOP,OP):
 class scurveCHOP(CHOP,OP):
 	""""""
 	chanIndex : any
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -7165,7 +7727,7 @@ class scriptCHOP(CHOP,OP):
 	def copyNumpyArray(self, numpyArray, baseName='chan') -> None: 
 		"""Copies the contents of the numpyArray into the CHOP.
 
-* numpyArray - The NumPy Array to copy. Must be <syntaxhighlight lang=python, inline=true>shape(numChannels, numSamples)```. The data type must be float32.
+* numpyArray - The NumPy Array to copy. Must be <syntaxhighlight lang=python, inline=true>shape(numChannels, numSamples)</syntaxhighlight>. The data type must be float32.
 
 *  baseName - (Keyword, Optional) The base of all created channel names beginning with a suffix of 1. Example 'chan' creates 'chan1', 'chan2', etc."""
 		pass
@@ -7187,9 +7749,11 @@ scriptOp.sortPages('Definition','Controls')"""
 
 ```python
 
+
 page = scriptOp.appendCustomPage('Custom1')
 
 page.appendFloat('X1')
+
 
 ```"""
 		pass
@@ -7205,9 +7769,11 @@ page.appendFloat('X1')
 
 ```python
 
+
 c = n.appendChan()
 
 c = n.appendChan('velocity')
+
 
 ```"""
 		pass
@@ -7259,7 +7825,7 @@ class realsenseCHOP(CHOP,OP):
 class pulseCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -7359,7 +7925,7 @@ class nullCHOP(CHOP,OP):
 class noiseCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -7391,9 +7957,12 @@ To serialize non-byte values (example floats or integers) there are several pyth
 
 ```python
 
+
 n.send(0xb0,0x2f,0x40) # Control Change : Channel 1, Index 48, Value 64
 
-```."""
+
+```
+."""
 		pass
 	def sendBalance(self, channel, value) -> None: 
 		"""Sends a Balance event through the CHOP.
@@ -7404,7 +7973,9 @@ n.send(0xb0,0x2f,0x40) # Control Change : Channel 1, Index 48, Value 64
 
 ```python
 
+
 n.sendBalance(1, 103)
+
 
 ```"""
 		pass
@@ -7419,7 +7990,9 @@ n.sendBalance(1, 103)
 
 ```python
 
+
 n.sendNoteOn(1, 63)
+
 
 ```"""
 		pass
@@ -7434,7 +8007,9 @@ n.sendNoteOn(1, 63)
 
 ```python
 
+
 n.sendPolyKeyPressure(1, 63, 100)
+
 
 ```"""
 		pass
@@ -7447,7 +8022,9 @@ n.sendPolyKeyPressure(1, 63, 100)
 
 ```python
 
+
 n.sendPitchBend(1, 5000)
+
 
 ```"""
 		pass
@@ -7462,7 +8039,9 @@ n.sendPitchBend(1, 5000)
 
 ```python
 
+
 n.sendEffectsDepth(1,4,61)
+
 
 ```"""
 		pass
@@ -7475,7 +8054,9 @@ n.sendEffectsDepth(1,4,61)
 
 ```python
 
+
 n.sendMonoOn(1,57)
+
 
 ```"""
 		pass
@@ -7484,7 +8065,9 @@ n.sendMonoOn(1,57)
 
 ```python
 
+
 n.panic()
+
 
 ```"""
 		pass
@@ -7497,7 +8080,9 @@ n.panic()
 
 ```python
 
+
 n.sendDamperPedal(1,14)
+
 
 ```"""
 		pass
@@ -7510,7 +8095,9 @@ n.sendDamperPedal(1,14)
 
 ```python
 
+
 n.sendChannelPressure(1, 10)
+
 
 ```"""
 		pass
@@ -7525,7 +8112,9 @@ n.sendChannelPressure(1, 10)
 
 ```python
 
+
 n.sendControl(1, 10, 100)
+
 
 ```"""
 		pass
@@ -7538,7 +8127,9 @@ n.sendControl(1, 10, 100)
 
 ```python
 
+
 n.sendDataDecrement(1,17)
+
 
 ```"""
 		pass
@@ -7551,7 +8142,9 @@ n.sendDataDecrement(1,17)
 
 ```python
 
+
 n.sendAllNotesOff(1,125)
+
 
 ```"""
 		pass
@@ -7566,7 +8159,9 @@ n.sendAllNotesOff(1,125)
 
 ```python
 
+
 n.sendSoundController(1,5,29)
+
 
 ```"""
 		pass
@@ -7579,7 +8174,9 @@ n.sendSoundController(1,5,29)
 
 ```python
 
+
 n.sendBankSelect(1, 65)
+
 
 ```"""
 		pass
@@ -7592,7 +8189,9 @@ n.sendBankSelect(1, 65)
 
 ```python
 
+
 n.sendMainVolume(1, 100)
+
 
 ```"""
 		pass
@@ -7605,7 +8204,9 @@ n.sendMainVolume(1, 100)
 
 ```python
 
+
 n.sendSoftPedal(1,20)
+
 
 ```"""
 		pass
@@ -7618,7 +8219,9 @@ n.sendSoftPedal(1,20)
 
 ```python
 
+
 n.sendLocalControl(1,87)
+
 
 ```"""
 		pass
@@ -7631,7 +8234,9 @@ n.sendLocalControl(1,87)
 
 ```python
 
+
 n.sendPolyOn(1,16)
+
 
 ```"""
 		pass
@@ -7644,7 +8249,9 @@ n.sendPolyOn(1,16)
 
 ```python
 
+
 n.sendPan(1, 45)
+
 
 ```"""
 		pass
@@ -7657,7 +8264,9 @@ n.sendPan(1, 45)
 
 ```python
 
+
 n.sendResetAllControllers(1,34)
+
 
 ```"""
 		pass
@@ -7670,7 +8279,9 @@ n.sendResetAllControllers(1,34)
 
 ```python
 
+
 n.sendBreathController(1, 12)
+
 
 ```"""
 		pass
@@ -7683,7 +8294,9 @@ n.sendBreathController(1, 12)
 
 ```python
 
+
 n.sendPortamentoTime(1, 78)
+
 
 ```"""
 		pass
@@ -7696,7 +8309,9 @@ n.sendPortamentoTime(1, 78)
 
 ```python
 
+
 n.sendDataIncrement(1,17)
+
 
 ```"""
 		pass
@@ -7709,7 +8324,9 @@ n.sendDataIncrement(1,17)
 
 ```python
 
+
 n.sendFootController(1, 12)
+
 
 ```"""
 		pass
@@ -7722,7 +8339,9 @@ n.sendFootController(1, 12)
 
 ```python
 
+
 n.sendHold2(1,55)
+
 
 ```"""
 		pass
@@ -7735,7 +8354,9 @@ n.sendHold2(1,55)
 
 ```python
 
+
 n.sendSostenuto(1,42)
+
 
 ```"""
 		pass
@@ -7748,7 +8369,9 @@ n.sendSostenuto(1,42)
 
 ```python
 
+
 n.sendOmniOff(1,91)
+
 
 ```"""
 		pass
@@ -7763,7 +8386,9 @@ n.sendOmniOff(1,91)
 
 ```python
 
+
 n.sendGeneralPurposeController(1,3,76)
+
 
 ```"""
 		pass
@@ -7778,7 +8403,9 @@ n.sendGeneralPurposeController(1,3,76)
 
 ```python
 
+
 n.sendNoteOff(1, 63)
+
 
 ```"""
 		pass
@@ -7791,7 +8418,9 @@ To serialize non-byte values (example floats or integers) there are several pyth
 
 ```python
 
+
 n.sendExclusive(0xb0, 'abc' ,0x40)  # Send a system exclusive message consisting of a start byte, 0xb0, 'a', 'b', 'c' (as ascii), 0x40, and an end byte.
+
 
 ```"""
 		pass
@@ -7804,7 +8433,9 @@ n.sendExclusive(0xb0, 'abc' ,0x40)  # Send a system exclusive message consisting
 
 ```python
 
+
 n.sendPortamento(1,34)
+
 
 ```"""
 		pass
@@ -7819,7 +8450,9 @@ n.sendPortamento(1,34)
 
 ```python
 
+
 n.sendEffectControl(1,1,27)
+
 
 ```"""
 		pass
@@ -7832,7 +8465,9 @@ n.sendEffectControl(1,1,27)
 
 ```python
 
+
 n.sendLegatoFootswitch(1,07)
+
 
 ```"""
 		pass
@@ -7845,7 +8480,9 @@ n.sendLegatoFootswitch(1,07)
 
 ```python
 
+
 n.sendModulationWheel(1, 65)
+
 
 ```"""
 		pass
@@ -7858,7 +8495,9 @@ n.sendModulationWheel(1, 65)
 
 ```python
 
+
 n.sendProgram(1, 10)
+
 
 ```"""
 		pass
@@ -7871,7 +8510,9 @@ n.sendProgram(1, 10)
 
 ```python
 
+
 n.sendOmniOn(1,41)
+
 
 ```"""
 		pass
@@ -7884,7 +8525,9 @@ n.sendOmniOn(1,41)
 
 ```python
 
+
 n.sendPortamentoControl(1,112)
+
 
 ```"""
 		pass
@@ -7909,7 +8552,7 @@ class mergeCHOP(CHOP,OP):
 class mathCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -7942,14 +8585,14 @@ class logicCHOP(CHOP,OP):
 class limitCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
 class lfoCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -7966,7 +8609,7 @@ class leapmotionCHOP(CHOP,OP):
 class lagCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	pass
@@ -8060,7 +8703,7 @@ class functionCHOP(CHOP,OP):
 class filterCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -8072,7 +8715,7 @@ class fileoutCHOP(CHOP,OP):
 class fileinCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	curVal : float
 	"""The current value of the sample being overridden."""
 	sampleIndex : int
@@ -8098,7 +8741,7 @@ class extendCHOP(CHOP,OP):
 class expressionCHOP(CHOP,OP):
 	""""""
 	chanIndex : any
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	inputVal : any
 	"""The current value of the input sample being evaluated.  To access channels from other inputs use the [[OP_Class#Connection|operator's inputs]]. Example:  me.inputs[1]['chan4'] will access chan4 of the second input."""
 	sampleIndex : any
@@ -8155,7 +8798,7 @@ class etherdreamCHOP(CHOP,OP):
 class envelopeCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -8179,7 +8822,7 @@ class deleteCHOP(CHOP,OP):
 class delayCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -8219,7 +8862,7 @@ class countCHOP(CHOP,OP):
 class copyCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
 	copyIndex : int
@@ -8235,7 +8878,7 @@ class constantCHOP(CHOP,OP):
 class compositeCHOP(CHOP,OP):
 	""""""
 	chanIndex : any
-	"""```me.chanIndex``` can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example ```[3, 4, 5][me.chanIndex]```."""
+	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	pass
 
 
@@ -8402,7 +9045,7 @@ class COMP(OP):
 	outputCOMPConnectors : any
 	"""List of output [[Connector Class|connectors]] (on the bottom) associated with this component."""
 	def create(self, opType, name, initialize=True) -> OP: 
-		"""Create a new node of the given type, inside this component. If ```name``` is supplied the new node will use that name, or the next numbered name if its already in use.  opType can be a specific type object, example ```waveCHOP```, or it can be a string ```'waveCHOP'```.  If given an actual instance of a node ```n```, these can be accessed via ```type(n)``` and ```n.OPType``` respectively.
+		"""Create a new node of the given type, inside this component. If ```name</code> is supplied the new node will use that name, or the next numbered name if its already in use.  opType can be a specific type object, example <code>waveCHOP</code>, or it can be a string <code>'waveCHOP'</code>.  If given an actual instance of a node <code>n</code>, these can be accessed via <code>type(n)</code> and <code>n.OPType``` respectively.
 
 An initialization script associated with the operator is run, unless initialize=False.
 
@@ -8416,9 +9059,11 @@ The new node is returned.
 
 ```python
 
+
 n.create(waveCHOP)
 
 w = n.create(boxSOP, 'box12')
+
 
 ```"""
 		pass
@@ -8436,7 +9081,9 @@ w = n.create(boxSOP, 'box12')
 
 ```python
 
+
 w = n.copy( op('wave1') )
+
 
 ```"""
 		pass
@@ -8451,9 +9098,11 @@ A new list with the created operators is returned.
 
 ```python
 
+
 alist = [op('wave1'), op('wave2')]
 
 n.copyOPs(alist)
+
 
 ```"""
 		pass
@@ -8492,6 +9141,7 @@ n.copyOPs(alist)
 
 ```python
 
+
 #find all OPs whose name begins with circle
 
 n.findChildren(name='circle* ')
@@ -8508,6 +9158,7 @@ n.findChildren(type=CHOP, key = lambda x: x.nodeWidth > 200)
 
 n.findChildren(type=COMP, parName='clone', onlyNonDefaults=True)
 
+
 ```"""
 		pass
 	def initializeExtensions(self, index=None) -> any: 
@@ -8519,7 +9170,9 @@ Returns the compiled extension.
 
 ```python
 
+
 n.initializeExtensions(0) # initialize first extension.
+
 
 ```"""
 		pass
@@ -8559,12 +9212,14 @@ n.initializeExtensions(0) # initialize first extension.
 
 ```python
 
+
 n.resetNetworkView(True) # reset network view of n and all its children.
+
 
 ```"""
 		pass
 	def save(self, filepath, createFolders=False, password=None) -> Path: 
-		"""Saves the component to disk. If no path is provided, a default filename is used and the ```.tox``` is saved to ```project.folder```.
+		"""Saves the component to disk. If no path is provided, a default filename is used and the ```.tox</code> is saved to <code>project.folder```.
 
 Returns the filename used.
 
@@ -8576,11 +9231,13 @@ Returns the filename used.
 
 ```python
 
+
 name = n.save() # save in native tox format with default name
 
 n.save('output.tox')  # supply name
 
 n.save('C:/Desktop/myFolder/output.tox', createFolders=True)  # supply name and createFolder flag
+
 
 ```"""
 		pass
@@ -8600,9 +9257,11 @@ Returns the number of components saved.
 
 ```python
 
+
 root.saveExternalTox(recurse=True)
 
 op('geo1').saveExternalTox(recurse=False)
+
 
 ```"""
 		pass
@@ -8611,11 +9270,13 @@ op('geo1').saveExternalTox(recurse=False)
 
 ```python
 
+
 n = op('base1')
 
 page = n.appendCustomPage('Custom1')
 
 page.appendFloat('X1')
+
 
 ```"""
 		pass
@@ -8627,9 +9288,11 @@ page.appendFloat('X1')
 
 ```python
 
+
 n = op('base1')
 
 n.sortCustomPages('Definition','Controls')
+
 
 ```"""
 		pass
@@ -8642,7 +9305,9 @@ Returns true when the key is correct, and access is granted. If dongle privacy i
 
 ```python
 
+
 n.accessPrivateContents('secret')
+
 
 ```"""
 		pass
@@ -8655,7 +9320,9 @@ Privacy can only be added to components that currently have no privacy. Adding P
 
 ```python
 
+
 n.addPrivacy('secret')
+
 
 ```"""
 		pass
@@ -8678,7 +9345,9 @@ The private component can be used with any Dongle matching the firm code and pro
 
 ```python
 
+
 n.addPrivacy(10, 4)
+
 
 ```"""
 		pass
@@ -8687,7 +9356,9 @@ n.addPrivacy(10, 4)
 
 ```python
 
+
 n.blockPrivateContents()
+
 
 ```"""
 		pass
@@ -8700,7 +9371,9 @@ Returns true when the key is correct.
 
 ```python
 
+
 n.removePrivacy('secret')
+
 
 ```"""
 		pass
@@ -8723,9 +9396,11 @@ n.removePrivacy('secret')
 
 ```python
 
+
 a = n.vars()
 
 a = n.vars('A* ', 'B* ')
+
 
 ```"""
 		pass
@@ -8817,11 +9492,14 @@ This class inherits from the COMP Class."""
 
 ```python
 
+
 v = op('button1').panel.u.val
 
 v = op('button1').panel.u
 
-```"""
+
+```
+"""
 	panelRoot : OP
 	"""The panelCOMP at the top of the panel hierarchy."""
 	panelChildren : list
@@ -8849,7 +9527,9 @@ v = op('button1').panel.u
 
 ```python
 
+
 p = me.panelParent(2) #grandfather
+
 
 ```"""
 		pass
@@ -8876,6 +9556,7 @@ p = me.panelParent(2) #grandfather
 
 ```python
 
+
 op('container1').interactMouse(0.5, 0.5) # roll over the middle of container1
 
 op('container1').interactMouse(0.5, 0.5, leftClick=2) # double click the middle of container1
@@ -8889,6 +9570,7 @@ op('container1').interactMouse(0.6, 0.6) # mouse up
 op('container1').interactMouse(0.5, 0.5, wheel=0.3) # roll the mouse wheel in the middle of container1
 
 op('container1').interactMouse(10, 20, pixels=True) # send a mouse event 10 pixels to the right, and 20 pixels above the lower left corner of container1
+
 
 ```"""
 		pass
@@ -8915,6 +9597,7 @@ op('container1').interactMouse(10, 20, pixels=True) # send a mouse event 10 pixe
 
 ```python
 
+
 op('container1').interactTouch(0.5, 0.5, hover='finger') # roll over the middle of container1
 
 op('container1').interactTouch(0.5, 0.5, start='finger') # ends the hover and start a touch
@@ -8924,6 +9607,7 @@ op('container1').interactTouch(0.7, 0.5, move='finger') # move the touch
 op('container1').interactTouch(0.3, 0.4, start='finger') # ends the previous touch and start a new touch
 
 op('container1').interactTouch(-1, -1, hover='finger') # ends the previous touch, and end any rollover state
+
 
 ```"""
 		pass
@@ -8943,6 +9627,7 @@ op('container1').interactTouch(-1, -1, hover='finger') # ends the previous touch
 
 ```python
 
+
 op('container1').interactStatus  # list the current hover over a slider and 2 touches over a button in container1
 
 [['touch1', type:sliderCOMP path:/project1/container1/slider1, 'hover', False],
@@ -8950,6 +9635,7 @@ op('container1').interactStatus  # list the current hover over a slider and 2 to
 ['__MOUSE__', type:buttonCOMP path:/project1/container1/button1, 'touch', True],
 
 ['touch2', type:buttonCOMP path:/project1/container1/button1, 'touch', False]]
+
 
 ```"""
 		pass
@@ -8987,7 +9673,9 @@ class tableCOMP(PanelCOMP,COMP,OP):
 
 ```python
 
+
 op('table1').click(2,3) #row 2, column 3
+
 
 ```"""
 		pass
@@ -9001,7 +9689,9 @@ op('table1').click(2,3) #row 2, column 3
 
 ```python
 
+
 op('table1').clickID(5) # cell id 5
+
 
 ```"""
 		pass
@@ -9019,7 +9709,9 @@ op('table1').clickID(5) # cell id 5
 
 ```python
 
+
 op('table1').select(0, 5) # row 0, column 5, do not select all text
+
 
 ```"""
 		pass
@@ -9047,11 +9739,13 @@ If only 1 value is given, it specifies the primary coordinate of the slider. (Ei
 
 ```python
 
+
 op('slider1').click(0.2) #Update U or V on a 1D slider.
 
 op('slider2').click(0.4, 0.5) #Update both U and V on a 2D slider.
 
 op('slider3').click(0.4, vOnly=True) #Update just V on a 2D slider.
+
 
 ```"""
 		pass
@@ -9117,9 +9811,11 @@ The enumeration is called PaneType and consists of:
 
 ```python
 
+
 p = ui.panes[0]
 
 p = p.changeType(PaneType.TOPVIEWER)  # note: must re-assign p to new object.
+
 
 ```"""
 		pass
@@ -9253,43 +9949,58 @@ class listCOMP(PanelCOMP,COMP,OP):
 
 ```python
 
+
 n.tableAttribs.fontFace = 'Verdana'
 
 n.tableAttribs.bgColor = (0,0.3,0,1) #dark green background
 
-```"""
+
+```
+"""
 	colAttribs : any
 	"""The set of row [[ListAttributes Class|attributes]]. Accessed by row index.  The members of these attributes can be directly written to / updated with new values and take priority over any attribute members defined a the table level.
 
 ```python
 
+
 n.colAttribs[4].colWidth = 100
 
 n.colAttribs[4].bgColor = (0,0.6,0,1) #highlight entire column in bright green
 
-```"""
+
+```
+"""
 	rowAttribs : any
 	"""The set of row [[ListAttributes Class|attributes]]. Accessed by row index. The members of these attributes can be directly written to / updated with new values and take priority over any attribute members defined a the table level.
 
 ```python
 
+
 n.rowAttribs[3].rowHeight = 50
 
-```"""
+
+```
+"""
 	cellAttribs : any
 	"""The set of cell [[ListAttributes Class|attributes]]. Accessed by row and column. The members of these attributes can be directly written to / updated with new values and take priority over any attribute members defined at the row/col or table level.
 
 ```python
 
+
 n.cellAttribs[3,4].text = 'Fade'
 
 n.cellAttribs[3,4].bgColor = (0.5,0,0,1) #highlight this cell red
 
-```"""
+
+```
+"""
 	displayAttribs : any
 	"""The set of attributes actually displayed in the cell. They are a combination of the cell/row/col/table attributes described above. Accessed by row and column.  When combining attributes, cell attributes take priority over row and column attributes, which themselves take priority over table attributes.
 
-```pythonn.displayAttribs[3,4].bgColor #the resulting background color for this specific cell```"""
+```python
+n.displayAttribs[3,4].bgColor #the resulting background color for this specific cell
+```
+"""
 	focusCol : int
 	"""Last column with focus for editing."""
 	focusRow : int
@@ -9352,7 +10063,9 @@ class lightCOMP(ObjectCOMP,COMP,OP):
 
 ```python
 
+
 newlist = op('geo1').pars('t?', 'r?', 's?') # translate/rotate/scale parameters
+
 
 ```"""
 		pass
@@ -9381,9 +10094,11 @@ A named tuple consisting of (min, max, center, size) is returned. Each component
 
 ```python
 
+
 a=op('/project1/geo1').computeBounds()
 
 print(a.min.x)
+
 
 ```"""
 		pass
@@ -9424,7 +10139,9 @@ class containerCOMP(PanelCOMP,COMP,OP):
 
 ```python
 
+
 op('container1').click(0.4, 0.5) # Update U and V
+
 
 ```"""
 		pass
@@ -9443,7 +10160,9 @@ op('container1').click(0.4, 0.5) # Update U and V
 
 ```python
 
+
 op('container1').clickChild(2) # Click the third child panel inside a container.
+
 
 ```"""
 		pass
@@ -9592,11 +10311,13 @@ class DAT(OP):
 
 ```python
 
+
 name = n.save() #save in native format with default name
 
 n.save('output.txt') #human readable format without channel names
 
 n.save('C:/Desktop/myFolder/output.txt', createFolders=True)  # supply file path and createFolder flag
+
 
 ```"""
 		pass
@@ -9604,6 +10325,7 @@ n.save('C:/Desktop/myFolder/output.txt', createFolders=True)  # supply file path
 		"""Append content to this DAT. Can also be used to implement DAT printing functions.
 
 ```python
+
 
 # grab DAT
 
@@ -9616,6 +10338,7 @@ n.write('Hello World')
 # use print method
 
 print('Hello World', file=n)
+
 
 ```"""
 		pass
@@ -9635,6 +10358,7 @@ print('Hello World', file=n)
 
 ```python
 
+
 n.clear() #remove all rows and columns
 
 n.clear(keepSize=True) #set all table cells to blank
@@ -9642,6 +10366,7 @@ n.clear(keepSize=True) #set all table cells to blank
 n.clear(keepFirstRow=True) #remove all rows, but keep the first
 
 n.clear(keepFirstRow=True, keepFirstCol=True) #keep the first row, first column, and set remaining cells to blank
+
 
 ```"""
 		pass
@@ -9661,6 +10386,7 @@ n.clear(keepFirstRow=True, keepFirstCol=True) #keep the first row, first column,
 
 ```python
 
+
 n.appendRow()
 
 n.appendRow( [1,2,3], 'January' )  #append with values (1,2,3) after the row labelled 'January'
@@ -9668,6 +10394,7 @@ n.appendRow( [1,2,3], 'January' )  #append with values (1,2,3) after the row lab
 n.appendRow( [1,2,3], 5 )  #append row with values (1,2,3) after the row 5.
 
 n.appendRow( [1,2,3], sort='Month' )  #append row with values (1,2,3) keeping column 'Month' sorted.
+
 
 ```"""
 		pass
@@ -9680,13 +10407,15 @@ n.appendRow( [1,2,3], sort='Month' )  #append row with values (1,2,3) keeping co
 
 * sort - (Keyword, Optional) If specified will determine the column to keep sorted after the insertion. If it's a numeric value it represents the numeric index of the column. If it is a string it represents a column label.
 
-```pythonn.appendRows()
+```python
+n.appendRows()
 
 n.appendRows( [[1,2,3],[4,5,6,7]], 'January' )  #after the row labelled 'January append 2 rows: first one with values (1,2,3), then one with values (4,5,6,7)
 
 n.appendRows( [[1,2,3]], 5 )  # after row 5 append one row with values (1,2,3).
 
-n.appendRows( [1,2,3] )  # append 3 rows with values 1, 2, 3 respectively.```"""
+n.appendRows( [1,2,3] )  # append 3 rows with values 1, 2, 3 respectively.
+```"""
 		pass
 	def appendCol(self, vals, nameOrIndex, sort=None) -> int: 
 		"""Append a column to the end of the table. See appendRow for similar usage."""
@@ -9711,11 +10440,13 @@ n.appendRows( [1,2,3] )  # append 3 rows with values 1, 2, 3 respectively.```"""
 
 ```python
 
+
 n.replaceRow(0) # will empty all the cells in row 0 (ie. replaced with nothing)
 
 n.replaceRow('January', ['January', 1,2,3])  # the row 'January' will be replaced with the list of 4 items.
 
-n.replaceRow(2, [1,2,3], entireRow=False)  # at row 2 the 3 items will replace the first 3 items in the row.```"""
+n.replaceRow(2, [1,2,3], entireRow=False)  # at row 2 the 3 items will replace the first 3 items in the row.
+```"""
 		pass
 	def replaceCol(self, nameOrIndex, vals, entireCol=True) -> int: 
 		"""Replaces the contents of an existing column. See DAT.replaceRow for similar usage."""
@@ -9765,9 +10496,11 @@ The NameOrIndex may be an exact string name, or it may be a numeric index value.
 
 ```python
 
+
 c = n[4, 'June']
 
 c = n[3, 4]
+
 
 ```"""
 		pass
@@ -9780,9 +10513,11 @@ c = n[3, 4]
 
 ```python
 
+
 c = n.cell(5, 'June') #Return a cell under row 5, column 'June'.
 
 c = n.cell('A* ', 2) #Find a cell under any row beginning with an A, in column 2.
+
 
 ```"""
 		pass
@@ -9803,6 +10538,7 @@ c = n.cell('A* ', 2) #Find a cell under any row beginning with an A, in column 2
 * caseSensitive(Keyword, Optional) - Cell matching is case sensitive if set to true.
 
 ```python
+
 
 # given a table 'table1':
 
@@ -9864,13 +10600,14 @@ t.findCell('* Fruit')
 
 
 
-# will return type:Cell cell:(6, 1) owner:/project1/table1 value:* Fruit
+# will return type:Cell cell:(6, 1) owner:/project1/table1 value: * Fruit
 
 # as pattern matching for the search pattern is disabled
 
 # hence the '* ' is not interpreted as a pattern but a string to look for
 
 t.findCell('* Fruit', valuePattern=False)
+
 
 ```"""
 		pass
@@ -9899,9 +10636,11 @@ See DAT.rows() for similar usage.
 
 ```python
 
+
 for r in op('table1').rows():
 
         # do something with row 'r'
+
 
 ```"""
 		pass
@@ -9914,11 +10653,13 @@ for r in op('table1').rows():
 
 ```python
 
+
 r = op('table1').col(3, caseSensitive=False)
 
 r = op('table1').col('June')
 
 r = op('table1').col('A* ', 'B* ') #returns first column beginning with A or B
+
 
 ```"""
 		pass
@@ -9931,9 +10672,11 @@ r = op('table1').col('A* ', 'B* ') #returns first column beginning with A or B
 
 ```python
 
+
 for c in op('table1').cols():
 
         # do something with each column 'c'
+
 
 ```"""
 		pass
@@ -9954,7 +10697,9 @@ class websocketDAT(DAT,OP):
 
 ```python
 
+
 n = n.sendText('Hello') # send text frame consisting of 'Hello'
+
 
 ```"""
 		pass
@@ -9965,7 +10710,9 @@ n = n.sendText('Hello') # send text frame consisting of 'Hello'
 
 ```python
 
+
 n = n.sendPong( 23, 'TYPE', 255, 12, 0x34, b'\\x01\\x00\\x02\\x00\\x03\\x00\\x00\\x00') # send pong reply with specific contents.
+
 
 ```"""
 		pass
@@ -9976,7 +10723,9 @@ n = n.sendPong( 23, 'TYPE', 255, 12, 0x34, b'\\x01\\x00\\x02\\x00\\x03\\x00\\x00
 
 ```python
 
+
 n = n.sendPing( 23, 'TYPE', 255, 12, 0x34, b'\\x01\\x00\\x02\\x00\\x03\\x00\\x00\\x00') # send ping request with specific contents.
+
 
 ```"""
 		pass
@@ -9987,7 +10736,9 @@ n = n.sendPing( 23, 'TYPE', 255, 12, 0x34, b'\\x01\\x00\\x02\\x00\\x03\\x00\\x00
 
 ```python
 
+
 n = n.sendBinary( 23, 'TYPE', 255, 12, 0x34, b'\\x01\\x00\\x02\\x00\\x03\\x00\\x00\\x00') # send binary frame consisting of various byte values.
+
 
 ```"""
 		pass
@@ -10067,7 +10818,9 @@ class tcpipDAT(DAT,OP):
 
 ```python
 
+
 n.sendBytes( 'TYPE', 23, 255, 12, 0x34, b'\x01\x00\x02\x00\x03\x00\x00\x00' )
+
 
 ```"""
 		pass
@@ -10082,7 +10835,9 @@ The number of bytes sent is returned.
 
 ```python
 
+
 n.send('Hello', 'World',  terminator='\r\n') # send two strings with windows style newline termination.
+
 
 ```"""
 		pass
@@ -10118,6 +10873,7 @@ class substituteDAT(DAT,OP):
 
 ```python
 
+
 me.inputCell.val # value in cell
 
 me.inputTable[2,3].val # cell row 2, column 3
@@ -10126,7 +10882,9 @@ me.inputTable[me.inputRow, me.inputCol-1].val # cell in previous column
 
 me.inputCell.offset(0, -1) # alternative syntax for previous column
 
-```"""
+
+```
+"""
 	pass
 
 
@@ -10149,7 +10907,9 @@ class serialDAT(DAT,OP):
 
 ```python
 
+
 n.sendBytes( 'TYPE', 23, 255, 12, 0x34, b'\x01\x00\x02\x00\x03\x00\x00\x00' )
+
 
 ```"""
 		pass
@@ -10164,7 +10924,9 @@ The number of bytes sent is returned.
 
 ```python
 
+
 n.send('Hello', 'World',  terminator='\r\n') #send two strings with windows style newline termination.
+
 
 ```"""
 		pass
@@ -10184,6 +10946,7 @@ class selectDAT(DAT,OP):
 
 ```python
 
+
 me.inputCell.val #value in cell
 
 me.inputTable[2,3].val #cell row 2, column 3
@@ -10192,7 +10955,9 @@ me.inputTable[me.inputRow, me.inputCol-1].val #cell in previous column
 
 me.inputCell.offset(0, -1) #alternative syntax for previous column
 
-```"""
+
+```
+"""
 	pass
 
 
@@ -10203,9 +10968,11 @@ class scriptDAT(DAT,OP):
 
 ```python
 
+
 page = scriptOp.appendCustomPage('Custom1')
 
 page.appendFloat('X1')
+
 
 ```"""
 		pass
@@ -10217,7 +10984,9 @@ page.appendFloat('X1')
 
 ```python
 
+
 scriptOp.sortCustomPages('Definition','Controls')
+
 
 ```"""
 		pass
@@ -10296,7 +11065,9 @@ class mqttclientDAT(DAT,OP):
 
 ```python
 
+
 n.publish('temperature', b'23')
+
 
 ```"""
 		pass
@@ -10309,7 +11080,9 @@ n.publish('temperature', b'23')
 
 ```python
 
+
 n.subscribe('weather')
+
 
 ```"""
 		pass
@@ -10320,7 +11093,9 @@ n.subscribe('weather')
 
 ```python
 
+
 n.unsubscribe('weather')
+
 
 ```"""
 		pass
@@ -10394,7 +11169,9 @@ class fileoutDAT(DAT,OP):
 
 ```python
 
+
 n.sendBytes( 'TYPE', 23, 255, 12, 0x34, b'\x01\x00\x02\x00\x03\x00\x00\x00' )
+
 
 ```"""
 		pass
@@ -10409,7 +11186,9 @@ The number of bytes sent is returned.
 
 ```python
 
+
 n.send('Hello', 'World',  terminator='\r\n') # send two strings with windows style newline termination.
+
 
 ```"""
 		pass
@@ -10869,15 +11648,21 @@ class modelSOP(SOP,OP):
 
 ```python
 
+
 n.appendBezier(6, closed=True) #closed, cubic, 6 vertices, or 2 spans
 
+
 ```
+
 
 ```python
 
+
 n.appendBezier(7) #open, cubic, 7 vertices, or 2 spans
 
+
 ```
+
 
 *  closed - (Keyword, Optional) Specifies whether or not the last [[Vertex Class|vertex]] of the curve will connect to the first. An open Bezier will be drawn as a line.
 
@@ -10994,7 +11779,7 @@ class moviefileoutTOP(TOP,OP):
 	curSeqIndex : any
 	"""The current index of the last written image on disk."""
 	fileSuffix : str
-	"""Returns the generated file suffix. It will be generated based on the values of the parameters Unique Suffix and N, plus the file extension. It will take one of two forms: ```''N''.''ext''``` or ```''N''.''i''.''ext''``` where ```''N''``` is the suffix index (uniquely generated if Unique Suffix is enabled), ```''i''``` is the image sequence index (used only for the image sequence type), and ```''ext''``` is the image/movie extension."""
+	"""Returns the generated file suffix. It will be generated based on the values of the parameters Unique Suffix and N, plus the file extension. It will take one of two forms: ```''N''.''ext''</code> or <code>''N''.''i''.''ext''</code> where <code>''N''</code> is the suffix index (uniquely generated if Unique Suffix is enabled), <code>''i''</code> is the image sequence index (used only for the image sequence type), and <code>''ext''``` is the image/movie extension."""
 	pass
 
 
@@ -11058,6 +11843,7 @@ class NetworkEditor(Pane):
 
 ```python
 
+
 p = ui.panes['pane1']
 
 n = op('/project1')
@@ -11067,6 +11853,7 @@ p.home(op=n)
 p = ui.panes[2]
 
 p.home(zoom=True)
+
 
 ```"""
 		pass

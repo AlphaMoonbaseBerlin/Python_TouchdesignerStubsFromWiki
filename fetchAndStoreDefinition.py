@@ -150,11 +150,13 @@ def sortDefinitionDict( defnitions:dict):
 
 def wikiToMD( text ):
     text = text.replace('"', "'")
-    text = re.sub(r"<syntaxhighlight lang=(\w*)>", r"```\1", text)
-    text = re.sub(r"<syntaxhighlight lang='(\w*)'>", r"```\1", text)
-    text = re.sub(r"</syntaxhighlight>", "```", text)
-    text = re.sub(r"<code>|</code>", r"```", text)
+    text = text.replace(":*", ": *")
     text = text.replace("\n", "\n\n")
+    # YOU CANT PARSE HTML COPY pasta here.....
+    text = re.sub(r"<syntaxhighlight (lang=('\w*'|\w*))+>((.|\n)*?)<\/syntaxhighlight>", r"```\2\n\3\n```\n", text)
+    #text = re.sub(r"<blockquote></blockquote>")
+    text = re.sub(r"<code>(.*)</code>", r"```\1```", text)
+    
     text = text.replace("*", "* ")
     return text
 
@@ -196,6 +198,7 @@ def writeClassAsModuleToFile( element, fileHandler, depth = 0):
 
 def writeMemberToFile(member, fileHandler, depth = 0):
     annotation = utils.trim( member["text"] )
+    annotation = member["text"]
     offset = "\t" * depth
     fileHandler.write(
              f'{offset}{member["name"]} : {member["type"] or "any"}\n'
