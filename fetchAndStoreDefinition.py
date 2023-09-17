@@ -1,8 +1,11 @@
 import requests
 import json
-
+from pathlib import Path
+import wikitextparser
+import utils
+#data fetching
 def fetchItemNames():
-    cacheFile = Path("itemsCache.json")
+    cacheFile = Path("cache/itemsCache.json")
 
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
@@ -34,12 +37,8 @@ def fetchItemNames():
         json.dumps( items, indent=4)
     )
     return items
-
-from pathlib import Path
-import wikitextparser
-
 def fetchDefinitions( items ):
-    cacheFile = Path("definitionCache.json")
+    cacheFile = Path("cache/definitionCache.json")
 
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
@@ -63,21 +62,20 @@ def fetchDefinitions( items ):
         json.dumps( result, indent=4)
     )
     return result
-import utils
 
-
+#data creation
 def defaultClassDict( label = ""):
     return {
             "label" : label or "NotSet",
             "members" : [],
             "methods" : [],
             "subclasses" : {},
-            "inherits": set()}
+            "inherits": [] }
 def createDefinitionDict( definitions ):
-    cacheFile = Path("definitionDictCache.json")
+    cacheFile = Path("cache/definitionDictCache.json")
 
-    #if cacheFile.is_file(): 
-    #   return json.loads( cacheFile.read_text() )
+    if cacheFile.is_file(): 
+       return json.loads( cacheFile.read_text() )
     
     outputdict = {}
 
@@ -103,7 +101,8 @@ def createDefinitionDict( definitions ):
             
             if templateName == "ClassInheritance":
                # print(f"Class Inheriteance for { className } from {templateDict['class']}")
-                classDict["inherits"].add(templateDict["class"])
+                if templateDict["class"] in classDict["inherits"]: continue
+                classDict["inherits"].append(templateDict["class"])
             if templateName in ["ClassMember"]:
                 classDict["members"].append(templateDict)
             if templateName in ["ClassMethod"]:
@@ -130,36 +129,12 @@ def createDefinitionDict( definitions ):
     )
     return outputdict
 
-def sortDefinitionDict( definitions:dict ):
-    root = utils.node()
-    definitionList = list( definitions.values() )
-
-    #Translating the regular dict in to a tree structure!
-    while definitionList:
-        
-        nextItem = definitionList.pop(0)
-        print("Sorting. Next Item ", nextItem["label"] )
-        if not nextItem["inherits"] : 
-            root.children[nextItem["label"]] = utils.node(nextItem)
-        foundDepth = 0
-        foundNode = None
-        for inheritance in nextItem["inherits"]:
-            depth, node = root.findEntry(inheritance, depth=foundDepth)
-            if depth > foundDepth:
-                foundDepth  = depth
-                foundNode   = node
-        if not foundNode: 
-            definitionList.append( nextItem )
-            continue
-        foundNode.children.append( nextItem)
-
-    return { node.value["label"] : node.value for node in root.traverse() }
-import math
-def alternativeSortDefinition( defnitions:dict):
+#data handling
+def sortDefinitionDict( defnitions:dict):
     sortedList = []
     for key, value in defnitions.items():
         keyIndex = 0
-        for inheritance in value["inherits"]:
+        for inheritance in value["inherits"] + [member["type"] for member in value["members"]]:
             try:
                 foundIndex = sortedList.index(inheritance)
             except ValueError:
@@ -169,68 +144,110 @@ def alternativeSortDefinition( defnitions:dict):
         keyIndex = (keyIndex or len(sortedList)*bool(value["inherits"])) + 1
         print("Inserting", key, "at", keyIndex)
         sortedList.insert(keyIndex, key)
+    for key in sortedList:
+        defnitions[key]["inherits"] = defnitions[key]["inherits"]
     return {key : defnitions[key] for key in sortedList}
-
 def clearDefinitionDict( definitionDict):
     for classDefinition in definitionDict.values():
+        classDefinition["summary"] = classDefinition.get("summary", "").replace('"', "'")
         for member in classDefinition["members"]:
+            member["text"] = member["text"].replace('"', "'")
             if member["type"] in definitionDict: continue
             try:
                 eval( member["type"] ) is type
             except:
                 member["type"] = "any"
 
+        for method in classDefinition["methods"]:
+            method["text"] = method["text"].replace('"', "'")
+            method["call"] = method["call"].replace("..", ", *args")
+            method["call"] = method["call"].replace("...", ", *args")
+            print(method["call"])
+            if method["returns"] in definitionDict: continue
+            try:
+                eval( method["returns"] ) is type
+            except:
+                method["returns"] = "any"
+
     
     return definitionDict
+
+#datawriting
+def writeClassAsModuleToFile( element, fileHandler, depth = 0):
+    for member in element["members"]:
+        writeMemberToFile( member, fileHandler )
+    for method in element["methods"]:
+        writeMethodToFile( method, fileHandler  )
+    pass
+
+def writeMemberToFile(member, fileHandler, depth = 0):
+    annotation = utils.trim( member["text"] )
+    offset = "\t" * depth
+    fileHandler.write(
+             f'{offset}{member["name"]} : {member["type"] or "any"}\n'
+        )     
+    fileHandler.write(
+            f'{offset}"""{annotation}"""\n'
+        )
+    
+def writeMethodToFile(member, fileHandler, depth = 0):
+    offset = "\t"*depth
+    annotation = utils.trim(member["text"])
+    
+    fileHandler.write(
+             f'{offset}def {member["call"]} -> {member["returns"] or "any"}: \n'
+    )     
+    fileHandler.write(
+            f'{offset}\t"""{annotation}"""\n'
+    )
+    fileHandler.write(f"{offset}\tpass\n")
 
 def writeClassToFile( element, fileHandler, depth = 0):
     offset = "\t" * depth
     fileHandler.write(
-                f"{offset}class {element['label']}({','.join(element['inherits'])}):\n"
+       f"{offset}class {element['label']}({','.join(element['inherits'])}):\n"
     )
-
-    #Summary needs to be cleared up a little. They are all over the place!
-
-    #builtinsFile.write(
-    #   f'\t"""{element.get("summary", element.get("label"))}"""\n'
-     #)
+    fileHandler.write(
+       f'\t{offset}"""{element.get("summary", element.get("label"))}"""\n'
+    )
     for member in element["members"]:
-        annotation = utils.trim(member["text"])
-        fileHandler.write(
-            f'{offset}\t{member["name"]}:Annotated[{member["type"] or "any"},"""{annotation}"""]\n'
-        )   
-                #builtinsFile.write(
-                #    f'\t{member["name"]}:{member["type"]}\n'
-                #)   
+        writeMemberToFile(member, fileHandler, depth=depth+1)
+
+    for method in element["methods"]:
+        writeMethodToFile( method, fileHandler, depth=depth+1)
+
     for subclass in element["subclasses"].values():
         writeClassToFile(subclass, fileHandler, depth=depth+1)
 
     fileHandler.write(f"{offset}\tpass")
     fileHandler.write(f"{offset}\n\n\n")
-
 def writeBultinFile(definitionDict):
-    builtinsFileHandler = Path("types", "__builtins__.py")
+    builtinsFileHandler = Path("typings", "__builtins__.pyi")
     builtinsFileHandler.parent.mkdir( parents=True, exist_ok=True)
-    try:
-        builtinsFileHandler.unlink()
-    except FileNotFoundError:
-        pass
-    builtinsFileHandler.touch()
+    
     with builtinsFileHandler.open("wt") as builtinsFile:
-        builtinsFile.truncate(0)
-        builtinsFile.write("from typing import Annotated\n")
+        builtinsFile.write("from td import *\n")
 
         for element in definitionDict.values():
             if not "label" in element:
                 continue
             writeClassToFile( element, builtinsFile)
-            
+
+def writeTDModule(definitionDict):
+    builtinsFileHandler = Path("typings", "td.py")
+    builtinsFileHandler.parent.mkdir( parents=True, exist_ok=True)
+
+    with builtinsFileHandler.open("wt") as builtinsFile:
+        writeClassAsModuleToFile( definitionDict["td"], builtinsFile )
+
+           
 def main():
     items = fetchItemNames()
     definitions = fetchDefinitions( items )
     definitionDict = createDefinitionDict(  definitions ) 
     cleanDefinitionDict = clearDefinitionDict( definitionDict )
-    sortedDefinition = alternativeSortDefinition( cleanDefinitionDict )
+    sortedDefinition = sortDefinitionDict( cleanDefinitionDict )
+    writeTDModule( sortedDefinition )
     writeBultinFile( sortedDefinition )
 
 
