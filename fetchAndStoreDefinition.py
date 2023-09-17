@@ -147,11 +147,25 @@ def sortDefinitionDict( defnitions:dict):
     for key in sortedList:
         defnitions[key]["inherits"] = defnitions[key]["inherits"]
     return {key : defnitions[key] for key in sortedList}
+
+def wikiToMD( text ):
+    text = text.replace('"', "'")
+    text = re.sub(r"<syntaxhighlight lang=(\w*)>", r"```\1", text)
+    text = re.sub(r"<syntaxhighlight lang='(\w*)'>", r"```\1", text)
+    text = re.sub(r"</syntaxhighlight>", "```", text)
+    text = re.sub(r"<code>|</code>", r"```", text)
+    text = text.replace("\n", "\n\n")
+    text = text.replace("*", "* ")
+    return text
+
+def makeClassCall( text ):
+    return re.sub(r"\(", "(self, ", text)
+
 def clearDefinitionDict( definitionDict):
     for classDefinition in definitionDict.values():
-        classDefinition["summary"] = classDefinition.get("summary", "").replace('"', "'")
+        classDefinition["summary"] = wikiToMD( classDefinition.get("summary", "") )
         for member in classDefinition["members"]:
-            member["text"] = member["text"].replace('"', "'")
+            member["text"] = wikiToMD( member["text"] )
             if member["type"] in definitionDict: continue
             try:
                 eval( member["type"] ) is type
@@ -159,18 +173,18 @@ def clearDefinitionDict( definitionDict):
                 member["type"] = "any"
 
         for method in classDefinition["methods"]:
-            method["text"] = method["text"].replace('"', "'")
-            method["call"] = method["call"].replace("..", ", *args")
+            method["text"] = wikiToMD( method["text"] )
             method["call"] = method["call"].replace("...", ", *args")
-            print(method["call"])
+            method["call"] = method["call"].replace("..", ", *args")
             if method["returns"] in definitionDict: continue
             try:
                 eval( method["returns"] ) is type
             except:
                 method["returns"] = "any"
 
-    
     return definitionDict
+
+import re
 
 #datawriting
 def writeClassAsModuleToFile( element, fileHandler, depth = 0):
@@ -214,6 +228,7 @@ def writeClassToFile( element, fileHandler, depth = 0):
         writeMemberToFile(member, fileHandler, depth=depth+1)
 
     for method in element["methods"]:
+        method["call"] = makeClassCall( method["call"] )
         writeMethodToFile( method, fileHandler, depth=depth+1)
 
     for subclass in element["subclasses"].values():
