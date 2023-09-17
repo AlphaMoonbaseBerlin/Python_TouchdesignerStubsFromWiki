@@ -31,3 +31,26 @@ class SetEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
     
 
+class node:
+    children: list
+
+    def __init__(self, value = None) -> None:
+        self.children = {}
+        self.value = value
+
+    def findEntry(self, entry:str, depth = 0):
+        if entry in self.children: 
+            print("Found", entry)
+            return depth, self.children[entry]
+        currentDepth = 0
+        
+        for child in self.children.values():
+            currentDepth, potentialChildNode = child.findEntry(entry, depth = depth + 1)
+            if potentialChildNode: return currentDepth, potentialChildNode
+        return currentDepth, None
+    
+    def traverse(self):
+        for child in self.children.values():
+            for child in child.traverse():
+                yield child
+        yield self

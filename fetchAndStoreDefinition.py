@@ -129,7 +129,48 @@ def createDefinitionDict( definitions ):
         json.dumps( outputdict, indent=4, cls=utils.SetEncoder )
     )
     return outputdict
-         
+
+def sortDefinitionDict( definitions:dict ):
+    root = utils.node()
+    definitionList = list( definitions.values() )
+
+    #Translating the regular dict in to a tree structure!
+    while definitionList:
+        
+        nextItem = definitionList.pop(0)
+        print("Sorting. Next Item ", nextItem["label"] )
+        if not nextItem["inherits"] : 
+            root.children[nextItem["label"]] = utils.node(nextItem)
+        foundDepth = 0
+        foundNode = None
+        for inheritance in nextItem["inherits"]:
+            depth, node = root.findEntry(inheritance, depth=foundDepth)
+            if depth > foundDepth:
+                foundDepth  = depth
+                foundNode   = node
+        if not foundNode: 
+            definitionList.append( nextItem )
+            continue
+        foundNode.children.append( nextItem)
+
+    return { node.value["label"] : node.value for node in root.traverse() }
+import math
+def alternativeSortDefinition( defnitions:dict):
+    sortedList = []
+    for key, value in defnitions.items():
+        keyIndex = 0
+        for inheritance in value["inherits"]:
+            try:
+                foundIndex = sortedList.index(inheritance)
+            except ValueError:
+                continue
+            if foundIndex > keyIndex: keyIndex = foundIndex
+        #if we cannot find anything but have inheritance, move to the bac!
+        keyIndex = (keyIndex or len(sortedList)*bool(value["inherits"])) + 1
+        print("Inserting", key, "at", keyIndex)
+        sortedList.insert(keyIndex, key)
+    return {key : defnitions[key] for key in sortedList}
+
 def clearDefinitionDict( definitionDict):
     for classDefinition in definitionDict.values():
         for member in classDefinition["members"]:
@@ -138,6 +179,8 @@ def clearDefinitionDict( definitionDict):
                 eval( member["type"] ) is type
             except:
                 member["type"] = "any"
+
+    
     return definitionDict
 
 def writeClassToFile( element, fileHandler, depth = 0):
@@ -187,7 +230,8 @@ def main():
     definitions = fetchDefinitions( items )
     definitionDict = createDefinitionDict(  definitions ) 
     cleanDefinitionDict = clearDefinitionDict( definitionDict )
-    writeBultinFile( cleanDefinitionDict )
+    sortedDefinition = alternativeSortDefinition( cleanDefinitionDict )
+    writeBultinFile( sortedDefinition )
 
 
 if __name__ == "__main__":

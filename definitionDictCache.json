@@ -100,9 +100,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "analyzeCHOP": {
@@ -156,8 +156,8 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
-            "OP"
+            "OP",
+            "COMP"
         ]
     },
     "antialiasTOP": {
@@ -869,8 +869,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
-            "OP"
+            "OP",
+            "COMP"
         ]
     },
     "basisSOP": {
@@ -1006,9 +1006,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "blendSOP": {
@@ -1135,9 +1135,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "bonegroupSOP": {
@@ -1204,9 +1204,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "cacheselectTOP": {
@@ -1355,9 +1355,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "cameraCOMP": {
@@ -1381,9 +1381,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "capSOP": {
@@ -2589,8 +2589,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "constantTOP": {
@@ -2624,9 +2624,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "convertDAT": {
@@ -3452,8 +3452,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "depthTOP": {
@@ -3656,9 +3656,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "errorDAT": {
@@ -3909,9 +3909,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "fifoDAT": {
@@ -4151,9 +4151,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "gestureCHOP": {
@@ -4180,8 +4180,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "glslmultiTOP": {
@@ -4323,9 +4323,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "heliosdacCHOP": {
@@ -4454,8 +4454,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "InputPoint": {
@@ -4994,9 +4994,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "limitCHOP": {
@@ -5464,9 +5464,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "lodSOP": {
@@ -7140,9 +7140,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "nullDAT": {
@@ -7161,8 +7161,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "nullSOP": {
@@ -7266,8 +7266,8 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
-            "OP"
+            "OP",
+            "COMP"
         ],
         "summary": "This class inherits from the COMP class.\nIt is the parent class of these subclasses."
     },
@@ -8365,9 +8365,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "opviewerTOP": {
@@ -8446,8 +8446,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "outsideTOP": {
@@ -9106,8 +9106,8 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
-            "OP"
+            "OP",
+            "COMP"
         ],
         "summary": "The PanelCOMP describes an instance of a [[Panel Component]]. The state is represented by [[Panel Value|Panel Values]].\nThis class inherits from the COMP Class."
     },
@@ -9723,9 +9723,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "parameterexecuteDAT": {
@@ -10312,8 +10312,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "Peer": {
@@ -10387,8 +10387,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "photoshopinTOP": {
@@ -10613,8 +10613,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "Poly": {
@@ -11691,8 +11691,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
-            "OP"
+            "OP",
+            "COMP"
         ]
     },
     "resampleCHOP": {
@@ -12271,9 +12271,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "selectDAT": {
@@ -12321,8 +12321,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "selectSOP": {
@@ -12453,9 +12453,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "sharedmeminTOP": {
@@ -12484,9 +12484,9 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "ObjectCOMP"
+            "ObjectCOMP",
+            "COMP"
         ]
     },
     "sharedmemoutTOP": {
@@ -12551,9 +12551,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "slopeCHOP": {
@@ -13039,8 +13039,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "switchSOP": {
@@ -13225,9 +13225,9 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
             "OP",
-            "PanelCOMP"
+            "PanelCOMP",
+            "COMP"
         ]
     },
     "tableDAT": {
@@ -14233,8 +14233,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "COMP",
-            "OP"
+            "OP",
+            "COMP"
         ]
     },
     "timelineCHOP": {
@@ -16202,8 +16202,8 @@
         ],
         "subclasses": {},
         "inherits": [
-            "COMP",
-            "OP"
+            "OP",
+            "COMP"
         ]
     },
     "wireframeMAT": {
@@ -16212,8 +16212,8 @@
         "methods": [],
         "subclasses": {},
         "inherits": [
-            "MAT",
-            "OP"
+            "OP",
+            "MAT"
         ]
     },
     "wireframeSOP": {
