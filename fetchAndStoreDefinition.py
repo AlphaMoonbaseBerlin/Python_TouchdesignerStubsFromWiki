@@ -3,10 +3,9 @@ import json
 from pathlib import Path
 import wikitextparser
 import utils
-#data fetching
-def fetchItemNames():
-    cacheFile = Path("cache/itemsCache.json")
-
+# Generic DataFetching
+def fetchCategoryNames(label):
+    cacheFile = Path(f"cache/{label}NamesCache.json")
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
     
@@ -18,7 +17,7 @@ def fetchItemNames():
                 "action" : "query",
                 "format" : "json",
                 "list"  : "categorymembers",
-                "cmtitle" : "Category:Python_Reference",
+                "cmtitle" : f"Category:{label}",
                 }
         if continueToken: params.update( continueToken )
         response = requests.get(
@@ -37,8 +36,9 @@ def fetchItemNames():
         json.dumps( items, indent=4)
     )
     return items
-def fetchDefinitions( items ):
-    cacheFile = Path("cache/definitionCache.json")
+
+def fetchItems(label, items):
+    cacheFile = Path(f"cache/{label}DefinitionCache.json")
 
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
@@ -55,14 +55,39 @@ def fetchDefinitions( items ):
             "https://docs.derivative.ca/api.php",
             params = params 
             )
-        for parsedResult in response.json()["parse"]["wikitext"].values():
-            result.append(parsedResult)
+        try:
+            for parsedResult in response.json()["parse"]["wikitext"].values():
+                result.append(parsedResult)
+        except json.JSONDecodeError:
+            print("Error decoding Response", item["title"])
    
     cacheFile.write_text(
         json.dumps( result, indent=4)
     )
     return result
 
+#parameterFetching
+def fetchOperatorPages():
+    families = ["COMPs", "TOPs", "CHOPs", "SOPs", "DATs", "MATs"]
+    outputList = []
+    for familyMember in families:
+        outputList = outputList + fetchCategoryNames( familyMember )
+    return outputList
+
+def fetchOperatorDocs( items ):
+    return fetchItems( "OperatorDocs", items )
+
+#ClassFetching
+def fetchClassPages():
+    return [ item for item in fetchCategoryNames( "Python_Reference" ) if not item["title"].startswith("Experimental") ]
+def fetchClassDefinitions( items ):
+    return fetchItems("Python_Reference", items)
+
+def stringToDictList( wikiString):
+    return [ templateToDict( template ) for template in 
+                    wikitextparser.parse( wikiString ).templates ]
+def templateToDict( template ):
+    return { argument.name : argument.value.strip() for argument in template.arguments }
 #data creation
 def defaultClassDict( label = ""):
     return {
@@ -70,9 +95,10 @@ def defaultClassDict( label = ""):
             "members" : [],
             "methods" : [],
             "subclasses" : {},
-            "inherits": [] }
-def createDefinitionDict( definitions ):
-    cacheFile = Path("cache/definitionDictCache.json")
+            "inherits": []
+             }
+def createClassDefinitionDict( definitions ):
+    cacheFile = Path("cache/classDefinitionDictCache.json")
 
     if cacheFile.is_file(): 
        return json.loads( cacheFile.read_text() )
@@ -129,8 +155,69 @@ def createDefinitionDict( definitions ):
     )
     return outputdict
 
+def dictGetUnion( dictionary, *args):
+    return dictionary.get(*args[0], dictGetUnion(dictionary, *args[1:]))
+
+def createParDefinitionDict( definitions ):
+    cacheFile = Path("cache/parDefinitionDictCache.json")
+
+    if cacheFile.is_file(): 
+       return json.loads( cacheFile.read_text() )
+    
+    outputdict = {}
+
+    for definition in definitions:
+        wikiObject = wikitextparser.parse( definition )
+        className = "NoLabelFound"
+        classDict = defaultClassDict()
+        print("Foobar")
+        for template in wikiObject.templates:
+            templateDict = templateToDict( template )
+           
+            templateName = template.name.strip()
+            print(templateName)
+            if templateName == "Summary":
+                className = templateDict["opClass"].split("_")[0]
+                classDict["label"] = className
+                classDict.update( templateDict )
+
+            if templateName == "ParameterPage":
+                pageParameters = stringToDictList( templateDict["items"])
+                for parameter in pageParameters:
+                    #print(parameter)
+                    if parameter.get("parItems", ""):
+                        for parameterItem in stringToDictList(parameter["parItems"]):
+                            classDict["members"].append(
+                                {
+                                    "text": parameter.get("parSummary", "Missin"),
+                                    #dictGetUnion( parameter, "itemSummary", "parSummary" ),
+                                    #parameter.get("itemSummary", parameter.get("parSummary", "No Description")),
+                                    "type": "Par",
+                                    "name": parameterItem.get("itemName", "Missing")
+                                    
+                                }
+                            )
+                    else:
+             
+                        classDict["members"].append(
+                                {
+                                    "text": parameter.get("parSummary", "Missing"), #dictGetUnion( parameter, "parSummary", "itemSummary" ),
+                                    "type": "Par",
+                                    "name": parameter.get("parName", "Missing"), #dictGetUnion( parameter, "parName", "itemName" )
+                                }
+                            )
+                  
+        outputdict[className] = classDict
+            
+    #We will have to order this. The file gets large and pylance has issues making sense of the order.
+
+    cacheFile.write_text(
+        json.dumps( outputdict, indent=4, cls=utils.SetEncoder )
+    )
+    return outputdict
+
 #data handling
-def sortDefinitionDict( defnitions:dict):
+def sortClassDefinitionDicts( defnitions:dict):
     sortedList = []
     for key, value in defnitions.items():
         keyIndex = 0
@@ -147,22 +234,6 @@ def sortDefinitionDict( defnitions:dict):
     for key in sortedList:
         defnitions[key]["inherits"] = defnitions[key]["inherits"]
     return {key : defnitions[key] for key in sortedList}
-
-def wikiToMD( text ):
-    text = text.replace('"', "'")
-    text = text.replace(":*", ": *")
-    text = text.replace("\n", "\n\n")
-    # YOU CANT PARSE HTML COPY pasta here.....
-    text = re.sub(r"<syntaxhighlight (lang=('\w*'|\w*))+>((.|\n)*?)<\/syntaxhighlight>", r"```\2\n\3\n```\n", text)
-    #text = re.sub(r"<blockquote></blockquote>")
-    text = re.sub(r"<code>(.*)</code>", r"```\1```", text)
-    
-    text = text.replace("*", "* ")
-    return text
-
-def makeClassCall( text ):
-    return re.sub(r"\(", "(self, ", text)
-
 def clearDefinitionDict( definitionDict):
     for classDefinition in definitionDict.values():
         classDefinition["summary"] = wikiToMD( classDefinition.get("summary", "") )
@@ -186,6 +257,20 @@ def clearDefinitionDict( definitionDict):
 
     return definitionDict
 
+def makeClassCall( text ):
+    return re.sub(r"\(", "(self, ", text)
+
+def wikiToMD( text ):
+    text = text.replace('"', "'")
+    text = text.replace(":*", ": *")
+    text = text.replace("\n", "\n\n")
+    # YOU CANT PARSE HTML COPY pasta here.....
+    text = re.sub(r"<syntaxhighlight (lang=('\w*'|\w*))+>((.|\n)*?)<\/syntaxhighlight>", r"```\2\n\3\n```\n", text)
+    #text = re.sub(r"<blockquote></blockquote>")
+    text = re.sub(r"<code>(.*)</code>", r"```\1```", text)
+    
+    text = text.replace("*", "* ")
+    return text
 import re
 
 #datawriting
@@ -233,6 +318,15 @@ def writeClassToFile( element, fileHandler, depth = 0):
     for method in element["methods"]:
         method["call"] = makeClassCall( method["call"] )
         writeMethodToFile( method, fileHandler, depth=depth+1)
+    parameters = [f"parameter.{element['label']}"] + [f"parameter.{inherit}" for inherit in element["inherits"]]
+    writeMemberToFile(
+        {
+                "text": f"Parameters of { ' & '.join( parameters )}",
+                "type": "|".join( parameters),
+                "name": "par"
+        }, 
+        fileHandler, depth = depth + 1    )
+
 
     for subclass in element["subclasses"].values():
         writeClassToFile(subclass, fileHandler, depth=depth+1)
@@ -245,7 +339,18 @@ def writeBultinFile(definitionDict):
     
     with builtinsFileHandler.open("wt") as builtinsFile:
         builtinsFile.write("from td import *\n")
+        builtinsFile.write("import parameter\n")
 
+        for element in definitionDict.values():
+            if not "label" in element:
+                continue
+            writeClassToFile( element, builtinsFile)
+
+def writeParameterFile(definitionDict):
+    builtinsFileHandler = Path("typings", "parameter.py")
+    builtinsFileHandler.parent.mkdir( parents=True, exist_ok=True)
+    
+    with builtinsFileHandler.open("wt") as builtinsFile:
         for element in definitionDict.values():
             if not "label" in element:
                 continue
@@ -260,14 +365,18 @@ def writeTDModule(definitionDict):
 
            
 def main():
-    items = fetchItemNames()
-    definitions = fetchDefinitions( items )
-    definitionDict = createDefinitionDict(  definitions ) 
-    cleanDefinitionDict = clearDefinitionDict( definitionDict )
-    sortedDefinition = sortDefinitionDict( cleanDefinitionDict )
-    writeTDModule( sortedDefinition )
-    writeBultinFile( sortedDefinition )
+    classPages = fetchClassPages()
+    classDefinitions = fetchClassDefinitions( classPages )
+    classDefinitionDicts = createClassDefinitionDict(  classDefinitions ) 
+    cleanedClassDefinitionDict = clearDefinitionDict( classDefinitionDicts )
+    sortedClassDefinitionDict = sortClassDefinitionDicts( cleanedClassDefinitionDict )
+    writeTDModule( sortedClassDefinitionDict )
+    writeBultinFile( sortedClassDefinitionDict )
 
+    operatorPages = fetchOperatorPages()
+    operatorDefinition = fetchOperatorDocs( operatorPages )
+    parameterDefinitionDicts = createParDefinitionDict( operatorDefinition )
+    writeParameterFile( parameterDefinitionDicts )
 
 if __name__ == "__main__":
     main()

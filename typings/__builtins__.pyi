@@ -1,6 +1,9 @@
 from td import *
+import parameter
 class abletonlinkCHOP(CHOP,OP):
 	""""""
+	par : parameter.abletonlinkCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.abletonlinkCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -188,6 +191,8 @@ v.reflect(v2)
 
 ```"""
 		pass
+	par : parameter.Vector
+	"""Parameters of parameter.Vector"""
 	pass
 
 
@@ -223,11 +228,15 @@ class Undo():
 	def endBlock(self, ) -> None: 
 		"""Terminate an undo block."""
 		pass
+	par : parameter.Undo
+	"""Parameters of parameter.Undo"""
 	pass
 
 
 class Textport():
 	"""This class defines the interface to a texport interface.."""
+	par : parameter.Textport
+	"""Parameters of parameter.Textport"""
 	pass
 
 
@@ -243,6 +252,8 @@ class TextLine():
 	"""A tdu.Position object that gives the baseline origin of the line of text."""
 	lineWidth : float
 	"""The width of the format box of this line of text."""
+	par : parameter.TextLine
+	"""Parameters of parameter.TextLine"""
 	pass
 
 
@@ -563,6 +574,8 @@ Generally you will use this in the menuSource field in the Component Editor as f
 
 ```"""
 		pass
+	par : parameter.tdu
+	"""Parameters of parameter.tdu"""
 	class Timecode():
 		"""The Timecode class holds a timecode value.
 * str (Optional) - Initializes the Timecode object from a Timecode formatted String: ie. hh:mm:ss:ff or hh:mm:ss.ff	
@@ -638,6 +651,8 @@ n.setTotalFrames(120, fps=60) # new Timecode will be 00:00:02:00
 n.setLength(600) # sets the length to 10 seconds for a Timecode with 60 FPS.
 </syntaxhighlight>"""
 			pass
+		par : parameter.Timecode
+		"""Parameters of parameter.Timecode"""
 		pass	
 
 
@@ -673,6 +688,8 @@ sysinfo.ram
 	"""A list of all MIDI Input device names."""
 	MIDIOutputs : any
 	"""A list of all MIDI Output device names."""
+	par : parameter.SysInfo
+	"""Parameters of parameter.SysInfo"""
 	pass
 
 
@@ -718,6 +735,8 @@ class Segment():
 	"""The speed multiplier of the segment."""
 	index : int
 	"""The numeric index of this segment."""
+	par : parameter.Segment
+	"""Parameters of parameter.Segment"""
 	pass
 
 
@@ -738,6 +757,8 @@ for r in runs:
 
 ```
 """
+	par : parameter.Runs
+	"""Parameters of parameter.Runs"""
 	pass
 
 
@@ -962,6 +983,8 @@ q1 * = q2
 
 ```"""
 		pass
+	par : parameter.Quaternion
+	"""Parameters of parameter.Quaternion"""
 	pass
 
 
@@ -973,6 +996,8 @@ class ProductEntry():
 	"""The date the product entry is valid until. Returns a tuple in the form (YYYY, MM, DD)."""
 	version : str
 	"""The version of TouchDesigner this dongle product entry is valid for."""
+	par : parameter.ProductEntry
+	"""Parameters of parameter.ProductEntry"""
 	pass
 
 
@@ -1026,6 +1051,8 @@ for p in ui.preferences:
 
 ```"""
 		pass
+	par : parameter.Preferences
+	"""Parameters of parameter.Preferences"""
 	pass
 
 
@@ -1095,6 +1122,8 @@ newV = v.copy()
 
 ```"""
 		pass
+	par : parameter.Position
+	"""Parameters of parameter.Position"""
 	pass
 
 
@@ -1102,6 +1131,8 @@ class ParGroupUnit():
 	"""The ParGroupUnit class describes a subclass of a [[ParGroup Class|ParGroup]] ending with a unit parameter. See also Custom ParGroup."""
 	unit : any
 	"""The unit parameter in this ParGroupUnit object."""
+	par : parameter.ParGroupUnit
+	"""Parameters of parameter.ParGroupUnit"""
 	pass
 
 
@@ -1134,6 +1165,8 @@ op('noise').parGroup.type.pulse(['random'], seconds=0.5) # pulse noise menu type
 
 ```"""
 		pass
+	par : parameter.ParGroupPulse
+	"""Parameters of parameter.ParGroupPulse"""
 	pass
 
 
@@ -1205,6 +1238,8 @@ for n in ui.panes:
 
 ```"""
 		pass
+	par : parameter.Panes
+	"""Parameters of parameter.Panes"""
 	pass
 
 
@@ -1250,6 +1285,8 @@ for n in ui.options:
 
 ```"""
 		pass
+	par : parameter.Options
+	"""Parameters of parameter.Options"""
 	pass
 
 
@@ -1938,6 +1975,8 @@ n.unstoreStartupValue('sales* ') # removes all entries from this OPs storage sta
 	def __setstate__(self, ) -> dict: 
 		"""Reads the dictionary to update persistent details about the object, suitable for unpickling and deep copies."""
 		pass
+	par : parameter.OP
+	"""Parameters of parameter.OP"""
 	pass
 
 
@@ -1965,6 +2004,8 @@ class VFSFile():
 
 * folder - The folder on disk to export the file to."""
 		pass
+	par : parameter.VFSFile
+	"""Parameters of parameter.VFSFile"""
 	pass
 
 
@@ -2047,6 +2088,8 @@ for f in op('base1').vfs:
 
 ```"""
 		pass
+	par : parameter.VFS
+	"""Parameters of parameter.VFS"""
 	pass
 
 
@@ -2060,6 +2103,8 @@ class Vertex():
 	"""Get or set the [[Point Class|point]] to which the vertex refers."""
 	prim : any
 	"""The [[Prim Class|prim]] to which the vertex belongs."""
+	par : parameter.Vertex
+	"""Parameters of parameter.Vertex"""
 	pass
 
 
@@ -2364,6 +2409,8 @@ See also: [[App Class|App.version]]"""
 	def findEditDAT(self, filename) -> any: 
 		"""Given an external filename, finds the corresponding DAT thats update from this filename if any.."""
 		pass
+	par : parameter.UI
+	"""Parameters of parameter.UI"""
 	pass
 
 
@@ -2470,11 +2517,15 @@ arr = n.saveByteArray('.exr', metadata=[ ('my_key', 'my_value'), ('author_name',
 	def cudaMemory(self, ) -> CUDAMemory: 
 		"""Copies the contents of the TOP to a newly allocated block of raw CUDA memory. The CUDA memory will be deallocated when the returned [[CUDAMemory_Class|CUDAMemory]] object is deallocated. Ensure you keep a reference to the returned object around as long as you are using it."""
 		pass
+	par : parameter.TOP|parameter.OP
+	"""Parameters of parameter.TOP & parameter.OP"""
 	pass
 
 
 class zedTOP(TOP,OP):
 	""""""
+	par : parameter.zedTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.zedTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2548,11 +2599,15 @@ op('webrender1').sendString('TouchDesigner')  # sends the string TouchDesigner
 
 ```"""
 		pass
+	par : parameter.webrenderTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.webrenderTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class viosoTOP(TOP,OP):
 	""""""
+	par : parameter.viosoTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.viosoTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2560,6 +2615,8 @@ class videostreamoutTOP(TOP,OP):
 	""""""
 	streamURL : str
 	"""The URL to connect to this operator's stream."""
+	par : parameter.videostreamoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.videostreamoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2586,11 +2643,15 @@ class videostreaminTOP(TOP,OP):
 
 * cacheMemory - (Keyword, Optional) If True the memory (textures, upload buffers) of the movie will be cached for use by another movie later on. Useful if you are opening/closing many movies with the same codec and resolution."""
 		pass
+	par : parameter.videostreaminTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.videostreaminTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class videodeviceoutTOP(TOP,OP):
 	""""""
+	par : parameter.videodeviceoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.videodeviceoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2602,46 +2663,64 @@ class videodeviceinTOP(TOP,OP):
 	"""If available for the current Library, returns a string for the input signal format. This string can be used to set the 'Signal Format' menu on the Video Device Out TOP."""
 	timecode : any
 	"""If the device supports timecode, then returns a Timecode object for the latest received frame. see [[Timecode Class]]."""
+	par : parameter.videodeviceinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.videodeviceinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class underTOP(TOP,OP):
 	""""""
+	par : parameter.underTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.underTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class transformTOP(TOP,OP):
 	""""""
+	par : parameter.transformTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.transformTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class touchoutTOP(TOP,OP):
 	""""""
+	par : parameter.touchoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.touchoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class touchinTOP(TOP,OP):
 	""""""
+	par : parameter.touchinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.touchinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class timemachineTOP(TOP,OP):
 	""""""
+	par : parameter.timemachineTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.timemachineTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class tileTOP(TOP,OP):
 	""""""
+	par : parameter.tileTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.tileTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class thresholdTOP(TOP,OP):
 	""""""
+	par : parameter.thresholdTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.thresholdTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class texture3dTOP(TOP,OP):
 	""""""
+	par : parameter.texture3dTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.texture3dTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2686,6 +2765,8 @@ class textTOP(TOP,OP):
 	def lines(self, ) -> any: 
 		"""Returns a list of [[TextLine Class]] objects. This list of lines is formed after operations such as word-wrap have been applied."""
 		pass
+	par : parameter.textTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.textTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2918,46 +2999,64 @@ v = fetchStamp('sides', 3)
 	def clear(self, ) -> None: 
 		"""Clear the textport of all text."""
 		pass
+	par : parameter.td
+	"""Parameters of parameter.td"""
 	pass
 
 
 class syphonspoutoutTOP(TOP,OP):
 	""""""
+	par : parameter.syphonspoutoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.syphonspoutoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class syphonspoutinTOP(TOP,OP):
 	""""""
+	par : parameter.syphonspoutinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.syphonspoutinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class switchTOP(TOP,OP):
 	""""""
+	par : parameter.switchTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.switchTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class svgTOP(TOP,OP):
 	""""""
+	par : parameter.svgTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.svgTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class subtractTOP(TOP,OP):
 	""""""
+	par : parameter.subtractTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.subtractTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class substanceTOP(TOP,OP):
 	""""""
+	par : parameter.substanceTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.substanceTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class substanceselectTOP(TOP,OP):
 	""""""
+	par : parameter.substanceselectTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.substanceselectTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class ssaoTOP(TOP,OP):
 	""""""
+	par : parameter.ssaoTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.ssaoTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -3017,16 +3116,22 @@ n.save('output.bgeo')  #alternate format compatible with some other modelling pa
 
 ```"""
 		pass
+	par : parameter.SOP|parameter.OP
+	"""Parameters of parameter.SOP & parameter.OP"""
 	pass
 
 
 class zedSOP(SOP,OP):
 	""""""
+	par : parameter.zedSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.zedSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class wireframeSOP(SOP,OP):
 	""""""
+	par : parameter.wireframeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.wireframeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3048,51 +3153,71 @@ class vertexSOP(SOP,OP):
 	"""The current [[Vertex Class|vertex]] being evaluated, from the first input."""
 	inputVertex2 : Vertex
 	"""The current [[Vertex Class|vertex]] being evaluated, from the second input."""
+	par : parameter.vertexSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.vertexSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class twistSOP(SOP,OP):
 	""""""
+	par : parameter.twistSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.twistSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class tubeSOP(SOP,OP):
 	""""""
+	par : parameter.tubeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.tubeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class tristripSOP(SOP,OP):
 	""""""
+	par : parameter.tristripSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.tristripSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class trimSOP(SOP,OP):
 	""""""
+	par : parameter.trimSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.trimSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class transformSOP(SOP,OP):
 	""""""
+	par : parameter.transformSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.transformSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class trailSOP(SOP,OP):
 	""""""
+	par : parameter.trailSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.trailSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class traceSOP(SOP,OP):
 	""""""
+	par : parameter.traceSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.traceSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class torusSOP(SOP,OP):
 	""""""
+	par : parameter.torusSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.torusSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class textureSOP(SOP,OP):
 	""""""
+	par : parameter.textureSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.textureSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3120,11 +3245,15 @@ class textSOP(SOP,OP):
 	def lines(self, ) -> any: 
 		"""Get the number of lines of the outputted text, after operations such as word-wrap have been applied."""
 		pass
+	par : parameter.textSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.textSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class switchSOP(SOP,OP):
 	""""""
+	par : parameter.switchSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.switchSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3132,71 +3261,99 @@ class sweepSOP(SOP,OP):
 	""""""
 	inputVertex : Vertex
 	"""The current [[Vertex Class|vertex]] being evaluated, along the backbone input."""
+	par : parameter.sweepSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.sweepSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class surfsectSOP(SOP,OP):
 	""""""
+	par : parameter.surfsectSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.surfsectSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class superquadSOP(SOP,OP):
 	""""""
+	par : parameter.superquadSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.superquadSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class subdivideSOP(SOP,OP):
 	""""""
+	par : parameter.subdivideSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.subdivideSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class stitchSOP(SOP,OP):
 	""""""
+	par : parameter.stitchSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.stitchSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class spriteSOP(SOP,OP):
 	""""""
+	par : parameter.spriteSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.spriteSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class springSOP(SOP,OP):
 	""""""
+	par : parameter.springSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.springSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class sphereSOP(SOP,OP):
 	""""""
+	par : parameter.sphereSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.sphereSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class sortSOP(SOP,OP):
 	""""""
+	par : parameter.sortSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.sortSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class slopeTOP(TOP,OP):
 	""""""
+	par : parameter.slopeTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.slopeTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class skinSOP(SOP,OP):
 	""""""
+	par : parameter.skinSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.skinSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class sharedmemoutTOP(TOP,OP):
 	""""""
+	par : parameter.sharedmemoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.sharedmemoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class sharedmeminTOP(TOP,OP):
 	""""""
+	par : parameter.sharedmeminTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.sharedmeminTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class sequenceblendSOP(SOP,OP):
 	""""""
+	par : parameter.sequenceblendSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.sequenceblendSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3237,16 +3394,22 @@ seq.numBlocks += 1							    # add a new block of parameters (same as pressing +
 	"""The maximum number of blocks allowed in the sequence, or None if limitless."""
 	blocks : set
 	"""The set of all blocks in this sequence. A block is a set of parameters which can be repeated in an operator."""
+	par : parameter.Sequence
+	"""Parameters of parameter.Sequence"""
 	pass
 
 
 class selectTOP(TOP,OP):
 	""""""
+	par : parameter.selectTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.selectTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class selectSOP(SOP,OP):
 	""""""
+	par : parameter.selectSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.selectSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3345,16 +3508,22 @@ scriptOp.sortCustomPages('Definition','Controls')
 
 ```"""
 		pass
+	par : parameter.scriptSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.scriptSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class screenTOP(TOP,OP):
 	""""""
+	par : parameter.screenTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.screenTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class screengrabTOP(TOP,OP):
 	""""""
+	par : parameter.screengrabTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.screengrabTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -3364,6 +3533,8 @@ class scalabledisplayTOP(TOP,OP):
 	"""Gets the loaded camera transform [[Matrix Class|matrix]] for the configuration. This should be referenced in the 'Xform Matrix/CHOP/DAT' parameter of the [[Camera COMP]]."""
 	projection : any
 	"""Gets the loaded projection [[Matrix Class|matrix]] for the configuration. This should be referenced in the 'Proj Matrix/CHOP/DAT' parameter of the [[Camera COMP]], with the 'Projection' set to 'Custom Projection Matrix'."""
+	par : parameter.scalabledisplayTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.scalabledisplayTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -3405,101 +3576,141 @@ td.run()
 	def kill(self, ) -> None: 
 		"""Kill this run before it executes, and remove it from the global runs list, located in the [[td Module]]."""
 		pass
+	par : parameter.Run
+	"""Parameters of parameter.Run"""
 	pass
 
 
 class rgbtohsvTOP(TOP,OP):
 	""""""
+	par : parameter.rgbtohsvTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.rgbtohsvTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class rgbkeyTOP(TOP,OP):
 	""""""
+	par : parameter.rgbkeyTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.rgbkeyTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class revolveSOP(SOP,OP):
 	""""""
+	par : parameter.revolveSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.revolveSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class resolutionTOP(TOP,OP):
 	""""""
+	par : parameter.resolutionTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.resolutionTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class resampleSOP(SOP,OP):
 	""""""
+	par : parameter.resampleSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.resampleSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class reorderTOP(TOP,OP):
 	""""""
+	par : parameter.reorderTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.reorderTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class renderTOP(TOP,OP):
 	""""""
+	par : parameter.renderTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.renderTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class renderselectTOP(TOP,OP):
 	""""""
+	par : parameter.renderselectTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.renderselectTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class renderpassTOP(TOP,OP):
 	""""""
+	par : parameter.renderpassTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.renderpassTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class remapTOP(TOP,OP):
 	""""""
+	par : parameter.remapTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.remapTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class refineSOP(SOP,OP):
 	""""""
+	par : parameter.refineSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.refineSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class rectangleTOP(TOP,OP):
 	""""""
+	par : parameter.rectangleTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.rectangleTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class rectangleSOP(SOP,OP):
 	""""""
+	par : parameter.rectangleSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.rectangleSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class realsenseTOP(TOP,OP):
 	""""""
+	par : parameter.realsenseTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.realsenseTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class raySOP(SOP,OP):
 	""""""
+	par : parameter.raySOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.raySOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class rampTOP(TOP,OP):
 	""""""
+	par : parameter.rampTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.rampTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class railsSOP(SOP,OP):
 	""""""
+	par : parameter.railsSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.railsSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class projectSOP(SOP,OP):
 	""""""
+	par : parameter.projectSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.projectSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class projectionTOP(TOP,OP):
 	""""""
+	par : parameter.projectionTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.projectionTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -3698,11 +3909,15 @@ print(project.pythonStack())
 
 ```"""
 		pass
+	par : parameter.Project
+	"""Parameters of parameter.Project"""
 	pass
 
 
 class profileSOP(SOP,OP):
 	""""""
+	par : parameter.profileSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.profileSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3745,6 +3960,8 @@ for m in op('box1').prims:
 
 ```"""
 		pass
+	par : parameter.Prims
+	"""Parameters of parameter.Prims"""
 	pass
 
 
@@ -3830,6 +4047,8 @@ for m in op('box1').prims[5]:
 
 ```"""
 		pass
+	par : parameter.Prim
+	"""Parameters of parameter.Prim"""
 	pass
 
 
@@ -3839,36 +4058,50 @@ class primitiveSOP(SOP,OP):
 	"""The current primitive color being evaluated or a default if not present, expressed as a 4-tuple."""
 	inputPrim : Prim
 	"""The current [[Prim Class|primitive]] being evaluated."""
+	par : parameter.primitiveSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.primitiveSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class prefiltermapTOP(TOP,OP):
 	""""""
+	par : parameter.prefiltermapTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.prefiltermapTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class polystitchSOP(SOP,OP):
 	""""""
+	par : parameter.polystitchSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.polystitchSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class polysplineSOP(SOP,OP):
 	""""""
+	par : parameter.polysplineSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.polysplineSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class polyreduceSOP(SOP,OP):
 	""""""
+	par : parameter.polyreduceSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.polyreduceSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class polypatchSOP(SOP,OP):
 	""""""
+	par : parameter.polypatchSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.polypatchSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class polyloftSOP(SOP,OP):
 	""""""
+	par : parameter.polyloftSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.polyloftSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3911,6 +4144,8 @@ for m in op('box1').points:
 
 ```"""
 		pass
+	par : parameter.Points
+	"""Parameters of parameter.Points"""
 	pass
 
 
@@ -3944,6 +4179,8 @@ point.P = (1,0,1)
 	def destroy(self, ) -> None: 
 		"""Destroy and remove the actual point this object refers to. This operation is only valid when the primitive belongs to a [[scriptSOP Class|scriptSOP]]. Note: after this call, other existing Point objects in this SOP may no longer be valid."""
 		pass
+	par : parameter.Point
+	"""Parameters of parameter.Point"""
 	pass
 
 
@@ -3965,6 +4202,8 @@ class pointSOP(SOP,OP):
 	"""The current point texture being evaluated, from the first input, or a default if not present, expressed as a 3-tuple."""
 	inputTexture2 : any
 	"""The current point texture being evaluated, from the second input, or a default if not present, expressed as a 3-tuple."""
+	par : parameter.pointSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.pointSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3974,6 +4213,8 @@ class photoshopinTOP(TOP,OP):
 	"""Is true if the operator is connected to a running instance of Photoshop."""
 	isReceivingUpdates : bool
 	"""Is true if the operator is receiving image update. It will get updates when it's not locked to a particular document, or if it is locked and the document is opened in that Photoshop instance."""
+	par : parameter.photoshopinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.photoshopinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -3990,6 +4231,8 @@ class Peer():
 	def close(self, ) -> bool: 
 		"""Close the peer connection. Returns True if successful. Closing a peer can be useful when implementing HTML server protocols for example."""
 		pass
+	par : parameter.Peer
+	"""Parameters of parameter.Peer"""
 	pass
 
 
@@ -4000,6 +4243,8 @@ class particleSOP(SOP,OP):
 
 *  num - The number of particles to create.'"""
 		pass
+	par : parameter.particleSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.particleSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -4007,6 +4252,8 @@ class ParGroupCollection():
 	"""The ParGroupCollection class can be used to access parameter tuples. To access a parameter you need to use its internal name. See also [[Par Class]]."""
 	owner : OP
 	"""The OP to which this object belongs."""
+	par : parameter.ParGroupCollection
+	"""Parameters of parameter.ParGroupCollection"""
 	pass
 
 
@@ -4027,6 +4274,8 @@ p = op('base1').par['Myfloat5']
 
 ```"""
 		pass
+	par : parameter.ParCollection
+	"""Parameters of parameter.ParCollection"""
 	pass
 
 
@@ -4376,6 +4625,8 @@ op('noise').par.type.pulse('random', seconds=0.5) #pulse noise meny type for hal
 	def destroy(self, ) -> None: 
 		"""Destroy the parameter referenced by this Par. An exception will be raised if the parameter has already been destroyed. Only custom and sequential parameters can be destroyed.  Destroying a sequential parameter will destroy its entire block. Note: When any parameter is destroyed, any existing parameter objects will be invalid and should be re-fetched."""
 		pass
+	par : parameter.Par
+	"""Parameters of parameter.Par"""
 	pass
 
 
@@ -4393,6 +4644,8 @@ For a list of available panel values, see: [[Panel Value]]."""
 	"""Get or set the panel value."""
 	valid : bool
 	"""True if the referenced panel value currently exists, False if it has been deleted."""
+	par : parameter.PanelValue
+	"""Parameters of parameter.PanelValue"""
 	pass
 
 
@@ -4417,6 +4670,8 @@ a = op('button1').panel.u
 
 ```
 """
+	par : parameter.Panel
+	"""Parameters of parameter.Panel"""
 	pass
 
 
@@ -4872,6 +5127,8 @@ page.sort('Speed','Color','Value')
 
 ```"""
 		pass
+	par : parameter.Page
+	"""Parameters of parameter.Page"""
 	pass
 
 
@@ -5149,51 +5406,71 @@ newlist = op('geo1').parGroup.t.pars('t?')
 
 ```"""
 		pass
+	par : parameter.ParGroup
+	"""Parameters of parameter.ParGroup"""
 	pass
 
 
 class packTOP(TOP,OP):
 	""""""
+	par : parameter.packTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.packTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class overTOP(TOP,OP):
 	""""""
+	par : parameter.overTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.overTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class outTOP(TOP,OP):
 	""""""
+	par : parameter.outTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.outTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class outSOP(SOP,OP):
 	""""""
+	par : parameter.outSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.outSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class outsideTOP(TOP,OP):
 	""""""
+	par : parameter.outsideTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.outsideTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class opviewerTOP(TOP,OP):
 	""""""
+	par : parameter.opviewerTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.opviewerTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class openvrTOP(TOP,OP):
 	""""""
+	par : parameter.openvrTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.openvrTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class openvrSOP(SOP,OP):
 	""""""
+	par : parameter.openvrSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.openvrSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class opencolorioTOP(TOP,OP):
 	""""""
+	par : parameter.opencolorioTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.opencolorioTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -5234,6 +5511,8 @@ for m in monitors:
 	def refresh(self, ) -> None: 
 		"""Causes the application to behave as if a monitor device has changed. [[Monitors DAT]] and other sources will be updated. This is typically done automatically by the operating system, but in special cases can be triggered manually with this method."""
 		pass
+	par : parameter.Monitors
+	"""Parameters of parameter.Monitors"""
 	pass
 
 
@@ -5279,6 +5558,8 @@ class Monitor():
 	"""The serial number name associated with this monitor. May be blank."""
 	refreshRate : float
 	"""The refresh rate the monitor is currently running at."""
+	par : parameter.Monitor
+	"""Parameters of parameter.Monitor"""
 	pass
 
 
@@ -5286,6 +5567,8 @@ class MOD():
 	"""The MOD class provides access to Module On Demand object, which allows [[DAT|DATs]] to be dynamically imported as modules.  It can be accessed with the mod object, found in the automatically imported [[td Module|td module]].  Alternatively, one can use the regular python statement: import.
 
 Use of the import statement is limited to modules in the search path, where as the mod format allows complete statements in one line, which is more useful for entering expressions.  Also note that DAT modules cannot be organized into packages as regular file system based python modules can be."""
+	par : parameter.MOD
+	"""Parameters of parameter.MOD"""
 	pass
 
 
@@ -5636,6 +5919,8 @@ newP = M *  p
 
 ```"""
 		pass
+	par : parameter.Matrix
+	"""Parameters of parameter.Matrix"""
 	pass
 
 
@@ -5686,6 +5971,8 @@ print(colAttribs[0,2].bgColor)			# cells are accessed by [row, col].
 override row settings, which override column settings, which override table settings. If you want to know the final value in a
 
 given cell, use ```listCOMP.displayAttribs[row, col]```."""
+	par : parameter.ListAttributes
+	"""Parameters of parameter.ListAttributes"""
 	pass
 
 
@@ -5761,6 +6048,8 @@ class ListAttribute():
 	"""Get or set outside top color."""
 	wordWrap : bool
 	"""Get or set word wrapping."""
+	par : parameter.ListAttribute
+	"""Parameters of parameter.ListAttribute"""
 	pass
 
 
@@ -5798,6 +6087,8 @@ for l in licenses:
 	def install(self, key) -> bool: 
 		"""Install a [[License Class|license]] with the specified key.  Returns True if successful."""
 		pass
+	par : parameter.Licenses
+	"""Parameters of parameter.Licenses"""
 	pass
 
 
@@ -5825,6 +6116,8 @@ class License():
 	"""The date updates for this license expires, expressed as a tuple (year, month, day)."""
 	version : int
 	"""The numeric license version."""
+	par : parameter.License
+	"""Parameters of parameter.License"""
 	pass
 
 
@@ -5849,6 +6142,8 @@ A Group can be created with the [[Group SOP]] or using the <syntaxhighlight lang
 	def destroy(self, ) -> None: 
 		"""Destroys the current point/primitive group."""
 		pass
+	par : parameter.Group
+	"""Parameters of parameter.Group"""
 	pass
 
 
@@ -5876,6 +6171,8 @@ Utility properties include:
 *  isDir: is a directory in the file-system
 
 *  isFile: is a file in the file-system"""
+	par : parameter.FileInfo
+	"""Parameters of parameter.FileInfo"""
 	pass
 
 
@@ -5922,6 +6219,8 @@ for d in dongles:
 	def productCodeInstalled(self, ) -> bool: 
 		"""Returns True if the provided product code is installed on any of the connected dongles."""
 		pass
+	par : parameter.DongleList
+	"""Parameters of parameter.DongleList"""
 	pass
 
 
@@ -5935,6 +6234,8 @@ class Dongle():
 	def createUpdateContext(self, ) -> str: 
 		"""Returns a string which is the remote programming update context for the dongle."""
 		pass
+	par : parameter.Dongle
+	"""Parameters of parameter.Dongle"""
 	pass
 
 
@@ -5978,6 +6279,8 @@ print(dep[2]) # prints 'g'. The index to the list works directly on the dependen
 
 ```"""
 		pass
+	par : parameter.Dependency
+	"""Parameters of parameter.Dependency"""
 	pass
 
 
@@ -6031,6 +6334,8 @@ behavior, use the [[Palette:debugControl|debugControl]] component or setStyle fu
 
 change behavior, use the [[Palette:debugControl|debugControl]] component or setStyle function (above). This is a utility function for building custom debug systems."""
 		pass
+	par : parameter.debug
+	"""Parameters of parameter.debug"""
 	pass
 
 
@@ -6044,6 +6349,8 @@ class CUDAMemoryShape():
 	"""Get/Set the number of color components per pixel of the memory."""
 	dataType : any
 	"""Get/Set the data type of each color component, as a numpy data type. E.g numpy.uint8, numpy.float32. Note that for uint8 data types, the channel ordering will be BGRA for 4 component textures. It will be RGBA however for other data types."""
+	par : parameter.CUDAMemoryShape
+	"""Parameters of parameter.CUDAMemoryShape"""
 	pass
 
 
@@ -6055,6 +6362,8 @@ class CUDAMemory():
 	"""Returns the size of the CUDA Memory, in bytes."""
 	shape : CUDAMemoryShape
 	"""Returns the [[CUDAMemoryShape Class]] describing this CUDA memory. See the help for that class for notes about channel order for different data types."""
+	par : parameter.CUDAMemory
+	"""Parameters of parameter.CUDAMemory"""
 	pass
 
 
@@ -6134,6 +6443,8 @@ op('geo2').inputCOMPConnectors[0].disconnect()
 
 ```"""
 		pass
+	par : parameter.Connector
+	"""Parameters of parameter.Connector"""
 	pass
 
 
@@ -6181,6 +6492,8 @@ for n in ui.colors:
 
 ```"""
 		pass
+	par : parameter.Colors
+	"""Parameters of parameter.Colors"""
 	pass
 
 
@@ -6217,6 +6530,8 @@ green = v3[1] # access individual elements by index. Same as v3.g
 	def copy(self, ) -> Color: 
 		"""Returns a new color that is a copy of the color."""
 		pass
+	par : parameter.Color
+	"""Parameters of parameter.Color"""
 	pass
 
 
@@ -6230,6 +6545,8 @@ class InputPoint():
 	"""The normal for this point. This is different from the N attribute, since it can come from a Vertex or from the destination point, if there is no normal on the inputPoint itself."""
 	sopCenter : Position
 	"""Get the barycentric coordinate of the geometry the inputPoint is a part of. This is faster than other methods to get the center of a SOP's geometry due to internal optimizations. It is expressed as a tdu.Position."""
+	par : parameter.InputPoint
+	"""Parameters of parameter.InputPoint"""
 	pass
 
 
@@ -6305,6 +6622,8 @@ Note: after this call, other existing Channel objects in this CHOP may no longer
 
 *  numpyArray - The NumPy Array to copy. Must be shape(n), where n is the sample length of the CHOP. The data type must be float32. Modifying Channel values can only be done in Python within a [[Script CHOP]]."""
 		pass
+	par : parameter.Channel
+	"""Parameters of parameter.Channel"""
 	pass
 
 
@@ -6364,6 +6683,8 @@ d = c.offset(-1, 2)  # one row up, two columns right of cell C
 
 ```"""
 		pass
+	par : parameter.Cell
+	"""Parameters of parameter.Cell"""
 	pass
 
 
@@ -6412,11 +6733,15 @@ class Camera():
 	def walk(self, ) -> None: 
 		"""Move the camera forward/back along in the ZX plane and rotate around its position."""
 		pass
+	par : parameter.Camera
+	"""Parameters of parameter.Camera"""
 	pass
 
 
 class Bounds():
 	"""Bounds(min, max, center, size)"""
+	par : parameter.Bounds
+	"""Parameters of parameter.Bounds"""
 	pass
 
 
@@ -6460,6 +6785,8 @@ The [[Actor COMP]] has a list of all its bodies."""
 
 * relPos (Keyword, Optional) - If specified, applies the force at the relative position, otherwise applied at (0,0,0)."""
 		pass
+	par : parameter.Body
+	"""Parameters of parameter.Body"""
 	pass
 
 
@@ -6482,6 +6809,8 @@ for b in bodies:
 
 ```
 """
+	par : parameter.Bodies
+	"""Parameters of parameter.Bodies"""
 	pass
 
 
@@ -6526,11 +6855,15 @@ Returns final anchor vertex.
 	def deleteAnchor(self, anchorIndex) -> None: 
 		"""Deletes the anchor and its neighbouring tangents."""
 		pass
+	par : parameter.Bezier
+	"""Parameters of parameter.Bezier"""
 	pass
 
 
 class NotSet():
 	""""""
+	par : parameter.NotSet
+	"""Parameters of parameter.NotSet"""
 	pass
 
 
@@ -6592,6 +6925,8 @@ n = scriptOP.primAttribs.create('custom2', 1 )
 
 ```"""
 		pass
+	par : parameter.Attributes
+	"""Parameters of parameter.Attributes"""
 	pass
 
 
@@ -6601,6 +6936,8 @@ class AttributeData():
 	"""The [[OP Class|OP]] to which this object belongs."""
 	val : any
 	"""The set of values contained within this object.  Dependent on the type of attribute, it may return a float, integer, string, tuple, [[Position Class|Position]], or [[Vector Class|Vector]].  For example Normal attribute data is expressed as a [[Vector Class|Vector]], while [[Position Class|Position]] attribute data is expressed as a Position."""
+	par : parameter.AttributeData
+	"""Parameters of parameter.AttributeData"""
 	pass
 
 
@@ -6631,6 +6968,8 @@ n = scriptOP.pointAttribs['N'].destroy()
 
 ```"""
 		pass
+	par : parameter.Attribute
+	"""Parameters of parameter.Attribute"""
 	pass
 
 
@@ -6772,6 +7111,8 @@ m.identity()
 
 ```"""
 		pass
+	par : parameter.ArcBall
+	"""Parameters of parameter.ArcBall"""
 	pass
 
 
@@ -6894,6 +7235,8 @@ app.removeResolutionLimit('secret123')
 
 ```"""
 		pass
+	par : parameter.App
+	"""Parameters of parameter.App"""
 	pass
 
 
@@ -6916,6 +7259,8 @@ for a in actors:
 
 ```
 """
+	par : parameter.Actors
+	"""Parameters of parameter.Actors"""
 	pass
 
 
@@ -6940,46 +7285,64 @@ Example: tdu.rand(absTime.frame + .1) # a unique random number that is consisten
 	"""Number of absolute frames elapsed between start of previous and current frame. When this value is greater than 1, the system is dropping frames."""
 	stepSeconds : float
 	"""Absolute time elapsed between start of previous and current frame."""
+	par : parameter.AbsTime
+	"""Parameters of parameter.AbsTime"""
 	pass
 
 
 class addSOP(SOP,OP):
 	""""""
+	par : parameter.addSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.addSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class addTOP(TOP,OP):
 	""""""
+	par : parameter.addTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.addTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class alembicSOP(SOP,OP):
 	""""""
+	par : parameter.alembicSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.alembicSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class alignSOP(SOP,OP):
 	""""""
+	par : parameter.alignSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.alignSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class ambientlightCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.ambientlightCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.ambientlightCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class analyzeCHOP(CHOP,OP):
 	""""""
+	par : parameter.analyzeCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.analyzeCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class analyzeTOP(TOP,OP):
 	""""""
+	par : parameter.analyzeTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.analyzeTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class angleCHOP(CHOP,OP):
 	""""""
+	par : parameter.angleCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.angleCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7015,36 +7378,50 @@ n.deleteKeyframe(75, channel='tz') # modify specific keyframe
 
 ```"""
 		pass
+	par : parameter.animationCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.animationCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class antialiasTOP(TOP,OP):
 	""""""
+	par : parameter.antialiasTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.antialiasTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class armSOP(SOP,OP):
 	""""""
+	par : parameter.armSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.armSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class artnetDAT(DAT,OP):
 	""""""
+	par : parameter.artnetDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.artnetDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class attributeCHOP(CHOP,OP):
 	""""""
+	par : parameter.attributeCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.attributeCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class attributecreateSOP(SOP,OP):
 	""""""
+	par : parameter.attributecreateSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.attributecreateSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class attributeSOP(SOP,OP):
 	""""""
+	par : parameter.attributeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.attributeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -7054,16 +7431,22 @@ class audiobandeqCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.audiobandeqCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiobandeqCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiodeviceinCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiodeviceinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiodeviceinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiodeviceoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiodeviceoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiodeviceoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7073,11 +7456,15 @@ class audiodynamicsCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.audiodynamicsCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiodynamicsCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiofileinCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiofileinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiofileinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7087,6 +7474,8 @@ class audiofilterCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.audiofilterCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiofilterCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7096,6 +7485,8 @@ class audiomovieCHOP(CHOP,OP):
 	"""True if the movie has audio."""
 	playbackRate : float
 	"""The current movie playback rate."""
+	par : parameter.audiomovieCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiomovieCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7103,6 +7494,8 @@ class audiooscillatorCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.audiooscillatorCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiooscillatorCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7112,6 +7505,8 @@ class audioparaeqCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.audioparaeqCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audioparaeqCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7139,101 +7534,141 @@ class audioplayCHOP(CHOP,OP):
 
 * index - (Optional) The index of the audio sample to play, or all if not specified."""
 		pass
+	par : parameter.audioplayCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audioplayCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiorenderCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiorenderCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiorenderCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiospectrumCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiospectrumCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiospectrumCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiostreaminCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiostreaminCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiostreaminCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiostreamoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiostreamoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiostreamoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class audiowebrenderCHOP(CHOP,OP):
 	""""""
+	par : parameter.audiowebrenderCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audiowebrenderCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class baseCOMP(COMP,OP):
 	""""""
+	par : parameter.baseCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.baseCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class basisSOP(SOP,OP):
 	""""""
+	par : parameter.basisSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.basisSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class beatCHOP(CHOP,OP):
 	""""""
+	par : parameter.beatCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.beatCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class blacktraxCHOP(CHOP,OP):
 	""""""
+	par : parameter.blacktraxCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.blacktraxCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class blendCHOP(CHOP,OP):
 	""""""
+	par : parameter.blendCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.blendCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class blendCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.blendCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.blendCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class blendSOP(SOP,OP):
 	""""""
+	par : parameter.blendSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.blendSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class blobtrackTOP(TOP,OP):
 	""""""
+	par : parameter.blobtrackTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.blobtrackTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class blurTOP(TOP,OP):
 	""""""
+	par : parameter.blurTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.blurTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class boneCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.boneCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.boneCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class bonegroupSOP(SOP,OP):
 	""""""
+	par : parameter.bonegroupSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.bonegroupSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class booleanSOP(SOP,OP):
 	""""""
+	par : parameter.booleanSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.booleanSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class boxSOP(SOP,OP):
 	""""""
+	par : parameter.boxSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.boxSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class bridgeSOP(SOP,OP):
 	""""""
+	par : parameter.bridgeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.bridgeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -7250,26 +7685,36 @@ class buttonCOMP(PanelCOMP,COMP,OP):
 
 * left,middle,right - (Keyword, Optional) Set to True to override the default mouse buttons used. When none are set, the left mouse button is pressed, and the other buttons released."""
 		pass
+	par : parameter.buttonCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.buttonCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class cacheselectTOP(TOP,OP):
 	""""""
+	par : parameter.cacheselectTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.cacheselectTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class cacheSOP(SOP,OP):
 	""""""
+	par : parameter.cacheSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.cacheSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class cacheTOP(TOP,OP):
 	""""""
+	par : parameter.cacheTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.cacheTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class camerablendCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.camerablendCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.camerablendCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -7289,31 +7734,43 @@ class cameraCOMP(ObjectCOMP,COMP,OP):
 
 * y - The vertical aspect ratio."""
 		pass
+	par : parameter.cameraCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.cameraCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class capSOP(SOP,OP):
 	""""""
+	par : parameter.capSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.capSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class captureregionSOP(SOP,OP):
 	""""""
+	par : parameter.captureregionSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.captureregionSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class captureSOP(SOP,OP):
 	""""""
+	par : parameter.captureSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.captureSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class carveSOP(SOP,OP):
 	""""""
+	par : parameter.carveSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.carveSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class channelmixTOP(TOP,OP):
 	""""""
+	par : parameter.channelmixTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.channelmixTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -7436,11 +7893,15 @@ n.save('output.aiff')  #supported audio format
 
 ```"""
 		pass
+	par : parameter.CHOP|parameter.OP
+	"""Parameters of parameter.CHOP & parameter.OP"""
 	pass
 
 
 class zedCHOP(CHOP,OP):
 	""""""
+	par : parameter.zedCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.zedCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7450,16 +7911,22 @@ class waveCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.waveCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.waveCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class warpCHOP(CHOP,OP):
 	""""""
+	par : parameter.warpCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.warpCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class trimCHOP(CHOP,OP):
 	""""""
+	par : parameter.trimCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.trimCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7467,36 +7934,50 @@ class triggerCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.triggerCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.triggerCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class transformCHOP(CHOP,OP):
 	""""""
+	par : parameter.transformCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.transformCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class trailCHOP(CHOP,OP):
 	""""""
+	par : parameter.trailCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.trailCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class touchoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.touchoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.touchoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class touchinCHOP(CHOP,OP):
 	""""""
+	par : parameter.touchinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.touchinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class toptoCHOP(CHOP,OP):
 	""""""
+	par : parameter.toptoCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.toptoCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class timesliceCHOP(CHOP,OP):
 	""""""
+	par : parameter.timesliceCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.timesliceCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7603,6 +8084,8 @@ class timerCHOP(CHOP,OP):
 	def lastCycle(self, ) -> None: 
 		"""Sets the current cycle to be the last cycle of the current segment. Equivalent to pulsing the Exit at End of Cycle parameter on the Timer Page."""
 		pass
+	par : parameter.timerCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.timerCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7610,16 +8093,22 @@ class timelineCHOP(CHOP,OP):
 	""""""
 	timecode : any
 	"""Get a Timecode object for the timecode data representation of the current timeline frame. See [[Timecode Class]]."""
+	par : parameter.timelineCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.timelineCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class tabletCHOP(CHOP,OP):
 	""""""
+	par : parameter.tabletCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.tabletCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class syncoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.syncoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.syncoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7627,11 +8116,15 @@ class syncinCHOP(CHOP,OP):
 	""""""
 	timecode : any
 	"""Get a Timecode object for the timecode data representation of the last received index. See [[Timecode Class]]."""
+	par : parameter.syncinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.syncinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class switchCHOP(CHOP,OP):
 	""""""
+	par : parameter.switchCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.switchCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7639,6 +8132,8 @@ class stretchCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.stretchCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.stretchCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7646,11 +8141,15 @@ class springCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.springCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.springCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class spliceCHOP(CHOP,OP):
 	""""""
+	par : parameter.spliceCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.spliceCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7658,26 +8157,36 @@ class speedCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.speedCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.speedCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class sortCHOP(CHOP,OP):
 	""""""
+	par : parameter.sortCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.sortCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class soptoCHOP(CHOP,OP):
 	""""""
+	par : parameter.soptoCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.soptoCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class slopeCHOP(CHOP,OP):
 	""""""
+	par : parameter.slopeCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.slopeCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class shuffleCHOP(CHOP,OP):
 	""""""
+	par : parameter.shuffleCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.shuffleCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7685,31 +8194,43 @@ class shiftCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.shiftCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.shiftCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class sharedmemoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.sharedmemoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.sharedmemoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class sharedmeminCHOP(CHOP,OP):
 	""""""
+	par : parameter.sharedmeminCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.sharedmeminCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class serialCHOP(CHOP,OP):
 	""""""
+	par : parameter.serialCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.serialCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class sequencerCHOP(CHOP,OP):
 	""""""
+	par : parameter.sequencerCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.sequencerCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class selectCHOP(CHOP,OP):
 	""""""
+	par : parameter.selectCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.selectCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7717,6 +8238,8 @@ class scurveCHOP(CHOP,OP):
 	""""""
 	chanIndex : any
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.scurveCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.scurveCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7777,26 +8300,36 @@ c = n.appendChan('velocity')
 
 ```"""
 		pass
+	par : parameter.scriptCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.scriptCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class scanCHOP(CHOP,OP):
 	""""""
+	par : parameter.scanCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.scanCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class resampleCHOP(CHOP,OP):
 	""""""
+	par : parameter.resampleCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.resampleCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class replaceCHOP(CHOP,OP):
 	""""""
+	par : parameter.replaceCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.replaceCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class reorderCHOP(CHOP,OP):
 	""""""
+	par : parameter.reorderCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.reorderCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7804,21 +8337,29 @@ class renderpickCHOP(CHOP,OP):
 	""""""
 	pickedSOP : OP
 	"""The [[SOP Class|SOP]] that was last picked."""
+	par : parameter.renderpickCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.renderpickCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class renameCHOP(CHOP,OP):
 	""""""
+	par : parameter.renameCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.renameCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class recordCHOP(CHOP,OP):
 	""""""
+	par : parameter.recordCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.recordCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class realsenseCHOP(CHOP,OP):
 	""""""
+	par : parameter.realsenseCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.realsenseCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7826,26 +8367,36 @@ class pulseCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.pulseCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.pulseCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class posistagenetCHOP(CHOP,OP):
 	""""""
+	par : parameter.posistagenetCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.posistagenetCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class pipeoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.pipeoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.pipeoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class pipeinCHOP(CHOP,OP):
 	""""""
+	par : parameter.pipeinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.pipeinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class performCHOP(CHOP,OP):
 	""""""
+	par : parameter.performCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.performCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7855,36 +8406,50 @@ class patternCHOP(CHOP,OP):
 	"""The index of the current [[Channel Class|channel]] being evaluated. For example, if Pattern generates three channels you can put ```[1, 3, 7][me.chanIndex]``` in the Amplitude parameter to customize the amplitude for each channel."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.patternCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.patternCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class parameterCHOP(CHOP,OP):
 	""""""
+	par : parameter.parameterCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.parameterCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class panelCHOP(CHOP,OP):
 	""""""
+	par : parameter.panelCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.panelCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class overrideCHOP(CHOP,OP):
 	""""""
+	par : parameter.overrideCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.overrideCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class outCHOP(CHOP,OP):
 	""""""
+	par : parameter.outCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.outCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class oscoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.oscoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.oscoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class oscinCHOP(CHOP,OP):
 	""""""
+	par : parameter.oscinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.oscinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7899,26 +8464,36 @@ class openvrCHOP(CHOP,OP):
 
 * durationMilliSeconds - The length of the feedback in milliseconds. Anything equal to or above 4ms does not seem to work with current hardware."""
 		pass
+	par : parameter.openvrCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.openvrCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class oculusriftCHOP(CHOP,OP):
 	""""""
+	par : parameter.oculusriftCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.oculusriftCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class oculusaudioCHOP(CHOP,OP):
 	""""""
+	par : parameter.oculusaudioCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.oculusaudioCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class objectCHOP(CHOP,OP):
 	""""""
+	par : parameter.objectCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.objectCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class nullCHOP(CHOP,OP):
 	""""""
+	par : parameter.nullCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.nullCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7928,21 +8503,29 @@ class noiseCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.noiseCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.noiseCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class natnetinCHOP(CHOP,OP):
 	""""""
+	par : parameter.natnetinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.natnetinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class mouseoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.mouseoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.mouseoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class mouseinCHOP(CHOP,OP):
 	""""""
+	par : parameter.mouseinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.mouseinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8531,21 +9114,29 @@ n.sendPortamentoControl(1,112)
 
 ```"""
 		pass
+	par : parameter.midioutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.midioutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class midiinmapCHOP(CHOP,OP):
 	""""""
+	par : parameter.midiinmapCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.midiinmapCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class midiinCHOP(CHOP,OP):
 	""""""
+	par : parameter.midiinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.midiinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class mergeCHOP(CHOP,OP):
 	""""""
+	par : parameter.mergeCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.mergeCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8555,6 +9146,8 @@ class mathCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.mathCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.mathCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8562,6 +9155,8 @@ class ltcoutCHOP(CHOP,OP):
 	""""""
 	timecode : any
 	"""Get a Timecode object for the timecode data representation of the LTC Out CHOP. See [[Timecode Class]]."""
+	par : parameter.ltcoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.ltcoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8569,16 +9164,22 @@ class ltcinCHOP(CHOP,OP):
 	""""""
 	timecode : any
 	"""Get a Timecode object for the timecode data representation of the LTC In CHOP. See [[Timecode Class]]."""
+	par : parameter.ltcinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.ltcinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class lookupCHOP(CHOP,OP):
 	""""""
+	par : parameter.lookupCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.lookupCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class logicCHOP(CHOP,OP):
 	""""""
+	par : parameter.logicCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.logicCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8586,6 +9187,8 @@ class limitCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.limitCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.limitCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8593,16 +9196,22 @@ class lfoCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.lfoCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.lfoCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class leuzerod4CHOP(CHOP,OP):
 	""""""
+	par : parameter.leuzerod4CHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.leuzerod4CHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class leapmotionCHOP(CHOP,OP):
 	""""""
+	par : parameter.leapmotionCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.leapmotionCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8612,91 +9221,127 @@ class lagCHOP(CHOP,OP):
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.lagCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.lagCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class kinectCHOP(CHOP,OP):
 	""""""
+	par : parameter.kinectCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.kinectCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class keyframeCHOP(CHOP,OP):
 	""""""
+	par : parameter.keyframeCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.keyframeCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class keyboardinCHOP(CHOP,OP):
 	""""""
+	par : parameter.keyboardinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.keyboardinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class joystickCHOP(CHOP,OP):
 	""""""
+	par : parameter.joystickCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.joystickCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class joinCHOP(CHOP,OP):
 	""""""
+	par : parameter.joinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.joinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class inversekinCHOP(CHOP,OP):
 	""""""
+	par : parameter.inversekinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.inversekinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class inversecurveCHOP(CHOP,OP):
 	""""""
+	par : parameter.inversecurveCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.inversecurveCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class interpolateCHOP(CHOP,OP):
 	""""""
+	par : parameter.interpolateCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.interpolateCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class infoCHOP(CHOP,OP):
 	""""""
+	par : parameter.infoCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.infoCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class inCHOP(CHOP,OP):
 	""""""
+	par : parameter.inCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.inCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class holdCHOP(CHOP,OP):
 	""""""
+	par : parameter.holdCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.holdCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class hokuyoCHOP(CHOP,OP):
 	""""""
+	par : parameter.hokuyoCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.hokuyoCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class hogCHOP(CHOP,OP):
 	""""""
+	par : parameter.hogCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.hogCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class heliosdacCHOP(CHOP,OP):
 	""""""
+	par : parameter.heliosdacCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.heliosdacCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class handleCHOP(CHOP,OP):
 	""""""
+	par : parameter.handleCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.handleCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class gestureCHOP(CHOP,OP):
 	""""""
+	par : parameter.gestureCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.gestureCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class functionCHOP(CHOP,OP):
 	""""""
+	par : parameter.functionCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.functionCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8704,11 +9349,15 @@ class filterCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.filterCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.filterCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class fileoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.fileoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.fileoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8720,21 +9369,29 @@ class fileinCHOP(CHOP,OP):
 	"""The current value of the sample being overridden."""
 	sampleIndex : int
 	"""The index of the current sample being evaluated."""
+	par : parameter.fileinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.fileinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class feedbackCHOP(CHOP,OP):
 	""""""
+	par : parameter.feedbackCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.feedbackCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class fanCHOP(CHOP,OP):
 	""""""
+	par : parameter.fanCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.fanCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class extendCHOP(CHOP,OP):
 	""""""
+	par : parameter.extendCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.extendCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8746,6 +9403,8 @@ class expressionCHOP(CHOP,OP):
 	"""The current value of the input sample being evaluated.  To access channels from other inputs use the [[OP_Class#Connection|operator's inputs]]. Example:  me.inputs[1]['chan4'] will access chan4 of the second input."""
 	sampleIndex : any
 	"""The index of the current sample being evaluated."""
+	par : parameter.expressionCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.expressionCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8787,11 +9446,15 @@ Returns the id of the created particle.
 
 *  speed - (Optional) If not specified, read from parameter."""
 		pass
+	par : parameter.eventCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.eventCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class etherdreamCHOP(CHOP,OP):
 	""""""
+	par : parameter.etherdreamCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.etherdreamCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8799,11 +9462,15 @@ class envelopeCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.envelopeCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.envelopeCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class dmxoutCHOP(CHOP,OP):
 	""""""
+	par : parameter.dmxoutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.dmxoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8811,11 +9478,15 @@ class dmxinCHOP(CHOP,OP):
 	""""""
 	timecode : any
 	"""Get a Timecode object for the last ArtTimeCode packet received. See [[Timecode Class]]."""
+	par : parameter.dmxinCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.dmxinCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class deleteCHOP(CHOP,OP):
 	""""""
+	par : parameter.deleteCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.deleteCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8823,6 +9494,8 @@ class delayCHOP(CHOP,OP):
 	""""""
 	chanIndex : int
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.delayCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.delayCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8836,26 +9509,36 @@ class dattoCHOP(CHOP,OP):
 	"""The current input row being evaluated."""
 	inputTable : OP
 	"""The current input [[DAT Class|DAT]] being evaluated."""
+	par : parameter.dattoCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.dattoCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class cycleCHOP(CHOP,OP):
 	""""""
+	par : parameter.cycleCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.cycleCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class crossCHOP(CHOP,OP):
 	""""""
+	par : parameter.crossCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.crossCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class cplusplusCHOP(CHOP,OP):
 	""""""
+	par : parameter.cplusplusCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.cplusplusCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class countCHOP(CHOP,OP):
 	""""""
+	par : parameter.countCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.countCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8867,11 +9550,15 @@ class copyCHOP(CHOP,OP):
 	"""The index of the current sample being evaluated."""
 	copyIndex : int
 	"""The current copy index, beginning at zero."""
+	par : parameter.copyCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.copyCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class constantCHOP(CHOP,OP):
 	""""""
+	par : parameter.constantCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.constantCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8879,6 +9566,8 @@ class compositeCHOP(CHOP,OP):
 	""""""
 	chanIndex : any
 	"""```me.chanIndex</code> can be used in any parameter to give a different value for each [[Channel Class|channel]] being generated, for example <code>[3, 4, 5][me.chanIndex]```."""
+	par : parameter.compositeCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.compositeCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8886,11 +9575,15 @@ class clockCHOP(CHOP,OP):
 	""""""
 	timecode : any
 	"""'Get a Timecode object representation of the hour, minute, second, and msec components.'"""
+	par : parameter.clockCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.clockCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class clipCHOP(CHOP,OP):
 	""""""
+	par : parameter.clipCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.clipCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8931,56 +9624,78 @@ class clipblenderCHOP(CHOP,OP):
 
 * waitEnd - When True, wait until the end of the current clip before triggering."""
 		pass
+	par : parameter.clipblenderCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.clipblenderCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class chopexecuteDAT(DAT,OP):
 	""""""
+	par : parameter.chopexecuteDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.chopexecuteDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class choptoDAT(DAT,OP):
 	""""""
+	par : parameter.choptoDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.choptoDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class choptoSOP(SOP,OP):
 	""""""
+	par : parameter.choptoSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.choptoSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class choptoTOP(TOP,OP):
 	""""""
+	par : parameter.choptoTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.choptoTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class chromakeyTOP(TOP,OP):
 	""""""
+	par : parameter.chromakeyTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.chromakeyTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class circleSOP(SOP,OP):
 	""""""
+	par : parameter.circleSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.circleSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class circleTOP(TOP,OP):
 	""""""
+	par : parameter.circleTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.circleTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class claySOP(SOP,OP):
 	""""""
+	par : parameter.claySOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.claySOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class clipDAT(DAT,OP):
 	""""""
+	par : parameter.clipDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.clipDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class clipSOP(SOP,OP):
 	""""""
+	par : parameter.clipSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.clipSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -9404,6 +10119,8 @@ a = n.vars('A* ', 'B* ')
 
 ```"""
 		pass
+	par : parameter.COMP|parameter.OP
+	"""Parameters of parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9440,6 +10157,8 @@ Can only be called by a foreground process, or a child of a foreground process.
 
 Returns true if successful."""
 		pass
+	par : parameter.windowCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.windowCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9473,6 +10192,8 @@ class timeCOMP(COMP,OP):
 	"""Get or set time signature, first value."""
 	signature2 : int
 	"""Get or set time signature, second value."""
+	par : parameter.timeCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.timeCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9480,6 +10201,8 @@ class replicatorCOMP(COMP,OP):
 	""""""
 	curItem : OP
 	"""Reference to the current [[operator]] replicant."""
+	par : parameter.replicatorCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.replicatorCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9650,6 +10373,8 @@ op('container1').interactStatus  # list the current hover over a slider and 2 to
 
 * moveMouse - (Keyword, Optional) If set to True, the mouse will be moved to the component as well."""
 		pass
+	par : parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9715,6 +10440,8 @@ op('table1').select(0, 5) # row 0, column 5, do not select all text
 
 ```"""
 		pass
+	par : parameter.tableCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.tableCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9749,11 +10476,15 @@ op('slider3').click(0.4, vOnly=True) #Update just V on a 2D slider.
 
 ```"""
 		pass
+	par : parameter.sliderCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.sliderCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class selectCOMP(PanelCOMP,COMP,OP):
 	""""""
+	par : parameter.selectCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.selectCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9761,6 +10492,8 @@ class parameterCOMP(PanelCOMP,COMP,OP):
 	""""""
 	minWidth : int
 	"""The minimum width the parameter dialog can be drawn at before scaling is required."""
+	par : parameter.parameterCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.parameterCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9840,6 +10573,8 @@ p = p.changeType(PaneType.TOPVIEWER)  # note: must re-assign p to new object.
 	def tearAway(self, ) -> bool: 
 		"""Detach the pane into a floating window. Returns True if successful."""
 		pass
+	par : parameter.Pane
+	"""Parameters of parameter.Pane"""
 	pass
 
 
@@ -9850,6 +10585,8 @@ class opviewerCOMP(PanelCOMP,COMP,OP):
 
 * path - Path to the specfied operator. An operator can be supplied as well."""
 		pass
+	par : parameter.opviewerCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.opviewerCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -9924,21 +10661,29 @@ It is the parent class of these subclasses."""
 
 * animationFolder - (Keyword, Optional) Animation (.bchan) files will be created in this folder. If this option is missing, animation won't be imported."""
 		pass
+	par : parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class sharedmemoutCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.sharedmemoutCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.sharedmemoutCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class sharedmeminCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.sharedmeminCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.sharedmeminCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class nullCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.nullCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.nullCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10042,6 +10787,8 @@ n.displayAttribs[3,4].bgColor #the resulting background color for this specific 
 	def reset(self, ) -> None: 
 		"""Reset the list by running its initialize callbacks."""
 		pass
+	par : parameter.listCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.listCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10069,11 +10816,15 @@ newlist = op('geo1').pars('t?', 'r?', 's?') # translate/rotate/scale parameters
 
 ```"""
 		pass
+	par : parameter.lightCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.lightCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class handleCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.handleCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.handleCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10102,6 +10853,8 @@ print(a.min.x)
 
 ```"""
 		pass
+	par : parameter.geometryCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.geometryCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10112,11 +10865,15 @@ class fieldCOMP(PanelCOMP,COMP,OP):
 
 * selectAll - (Keyword, Optional) If True, then all text will be selected."""
 		pass
+	par : parameter.fieldCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.fieldCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class environmentlightCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.environmentlightCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.environmentlightCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10166,36 +10923,50 @@ op('container1').clickChild(2) # Click the third child panel inside a container.
 
 ```"""
 		pass
+	par : parameter.containerCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.containerCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class compositeTOP(TOP,OP):
 	""""""
+	par : parameter.compositeTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.compositeTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class constantMAT(MAT,OP):
 	""""""
+	par : parameter.constantMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.constantMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class constantTOP(TOP,OP):
 	""""""
+	par : parameter.constantTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.constantTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class convertDAT(DAT,OP):
 	""""""
+	par : parameter.convertDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.convertDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class convertSOP(SOP,OP):
 	""""""
+	par : parameter.convertSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.convertSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class convolveTOP(TOP,OP):
 	""""""
+	par : parameter.convolveTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.convolveTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -10207,51 +10978,71 @@ class copySOP(SOP,OP):
 	"""The total number of copies."""
 	inputPoint : int
 	"""The current [[Point Class|point]] being evaluated, of the template."""
+	par : parameter.copySOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.copySOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class cornerpinTOP(TOP,OP):
 	""""""
+	par : parameter.cornerpinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.cornerpinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class cplusplusSOP(SOP,OP):
 	""""""
+	par : parameter.cplusplusSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.cplusplusSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class cplusplusTOP(TOP,OP):
 	""""""
+	par : parameter.cplusplusTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.cplusplusTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class creepSOP(SOP,OP):
 	""""""
+	par : parameter.creepSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.creepSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class cropTOP(TOP,OP):
 	""""""
+	par : parameter.cropTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.cropTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class crossTOP(TOP,OP):
 	""""""
+	par : parameter.crossTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.crossTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class cubemapTOP(TOP,OP):
 	""""""
+	par : parameter.cubemapTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.cubemapTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class curveclaySOP(SOP,OP):
 	""""""
+	par : parameter.curveclaySOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.curveclaySOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class curvesectSOP(SOP,OP):
 	""""""
+	par : parameter.curvesectSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.curvesectSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -10680,11 +11471,15 @@ for c in op('table1').cols():
 
 ```"""
 		pass
+	par : parameter.DAT|parameter.OP
+	"""Parameters of parameter.DAT & parameter.OP"""
 	pass
 
 
 class xmlDAT(DAT,OP):
 	""""""
+	par : parameter.xmlDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.xmlDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10742,6 +11537,8 @@ n = n.sendBinary( 23, 'TYPE', 255, 12, 0x34, b'\\x01\\x00\\x02\\x00\\x03\\x00\\x
 
 ```"""
 		pass
+	par : parameter.websocketDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.websocketDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10761,51 +11558,71 @@ class webDAT(DAT,OP):
 	"""Query Content Type, as returned from HTML query."""
 	queryContentTypeCharset : str
 	"""Query Content Type character set, as returned from HTML query."""
+	par : parameter.webDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.webDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class udtoutDAT(DAT,OP):
 	""""""
+	par : parameter.udtoutDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.udtoutDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class udtinDAT(DAT,OP):
 	""""""
+	par : parameter.udtinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.udtinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class udpoutDAT(DAT,OP):
 	""""""
+	par : parameter.udpoutDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.udpoutDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class udpinDAT(DAT,OP):
 	""""""
+	par : parameter.udpinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.udpinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class tuioinDAT(DAT,OP):
 	""""""
+	par : parameter.tuioinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.tuioinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class transposeDAT(DAT,OP):
 	""""""
+	par : parameter.transposeDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.transposeDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class touchoutDAT(DAT,OP):
 	""""""
+	par : parameter.touchoutDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.touchoutDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class touchinDAT(DAT,OP):
 	""""""
+	par : parameter.touchinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.touchinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class textDAT(DAT,OP):
 	""""""
+	par : parameter.textDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.textDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10841,6 +11658,8 @@ n.send('Hello', 'World',  terminator='\r\n') # send two strings with windows sty
 
 ```"""
 		pass
+	par : parameter.tcpipDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.tcpipDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10852,11 +11671,15 @@ class tableDAT(DAT,OP):
 	"""Current col index for Table expressions."""
 	fillName : any
 	"""Current header name for Table expressions."""
+	par : parameter.tableDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.tableDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class switchDAT(DAT,OP):
 	""""""
+	par : parameter.switchDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.switchDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10885,16 +11708,22 @@ me.inputCell.offset(0, -1) # alternative syntax for previous column
 
 ```
 """
+	par : parameter.substituteDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.substituteDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class sortDAT(DAT,OP):
 	""""""
+	par : parameter.sortDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.sortDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class soptoDAT(DAT,OP):
 	""""""
+	par : parameter.soptoDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.soptoDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10930,6 +11759,8 @@ n.send('Hello', 'World',  terminator='\r\n') #send two strings with windows styl
 
 ```"""
 		pass
+	par : parameter.serialDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.serialDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10958,6 +11789,8 @@ me.inputCell.offset(0, -1) #alternative syntax for previous column
 
 ```
 """
+	par : parameter.selectDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.selectDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -10990,61 +11823,85 @@ scriptOp.sortCustomPages('Definition','Controls')
 
 ```"""
 		pass
+	par : parameter.scriptDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.scriptDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class reorderDAT(DAT,OP):
 	""""""
+	par : parameter.reorderDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.reorderDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class performDAT(DAT,OP):
 	""""""
+	par : parameter.performDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.performDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class parameterexecuteDAT(DAT,OP):
 	""""""
+	par : parameter.parameterexecuteDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.parameterexecuteDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class panelexecuteDAT(DAT,OP):
 	""""""
+	par : parameter.panelexecuteDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.panelexecuteDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class outDAT(DAT,OP):
 	""""""
+	par : parameter.outDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.outDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class oscoutDAT(DAT,OP):
 	""""""
+	par : parameter.oscoutDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.oscoutDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class oscinDAT(DAT,OP):
 	""""""
+	par : parameter.oscinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.oscinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class opfindDAT(DAT,OP):
 	""""""
+	par : parameter.opfindDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.opfindDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class opexecuteDAT(DAT,OP):
 	""""""
+	par : parameter.opexecuteDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.opexecuteDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class nullDAT(DAT,OP):
 	""""""
+	par : parameter.nullDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.nullDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class multitouchinDAT(DAT,OP):
 	""""""
+	par : parameter.multitouchinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.multitouchinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11099,31 +11956,43 @@ n.unsubscribe('weather')
 
 ```"""
 		pass
+	par : parameter.mqttclientDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.mqttclientDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class monitorsDAT(DAT,OP):
 	""""""
+	par : parameter.monitorsDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.monitorsDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class midiinDAT(DAT,OP):
 	""""""
+	par : parameter.midiinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.midiinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class midieventDAT(DAT,OP):
 	""""""
+	par : parameter.midieventDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.midieventDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class mergeDAT(DAT,OP):
 	""""""
+	par : parameter.mergeDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.mergeDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class keyboardinDAT(DAT,OP):
 	""""""
+	par : parameter.keyboardinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.keyboardinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11135,26 +12004,36 @@ class insertDAT(DAT,OP):
 	"""Current col index for Insert DAT Table expressions."""
 	fillName : str
 	"""Current header name for Insert DAT Table expressions."""
+	par : parameter.insertDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.insertDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class infoDAT(DAT,OP):
 	""""""
+	par : parameter.infoDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.infoDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class indicesDAT(DAT,OP):
 	""""""
+	par : parameter.indicesDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.indicesDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class inDAT(DAT,OP):
 	""""""
+	par : parameter.inDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.inDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class folderDAT(DAT,OP):
 	""""""
+	par : parameter.folderDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.folderDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11192,26 +12071,36 @@ n.send('Hello', 'World',  terminator='\r\n') # send two strings with windows sty
 
 ```"""
 		pass
+	par : parameter.fileoutDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.fileoutDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class fileinDAT(DAT,OP):
 	""""""
+	par : parameter.fileinDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.fileinDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class fifoDAT(DAT,OP):
 	""""""
+	par : parameter.fifoDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.fifoDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class executeDAT(DAT,OP):
 	""""""
+	par : parameter.executeDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.executeDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class examineDAT(DAT,OP):
 	""""""
+	par : parameter.examineDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.examineDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11233,31 +12122,43 @@ class evaluateDAT(DAT,OP):
 	"""The current input row being evaluated."""
 	inputTable : any
 	"""The input [[DAT Class|DAT]] containing the source values."""
+	par : parameter.evaluateDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.evaluateDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class etherdreamDAT(DAT,OP):
 	""""""
+	par : parameter.etherdreamDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.etherdreamDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class errorDAT(DAT,OP):
 	""""""
+	par : parameter.errorDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.errorDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class datexecuteDAT(DAT,OP):
 	""""""
+	par : parameter.datexecuteDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.datexecuteDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
 class dattoSOP(SOP,OP):
 	""""""
+	par : parameter.dattoSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.dattoSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class deformSOP(SOP,OP):
 	""""""
+	par : parameter.deformSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.deformSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -11267,106 +12168,148 @@ class deleteSOP(SOP,OP):
 	"""The current [[Point Class|point]] being evaluated. Can only be used in the parameters for this SOP."""
 	inputPrim : int
 	"""The current [[Prim Class|primitive]] being evaluated. Can only be used in the parameters for this SOP."""
+	par : parameter.deleteSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.deleteSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class depthMAT(MAT,OP):
 	""""""
+	par : parameter.depthMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.depthMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class depthTOP(TOP,OP):
 	""""""
+	par : parameter.depthTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.depthTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class differenceTOP(TOP,OP):
 	""""""
+	par : parameter.differenceTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.differenceTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class directxinTOP(TOP,OP):
 	""""""
+	par : parameter.directxinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.directxinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class directxoutTOP(TOP,OP):
 	""""""
+	par : parameter.directxoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.directxoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class displaceTOP(TOP,OP):
 	""""""
+	par : parameter.displaceTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.displaceTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class divideSOP(SOP,OP):
 	""""""
+	par : parameter.divideSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.divideSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class edgeTOP(TOP,OP):
 	""""""
+	par : parameter.edgeTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.edgeTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class embossTOP(TOP,OP):
 	""""""
+	par : parameter.embossTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.embossTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class extrudeSOP(SOP,OP):
 	""""""
+	par : parameter.extrudeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.extrudeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class facetSOP(SOP,OP):
 	""""""
+	par : parameter.facetSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.facetSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class feedbackTOP(TOP,OP):
 	""""""
+	par : parameter.feedbackTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.feedbackTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class fileinSOP(SOP,OP):
 	""""""
+	par : parameter.fileinSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.fileinSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class filletSOP(SOP,OP):
 	""""""
+	par : parameter.filletSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.filletSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class fitSOP(SOP,OP):
 	""""""
+	par : parameter.fitSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.fitSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class fitTOP(TOP,OP):
 	""""""
+	par : parameter.fitTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.fitTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class flipTOP(TOP,OP):
 	""""""
+	par : parameter.flipTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.flipTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class fontSOP(SOP,OP):
 	""""""
+	par : parameter.fontSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.fontSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class forceSOP(SOP,OP):
 	""""""
+	par : parameter.forceSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.forceSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class fractalSOP(SOP,OP):
 	""""""
+	par : parameter.fractalSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.fractalSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -11374,6 +12317,8 @@ class glslMAT(MAT,OP):
 	""""""
 	compileResult : str
 	"""The latest compile result."""
+	par : parameter.glslMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.glslMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
@@ -11381,6 +12326,8 @@ class glslmultiTOP(TOP,OP):
 	""""""
 	compileResult : str
 	"""The latest compile result."""
+	par : parameter.glslmultiTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.glslmultiTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -11388,11 +12335,15 @@ class glslTOP(TOP,OP):
 	""""""
 	compileResult : str
 	"""The latest compile result."""
+	par : parameter.glslTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.glslTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class gridSOP(SOP,OP):
 	""""""
+	par : parameter.gridSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.gridSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -11402,46 +12353,64 @@ class groupSOP(SOP,OP):
 	"""The current [[Point Class|point]] being evaluated."""
 	inputPrim : Prim
 	"""The current [[Prim Class|primitive]] being evaluated."""
+	par : parameter.groupSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.groupSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class holeSOP(SOP,OP):
 	""""""
+	par : parameter.holeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.holeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class hsvadjustTOP(TOP,OP):
 	""""""
+	par : parameter.hsvadjustTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.hsvadjustTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class hsvtorgbTOP(TOP,OP):
 	""""""
+	par : parameter.hsvtorgbTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.hsvtorgbTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class inMAT(MAT,OP):
 	""""""
+	par : parameter.inMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.inMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class insideTOP(TOP,OP):
 	""""""
+	par : parameter.insideTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.insideTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class inSOP(SOP,OP):
 	""""""
+	par : parameter.inSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.inSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class inTOP(TOP,OP):
 	""""""
+	par : parameter.inTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.inTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class inversecurveSOP(SOP,OP):
 	""""""
+	par : parameter.inversecurveSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.inversecurveSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -11449,91 +12418,127 @@ class isosurfaceSOP(SOP,OP):
 	""""""
 	curPos : any
 	"""The current [[Position Class|position]] of the surface."""
+	par : parameter.isosurfaceSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.isosurfaceSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class joinSOP(SOP,OP):
 	""""""
+	par : parameter.joinSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.joinSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class jointSOP(SOP,OP):
 	""""""
+	par : parameter.jointSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.jointSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class kinectSOP(SOP,OP):
 	""""""
+	par : parameter.kinectSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.kinectSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class kinectTOP(TOP,OP):
 	""""""
+	par : parameter.kinectTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.kinectTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class latticeSOP(SOP,OP):
 	""""""
+	par : parameter.latticeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.latticeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class layoutTOP(TOP,OP):
 	""""""
+	par : parameter.layoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.layoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class leapmotionTOP(TOP,OP):
 	""""""
+	par : parameter.leapmotionTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.leapmotionTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class levelTOP(TOP,OP):
 	""""""
+	par : parameter.levelTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.levelTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class limitSOP(SOP,OP):
 	""""""
+	par : parameter.limitSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.limitSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class lineSOP(SOP,OP):
 	""""""
+	par : parameter.lineSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.lineSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class linethickSOP(SOP,OP):
 	""""""
+	par : parameter.linethickSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.linethickSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class lodSOP(SOP,OP):
 	""""""
+	par : parameter.lodSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.lodSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class lookupTOP(TOP,OP):
 	""""""
+	par : parameter.lookupTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.lookupTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class lsystemSOP(SOP,OP):
 	""""""
+	par : parameter.lsystemSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.lsystemSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class lumablurTOP(TOP,OP):
 	""""""
+	par : parameter.lumablurTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.lumablurTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class lumalevelTOP(TOP,OP):
 	""""""
+	par : parameter.lumalevelTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.lumalevelTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class magnetSOP(SOP,OP):
 	""""""
+	par : parameter.magnetSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.magnetSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -11541,66 +12546,92 @@ class MAT(OP):
 	"""A [[MAT]] describes a reference to a MAT operator."""
 	isMAT : bool
 	"""True if the operator is a Material."""
+	par : parameter.MAT|parameter.OP
+	"""Parameters of parameter.MAT & parameter.OP"""
 	pass
 
 
 class wireframeMAT(MAT,OP):
 	""""""
+	par : parameter.wireframeMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.wireframeMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class switchMAT(MAT,OP):
 	""""""
+	par : parameter.switchMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.switchMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class selectMAT(MAT,OP):
 	""""""
+	par : parameter.selectMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.selectMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class pointspriteMAT(MAT,OP):
 	""""""
+	par : parameter.pointspriteMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.pointspriteMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class phongMAT(MAT,OP):
 	""""""
+	par : parameter.phongMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.phongMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class pbrMAT(MAT,OP):
 	""""""
+	par : parameter.pbrMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.pbrMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class outMAT(MAT,OP):
 	""""""
+	par : parameter.outMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.outMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class nullMAT(MAT,OP):
 	""""""
+	par : parameter.nullMAT|parameter.MAT|parameter.OP
+	"""Parameters of parameter.nullMAT & parameter.MAT & parameter.OP"""
 	pass
 
 
 class materialSOP(SOP,OP):
 	""""""
+	par : parameter.materialSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.materialSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class mathTOP(TOP,OP):
 	""""""
+	par : parameter.mathTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.mathTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class matteTOP(TOP,OP):
 	""""""
+	par : parameter.matteTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.matteTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class mergeSOP(SOP,OP):
 	""""""
+	par : parameter.mergeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.mergeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -11614,16 +12645,22 @@ class Mesh(Prim):
 	"""Number of rows in the mesh."""
 	numCols : int
 	"""Number of columns in the mesh."""
+	par : parameter.Mesh|parameter.Prim
+	"""Parameters of parameter.Mesh & parameter.Prim"""
 	pass
 
 
 class metaballSOP(SOP,OP):
 	""""""
+	par : parameter.metaballSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.metaballSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class mirrorTOP(TOP,OP):
 	""""""
+	par : parameter.mirrorTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.mirrorTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -11689,11 +12726,15 @@ n.appendBezier(7) #open, cubic, 7 vertices, or 2 spans
 
 *  sop - The SOP to copy geometry from. Geometry currently in this SOP will be removed."""
 		pass
+	par : parameter.modelSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.modelSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class monochromeTOP(TOP,OP):
 	""""""
+	par : parameter.monochromeTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.monochromeTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -11769,6 +12810,8 @@ class moviefileinTOP(TOP,OP):
 
 * index - (Optional) If specified the movie will be opened at the specified frame index. If not, then the movie will be opened at the index specified by its parameters."""
 		pass
+	par : parameter.moviefileinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.moviefileinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -11780,21 +12823,29 @@ class moviefileoutTOP(TOP,OP):
 	"""The current index of the last written image on disk."""
 	fileSuffix : str
 	"""Returns the generated file suffix. It will be generated based on the values of the parameters Unique Suffix and N, plus the file extension. It will take one of two forms: ```''N''.''ext''</code> or <code>''N''.''i''.''ext''</code> where <code>''N''</code> is the suffix index (uniquely generated if Unique Suffix is enabled), <code>''i''</code> is the image sequence index (used only for the image sequence type), and <code>''ext''``` is the image/movie extension."""
+	par : parameter.moviefileoutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.moviefileoutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class multiplyTOP(TOP,OP):
 	""""""
+	par : parameter.multiplyTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.multiplyTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class ndiinTOP(TOP,OP):
 	""""""
+	par : parameter.ndiinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.ndiinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class ndioutTOP(TOP,OP):
 	""""""
+	par : parameter.ndioutTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.ndioutTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -11875,41 +12926,57 @@ p.home(zoom=True)
 
 * undoName - Describes the [[Undo]] operation."""
 		pass
+	par : parameter.NetworkEditor|parameter.Pane
+	"""Parameters of parameter.NetworkEditor & parameter.Pane"""
 	pass
 
 
 class noiseSOP(SOP,OP):
 	""""""
+	par : parameter.noiseSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.noiseSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class noiseTOP(TOP,OP):
 	""""""
+	par : parameter.noiseTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.noiseTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class normalmapTOP(TOP,OP):
 	""""""
+	par : parameter.normalmapTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.normalmapTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class nullSOP(SOP,OP):
 	""""""
+	par : parameter.nullSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.nullSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class nullTOP(TOP,OP):
 	""""""
+	par : parameter.nullTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.nullTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
 class objectmergeSOP(SOP,OP):
 	""""""
+	par : parameter.objectmergeSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.objectmergeSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
 class oculusriftTOP(TOP,OP):
 	""""""
+	par : parameter.oculusriftTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.oculusriftTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -11917,6 +12984,8 @@ class Poly(Prim):
 	"""A Poly describes an instance of a single [[Polygon|geometry polygon]]. It is an instance of a [[Prim Class]]."""
 	closed : bool
 	"""Returns True if the poly is closed, False otherwise."""
+	par : parameter.Poly|parameter.Prim
+	"""Parameters of parameter.Poly & parameter.Prim"""
 	pass
 
 

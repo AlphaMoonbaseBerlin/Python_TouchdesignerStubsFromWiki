@@ -1,11 +1,20 @@
+from typing import Any
 
-myoperator:OP = td.op("foobar")
-myoperator.cookedThisFrame
 
-myoperator.cook
+parent
+myVectir:Vector = tdu.Vector()
+op:OP
 
-myVector:Vector = tdu.Vector(1,2,3)
-myVector.scale(1,2)
+testOp:constantCHOP= op()
+testOp.par.value0.
 
-randomOperator:scriptSOP = root.op("Foobar")
-randomOperator.
+class parCollection_1:
+    foo:Par
+    bar:Par
+
+class parCollection_2:
+    some:Par
+    more:Par
+   
+class myOperator(OP):
+    par:parCollection_2|parCollection_2
