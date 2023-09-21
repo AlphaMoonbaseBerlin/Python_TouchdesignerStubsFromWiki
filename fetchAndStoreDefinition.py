@@ -84,8 +84,13 @@ def fetchClassDefinitions( items ):
     return fetchItems("Python_Reference", items)
 
 def stringToDictList( wikiString):
-    return [ templateToDict( template ) for template in 
+    try:
+        return [ templateToDict( template ) for template in 
                     wikitextparser.parse( wikiString ).templates ]
+    except: 
+        print("Failed to parsse Wikistring", wikiString)
+        return []
+    
 def templateToDict( template ):
     return { argument.name : argument.value.strip() for argument in template.arguments }
 #data creation
@@ -97,6 +102,17 @@ def defaultClassDict( label = ""):
             "subclasses" : {},
             "inherits": []
              }
+
+def deepTemplateToDict( potentialWikiString:str):
+    try:
+        wikiObject = wikitextparser.parse( potentialWikiString )        
+        for template in wikiObject.templates:
+            return {
+                argument.name : deepTemplateToDict( argument.value.strip() ) for argument in template.arguments
+            }
+    except:
+        return potentialWikiString
+    
 def createClassDefinitionDict( definitions ):
     cacheFile = Path("cache/classDefinitionDictCache.json")
 
@@ -168,14 +184,14 @@ def createParDefinitionDict( definitions ):
 
     for definition in definitions:
         wikiObject = wikitextparser.parse( definition )
-        className = "NoLabelFound"
+        className = ""
         classDict = defaultClassDict()
-        print("Foobar")
+
         for template in wikiObject.templates:
             templateDict = templateToDict( template )
            
             templateName = template.name.strip()
-            print(templateName)
+            
             if templateName == "Summary":
                 className = templateDict["opClass"].split("_")[0]
                 classDict["label"] = className
@@ -183,27 +199,35 @@ def createParDefinitionDict( definitions ):
 
             if templateName == "ParameterPage":
                 pageParameters = stringToDictList( templateDict["items"])
+                
                 for parameter in pageParameters:
-                    #print(parameter)
-                    if parameter.get("parItems", ""):
-                        for parameterItem in stringToDictList(parameter["parItems"]):
+                 
+                    className = className or f"{parameter.get('opType', '')}{parameter['opFamily']}"
+                        
+                    if parameter is None: 
+                        print("Parameter is None. FOR WHATEVER REASON!")
+                        continue
+                    class breakParsin (Exception):
+                        pass
+                   
+                    try:
+                        for parameterItem in stringToDictList(parameter.get("parItems", "")):
+                            #if parameterItem.get("parName") == parameter.get("parName", ""):
+                            if not parameterItem.get("itemName", "").startswith(parameter.get("parName", "")):
+                                raise breakParsin("No Valid Subitems")
                             classDict["members"].append(
                                 {
-                                    "text": parameter.get("parSummary", "Missin"),
-                                    #dictGetUnion( parameter, "itemSummary", "parSummary" ),
-                                    #parameter.get("itemSummary", parameter.get("parSummary", "No Description")),
+                                    "text": parameter.get("parSummary", ""),
                                     "type": "Par",
-                                    "name": parameterItem.get("itemName", "Missing")
-                                    
+                                    "name": parameterItem.get("itemName", "")  
                                 }
                             )
-                    else:
-             
+                    except breakParsin:
                         classDict["members"].append(
                                 {
-                                    "text": parameter.get("parSummary", "Missing"), #dictGetUnion( parameter, "parSummary", "itemSummary" ),
+                                    "text": f'{parameter.get("parType", "")} : {parameter.get("parSummary", "")}', 
                                     "type": "Par",
-                                    "name": parameter.get("parName", "Missing"), #dictGetUnion( parameter, "parName", "itemName" )
+                                    "name": parameter.get("parName", ""),
                                 }
                             )
                   
