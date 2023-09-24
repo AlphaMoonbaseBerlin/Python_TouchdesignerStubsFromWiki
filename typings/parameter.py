@@ -970,6 +970,766 @@ class windowCOMP():
 	pass
 
 
+class addTOP():
+	"""addTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]."""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.addTOP
+	"""Parameters of parameter.addTOP"""
+	pass
+
+
+class analyzeTOP():
+	"""analyzeTOP"""
+	op : Par
+	"""Menu : The operation to perform on the input image."""
+	analyzechannel : Par
+	"""Menu : Determines what value the operation is being performed on. For example, when the operation is Minimum and the Analyze Channel is Red, the output will be the pixel with the lowest red value (not necessarily the lowest Blue or Green values). To separately find the lowest value in each channel, set this parameter to RGBA Independent."""
+	scope : Par
+	"""Menu : Determines how pixels are grouped together to calculate the results."""
+	mask : Par
+	"""Menu : This parameter allows you to exclude certain pixels based on the values in one or more channels in the input. For example, if set to Alpha, only pixels that have a non-zero value in the alpha will be included. This can be useful, for example, if you need to find the average position of a point cloud image that is using an Active channel to indicate which pixels store valid point data."""
+	par : parameter.analyzeTOP
+	"""Parameters of parameter.analyzeTOP"""
+	pass
+
+
+class antialiasTOP():
+	"""antialiasTOP"""
+	quality : Par
+	"""Menu : Controls the quality of the anti-alias process. A higher quality will require more GPU power to compute."""
+	edgedetectsource : Par
+	"""Menu : This controls how edges are detected in the image. Anti-aliasing is only done along detected edges."""
+	par : parameter.antialiasTOP
+	"""Parameters of parameter.antialiasTOP"""
+	pass
+
+
+class blobtrackTOP():
+	"""blobtrackTOP"""
+	monosource : Par
+	"""Menu : Blob tracking is done using a single channel. This menu controls what single channel is used to detect blobs."""
+	blobcolorr : Par
+	"""Determines the color of the rectangles that are drawn to show the blobs."""
+	blobcolorg : Par
+	"""Determines the color of the rectangles that are drawn to show the blobs."""
+	blobcolorb : Par
+	"""Determines the color of the rectangles that are drawn to show the blobs."""
+	par : parameter.blobtrackTOP
+	"""Parameters of parameter.blobtrackTOP"""
+	pass
+
+
+class blurTOP():
+	"""blurTOP"""
+	method : Par
+	"""Menu : Determines how the blur is applied."""
+	type : Par
+	"""Menu : Determines the mathematical function used to create the blur."""
+	extend : Par
+	"""Menu : Sets the extend conditions to determine what happens to the blur at the edge of the image."""
+	offset1 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to blur the image. A Sample Step of 3 would sample pixels 3 pixels away."""
+	offset2 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to blur the image. A Sample Step of 3 would sample pixels 3 pixels away."""
+	par : parameter.blurTOP
+	"""Parameters of parameter.blurTOP"""
+	pass
+
+
+class cacheselectTOP():
+	"""cacheselectTOP"""
+	par : parameter.cacheselectTOP
+	"""Parameters of parameter.cacheselectTOP"""
+	pass
+
+
+class cacheTOP():
+	"""cacheTOP"""
+	par : parameter.cacheTOP
+	"""Parameters of parameter.cacheTOP"""
+	pass
+
+
+class channelmixTOP():
+	"""channelmixTOP"""
+	red1 : Par
+	"""Red output mix. Use these 4 values to mix the RGBA inputs into the output's red channel."""
+	red2 : Par
+	"""Red output mix. Use these 4 values to mix the RGBA inputs into the output's red channel."""
+	red3 : Par
+	"""Red output mix. Use these 4 values to mix the RGBA inputs into the output's red channel."""
+	red4 : Par
+	"""Red output mix. Use these 4 values to mix the RGBA inputs into the output's red channel."""
+	green1 : Par
+	"""Green output mix. Use these 4 values to mix the RGBA inputs into the output's green channel."""
+	green2 : Par
+	"""Green output mix. Use these 4 values to mix the RGBA inputs into the output's green channel."""
+	green3 : Par
+	"""Green output mix. Use these 4 values to mix the RGBA inputs into the output's green channel."""
+	green4 : Par
+	"""Green output mix. Use these 4 values to mix the RGBA inputs into the output's green channel."""
+	blue1 : Par
+	"""Blue output mix. Use these 4 values to mix the RGBA inputs into the output's blue channel."""
+	blue2 : Par
+	"""Blue output mix. Use these 4 values to mix the RGBA inputs into the output's blue channel."""
+	blue3 : Par
+	"""Blue output mix. Use these 4 values to mix the RGBA inputs into the output's blue channel."""
+	blue4 : Par
+	"""Blue output mix. Use these 4 values to mix the RGBA inputs into the output's blue channel."""
+	alpha1 : Par
+	"""Alpha output mix. Use these 4 values to mix the RGBA inputs into the output's alpha channel."""
+	alpha2 : Par
+	"""Alpha output mix. Use these 4 values to mix the RGBA inputs into the output's alpha channel."""
+	alpha3 : Par
+	"""Alpha output mix. Use these 4 values to mix the RGBA inputs into the output's alpha channel."""
+	alpha4 : Par
+	"""Alpha output mix. Use these 4 values to mix the RGBA inputs into the output's alpha channel."""
+	constant1 : Par
+	"""Use these 4 values to add or subtract a constant amount to the output channels."""
+	constant2 : Par
+	"""Use these 4 values to add or subtract a constant amount to the output channels."""
+	constant3 : Par
+	"""Use these 4 values to add or subtract a constant amount to the output channels."""
+	constant4 : Par
+	"""Use these 4 values to add or subtract a constant amount to the output channels."""
+	par : parameter.channelmixTOP
+	"""Parameters of parameter.channelmixTOP"""
+	pass
+
+
+class choptoTOP():
+	"""choptoTOP"""
+	dataformat : Par
+	"""Menu : Determines how the input CHOP channels will be turned into an image. If the CHOP is missing channels required to provide all the data for a scanline, the extra channels are ignored."""
+	layout : Par
+	"""Menu : Controls the dimensions of the output image and how the CHOP samples are arranged as pixels. This menu replaces the previous 'Crop Long Channels' and 'Fit to Square' parameters."""
+	rgba1 : Par
+	"""If the current Image Layout results in more pixels than there are available samples in the input CHOP, the values specified here will be used to fill in the extra pixels. (All textures require full rows of pixels, in other words all rows of pixels have the same number of pixels.)"""
+	rgba2 : Par
+	"""If the current Image Layout results in more pixels than there are available samples in the input CHOP, the values specified here will be used to fill in the extra pixels. (All textures require full rows of pixels, in other words all rows of pixels have the same number of pixels.)"""
+	rgba3 : Par
+	"""If the current Image Layout results in more pixels than there are available samples in the input CHOP, the values specified here will be used to fill in the extra pixels. (All textures require full rows of pixels, in other words all rows of pixels have the same number of pixels.)"""
+	rgba4 : Par
+	"""If the current Image Layout results in more pixels than there are available samples in the input CHOP, the values specified here will be used to fill in the extra pixels. (All textures require full rows of pixels, in other words all rows of pixels have the same number of pixels.)"""
+	par : parameter.choptoTOP
+	"""Parameters of parameter.choptoTOP"""
+	pass
+
+
+class chromakeyTOP():
+	"""chromakeyTOP"""
+	rgbout : Par
+	"""Menu : Determines the output of the RGB channels from the Chroma Key TOP."""
+	alphaout : Par
+	"""Menu : Determines the output of the Alpha channel from the Chroma Key TOP."""
+	par : parameter.chromakeyTOP
+	"""Parameters of parameter.chromakeyTOP"""
+	pass
+
+
+class circleTOP():
+	"""circleTOP"""
+	radiusx : Par
+	"""X and Y radii of the Circle. For polygons, only the X radius is used."""
+	radiusy : Par
+	"""X and Y radii of the Circle. For polygons, only the X radius is used."""
+	centerx : Par
+	"""Coordinates of the center of the shape. (0,0) corresponds to a perfectly centered shape."""
+	centery : Par
+	"""Coordinates of the center of the shape. (0,0) corresponds to a perfectly centered shape."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the circle."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the circle."""
+	fillcolorr : Par
+	"""Color to use for the fill of the shape."""
+	fillcolorg : Par
+	"""Color to use for the fill of the shape."""
+	fillcolorb : Par
+	"""Color to use for the fill of the shape."""
+	borderr : Par
+	"""Color to use for the border of the shape."""
+	borderg : Par
+	"""Color to use for the border of the shape."""
+	borderb : Par
+	"""Color to use for the border of the shape."""
+	bgcolorr : Par
+	"""Color to use for the background."""
+	bgcolorg : Par
+	"""Color to use for the background."""
+	bgcolorb : Par
+	"""Color to use for the background."""
+	arcangle : Par
+	"""Float : Specifies the angles at which the shape is to start and end. The region between <code>beginarcangle</code> and <code>endarcangle</code>, with clockwise rotation, will not be drawn."""
+	operand : Par
+	"""Menu : Choose which composite operation is performed from this menu. Search the web for 'blend modes' for more detailed information on the effects of each type."""
+	par : parameter.circleTOP
+	"""Parameters of parameter.circleTOP"""
+	pass
+
+
+class compositeTOP():
+	"""compositeTOP"""
+	operand : Par
+	"""Menu : Choose which composite operation is performed from this menu. Search the web for 'blend modes' for more detailed information on the effects of each type."""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]"""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	tstepx : Par
+	"""Translates the Overlay layers cumulatively, that is the first Overlay layer is translated by the amount specified, the second Overlay layer is translated by 2 times that amount, the third Overlay layer by 3 times that amount and so on."""
+	tstepy : Par
+	"""Translates the Overlay layers cumulatively, that is the first Overlay layer is translated by the amount specified, the second Overlay layer is translated by 2 times that amount, the third Overlay layer by 3 times that amount and so on."""
+	par : parameter.compositeTOP
+	"""Parameters of parameter.compositeTOP"""
+	pass
+
+
+class constantTOP():
+	"""constantTOP"""
+	colorr : Par
+	"""Sets the red, green and blue color channels. Clicking on the color swatch opens a color picker with RGB and HSV (Hue, Sat, and Value) pickers."""
+	colorg : Par
+	"""Sets the red, green and blue color channels. Clicking on the color swatch opens a color picker with RGB and HSV (Hue, Sat, and Value) pickers."""
+	colorb : Par
+	"""Sets the red, green and blue color channels. Clicking on the color swatch opens a color picker with RGB and HSV (Hue, Sat, and Value) pickers."""
+	rgbaunit : Par
+	"""Menu : Specify the color values using different ranges. Note that this is only for purposes of setting the color, the data values in the TOP always use the RGBA Unit range 0-1."""
+	operand : Par
+	"""Menu : Choose which composite operation is performed from this menu. Search the web for 'blend modes' for more detailed information on the effects of each type."""
+	par : parameter.constantTOP
+	"""Parameters of parameter.constantTOP"""
+	pass
+
+
+class convolveTOP():
+	"""convolveTOP"""
+	par : parameter.convolveTOP
+	"""Parameters of parameter.convolveTOP"""
+	pass
+
+
+class cornerpinTOP():
+	"""cornerpinTOP"""
+	extractp31 : Par
+	"""The x and y position of the bottom left corner of the extraction."""
+	extractp32 : Par
+	"""The x and y position of the bottom left corner of the extraction."""
+	extractp41 : Par
+	"""The x and y position of the bottom right corner of the extraction."""
+	extractp42 : Par
+	"""The x and y position of the bottom right corner of the extraction."""
+	extractp11 : Par
+	"""The x and y position of the top left corner of the extraction."""
+	extractp12 : Par
+	"""The x and y position of the top left corner of the extraction."""
+	extractp21 : Par
+	"""The x and y position of the top right corner of the extraction."""
+	extractp22 : Par
+	"""The x and y position of the top right corner of the extraction."""
+	extend : Par
+	"""Menu : Determines how the image is handled at its edges."""
+	pinp31 : Par
+	"""The x and y position of the bottom left corner of the extraction."""
+	pinp32 : Par
+	"""The x and y position of the bottom left corner of the extraction."""
+	pinp41 : Par
+	"""The x and y position of the bottom right corner of the extraction."""
+	pinp42 : Par
+	"""The x and y position of the bottom right corner of the extraction."""
+	pinp11 : Par
+	"""The x and y position of the top left corner of the extraction."""
+	pinp12 : Par
+	"""The x and y position of the top left corner of the extraction."""
+	pinp21 : Par
+	"""The x and y position of the top right corner of the extraction."""
+	pinp22 : Par
+	"""The x and y position of the top right corner of the extraction."""
+	bgcolorr : Par
+	"""Color applied behind the foreground image. The background is visible when the corners of the Corner Pin have been positioned inside the original image space. Set the <span class="tipTextTOP">Bottom Left</span> x-position to 1.0 and you will see the background color in the bottom left corner of the image."""
+	bgcolorg : Par
+	"""Color applied behind the foreground image. The background is visible when the corners of the Corner Pin have been positioned inside the original image space. Set the <span class="tipTextTOP">Bottom Left</span> x-position to 1.0 and you will see the background color in the bottom left corner of the image."""
+	bgcolorb : Par
+	"""Color applied behind the foreground image. The background is visible when the corners of the Corner Pin have been positioned inside the original image space. Set the <span class="tipTextTOP">Bottom Left</span> x-position to 1.0 and you will see the background color in the bottom left corner of the image."""
+	bgcolora : Par
+	"""Color applied behind the foreground image. The background is visible when the corners of the Corner Pin have been positioned inside the original image space. Set the <span class="tipTextTOP">Bottom Left</span> x-position to 1.0 and you will see the background color in the bottom left corner of the image."""
+	par : parameter.cornerpinTOP
+	"""Parameters of parameter.cornerpinTOP"""
+	pass
+
+
+class cplusplusTOP():
+	"""cplusplusTOP"""
+	antialias : Par
+	"""Menu : The level of anti-aliasing you want the framebuffer that will be created for you to have."""
+	depthbuffer : Par
+	"""Menu : Specifies the pixel format of the depth buffer you want, if any."""
+	par : parameter.cplusplusTOP
+	"""Parameters of parameter.cplusplusTOP"""
+	pass
+
+
+class cropTOP():
+	"""cropTOP"""
+	extend : Par
+	"""Menu : This parameter determines what happens at the edges of the tiles."""
+	par : parameter.cropTOP
+	"""Parameters of parameter.cropTOP"""
+	pass
+
+
+class crossTOP():
+	"""crossTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]"""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.crossTOP
+	"""Parameters of parameter.crossTOP"""
+	pass
+
+
+class cubemapTOP():
+	"""cubemapTOP"""
+	mode : Par
+	"""Menu : Determine how the cube map is created from the input images."""
+	par : parameter.cubemapTOP
+	"""Parameters of parameter.cubemapTOP"""
+	pass
+
+
+class depthTOP():
+	"""depthTOP"""
+	pixelformat : Par
+	"""Menu : The pixel format the Depth texture should be output as."""
+	depthspace : Par
+	"""Menu : The space the depth values should be output in."""
+	rangefrom1 : Par
+	"""The range to convert from when using 'Rerange from Camera Space'. This would often be your area of interest in the camera's depth."""
+	rangefrom2 : Par
+	"""The range to convert from when using 'Rerange from Camera Space'. This would often be your area of interest in the camera's depth."""
+	rangeto1 : Par
+	"""The range of values you want to convert the depth values to. This is the range you would find the depth to more useful for processing, often 0-1."""
+	rangeto2 : Par
+	"""The range of values you want to convert the depth values to. This is the range you would find the depth to more useful for processing, often 0-1."""
+	par : parameter.depthTOP
+	"""Parameters of parameter.depthTOP"""
+	pass
+
+
+class differenceTOP():
+	"""differenceTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]"""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.differenceTOP
+	"""Parameters of parameter.differenceTOP"""
+	pass
+
+
+class directxinTOP():
+	"""directxinTOP"""
+	par : parameter.directxinTOP
+	"""Parameters of parameter.directxinTOP"""
+	pass
+
+
+class directxoutTOP():
+	"""directxoutTOP"""
+	par : parameter.directxoutTOP
+	"""Parameters of parameter.directxoutTOP"""
+	pass
+
+
+class displaceTOP():
+	"""displaceTOP"""
+	horzsource : Par
+	"""Menu : Instead of using the Red channel to displace horizontally, you can choose a different channel."""
+	vertsource : Par
+	"""Menu : Instead of using the Blue channel to displace vertically, you can choose a different channel."""
+	midpoint1 : Par
+	"""This value is the color values that will result in no displacement. Values below this will cause the displacement to come from the left/bottom of the pixel, while values above this will cause the displacement to come from the right/top of the pixel."""
+	midpoint2 : Par
+	"""This value is the color values that will result in no displacement. Values below this will cause the displacement to come from the left/bottom of the pixel, while values above this will cause the displacement to come from the right/top of the pixel."""
+	displaceweight1 : Par
+	"""This scales the offset caused by the Displace Image. It will cause the pixels fetched to be closer/farther along the sample vector created by the Horizontal and Vertical Source."""
+	displaceweight2 : Par
+	"""This scales the offset caused by the Displace Image. It will cause the pixels fetched to be closer/farther along the sample vector created by the Horizontal and Vertical Source."""
+	offsetx : Par
+	"""The Offset is first multiplied by the Offset Weight. Then it will be added to the coordinates caluclated after looking up into the displacement map. These final coordinates is what will be used to sample from the source image."""
+	offsety : Par
+	"""The Offset is first multiplied by the Offset Weight. Then it will be added to the coordinates caluclated after looking up into the displacement map. These final coordinates is what will be used to sample from the source image."""
+	extend : Par
+	"""Menu : This parameter determines what happens at the edges of the tiles."""
+	par : parameter.displaceTOP
+	"""Parameters of parameter.displaceTOP"""
+	pass
+
+
+class edgeTOP():
+	"""edgeTOP"""
+	select : Par
+	"""Menu : This menu determines how the edges are pulled from the image."""
+	offset1 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	offset2 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	edgecolorr : Par
+	"""The color of the edges in RGBA."""
+	edgecolorg : Par
+	"""The color of the edges in RGBA."""
+	edgecolorb : Par
+	"""The color of the edges in RGBA."""
+	edgecolora : Par
+	"""The color of the edges in RGBA."""
+	alphaoutputmenu : Par
+	"""Menu : This menu determines how the alpha channel is output from the Edge TOP."""
+	par : parameter.edgeTOP
+	"""Parameters of parameter.edgeTOP"""
+	pass
+
+
+class embossTOP():
+	"""embossTOP"""
+	select : Par
+	"""Menu : This menu selects how the edges in the image are found. The edges will appear raised or depressed in the output image depending on their slope."""
+	method : Par
+	"""Menu : Determines what pixels to use when calculating the slope at each pixel in the image."""
+	offset1 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	offset2 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	par : parameter.embossTOP
+	"""Parameters of parameter.embossTOP"""
+	pass
+
+
+class feedbackTOP():
+	"""feedbackTOP"""
+	par : parameter.feedbackTOP
+	"""Parameters of parameter.feedbackTOP"""
+	pass
+
+
+class fitTOP():
+	"""fitTOP"""
+	fit : Par
+	"""Menu : Determines how the input is fit to the specified resolution."""
+	xord : Par
+	"""Menu : The menu attached to this parameter allows you to specify the order in which the changes to your TOP will take place. Changing the Transform order will change where things go much the same way as going a block and turning east gets you to a different place than turning east and then going a block."""
+	tx : Par
+	"""The two fields for Translate and Scale allows you to specify transforms in x and y axes. The field for Rotate allow you to specify the amount of rotation."""
+	ty : Par
+	"""The two fields for Translate and Scale allows you to specify transforms in x and y axes. The field for Rotate allow you to specify the amount of rotation."""
+	sx : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes."""
+	sy : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes."""
+	px : Par
+	"""The Pivot point edit fields allow you to define the point about which the TOP scales and rotates. Altering the pivot point of a TOP produces different results depending on the transformation performed on the TOP image.	
+			
+For example, during a scaling operation, if the pivot point of a TOP image is located at <code>-1,-1</code> and you wanted to scale the image by <code>0.5</code> (reduce its size by 50%), then the TOP would scale toward the pivot point and appear to slide down and to the left."""
+	py : Par
+	"""The Pivot point edit fields allow you to define the point about which the TOP scales and rotates. Altering the pivot point of a TOP produces different results depending on the transformation performed on the TOP image.	
+			
+For example, during a scaling operation, if the pivot point of a TOP image is located at <code>-1,-1</code> and you wanted to scale the image by <code>0.5</code> (reduce its size by 50%), then the TOP would scale toward the pivot point and appear to slide down and to the left."""
+	bgcolorr : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	bgcolorg : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	bgcolorb : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	bgcolora : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	par : parameter.fitTOP
+	"""Parameters of parameter.fitTOP"""
+	pass
+
+
+class flipTOP():
+	"""flipTOP"""
+	flop : Par
+	"""Menu : Flops the image. Flop is a combination of a flip and a rotation. The X resolution becomes the Y resolution. The Y becomes the X.	
+			
+* No Flop - No flop performed.			
+* Bottom Left - The image is flipped in X and then rotated 90 degrees clockwise.			
+* Top Left - The image is flipped in X and then rotated 90 degrees counter-clockwise."""
+	par : parameter.flipTOP
+	"""Parameters of parameter.flipTOP"""
+	pass
+
+
+class functionTOP():
+	"""functionTOP"""
+	rerange1 : Par
+	"""Applies a scale and shift to the input values before the function is calculated i.e. input = (input * rerange2) + rerange1. '''Note:''' This feature only affects integer texture formats and is not used on floating point formats."""
+	rerange2 : Par
+	"""Applies a scale and shift to the input values before the function is calculated i.e. input = (input * rerange2) + rerange1. '''Note:''' This feature only affects integer texture formats and is not used on floating point formats."""
+	funcrgba : Par
+	"""Menu : Applies the selected function to the R, G, B, and A channels."""
+	funcrgb : Par
+	"""Menu : Applies the selected function to the R, G, and B channels."""
+	funcr : Par
+	"""Menu : Applies the selected function to the R (red) channel."""
+	funcg : Par
+	"""Menu : Applies the selected function to the G (green) channel."""
+	funcb : Par
+	"""Menu : Applies the selected function to the B (blue) channel."""
+	funca : Par
+	"""Menu : Applies the selected function to the A (alpha) channel."""
+	angunit : Par
+	"""Menu : Determines whether the input values are measured in degrees, radians, etc for functions that require an angle input e.g. sine, cosine, etc."""
+	par : parameter.functionTOP
+	"""Parameters of parameter.functionTOP"""
+	pass
+
+
+class glslmultiTOP():
+	"""glslmultiTOP"""
+	glslversion : Par
+	"""Menu : Pick what version of GLSL to compile the shader with."""
+	mode : Par
+	"""Menu : Choose what type of shader you are writing, vertex/pixel shader, or a compute shader."""
+	dispatchsizex : Par
+	"""The dispatch size to use when executing a compute shader."""
+	dispatchsizey : Par
+	"""The dispatch size to use when executing a compute shader."""
+	dispatchsizez : Par
+	"""The dispatch size to use when executing a compute shader."""
+	outputaccess : Par
+	"""Menu : Controls how the output textures will be accessed. If the textures will be read from (such as using previous frame's values), then the access should be changed to Read-Write instead of Write Only."""
+	type : Par
+	"""Menu : Specify what type of texture to create. When creating  a 3D texture the TOP will render once for every slice of the output. Refer to [[Write a GLSL TOP#3D Textures and 2D Texture Arrays | 3D Textures and 2D Texture Arrays]] for more info."""
+	depth : Par
+	"""Menu : Set the depth of the 3D texture from the '''Input''' or the '''Custom Depth''' parameter."""
+	clearvaluer : Par
+	""""""
+	clearvalueg : Par
+	""""""
+	clearvalueb : Par
+	""""""
+	clearvaluea : Par
+	""""""
+	inputmapping : Par
+	"""Menu : Determines how the node's input(s) are passed into the shader for use when creating a 3D Texture. By default all of the inputs are passed to each slice. When using the '''N inputs per Slice''' mode, the first N inputs are passed to the first slice, the next N inputs are passed the second slice, and so on. When it runs out of inputs it loops back to the first input. N is selected by the parameter '''N Value'''."""
+	inputextenduv : Par
+	"""Menu : Controls what is returned from your texture sampling functions when the U and V texture coordinates (called S and T in the shader) are outside [0-1] range."""
+	inputextendw : Par
+	"""Menu : Controls what is returned from your texture sampling functions when the W texture coordinate (called W in the shader) are outside [0-1] range. Only useful for [[3D Texture]]."""
+	value0x : Par
+	"""The value(s) to give the uniform."""
+	value0y : Par
+	"""The value(s) to give the uniform."""
+	value0z : Par
+	"""The value(s) to give the uniform."""
+	value0w : Par
+	"""The value(s) to give the uniform."""
+	chopunitype0 : Par
+	"""Menu : The data type of the uniform in the shader."""
+	choparraytype0 : Par
+	"""Menu : The type of the uniform."""
+	acinitval0 : Par
+	"""Menu : Specifies how the atomic counters receive their initial value, either through a single default value or a CHOP."""
+	par : parameter.glslmultiTOP
+	"""Parameters of parameter.glslmultiTOP"""
+	pass
+
+
+class glslTOP():
+	"""glslTOP"""
+	glslversion : Par
+	"""Menu : Pick what version of GLSL to compile the shader with."""
+	mode : Par
+	"""Menu : Choose what type of shader you are writing, vertex/pixel shader, or a compute shader."""
+	dispatchsizex : Par
+	"""The dispatch size to use when executing a compute shader."""
+	dispatchsizey : Par
+	"""The dispatch size to use when executing a compute shader."""
+	dispatchsizez : Par
+	"""The dispatch size to use when executing a compute shader."""
+	outputaccess : Par
+	"""Menu : Controls how the output textures will be accessed. If the textures will be read from (such as using previous frame's values), then the access should be changed to Read-Write instead of Write Only."""
+	type : Par
+	"""Menu : Specify what type of texture to create. When creating  a 3D texture the TOP will render once for every slice of the output. Refer to [[Write a GLSL TOP#3D Textures and 2D Texture Arrays | 3D Textures and 2D Texture Arrays]] for more info."""
+	depth : Par
+	"""Menu : Set the depth of the 3D texture from the '''Input''' or the '''Custom Depth''' parameter."""
+	clearvaluer : Par
+	"""The color value to clear all pixels to at the start of the cook."""
+	clearvalueg : Par
+	"""The color value to clear all pixels to at the start of the cook."""
+	clearvalueb : Par
+	"""The color value to clear all pixels to at the start of the cook."""
+	clearvaluea : Par
+	"""The color value to clear all pixels to at the start of the cook."""
+	inputmapping : Par
+	"""Menu : Determines how the node's input(s) are passed into the shader for use when creating a 3D Texture. By default all of the inputs are passed to each slice. When using the '''N inputs per Slice''' mode, the first N inputs are passed to the first slice, the next N inputs are passed the second slice, and so on. When it runs out of inputs it loops back to the first input. N is selected by the parameter '''N Value'''."""
+	inputextenduv : Par
+	"""Menu : Controls what is returned from your texture sampling functions when the U and V texture coordinates (called S and T in the shader) are outside [0-1] range."""
+	inputextendw : Par
+	"""Menu : Controls what is returned from your texture sampling functions when the W texture coordinate (called W in the shader) are outside [0-1] range. Only useful for [[3D Texture]]."""
+	value0x : Par
+	"""The value(s) to give the uniform."""
+	value0y : Par
+	"""The value(s) to give the uniform."""
+	value0z : Par
+	"""The value(s) to give the uniform."""
+	value0w : Par
+	"""The value(s) to give the uniform."""
+	chopunitype0 : Par
+	"""Menu : The data type of the uniform in the shader."""
+	choparraytype0 : Par
+	"""Menu : The type of the uniform."""
+	acinitval0 : Par
+	"""Menu : Specifies how the atomic counters receive their initial value, either through a single default value or a CHOP."""
+	par : parameter.glslTOP
+	"""Parameters of parameter.glslTOP"""
+	pass
+
+
+class hsvadjustTOP():
+	"""hsvadjustTOP"""
+	startcolorr : Par
+	"""The start color is the hue that the HSV adjustment is centered around. When adjusting a small hue range, this is the color that will be altered. In the example image above, the Start Color color is cyan with a hue value of 180."""
+	startcolorg : Par
+	"""The start color is the hue that the HSV adjustment is centered around. When adjusting a small hue range, this is the color that will be altered. In the example image above, the Start Color color is cyan with a hue value of 180."""
+	startcolorb : Par
+	"""The start color is the hue that the HSV adjustment is centered around. When adjusting a small hue range, this is the color that will be altered. In the example image above, the Start Color color is cyan with a hue value of 180."""
+	par : parameter.hsvadjustTOP
+	"""Parameters of parameter.hsvadjustTOP"""
+	pass
+
+
+class hsvtorgbTOP():
+	"""hsvtorgbTOP"""
+	par : parameter.hsvtorgbTOP
+	"""Parameters of parameter.hsvtorgbTOP"""
+	pass
+
+
+class importselectTOP():
+	"""importselectTOP"""
+	par : parameter.importselectTOP
+	"""Parameters of parameter.importselectTOP"""
+	pass
+
+
+class inTOP():
+	"""inTOP"""
+	par : parameter.inTOP
+	"""Parameters of parameter.inTOP"""
+	pass
+
+
+class insideTOP():
+	"""insideTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]."""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.insideTOP
+	"""Parameters of parameter.insideTOP"""
+	pass
+
+
+class kinectazureselectTOP():
+	"""kinectazureselectTOP"""
+	image : Par
+	"""Menu : A list of available image types to capture from the device and display in this TOP. All image types have a second version that is mapped (aligned) to the image space of the other camera so that color and depth image data can be matched. The resolution of the image is controlled by the Color Resolution or Depth Mode parameters of the primary [[Kinect Azure TOP]]."""
+	par : parameter.kinectazureselectTOP
+	"""Parameters of parameter.kinectazureselectTOP"""
+	pass
+
+
 class kinectazureTOP():
 	"""kinectazureTOP"""
 	fps5 : Par
@@ -997,6 +1757,68 @@ class kinectazureTOP():
 	pass
 
 
+class kinectTOP():
+	"""kinectTOP"""
+	hwversion : Par
+	"""Menu : Choose between Kinect  v1 or Kinect v2 sensors."""
+	image : Par
+	"""Menu : Selects between the Color, Depth, Infrared, Player Index, or Color Point Cloud modes."""
+	camerares : Par
+	"""Menu : Only used for Kinect 1 devices. Selects the resolution of the camera capture."""
+	skeleton : Par
+	"""Menu : Only used for Kinect 1 devices. Specify whether to track full skeleton or seated skeleton."""
+	unknownpointvalue : Par
+	"""Menu : When using the 'Color Point Cloud' some pixel's position can not be determined. This parameter controls what value to assign those pixels instead."""
+	par : parameter.kinectTOP
+	"""Parameters of parameter.kinectTOP"""
+	pass
+
+
+class layoutTOP():
+	"""layoutTOP"""
+	align : Par
+	"""Menu : The menu determines how the inputs are laid out, in row, column , or grid format."""
+	fit : Par
+	"""Menu : Determines how the input images are fit to the space they are given. Depending on the setting, it will either fit the entire image inside the space given or crop some of the image off."""
+	bcolorr : Par
+	"""The color of the border around each input."""
+	bcolorg : Par
+	"""The color of the border around each input."""
+	bcolorb : Par
+	"""The color of the border around each input."""
+	bcolora : Par
+	"""The color of the border around each input."""
+	bordersl : Par
+	"""The border width for each input. The borders will scale down the input."""
+	bordersr : Par
+	"""The border width for each input. The borders will scale down the input."""
+	bordersb : Par
+	"""The border width for each input. The borders will scale down the input."""
+	borderst : Par
+	"""The border width for each input. The borders will scale down the input."""
+	bgcolorr : Par
+	"""Color and alpha for the space not covered by the input images."""
+	bgcolorg : Par
+	"""Color and alpha for the space not covered by the input images."""
+	bgcolorb : Par
+	"""Color and alpha for the space not covered by the input images."""
+	bgcolora : Par
+	"""Color and alpha for the space not covered by the input images."""
+	xord : Par
+	"""Menu : The menu attached to this parameter allows you to specify the order in which the changes to your inputs will take place. Changing the Transform order will change where things go much the same way as going a block and turning east gets you to a different place than turning east and then going a block."""
+	tx : Par
+	"""The two fields for Translate allows you to specify transforms in x and y axes for each input image."""
+	ty : Par
+	"""The two fields for Translate allows you to specify transforms in x and y axes for each input image."""
+	sx : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes for each input image."""
+	sy : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes for each input image."""
+	par : parameter.layoutTOP
+	"""Parameters of parameter.layoutTOP"""
+	pass
+
+
 class leapmotionTOP():
 	"""leapmotionTOP"""
 	api : Par
@@ -1005,6 +1827,238 @@ class leapmotionTOP():
 	"""Menu : Switches the device to '''H'''ead '''M'''ounted '''D'''isplay mode."""
 	par : parameter.leapmotionTOP
 	"""Parameters of parameter.leapmotionTOP"""
+	pass
+
+
+class lensdistortTOP():
+	"""lensdistortTOP"""
+	center1 : Par
+	"""The position in the image that should be the center of the distortion. Depending on the unit mode selected, the position can be entered as an absolute position measured from the bottom-left corner, or as a relative position measured from the center of the image. The unit mode also controls whether the position is measured in pixels or normalized coordinates."""
+	center2 : Par
+	"""The position in the image that should be the center of the distortion. Depending on the unit mode selected, the position can be entered as an absolute position measured from the bottom-left corner, or as a relative position measured from the center of the image. The unit mode also controls whether the position is measured in pixels or normalized coordinates."""
+	centerunit : Par
+	"""Menu : """
+	focallength1 : Par
+	"""The focal length components of the camera matrix descibed either as normalized resolution-independent values or as pixels. The focal length acts as a scalar on the other distortion parameters. The normalized unit mode can be used for systems that use millimeters or other physical units. Often abbreviated as Fx and Fy. See [https://docs.opencv.org/master/dc/dbb/tutorial_py_calibration.html OpenCV] for details."""
+	focallength2 : Par
+	"""The focal length components of the camera matrix descibed either as normalized resolution-independent values or as pixels. The focal length acts as a scalar on the other distortion parameters. The normalized unit mode can be used for systems that use millimeters or other physical units. Often abbreviated as Fx and Fy. See [https://docs.opencv.org/master/dc/dbb/tutorial_py_calibration.html OpenCV] for details."""
+	focallengthunit : Par
+	"""Menu : """
+	layout : Par
+	"""Menu : Determines how the transformed image is arranged inside the final output image space. This value can be useful to preserve the native pixel resolution of the input image, or ensuring a final output resolution and aspect ratio."""
+	extendmode : Par
+	"""Menu : Determines what values are used when the output image exceeds the bounds of the input image."""
+	transformmode : Par
+	"""Menu : Choose whether to preform an addition transformation to the image after the lens distortion is applied. This is useful for positioning and scaling the distorted image within the final image frame and can be used to preserve parts of the input image that would be shifted out of frame by the distortion."""
+	newcenter1 : Par
+	"""A new optical center position that allows for shifting the transformed image within the output image frame. Using the same value as the Optical Center parameter will result in no post distortion offset. Using the Optimal Center value will produce the same results as the Optimal transform mode."""
+	newcenter2 : Par
+	"""A new optical center position that allows for shifting the transformed image within the output image frame. Using the same value as the Optical Center parameter will result in no post distortion offset. Using the Optimal Center value will produce the same results as the Optimal transform mode."""
+	newcenterunit : Par
+	"""Menu : Determines how the new center values are interpreted."""
+	newfocallength1 : Par
+	"""A new focal length that allows for scaling the transformed image relative to output image frame. Using the same value as the Focal Lengths parameter will result in no post distortion scaling. Using the Optimal Focal Length value will produce the same results as the Optimal transform mode."""
+	newfocallength2 : Par
+	"""A new focal length that allows for scaling the transformed image relative to output image frame. Using the same value as the Focal Lengths parameter will result in no post distortion scaling. Using the Optimal Focal Length value will produce the same results as the Optimal transform mode."""
+	newfocallengthunit : Par
+	"""Menu : """
+	centeroffset1 : Par
+	"""Shifts the distorted image within the output image frame."""
+	centeroffset2 : Par
+	"""Shifts the distorted image within the output image frame."""
+	centeroffsetunit : Par
+	"""Menu : """
+	scale1 : Par
+	"""Performs an additional post-distortion scale on the image. The scale is relative to the original camera matrix, so values greater than 1 will stretch the image, while values less than 1 will shrink it."""
+	scale2 : Par
+	"""Performs an additional post-distortion scale on the image. The scale is relative to the original camera matrix, so values greater than 1 will stretch the image, while values less than 1 will shrink it."""
+	cropmode : Par
+	"""Menu : Crop the transformed image so that only part of the image will appear in the final output. Unless a custom resolution is given, the cropped region will be used to determine the final output resolution."""
+	cropregionx : Par
+	"""Defines a custom cropping region in the order of Left, Bottom, Right, Top. The values can either be as a fraction of the image (0-1) or as pixels of the input image size. Entering the ROI values from an attached Info CHOP will produce the same results as using the Region of Interest cropping mode."""
+	cropregiony : Par
+	"""Defines a custom cropping region in the order of Left, Bottom, Right, Top. The values can either be as a fraction of the image (0-1) or as pixels of the input image size. Entering the ROI values from an attached Info CHOP will produce the same results as using the Region of Interest cropping mode."""
+	cropregionz : Par
+	"""Defines a custom cropping region in the order of Left, Bottom, Right, Top. The values can either be as a fraction of the image (0-1) or as pixels of the input image size. Entering the ROI values from an attached Info CHOP will produce the same results as using the Region of Interest cropping mode."""
+	cropregionw : Par
+	"""Defines a custom cropping region in the order of Left, Bottom, Right, Top. The values can either be as a fraction of the image (0-1) or as pixels of the input image size. Entering the ROI values from an attached Info CHOP will produce the same results as using the Region of Interest cropping mode."""
+	cropunit : Par
+	"""Menu : The units used to interpret the values of the custom cropping region. Can be as fractions (0-1) of the image or as pixels of the input image size."""
+	scaleunit : Par
+	"""Menu : Determines how the scale values are used."""
+	par : parameter.lensdistortTOP
+	"""Parameters of parameter.lensdistortTOP"""
+	pass
+
+
+class levelTOP():
+	"""levelTOP"""
+	clampinput : Par
+	"""Toggle : This option will clamp pixel values in between 0 and 1. When using higher bit depth floating pixel formats, it is recommended to set it to Unclamped to allow the full range of values to be operated on. Auto should detect the pixel format as set accordingly."""
+	par : parameter.levelTOP
+	"""Parameters of parameter.levelTOP"""
+	pass
+
+
+class limitTOP():
+	"""limitTOP"""
+	minop : Par
+	"""Menu : The wrapping method used when applying limits to the pixel values in the image."""
+	maxop : Par
+	"""Menu : The wrapping method used when applying limits to the pixel values in the image."""
+	quantvalue : Par
+	"""Menu : The function used to quantize the pixel values in the output image."""
+	quantpos : Par
+	"""Menu : The function used for spacial quantization e.g. quantizing the UV coordinates so that pixel values are merged into larger blocks."""
+	par : parameter.limitTOP
+	"""Parameters of parameter.limitTOP"""
+	pass
+
+
+class lookupTOP():
+	"""lookupTOP"""
+	method : Par
+	"""Menu : Choose to use a line from the 2nd input (defined using UV coordinates) or CHOP values to define the lookup table."""
+	index1 : Par
+	"""The Index Range maps the index values to the lookup table's start and end and defaults to 0 and 1. The first parameter represents the start of the lookup table. When the index color has this value, it will index the start of the lookup table. The second parameter represents the end of the lookup table and behaves in the same way. '''Note:''' When the index goes outside of this range, it will '''hold''' on the first or last value of the lookup table."""
+	index2 : Par
+	"""The Index Range maps the index values to the lookup table's start and end and defaults to 0 and 1. The first parameter represents the start of the lookup table. When the index color has this value, it will index the start of the lookup table. The second parameter represents the end of the lookup table and behaves in the same way. '''Note:''' When the index goes outside of this range, it will '''hold''' on the first or last value of the lookup table."""
+	index1 : Par
+	"""The Index Range maps the index values to the lookup table's start and end and defaults to 0 and 1. The first parameter represents the start of the lookup table. When the index color has this value, it will index the start of the lookup table. The second parameter represents the end of the lookup table and behaves in the same way. '''Note:''' When the index goes outside of this range, it will '''hold''' on the first or last value of the lookup table."""
+	index2 : Par
+	"""The Index Range maps the index values to the lookup table's start and end and defaults to 0 and 1. The first parameter represents the start of the lookup table. When the index color has this value, it will index the start of the lookup table. The second parameter represents the end of the lookup table and behaves in the same way. '''Note:''' When the index goes outside of this range, it will '''hold''' on the first or last value of the lookup table."""
+	channel : Par
+	"""Menu : The Index Channel controls how the color from the input is turned into a index to do the lookup. By default, the RGBA Independent option will do a separate lookup in each channel i.e. the red output channel will be based on the red value in the lookup table and the red value in the index image. For other options, like Luminance or RGBA Average, a single index value is calculated from the index color and all channels of the output image will be taken from the same pixel of the lookup table at the given index."""
+	darkuv1 : Par
+	"""Set the UV position to use for dark end of the lookup table. In the original image connected to the first input, any pixel with a value of (0,0,0) will be replaced by the value found at this UV position in the image connected to the second input."""
+	darkuv2 : Par
+	"""Set the UV position to use for dark end of the lookup table. In the original image connected to the first input, any pixel with a value of (0,0,0) will be replaced by the value found at this UV position in the image connected to the second input."""
+	darkuvunit : Par
+	"""Menu : """
+	lightuv1 : Par
+	"""Set the UV position to use for light end of the lookup table. In the original image connected to the first input, any pixel with a value of (1,1,1) will be replaced by the value found at this UV position in the image connected to the second input."""
+	lightuv2 : Par
+	"""Set the UV position to use for light end of the lookup table. In the original image connected to the first input, any pixel with a value of (1,1,1) will be replaced by the value found at this UV position in the image connected to the second input."""
+	lightuvunit : Par
+	"""Menu : """
+	par : parameter.lookupTOP
+	"""Parameters of parameter.lookupTOP"""
+	pass
+
+
+class lumablurTOP():
+	"""lumablurTOP"""
+	type : Par
+	"""Menu : Determines the mathematical function used to create the blur."""
+	widthchan : Par
+	"""Menu : The greyscale can be any channel of the second input, or composites like luminance and RGB average."""
+	extend : Par
+	"""Menu : Sets the extend conditions to determine what happens to the blur at the edge of the image."""
+	par : parameter.lumablurTOP
+	"""Parameters of parameter.lumablurTOP"""
+	pass
+
+
+class lumalevelTOP():
+	"""lumalevelTOP"""
+	source : Par
+	"""Menu : Determines the source of the image that is adjusted by the parameters. The output is determined by: 	
+ <code>InColor * 1/Source * Lookup(Source)</code> 			
+Lookup is the lookup table build by the parameter settings in the TOP."""
+	par : parameter.lumalevelTOP
+	"""Parameters of parameter.lumalevelTOP"""
+	pass
+
+
+class mathTOP():
+	"""mathTOP"""
+	preop : Par
+	"""Menu : A menu of unary operations that are performed on each channel as it comes in to the Math TOP include:"""
+	chanop : Par
+	"""Menu : A choice of operations is performed between the channels of the input TOP. Input and output channels are selected by the 'Combine Channels Input' and 'Combine Channels Output' parameters below. The Nth pixel of one channel is combined with the Nth pixel of other channels."""
+	postop : Par
+	"""Menu : A menu (same as Channel Pre OP) is performed as the finale stage upon the channels resulting from the above operations."""
+	integer : Par
+	"""Menu : The resulting values can be converted to integers."""
+	op : Par
+	"""Menu : The math operation performed."""
+	fromrange1 : Par
+	"""Working on all channels, converts the specified From Range (low-high range) into the To Range below."""
+	fromrange2 : Par
+	"""Working on all channels, converts the specified From Range (low-high range) into the To Range below."""
+	torange1 : Par
+	"""Working on all channels, converts the specified From Range (low-high range) above into this To Range."""
+	torange2 : Par
+	"""Working on all channels, converts the specified From Range (low-high range) above into this To Range."""
+	fromranger1 : Par
+	"""Working on the red channel, converts the specified From Range (low-high range) into the To Range below."""
+	fromranger2 : Par
+	"""Working on the red channel, converts the specified From Range (low-high range) into the To Range below."""
+	toranger1 : Par
+	"""Working on the red channel, converts the specified From Range (low-high range) above into this To Range."""
+	toranger2 : Par
+	"""Working on the red channel, converts the specified From Range (low-high range) above into this To Range."""
+	fromrangeg1 : Par
+	"""Working on the green channel, converts the specified From Range (low-high range) into the To Range below."""
+	fromrangeg2 : Par
+	"""Working on the green channel, converts the specified From Range (low-high range) into the To Range below."""
+	torangeg1 : Par
+	"""Working on the green channel, converts the specified From Range (low-high range) above into this To Range."""
+	torangeg2 : Par
+	"""Working on the green channel, converts the specified From Range (low-high range) above into this To Range."""
+	fromrangeb1 : Par
+	"""Working on the blue channel, converts the specified From Range (low-high range) into the To Range below."""
+	fromrangeb2 : Par
+	"""Working on the blue channel, converts the specified From Range (low-high range) into the To Range below."""
+	torangeb1 : Par
+	"""Working on the blue channel, converts the specified From Range (low-high range) above into this To Range."""
+	torangeb2 : Par
+	"""Working on the blue channel, converts the specified From Range (low-high range) above into this To Range."""
+	fromrangea1 : Par
+	"""Working on the alpha channel, converts the specified From Range (low-high range) into the To Range below."""
+	fromrangea2 : Par
+	"""Working on the alpha channel, converts the specified From Range (low-high range) into the To Range below."""
+	torangea1 : Par
+	"""Working on the alpha channel, converts the specified From Range (low-high range) above into this To Range."""
+	torangea2 : Par
+	"""Working on the alpha channel, converts the specified From Range (low-high range) above into this To Range."""
+	par : parameter.mathTOP
+	"""Parameters of parameter.mathTOP"""
+	pass
+
+
+class matteTOP():
+	"""matteTOP"""
+	mattechannel : Par
+	"""Menu : Select which channel from input3 is used to create the matte."""
+	par : parameter.matteTOP
+	"""Parameters of parameter.matteTOP"""
+	pass
+
+
+class mirrorTOP():
+	"""mirrorTOP"""
+	pivotx : Par
+	"""The pivot point determines where in the image the Rotate parameter will rotate around."""
+	pivoty : Par
+	"""The pivot point determines where in the image the Rotate parameter will rotate around."""
+	pivotunit : Par
+	"""nolabel shortvalues dropmenu : Specify the units used to position the pivot point."""
+	extend : Par
+	"""dropmenu : This parameter determines what happens at the edge of the image."""
+	par : parameter.mirrorTOP
+	"""Parameters of parameter.mirrorTOP"""
+	pass
+
+
+class monochromeTOP():
+	"""monochromeTOP"""
+	rgb : Par
+	"""Menu : This menu selects how the monochrome conversion is calculated for the RGB channels."""
+	alpha : Par
+	"""Menu : This menu selects how the monochrome conversion is calculated for the alpha channel."""
+	par : parameter.monochromeTOP
+	"""Parameters of parameter.monochromeTOP"""
 	pass
 
 
@@ -1054,6 +2108,202 @@ class moviefileinTOP():
 	pass
 
 
+class moviefileoutTOP():
+	"""moviefileoutTOP"""
+	type : Par
+	"""Menu : Output either a movie, image, image sequence, or stop-frame movie."""
+	videocodec : Par
+	"""Menu : Select the video compression codec used to encode the movie."""
+	imagefiletype : Par
+	"""Menu : Choose what file type to use when <span class="tipTextTOP">Type</span> is set to Image."""
+	moviepixelformat : Par
+	"""Menu : Options for the pixel format based on the <span class="tipTextTOP">Video Codec</span> selected."""
+	audiocodec : Par
+	"""Menu : Select the audio compression codec used to encode the audio."""
+	audiobitrate : Par
+	"""Menu : The bitrate to write the audio out at."""
+	profile : Par
+	"""Menu : Select the H.264 profile to use."""
+	preset : Par
+	"""Menu : Select from the available presets."""
+	bitratemode : Par
+	"""Menu : Select between Constant or Variable bit rate, and regular or high quality bit rate modes."""
+	motionpredict : Par
+	"""Menu : This setting can effect the final size of the compressed video but depends greatly on the complexity of the scene being encoded. The menu entries refers to the distance between pixels (quarter distance, half distance, or full distance which is a full pixel) as the motion vector precision for motion estimation during video compression. Quarter pixel precision can increase the quality of the motion prediction signal over half pixel precision, and this can sometimes result in better overall size compression if the improved prediction signal can offset the additional bits it takes to encode the higher precision motion vectors."""
+	entropymode : Par
+	"""Menu : Select the EntropyMode to use for H.264."""
+	par : parameter.moviefileoutTOP
+	"""Parameters of parameter.moviefileoutTOP"""
+	pass
+
+
+class multiplyTOP():
+	"""multiplyTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]"""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.multiplyTOP
+	"""Parameters of parameter.multiplyTOP"""
+	pass
+
+
+class ncamTOP():
+	"""ncamTOP"""
+	output : Par
+	"""Menu : Select what type of output this TOP should produce. Some output modes like 'Composite' and 'Distort Input' require an input image from another TOP. Not all image streams may be available from the Ncam server. If a stream is not available, the TOP will produce an error."""
+	par : parameter.ncamTOP
+	"""Parameters of parameter.ncamTOP"""
+	pass
+
+
+class ndiinTOP():
+	"""ndiinTOP"""
+	bandwidth : Par
+	"""Menu : Choose High or Low bandwidth option."""
+	inputpixelformat : Par
+	"""Menu : Choose Native or 8-bit pixel format."""
+	par : parameter.ndiinTOP
+	"""Parameters of parameter.ndiinTOP"""
+	pass
+
+
+class ndioutTOP():
+	"""ndioutTOP"""
+	lowperformancebehavior : Par
+	"""Menu : When the NDI sending thread isn't able to keep up due to insufficient system resources (usually available CPU time), this controls the resulting behavior of the node."""
+	outputpixelformat : Par
+	"""Menu : Controls the pixel format the output is encoded into."""
+	par : parameter.ndioutTOP
+	"""Parameters of parameter.ndioutTOP"""
+	pass
+
+
+class noiseTOP():
+	"""noiseTOP"""
+	type : Par
+	"""Menu : The noise function used to generate noise. The functions available are:"""
+	xord : Par
+	"""Menu : The menu attached to this parameter allows you to specify the order in which the transforms will take place. Changing the Transform order will change where things go much the same way as going a block and turning east gets you to a different place than turning east and then going a block."""
+	rord : Par
+	"""Menu : The rotational matrix presented when you click on this option allows you to set the transform order for the rotations. As with transform order (above), changing the order in which the rotations take place will alter the final position."""
+	tx : Par
+	"""Translate the sampling plane through the noise space."""
+	ty : Par
+	"""Translate the sampling plane through the noise space."""
+	tz : Par
+	"""Translate the sampling plane through the noise space."""
+	rx : Par
+	"""Rotate the sampling plane in the noise space."""
+	ry : Par
+	"""Rotate the sampling plane in the noise space."""
+	rz : Par
+	"""Rotate the sampling plane in the noise space."""
+	sx : Par
+	"""Scale the sampling plane."""
+	sy : Par
+	"""Scale the sampling plane."""
+	sz : Par
+	"""Scale the sampling plane."""
+	px : Par
+	"""Control the pivot for the transform of the sampling plane."""
+	py : Par
+	"""Control the pivot for the transform of the sampling plane."""
+	pz : Par
+	"""Control the pivot for the transform of the sampling plane."""
+	rgb : Par
+	"""Menu : When an input is connected to the Noise TOP, the noise pattern is placed over the input image using UV coordinates and the settings from this menu."""
+	alpha : Par
+	"""Menu : Sets the alpha channel for the output image."""
+	par : parameter.noiseTOP
+	"""Parameters of parameter.noiseTOP"""
+	pass
+
+
+class normalmapTOP():
+	"""normalmapTOP"""
+	source : Par
+	"""Menu : This menu selects how the edges in the image are found. The edges will appear raised or depressed in the output image depending on their slope."""
+	method : Par
+	"""Menu : Determines what pixels to use when calculating the slope at each pixel in the image."""
+	offset1 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	offset2 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	par : parameter.normalmapTOP
+	"""Parameters of parameter.normalmapTOP"""
+	pass
+
+
+class notchTOP():
+	"""notchTOP"""
+	playmode : Par
+	"""Menu : A menu to specify the method used for playback of the block."""
+	indexunit : Par
+	"""Menu : Sets the units used in the Index parameter."""
+	par : parameter.notchTOP
+	"""Parameters of parameter.notchTOP"""
+	pass
+
+
+class nullTOP():
+	"""nullTOP"""
+	par : parameter.nullTOP
+	"""Parameters of parameter.nullTOP"""
+	pass
+
+
+class nvidiabackgroundTOP():
+	"""nvidiabackgroundTOP"""
+	gpu : Par
+	"""Menu : Select the GPU device to run the AI models on. The GPU must be a Nvidia RTX compatible card."""
+	mode : Par
+	"""Menu : Choose which mode to run the AI model in."""
+	par : parameter.nvidiabackgroundTOP
+	"""Parameters of parameter.nvidiabackgroundTOP"""
+	pass
+
+
+class nvidiadenoiseTOP():
+	"""nvidiadenoiseTOP"""
+	gpu : Par
+	"""Menu : Select the GPU device to run the AI models on. The GPU must be a Nvidia RTX compatible card."""
+	mode : Par
+	"""Menu : Choose the type of noise to remove from the source image."""
+	strength : Par
+	"""Menu : Choose how much noise to remove from the image. Removing more noise may also remove original details from the source."""
+	par : parameter.nvidiadenoiseTOP
+	"""Parameters of parameter.nvidiadenoiseTOP"""
+	pass
+
+
+class flexTOP():
+	"""flexTOP"""
+	output : Par
+	"""Menu : The simulation data to return."""
+	par : parameter.flexTOP
+	"""Parameters of parameter.flexTOP"""
+	pass
+
+
 class flowTOP():
 	"""flowTOP"""
 	simpositionx : Par
@@ -1090,6 +2340,210 @@ class nvidiaupscalerTOP():
 	pass
 
 
+class oakselectTOP():
+	"""oakselectTOP"""
+	outputindexunit : Par
+	"""Menu : """
+	outputformat : Par
+	"""Menu : TouchDesigner can apply basic image-processing that depthai does not yet do. For example, if the Output Format is "Point Cloud", the stream is a depth stream, and the stream name contains "depth", then the image in the OAK Select will be a 32-bit XYZ point cloud derived from the depth image and the camera's intrinsic matrix."""
+	par : parameter.oakselectTOP
+	"""Parameters of parameter.oakselectTOP"""
+	pass
+
+
+class oculusriftTOP():
+	"""oculusriftTOP"""
+	debugperfhud : Par
+	"""Menu : Select what will be displayed in the debug HUD in the headset."""
+	par : parameter.oculusriftTOP
+	"""Parameters of parameter.oculusriftTOP"""
+	pass
+
+
+class opviewerTOP():
+	"""opviewerTOP"""
+	par : parameter.opviewerTOP
+	"""Parameters of parameter.opviewerTOP"""
+	pass
+
+
+class opencolorioTOP():
+	"""opencolorioTOP"""
+	interpolation : Par
+	"""Menu : Interpolation method of the file."""
+	filedirection : Par
+	"""Menu : The direction of the transform. To invert the transform, select Inverse."""
+	cdlmode : Par
+	"""Menu : Color Decision List - Select this transform's effect on the image, either manually using parameter values or using a color correction file (.cc). https://en.wikipedia.org/wiki/ASC_CDL"""
+	slopex : Par
+	"""Adjust the gain."""
+	slopey : Par
+	"""Adjust the gain."""
+	slopez : Par
+	"""Adjust the gain."""
+	offsetx : Par
+	"""Adjust the offset."""
+	offsety : Par
+	"""Adjust the offset."""
+	offsetz : Par
+	"""Adjust the offset."""
+	powerx : Par
+	"""Adjust the gamma."""
+	powery : Par
+	"""Adjust the gamma."""
+	powerz : Par
+	"""Adjust the gamma."""
+	cdldirection : Par
+	"""Menu : The direction of the transform. To invert the transform, select Inverse."""
+	par : parameter.opencolorioTOP
+	"""Parameters of parameter.opencolorioTOP"""
+	pass
+
+
+class openvrTOP():
+	"""openvrTOP"""
+	par : parameter.openvrTOP
+	"""Parameters of parameter.openvrTOP"""
+	pass
+
+
+class opticalflowTOP():
+	"""opticalflowTOP"""
+	gridsize : Par
+	"""Menu : Determines the output resolution. A smaller grid corresponds to a larger output image. [https://en.wikipedia.org/wiki/Turing_(microarchitecture) Turing GPUs] only support `4x4`, whereas newer GPUs can use any option."""
+	quality : Par
+	"""Menu : Specify the optical flow model. Higher quality is slower to compute, and low quality is faster to compute."""
+	gainx : Par
+	"""A post-multiply for the optical flow in the RG channels, allowing control of output intensity."""
+	gainy : Par
+	"""A post-multiply for the optical flow in the RG channels, allowing control of output intensity."""
+	par : parameter.opticalflowTOP
+	"""Parameters of parameter.opticalflowTOP"""
+	pass
+
+
+class ousterselectTOP():
+	"""ousterselectTOP"""
+	layout : Par
+	"""Menu : Use this parameter to determine how data is arranged in the output image. The layout of data is generally not important when used as a point cloud."""
+	redchannel : Par
+	"""Menu : Select what sensor data will be placed into the red channel of the output image."""
+	greenchannel : Par
+	"""Menu : Select what sensor data will be placed into the green channel of the output image."""
+	bluechannel : Par
+	"""Menu : Select what sensor data will be placed into the blue channel of the output image."""
+	alphachannel : Par
+	"""Menu : Select what sensor data will be placed into the alpha channel of the output image."""
+	par : parameter.ousterselectTOP
+	"""Parameters of parameter.ousterselectTOP"""
+	pass
+
+
+class ousterTOP():
+	"""ousterTOP"""
+	scanmode : Par
+	"""Menu : Select a scanning mode to set the sensor's horizontal resolution and number of revolutions per second. The vertical resolution is determined by the hardware e.g. an OS1-64 sensor has vertical resolution of 64 pixels (samples)."""
+	layout : Par
+	"""Menu : Use this parameter to determine how data is arranged in the output image. The layout of data is generally not important when used as a point cloud."""
+	redchannel : Par
+	"""Menu : Select what sensor data will be placed into the red channel of the output image."""
+	greenchannel : Par
+	"""Menu : Select what sensor data will be placed into the green channel of the output image."""
+	bluechannel : Par
+	"""Menu : Select what sensor data will be placed into the blue channel of the output image."""
+	alphachannel : Par
+	"""Menu : Select what sensor data will be placed into the alpha channel of the output image."""
+	timemode : Par
+	"""Menu : Select how the sensor generates timestamp information."""
+	pulseinpolarity : Par
+	"""Menu : The polarity of the SYNC_PULSE_IN signal to use."""
+	iomode : Par
+	"""Menu : Determines how the sensor uses the SYNC_PULSE_OUT signal."""
+	pulseoutpolarity : Par
+	"""Menu : Polarity of the output signal pulse."""
+	nmeainpolarity : Par
+	"""Menu : Sets the polarity of the NMEA URT input $GPRMC messages. Set to 'Active High' if UART is active high, idle low, and the start bit is after a falling edge."""
+	nmeabaudrate : Par
+	"""Menu : The baud rate for the incoming NMEA URT input $GPRMC messages."""
+	par : parameter.ousterTOP
+	"""Parameters of parameter.ousterTOP"""
+	pass
+
+
+class outTOP():
+	"""outTOP"""
+	par : parameter.outTOP
+	"""Parameters of parameter.outTOP"""
+	pass
+
+
+class outsideTOP():
+	"""outsideTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]"""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.outsideTOP
+	"""Parameters of parameter.outsideTOP"""
+	pass
+
+
+class overTOP():
+	"""overTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]"""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.overTOP
+	"""Parameters of parameter.overTOP"""
+	pass
+
+
+class packTOP():
+	"""packTOP"""
+	packtype : Par
+	"""Menu : Controls the direction and behavior of the packing/unpacking."""
+	par : parameter.packTOP
+	"""Parameters of parameter.packTOP"""
+	pass
+
+
 class photoshopinTOP():
 	"""photoshopinTOP"""
 	imageformat : Par
@@ -1098,6 +2552,676 @@ class photoshopinTOP():
 	"""Menu : Determines how the image is updated."""
 	par : parameter.photoshopinTOP
 	"""Parameters of parameter.photoshopinTOP"""
+	pass
+
+
+class pointfileinTOP():
+	"""pointfileinTOP"""
+	red : Par
+	"""Menu : Select one of the available point data channels to place it into the red channel of the output image. Selecting One or Zero will place the constance value into the output channel."""
+	green : Par
+	"""Menu : Select one of the available point data channels to place it into the green channel of the output image. Selecting One or Zero will place the constance value into the output channel."""
+	blue : Par
+	"""Menu : Select one of the available point data channels to place it into the blue channel of the output image. Selecting One or Zero will place the constance value into the output channel."""
+	alpha : Par
+	"""Menu : Select one of the available point data channels to place it into the alpha channel of the output image. Selecting One or Zero will place the constance value into the output channel."""
+	playmode : Par
+	"""Menu : Specifies the method used to play the animation, there are 3 options."""
+	cuepointunit : Par
+	"""Menu : """
+	cuebehavior : Par
+	"""Menu : """
+	indexunit : Par
+	"""Menu : """
+	loopcrossfadeunit : Par
+	"""Menu : """
+	audioloop : Par
+	"""Menu : This menu helps you determine how to treat the audio as the end of an animation approaches. This is needed because in some cases of playing an animation, like when driving with an index, the TOP will not know if you intend to loop it or not."""
+	imageindexing : Par
+	"""Menu : Determines how a file sequence is ordered."""
+	loadingerrorimage : Par
+	"""Menu : """
+	tstartunit : Par
+	"""Menu : """
+	tendunit : Par
+	"""Menu : """
+	textendleft : Par
+	"""Menu : Determines how the Point File In TOP handles animation positions that lie before the Trim Start position. For example, if Trim Start is set to 1, and the animation's current index is -10, the Extend Left menu determines how the animation position is calculated."""
+	textendright : Par
+	"""Menu : Determines how the Point File In TOP handles animation positions that lie after the Trim End position. For example, if Trim End is set to 20, and the animation's current index is 25, the Extend Right menu determines how the movie position is calculated."""
+	frametimeoutstrat : Par
+	"""Menu : """
+	par : parameter.pointfileinTOP
+	"""Parameters of parameter.pointfileinTOP"""
+	pass
+
+
+class pointfileselectTOP():
+	"""pointfileselectTOP"""
+	par : parameter.pointfileselectTOP
+	"""Parameters of parameter.pointfileselectTOP"""
+	pass
+
+
+class pointtransformTOP():
+	"""pointtransformTOP"""
+	inputtype : Par
+	"""Menu : Choose if the RGB channels of the input texture should be treated as positions or vectors. Vectors will not have the translation portion of the transform applied to them, and can be normalized before and/or after the transformation is applied."""
+	xord : Par
+	"""Menu : Changes the order that the translate, rotate and scale operations are performed on the input. Analogous to how you would end up in different locations if you were to move a block and turn east, versus turning east and then moving a block.  In matrix math terms, if we use the 'multiply vector on the right' (column vector) convention, a transform order of Scale, Rotate, Translate would be written as T * R * S * Position"""
+	rord : Par
+	"""Menu : As with transform order (above), changing the order in which the rotations take place will alter the final position and orientation. A Rotation order of Rx Ry Rz would create the final rotation matrix as follows R = Rz * Ry * Rx"""
+	tx : Par
+	"""Move the input positions in the X, Y and Z axes. If the input is set to 'Vector', the translate values will have no effect."""
+	ty : Par
+	"""Move the input positions in the X, Y and Z axes. If the input is set to 'Vector', the translate values will have no effect."""
+	tz : Par
+	"""Move the input positions in the X, Y and Z axes. If the input is set to 'Vector', the translate values will have no effect."""
+	rx : Par
+	"""Rotate the input RGB values around the corresponding X, Y and Z axes. Angles are given in degrees."""
+	ry : Par
+	"""Rotate the input RGB values around the corresponding X, Y and Z axes. Angles are given in degrees."""
+	rz : Par
+	"""Rotate the input RGB values around the corresponding X, Y and Z axes. Angles are given in degrees."""
+	sx : Par
+	"""Scale the input RGB values in the corresponding X, Y and Z axes. If 'Normalize Output' is on, then all output values will be rescaled to a length of one regardless of the scale values."""
+	sy : Par
+	"""Scale the input RGB values in the corresponding X, Y and Z axes. If 'Normalize Output' is on, then all output values will be rescaled to a length of one regardless of the scale values."""
+	sz : Par
+	"""Scale the input RGB values in the corresponding X, Y and Z axes. If 'Normalize Output' is on, then all output values will be rescaled to a length of one regardless of the scale values."""
+	px : Par
+	"""The pivot is the point about which the input points or vectors are scaled and rotated. Altering the pivot point produces different results depending on the transformation performed on the object."""
+	py : Par
+	"""The pivot is the point about which the input points or vectors are scaled and rotated. Altering the pivot point produces different results depending on the transformation performed on the object."""
+	pz : Par
+	"""The pivot is the point about which the input points or vectors are scaled and rotated. Altering the pivot point produces different results depending on the transformation performed on the object."""
+	upvectorx : Par
+	"""When orienting an object towards the 'Look At' target, the Up Vector is used to determine where the positive Y axis points."""
+	upvectory : Par
+	"""When orienting an object towards the 'Look At' target, the Up Vector is used to determine where the positive Y axis points."""
+	upvectorz : Par
+	"""When orienting an object towards the 'Look At' target, the Up Vector is used to determine where the positive Y axis points."""
+	forwarddir : Par
+	"""Menu : """
+	multiplyorder : Par
+	"""Menu : Controls whether the transformation from the given CHOP is applied to the input values before or after the transformation describe by this node."""
+	weightchannel : Par
+	"""Menu : Select how to use the colors of the second input image as weights for transforming the points of the first input."""
+	weightrange1 : Par
+	"""Set the range of weight values used to control how much of the transformation is applied to a point. Points with the minimum weight will '''not''' be transformed, while points with the maximum weight will be '''fully''' transformed. A linear interpolation is applied to points with weights that fall between the minimum and maximum."""
+	weightrange2 : Par
+	"""Set the range of weight values used to control how much of the transformation is applied to a point. Points with the minimum weight will '''not''' be transformed, while points with the maximum weight will be '''fully''' transformed. A linear interpolation is applied to points with weights that fall between the minimum and maximum."""
+	alignxformorder : Par
+	"""Menu : Determines the order that align operations are performed on the input points. '''Note''': Unlike Scaling on the transform page, the alignment scale is always done relative to the center of the point cloud so that the point cloud's center does not change."""
+	alignopord : Par
+	"""Menu : """
+	aligntx : Par
+	"""Menu : Determines the final position of points along the X axis i.e. shifts values in the red channel."""
+	fromx : Par
+	"""Menu : Determines how the points are aligned relative to the dimensions of the input points."""
+	tox : Par
+	"""Menu : Determines how the final points are aligned relative to the reference node."""
+	alignty : Par
+	"""Menu : Determines the final position of points along the Y axis i.e. shifts values in the green channel."""
+	fromy : Par
+	"""Menu : Determines how the points are aligned relative to the dimensions of the input points."""
+	toy : Par
+	"""Menu : Determines how the final points are aligned relative to the reference node."""
+	aligntz : Par
+	"""Menu : Determines the final position of points along the Z axis i.e. shifts values in the blue channel."""
+	fromz : Par
+	"""Menu : Determines how the points are aligned relative to the dimensions of the input points."""
+	toz : Par
+	"""Menu : Determines how the final points are aligned relative to the reference node."""
+	alignscale : Par
+	"""Menu : The Align Scale can be used to resize the point cloud to fit inside the given bounds. Scaling can be done per axis (maintaining proportions or stretching), or on all axes."""
+	alignscalex : Par
+	"""Menu : The point cloud is resized based on its width in the X axis."""
+	alignscaley : Par
+	"""Menu : The point cloud is resized based on its height in the Y axis."""
+	alignscalez : Par
+	"""Menu : The point cloud is resized based on its depth in the Z axis."""
+	par : parameter.pointtransformTOP
+	"""Parameters of parameter.pointtransformTOP"""
+	pass
+
+
+class prefiltermapTOP():
+	"""prefiltermapTOP"""
+	output : Par
+	"""Menu : Select between calculating the PreFilter for the Diffuse Map or Specular Map."""
+	par : parameter.prefiltermapTOP
+	"""Parameters of parameter.prefiltermapTOP"""
+	pass
+
+
+class projectionTOP():
+	"""projectionTOP"""
+	input : Par
+	"""Menu : At this time the only option is a Cube Map input. You can generate a Cube Map by rendering one using the [[Render TOP]], or converting 2D images into one using the [[Cube Map TOP]]."""
+	output : Par
+	"""Menu : Select output format from the menu."""
+	rx : Par
+	"""Use this parameter to rotate the map on any axis."""
+	ry : Par
+	"""Use this parameter to rotate the map on any axis."""
+	rz : Par
+	"""Use this parameter to rotate the map on any axis."""
+	par : parameter.projectionTOP
+	"""Parameters of parameter.projectionTOP"""
+	pass
+
+
+class rampTOP():
+	"""rampTOP"""
+	color1 : Par
+	"""The color and alpha of each ramp keyframe can be set here. Select between an HSV or RGB colorpicker, or click the "+" button to open a color dialog box with predefined colors."""
+	color2 : Par
+	"""The color and alpha of each ramp keyframe can be set here. Select between an HSV or RGB colorpicker, or click the "+" button to open a color dialog box with predefined colors."""
+	color3 : Par
+	"""The color and alpha of each ramp keyframe can be set here. Select between an HSV or RGB colorpicker, or click the "+" button to open a color dialog box with predefined colors."""
+	color4 : Par
+	"""The color and alpha of each ramp keyframe can be set here. Select between an HSV or RGB colorpicker, or click the "+" button to open a color dialog box with predefined colors."""
+	type : Par
+	"""Menu : The type of ramp, choose between vertical, horizontal, radial, and circular."""
+	position1 : Par
+	"""Sets the center point for radial and circular ramps."""
+	position2 : Par
+	"""Sets the center point for radial and circular ramps."""
+	extendleft : Par
+	"""Menu : Sets the extend (or repeat) conditions of the ramp beyond the defined range. This parameter determines what happens at the edges of the ramp."""
+	extendright : Par
+	"""Menu : Sets the extend (or repeat) conditions of the ramp beyond the defined range. This parameter determines what happens at the edges of the ramp."""
+	interp : Par
+	"""Menu : Change type of interpolation between the color keyframes in the ramp."""
+	fitaspect : Par
+	"""Menu : Adjusts the fit of Radial and Circular type ramps based on aspect ratio."""
+	operand : Par
+	"""Menu : Choose which composite operation is performed from this menu. Search the web for 'blend modes' for more detailed information on the effects of each type."""
+	par : parameter.rampTOP
+	"""Parameters of parameter.rampTOP"""
+	pass
+
+
+class realsenseTOP():
+	"""realsenseTOP"""
+	model : Par
+	"""Menu : Select the model of device to use."""
+	image : Par
+	"""Menu : Select the image type to output."""
+	par : parameter.realsenseTOP
+	"""Parameters of parameter.realsenseTOP"""
+	pass
+
+
+class rectangleTOP():
+	"""rectangleTOP"""
+	sizex : Par
+	"""Width and Height of the rectangle to draw."""
+	sizey : Par
+	"""Width and Height of the rectangle to draw."""
+	centerx : Par
+	"""Coordinates of the center of the shape. (0,0) corresponds to a perfectly centered shape."""
+	centery : Par
+	"""Coordinates of the center of the shape. (0,0) corresponds to a perfectly centered shape."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the rectangle."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the rectangle."""
+	fillcolorr : Par
+	"""Color to use for the fill of the shape."""
+	fillcolorg : Par
+	"""Color to use for the fill of the shape."""
+	fillcolorb : Par
+	"""Color to use for the fill of the shape."""
+	borderr : Par
+	"""Color to use for the border of the shape."""
+	borderg : Par
+	"""Color to use for the border of the shape."""
+	borderb : Par
+	"""Color to use for the border of the shape."""
+	bgcolorr : Par
+	"""Color to use for the background."""
+	bgcolorg : Par
+	"""Color to use for the background."""
+	bgcolorb : Par
+	"""Color to use for the background."""
+	operand : Par
+	"""Menu : Choose which composite operation is performed from this menu. Search the web for 'blend modes' for more detailed information on the effects of each type."""
+	par : parameter.rectangleTOP
+	"""Parameters of parameter.rectangleTOP"""
+	pass
+
+
+class remapTOP():
+	"""remapTOP"""
+	horzsource : Par
+	"""Menu : Select which of the second input's channels to use for the horizontal warp of the first input."""
+	vertsource : Par
+	"""Menu : Select which of the second input's channels to use for the vertical warp of the first input."""
+	extend : Par
+	"""Menu : Controls what is returned from your first input when the second input's values are outside the [0-1] range."""
+	par : parameter.remapTOP
+	"""Parameters of parameter.remapTOP"""
+	pass
+
+
+class renderpassTOP():
+	"""renderpassTOP"""
+	possidex : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, +X, +Y, or +Z."""
+	possidey : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, +X, +Y, or +Z."""
+	possidez : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, +X, +Y, or +Z."""
+	negsidex : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, -X, -Y, or -Z."""
+	negsidey : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, -X, -Y, or -Z."""
+	negsidez : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, -X, -Y, or -Z."""
+	transparency : Par
+	"""Menu : Refer to to the same parameter in the [[Render TOP]]s help page."""
+	allowbufblending : Par
+	"""Menu : Controls if blending (as enabled by the MAT common page setting) will be enabled for extra buffers beyond the first one. Often the extra buffers are used to write other types of information such as normals or positions, where blending wouldn't be desirable."""
+	cullface : Par
+	"""Menu : Front Faces, Back Faces, Both Faces, Neither. Will cause the render to avoid rendering certain polygon faces depending on their orientation to the camera. Refer to [[Back-Face Culling]] for more information."""
+	cropleftunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	croprightunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	cropbottomunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	croptopunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	top0 : Par
+	"""TOP : This is the TOP that will be referenced by the above sampler name above it."""
+	top0extendu : Par
+	"""Menu : """
+	top0extendv : Par
+	"""Menu : """
+	top0extendw : Par
+	"""Menu : """
+	top0filter : Par
+	"""Menu : """
+	top0anisotropy : Par
+	"""Menu : """
+	value0x : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	value0y : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	value0z : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	value0w : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	par : parameter.renderpassTOP
+	"""Parameters of parameter.renderpassTOP"""
+	pass
+
+
+class renderselectTOP():
+	"""renderselectTOP"""
+	par : parameter.renderselectTOP
+	"""Parameters of parameter.renderselectTOP"""
+	pass
+
+
+class renderTOP():
+	"""renderTOP"""
+	multicamerahint : Par
+	"""Menu : Helps the Render TOP optimize rendering when multiple cameras are used. Controls the [[Multi-Camera Rendering]] behavior for this node."""
+	antialias : Par
+	"""Menu : Sets the level of anti-aliasing in the scene. Setting this to higher values uses more graphics memory."""
+	rendermode : Par
+	"""Menu : You can render different projections:  normal 2D, Cube Map, Fish Eye (180), or Dual Paraboloid. The Cube Map renders 6 views as needed for environment maps in the [[Phong MAT]] and [[Environment Light COMP]]. 		
+				
+See also the [[Cube Map TOP]] and the [[Projection TOP]]."""
+	possidex : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, +X, +Y, or +Z."""
+	possidey : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, +X, +Y, or +Z."""
+	possidez : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, +X, +Y, or +Z."""
+	negsidex : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, -X, -Y, or -Z."""
+	negsidey : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, -X, -Y, or -Z."""
+	negsidez : Par
+	"""When Render Mode is Cube Map, specify which sides if the cube map are rendered, -X, -Y, or -Z."""
+	uvunwrapcoord : Par
+	"""Menu : When Render Mode is UV Unwrap Coord, select which Texture Layer the coordinates are rendered to,"""
+	transparency : Par
+	"""Menu : Helps to render transparent geometry in proper depth order. This eliminates the need to sort the geometry based on distance from camera. This process is multi-pass. For every pixel the closest surface is rendered in the first pass, the second closest surface second, up to the number of passes specified by the <span class="tipTextTOP">Transparency Passes</span> parameter below. Turning this option on will disable some advanced features in the Render TOP, as well as anti-aliasing.		
+				
+The feature is a pixel-based approach, not object-based. So its performance is not directly related to the number of objects, but rather how they are layered.				
+				
+It uses a technique called Depth Peeling. First you render the normal frame. On your next render you peel away all of the pixels you saw in the first frame, and reveal the pixels underneath them. The next frame you do the same, peeling away the pixels you could see from the 2nd render. And so on. Once all of the renders are done, you re composite each layer Over the other, starting at the farthest back layer.				
+				
+If you take a sphere for example, you'll need to do 2 passes, the first one for the front of the sphere, and then 2nd will be the inside of the sphere.				
+				
+If you have 10 spheres, one behind the other. You'll need 19-20 passes to get the correct image.				
+				
+If you have 10 spheres, each next to each other across the screen, you'll only need 2 passes.				
+				
+In reality though you will only need 3-5 passes to get an image that's acceptable. It may not be 100% correct, but it'll look pretty close to correct.				
+				
+Each pass is a full render, so each pass adds significant overhead."""
+	depthformat : Par
+	"""Menu : Use either a 24-bit Fixed-Point or 32-bit Floating-Point depth buffer (single channel image)."""
+	cullface : Par
+	"""Menu : Front Faces, Back Faces, Both Faces, Neither. Will cause the render to avoid rendering certain polygon faces depending on their orientation to the camera. Refer to [[Back-Face Culling]] for more information."""
+	cropleftunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	croprightunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	cropbottomunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	croptopunit : Par
+	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
+	imageresw : Par
+	"""The resolution of the image output. This does not need to be the same as the resolution the main Render is doing."""
+	imageresh : Par
+	"""The resolution of the image output. This does not need to be the same as the resolution the main Render is doing."""
+	format : Par
+	"""Menu : Format used to store data for each channel in the image (ie. R, G, B, and A). Refer to [[Pixel Formats]] for more information."""
+	imagetype : Par
+	"""Menu : Specify what type of texture to create with the image output."""
+	imageaccess : Par
+	"""Menu : Controls how the output textures will be accessed. If the textures will be read from (such as using values generated by other shader executions within the same frame), then the access should be changed to Read-Write instead of Write Only."""
+	top0 : Par
+	"""TOP : This is the TOP that will be referenced by the above sampler name above it."""
+	top0extendu : Par
+	"""Menu : """
+	top0extendv : Par
+	"""Menu : """
+	top0extendw : Par
+	"""Menu : """
+	top0filter : Par
+	"""Menu : """
+	top0anisotropy : Par
+	"""Menu : """
+	value0x : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	value0y : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	value0z : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	value0w : Par
+	"""The value to assign to the uniform. If the uniform is a float the first entry of the four is used, if the uniform is a vec2 the first two entries are used, etc."""
+	par : parameter.renderTOP
+	"""Parameters of parameter.renderTOP"""
+	pass
+
+
+class renderstreaminTOP():
+	"""renderstreaminTOP"""
+	par : parameter.renderstreaminTOP
+	"""Parameters of parameter.renderstreaminTOP"""
+	pass
+
+
+class renderstreamoutTOP():
+	"""renderstreamoutTOP"""
+	par : parameter.renderstreamoutTOP
+	"""Parameters of parameter.renderstreamoutTOP"""
+	pass
+
+
+class reorderTOP():
+	"""reorderTOP"""
+	par : parameter.reorderTOP
+	"""Parameters of parameter.reorderTOP"""
+	pass
+
+
+class resolutionTOP():
+	"""resolutionTOP"""
+	par : parameter.resolutionTOP
+	"""Parameters of parameter.resolutionTOP"""
+	pass
+
+
+class rgbkeyTOP():
+	"""rgbkeyTOP"""
+	rgbout : Par
+	"""Menu : Determines the output of the RGB channels from the RGB Key TOP."""
+	alphaout : Par
+	"""Menu : Determines the output of the Alpha channel from the RGB Key TOP."""
+	par : parameter.rgbkeyTOP
+	"""Parameters of parameter.rgbkeyTOP"""
+	pass
+
+
+class rgbtohsvTOP():
+	"""rgbtohsvTOP"""
+	par : parameter.rgbtohsvTOP
+	"""Parameters of parameter.rgbtohsvTOP"""
+	pass
+
+
+class scalabledisplayTOP():
+	"""scalabledisplayTOP"""
+	eyepoint1 : Par
+	"""Sets the eye point for dynamic (ie. POL) files."""
+	eyepoint2 : Par
+	"""Sets the eye point for dynamic (ie. POL) files."""
+	eyepoint3 : Par
+	"""Sets the eye point for dynamic (ie. POL) files."""
+	par : parameter.scalabledisplayTOP
+	"""Parameters of parameter.scalabledisplayTOP"""
+	pass
+
+
+class screengrabTOP():
+	"""screengrabTOP"""
+	par : parameter.screengrabTOP
+	"""Parameters of parameter.screengrabTOP"""
+	pass
+
+
+class screenTOP():
+	"""screenTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]"""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.screenTOP
+	"""Parameters of parameter.screenTOP"""
+	pass
+
+
+class scriptTOP():
+	"""scriptTOP"""
+	par : parameter.scriptTOP
+	"""Parameters of parameter.scriptTOP"""
+	pass
+
+
+class selectTOP():
+	"""selectTOP"""
+	par : parameter.selectTOP
+	"""Parameters of parameter.selectTOP"""
+	pass
+
+
+class sharedmeminTOP():
+	"""sharedmeminTOP"""
+	memtype : Par
+	"""Menu : Reads from a '''Local''' or a '''Global''' memory location."""
+	par : parameter.sharedmeminTOP
+	"""Parameters of parameter.sharedmeminTOP"""
+	pass
+
+
+class sharedmemoutTOP():
+	"""sharedmemoutTOP"""
+	memtype : Par
+	"""Menu : Writes to a '''Local''' or a '''Global''' memory location."""
+	downloadtype : Par
+	"""Menu : Select between Immediate(Slow) and Next Frame(Fast) for better performance."""
+	par : parameter.sharedmemoutTOP
+	"""Parameters of parameter.sharedmemoutTOP"""
+	pass
+
+
+class slopeTOP():
+	"""slopeTOP"""
+	red : Par
+	"""Menu : Select which method is used to calculate the slope of the Red channel. Horizontal and Vertical options let you calculate the slope by sampling points horizontally or vertically."""
+	green : Par
+	"""Menu : Select which method is used to calulate the slope of the Green channel. Horizontal and Vertical options let you calculate the slope by sampling points horizontally or vertically."""
+	blue : Par
+	"""Menu : Select which method is used to calulate the slope of the Blue channel. Horizontal and Vertical options let you calculate the slope by sampling points horizontally or vertically."""
+	alpha : Par
+	"""Menu : Select which method is used to calculate the slope of the Alpha channel. Horizontal and Vertical options let you calculate the slope by sampling points horizontally or vertically."""
+	method : Par
+	"""Menu : Determines what pixels to use when calculating the slope at each pixel in the image."""
+	offset1 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	offset2 : Par
+	"""When sampling the image, this determines the distance from each pixel to the sample pixel. When units are set to pixels, it is the number of pixels away from the current pixel which is sampled to find edges. A <span class="tipTextTOP">Sample Step</span> of 3 would sample pixels 3 pixels away to look for edges."""
+	par : parameter.slopeTOP
+	"""Parameters of parameter.slopeTOP"""
+	pass
+
+
+class spectrumTOP():
+	"""spectrumTOP"""
+	mode : Par
+	"""Menu : Selects the transform mode (ie. direction). Either DFT or IDFT."""
+	coord : Par
+	"""Menu : Selects the coordinate system for output/input in the DFT/IDFT cases respectively."""
+	chan : Par
+	"""Menu : Selects which channel of the input TOP to use for the discrete fourier transform."""
+	par : parameter.spectrumTOP
+	"""Parameters of parameter.spectrumTOP"""
+	pass
+
+
+class ssaoTOP():
+	"""ssaoTOP"""
+	quality : Par
+	"""Menu : Determines the visual quality of the results. The higher the quality, the more computationally expensive it is."""
+	ssaopassres : Par
+	"""Menu : The SSAO pass can be set to Full, Half, or Quarter the resolution of the input image."""
+	par : parameter.ssaoTOP
+	"""Parameters of parameter.ssaoTOP"""
+	pass
+
+
+class stypeTOP():
+	"""stypeTOP"""
+	par : parameter.stypeTOP
+	"""Parameters of parameter.stypeTOP"""
+	pass
+
+
+class substanceselectTOP():
+	"""substanceselectTOP"""
+	par : parameter.substanceselectTOP
+	"""Parameters of parameter.substanceselectTOP"""
+	pass
+
+
+class substanceTOP():
+	"""substanceTOP"""
+	par : parameter.substanceTOP
+	"""Parameters of parameter.substanceTOP"""
+	pass
+
+
+class subtractTOP():
+	"""subtractTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]."""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.subtractTOP
+	"""Parameters of parameter.subtractTOP"""
+	pass
+
+
+class svgTOP():
+	"""svgTOP"""
+	antialias : Par
+	"""Menu : Sets the level of anti-aliasing in the scene. Setting this to higher values uses more graphics memory."""
+	bgcolorr : Par
+	"""Sets the background color in the image."""
+	bgcolorg : Par
+	"""Sets the background color in the image."""
+	bgcolorb : Par
+	"""Sets the background color in the image."""
+	xord : Par
+	"""Menu : The menu attached to this parameter allows you to specify the order in which the changes to your TOP will take place. Changing the Transform order will change where things go much the same way as going a block and turning east gets you to a different place than turning east and then going a block."""
+	rord : Par
+	"""Menu : The rotational matrix presented when you click on this option allows you to set the transform order for the TOP's rotations. As with transform order (above), changing the order in which the TOP's rotations take place will alter the TOP's final position."""
+	tx : Par
+	"""The two fields for Translate allows you to specify transforms in x and y axes."""
+	ty : Par
+	"""The two fields for Translate allows you to specify transforms in x and y axes."""
+	rx : Par
+	"""The three fields for Rotate allow you to specify the amount of rotation along any of the three axes."""
+	ry : Par
+	"""The three fields for Rotate allow you to specify the amount of rotation along any of the three axes."""
+	rz : Par
+	"""The three fields for Rotate allow you to specify the amount of rotation along any of the three axes."""
+	sx : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes."""
+	sy : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes."""
+	px : Par
+	"""The Pivot point edit fields allow you to define the point about which the TOP scales and rotates. Altering the pivot point of a TOP produces different results depending on the transformation performed on the TOP image.	
+			
+For example, during a scaling operation, if the pivot point of a TOP image is located at <code>-1,-1</code> and you wanted to scale the image by <code>0.5</code> (reduce its size by 50%), then the TOP would scale toward the pivot point and appear to slide down and to the left."""
+	py : Par
+	"""The Pivot point edit fields allow you to define the point about which the TOP scales and rotates. Altering the pivot point of a TOP produces different results depending on the transformation performed on the TOP image.	
+			
+For example, during a scaling operation, if the pivot point of a TOP image is located at <code>-1,-1</code> and you wanted to scale the image by <code>0.5</code> (reduce its size by 50%), then the TOP would scale toward the pivot point and appear to slide down and to the left."""
+	par : parameter.svgTOP
+	"""Parameters of parameter.svgTOP"""
+	pass
+
+
+class switchTOP():
+	"""switchTOP"""
+	par : parameter.switchTOP
+	"""Parameters of parameter.switchTOP"""
 	pass
 
 
@@ -1112,6 +3236,244 @@ class syphonspoutoutTOP():
 	"""syphonspoutoutTOP"""
 	par : parameter.syphonspoutoutTOP
 	"""Parameters of parameter.syphonspoutoutTOP"""
+	pass
+
+
+class textTOP():
+	"""textTOP"""
+	charset : Par
+	""" : Select which character set to use."""
+	dispmethod : Par
+	"""Menu : The display method used."""
+	antialias : Par
+	"""StrMenu : Smoothes out the edges of the text. Not available for Texture Display Mode."""
+	fontautosize : Par
+	"""Menu : Automatically controls font size using one of the following 3 options. When using this feature along with Word Wrap turned on, it will first word-wrap the text based on the specified font size, then auto size the resulting block of text."""
+	readingdirection : Par
+	"""Menu : Use to set whether the language reads Left to Right or Right to Left."""
+	tracking1 : Par
+	"""The amount of space to add between letters in X and Y. Tracking is way of adding an arbitrary offset between letters. There already is a default offset associated with each font so the letters are flush against each other. The Tracking parameter this adds to that and allows for a Y offset."""
+	tracking2 : Par
+	"""The amount of space to add between letters in X and Y. Tracking is way of adding an arbitrary offset between letters. There already is a default offset associated with each font so the letters are flush against each other. The Tracking parameter this adds to that and allows for a Y offset."""
+	position1 : Par
+	"""The starting position of the text in X and Y.		
+				
+<span class="tipTextTOP">TIP:</span> Inside the Text and Post Text fields the position can be overridden by using brackets.				
+				
+* '''[x,y]''' - <code>"bleh[x,y]newtext"</code> will place ''newtext'' at position (x,y) on the screen.				
+* '''{X,Y}''' - <code>"bleh{(+/-)x,(+/-)y}newtext"</code> will offset ''newtext'' x,y from current position.				
+* '''\n''' - using <code>"\n"</code> causes the text to move down to the next line and reset its position. (i.e. New Line and Carriage Return)"""
+	position2 : Par
+	"""The starting position of the text in X and Y.		
+				
+<span class="tipTextTOP">TIP:</span> Inside the Text and Post Text fields the position can be overridden by using brackets.				
+				
+* '''[x,y]''' - <code>"bleh[x,y]newtext"</code> will place ''newtext'' at position (x,y) on the screen.				
+* '''{X,Y}''' - <code>"bleh{(+/-)x,(+/-)y}newtext"</code> will offset ''newtext'' x,y from current position.				
+* '''\n''' - using <code>"\n"</code> causes the text to move down to the next line and reset its position. (i.e. New Line and Carriage Return)"""
+	alignx : Par
+	"""menu : Sets the horizontal alignment."""
+	alignxmode : Par
+	"""menu : Determines how horizontal alignment is calculated."""
+	aligny : Par
+	"""Menu : Sets the vertical alignment."""
+	alignymode : Par
+	"""menu : Determines how vertical alignment is calculated."""
+	borderspace1 : Par
+	"""When using Auto-Size Font, it will further shrink the text to give it a border."""
+	borderspace2 : Par
+	"""When using Auto-Size Font, it will further shrink the text to give it a border."""
+	fontcolorr : Par
+	"""RGBA values for the text displayed. (default: white (1,1,1,1))"""
+	fontcolorg : Par
+	"""RGBA values for the text displayed. (default: white (1,1,1,1))"""
+	fontcolorb : Par
+	"""RGBA values for the text displayed. (default: white (1,1,1,1))"""
+	bgcolorr : Par
+	"""RGBA values for the background. (default: black (0,0,0,0))"""
+	bgcolorg : Par
+	"""RGBA values for the background. (default: black (0,0,0,0))"""
+	bgcolorb : Par
+	"""RGBA values for the background. (default: black (0,0,0,0))"""
+	borderar : Par
+	"""RGBA values for border A color."""
+	borderag : Par
+	"""RGBA values for border A color."""
+	borderab : Par
+	"""RGBA values for border A color."""
+	borderbr : Par
+	"""RGBA values for border B color."""
+	borderbg : Par
+	"""RGBA values for border B color."""
+	borderbb : Par
+	"""RGBA values for border B color."""
+	operand : Par
+	"""Menu : Choose which composite operation is performed from this menu. Search the web for 'blend modes' for more detailed information on the effects of each type."""
+	par : parameter.textTOP
+	"""Parameters of parameter.textTOP"""
+	pass
+
+
+class texture3dTOP():
+	"""texture3dTOP"""
+	type : Par
+	"""Menu : Specifies the texture type to create."""
+	par : parameter.texture3dTOP
+	"""Parameters of parameter.texture3dTOP"""
+	pass
+
+
+class thresholdTOP():
+	"""thresholdTOP"""
+	comparator : Par
+	"""Menu : Select the operation to compare the Threshold parameter to."""
+	rgb : Par
+	"""Menu : Determines which part of the image used to calculate threshold. This parameter determines the output for the R, G, and B channels."""
+	alpha : Par
+	"""Menu : This parameter determines the output for the alpha channel."""
+	par : parameter.thresholdTOP
+	"""Parameters of parameter.thresholdTOP"""
+	pass
+
+
+class tileTOP():
+	"""tileTOP"""
+	extend : Par
+	"""Menu : This parameter determines what happens at the edges of the tiles."""
+	par : parameter.tileTOP
+	"""Parameters of parameter.tileTOP"""
+	pass
+
+
+class timemachineTOP():
+	"""timemachineTOP"""
+	par : parameter.timemachineTOP
+	"""Parameters of parameter.timemachineTOP"""
+	pass
+
+
+class touchinTOP():
+	"""touchinTOP"""
+	par : parameter.touchinTOP
+	"""Parameters of parameter.touchinTOP"""
+	pass
+
+
+class touchoutTOP():
+	"""touchoutTOP"""
+	videocodec : Par
+	"""Menu : Choose between Uncompressed and HAP Q codecs to transmit the image stream."""
+	par : parameter.touchoutTOP
+	"""Parameters of parameter.touchoutTOP"""
+	pass
+
+
+class transformTOP():
+	"""transformTOP"""
+	xord : Par
+	"""Menu : The menu attached to this parameter allows you to specify the order in which the changes to your TOP will take place. Changing the Transform order will change where things go much the same way as going a block and turning east gets you to a different place than turning east and then going a block."""
+	tx : Par
+	"""The two fields for Translate allows you to specify transforms in x and y axes."""
+	ty : Par
+	"""The two fields for Translate allows you to specify transforms in x and y axes."""
+	sx : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes."""
+	sy : Par
+	"""The two fields for Scale allows you to specify transforms in x and y axes."""
+	growshrinkx : Par
+	"""Grow/Shrink is a scale that is given in pixel units. A positive value will cause the image to grow that many pixels while a negative will cause the image to shrink that many pixels."""
+	growshrinky : Par
+	"""Grow/Shrink is a scale that is given in pixel units. A positive value will cause the image to grow that many pixels while a negative will cause the image to shrink that many pixels."""
+	px : Par
+	"""The Pivot point edit fields allow you to define the point about which the TOP scales and rotates. Altering the pivot point of a TOP produces different results depending on the transformation performed on the TOP image.	
+			
+For example, during a scaling operation, if the pivot point of a TOP image is located at <code>-1,-1</code> and you wanted to scale the image by <code>0.5</code> (reduce its size by 50%), then the TOP would scale toward the pivot point and appear to slide down and to the left."""
+	py : Par
+	"""The Pivot point edit fields allow you to define the point about which the TOP scales and rotates. Altering the pivot point of a TOP produces different results depending on the transformation performed on the TOP image.	
+			
+For example, during a scaling operation, if the pivot point of a TOP image is located at <code>-1,-1</code> and you wanted to scale the image by <code>0.5</code> (reduce its size by 50%), then the TOP would scale toward the pivot point and appear to slide down and to the left."""
+	bgcolorr : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	bgcolorg : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	bgcolorb : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	bgcolora : Par
+	"""Color applied behind the foreground image. The background is visible when the image is translated or scaled down. Try scaling an image down 50% in size (Scale = 0.5,0.5) and setting the background color."""
+	extend : Par
+	"""Menu : This parameter determines what happens at the edges of the tiles."""
+	tileu1 : Par
+	"""The first Tile U parameter sets the number of tiles to repeat on the left of the source image. The second Tile U parameter sets the number of tiles to repeat on the right of the source image. The image must be scaled down (using the<span class="tipTextTOP"> Scale</span> parameters on the Transform page) to view these tiles."""
+	tileu2 : Par
+	"""The first Tile U parameter sets the number of tiles to repeat on the left of the source image. The second Tile U parameter sets the number of tiles to repeat on the right of the source image. The image must be scaled down (using the<span class="tipTextTOP"> Scale</span> parameters on the Transform page) to view these tiles."""
+	tilev1 : Par
+	"""The first Tile V parameter sets the number of tiles to repeat on the botttom of the source image. The second Tile V parameter sets the number of tiles to repeat on the top of the source image. The image must be scaled down (using the<span class="tipTextTOP"> Scale</span> parameters on the Transform page) to view these tiles."""
+	tilev2 : Par
+	"""The first Tile V parameter sets the number of tiles to repeat on the botttom of the source image. The second Tile V parameter sets the number of tiles to repeat on the top of the source image. The image must be scaled down (using the<span class="tipTextTOP"> Scale</span> parameters on the Transform page) to view these tiles."""
+	par : parameter.transformTOP
+	"""Parameters of parameter.transformTOP"""
+	pass
+
+
+class underTOP():
+	"""underTOP"""
+	size : Par
+	"""Menu : The selected input will become the fixed layer and the other input will be the overlay. This does not change the order of the composite (Input1 + Input2), only which layer is considered fixed and which layer is adjustable by the parameters on the Transform page. The resolution and aspect ratio of the Fixed Layer is used as the composite's final resolution and aspect ratio unless manually on the [[#Parameters - Common Page|Common Page]]."""
+	prefit : Par
+	"""Menu : Determines how the Overlay layer (Overlay layer is the input that is NOT the Fixed Layer) fills the composite."""
+	justifyh : Par
+	"""Menu : Specify the horizontal alignment of the Overlay."""
+	justifyv : Par
+	"""Menu : Specify the vertical alignment of the Overlay."""
+	extend : Par
+	"""Menu : Sets the extend (or repeat) conditions of the Overlay layer. This parameter determines what happens at the edges of the Overlay layer."""
+	tx : Par
+	"""Translates the Overlay layer in x and y."""
+	ty : Par
+	"""Translates the Overlay layer in x and y."""
+	sx : Par
+	"""Scales the Overlay layer in x and y."""
+	sy : Par
+	"""Scales the Overlay layer in x and y."""
+	px : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	py : Par
+	"""Allows you to define the point about which the Overlay layer scales and rotates. Altering the pivot point produces different results depending on the Transform Order."""
+	par : parameter.underTOP
+	"""Parameters of parameter.underTOP"""
+	pass
+
+
+class videodeviceinTOP():
+	"""videodeviceinTOP"""
+	library : Par
+	"""Menu : Selects the library to use to interface with the cameras."""
+	device : Par
+	"""StrMenu : Select which camera or decoder you want from this menu."""
+	deinterlace : Par
+	"""Menu : Sets which fields to capture."""
+	precedence : Par
+	"""Menu : When using Bob (Split) deinterlacing, this selects which field is shown first for each frame."""
+	inputpixelformat : Par
+	"""Menu : Some capture devices support pixel formats other than 8-bit. For supported devices (Blackmagic Design) this will make the node attempt to use that capability."""
+	transfermode : Par
+	"""Menu : Controls how the frames are transferred from the input device to CPU memory, and how they are transferred from CPU memory to the GPU."""
+	memorymode : Par
+	"""Menu : Controls the memory type used to transfer data between the capture card and the GPU."""
+	preset : Par
+	"""Menu : """
+	wbcoeffsr : Par
+	""""""
+	wbcoeffsg : Par
+	""""""
+	wbcoeffsb : Par
+	""""""
+	custombandwidth : Par
+	"""Menu : """
+	camerabitdepth : Par
+	"""Menu : """
+	par : parameter.videodeviceinTOP
+	"""Parameters of parameter.videodeviceinTOP"""
 	pass
 
 
@@ -1136,6 +3498,19 @@ class videodeviceoutTOP():
 	pass
 
 
+class videostreaminTOP():
+	"""videostreaminTOP"""
+	mode : Par
+	"""Menu : Select the mode: either a Server (for RTSP, HLS or SRT URLs), or WebRTC."""
+	deinterlace : Par
+	"""Menu : For movies that are stored as fields, where each image is made of two images interleaved together. A 30-frame per second movie would contain 60 fields per second. For each image, the even scanlines of the first field are interleaved with the odd scanlines of the second field. The Video Stream In TOP has several ways of dealing with this:"""
+	precedence : Par
+	"""Menu : Where fields are extracted one field at a time, this will extract the Even field first by default, otehrwise it will extract the odd field first. The industry has not standardized on one or the other."""
+	par : parameter.videostreaminTOP
+	"""Parameters of parameter.videostreaminTOP"""
+	pass
+
+
 class videostreamoutTOP():
 	"""videostreamoutTOP"""
 	mode : Par
@@ -1154,6 +3529,41 @@ class videostreamoutTOP():
 	"""Menu : """
 	par : parameter.videostreamoutTOP
 	"""Parameters of parameter.videostreamoutTOP"""
+	pass
+
+
+class viosoTOP():
+	"""viosoTOP"""
+	par : parameter.viosoTOP
+	"""Parameters of parameter.viosoTOP"""
+	pass
+
+
+class webrenderTOP():
+	"""webrenderTOP"""
+	audio : Par
+	"""Toggle : Let the browser process play audio if the web page contains audio.  This option will restart the browser process."""
+	par : parameter.webrenderTOP
+	"""Parameters of parameter.webrenderTOP"""
+	pass
+
+
+class zedTOP():
+	"""zedTOP"""
+	perspective : Par
+	"""Menu : Choose between Left or Right camera."""
+	image : Par
+	"""Menu : Selects between the Color, Depth, Confidence, Disparity, Normals, Point Cloud or Spatial Texture modes."""
+	cameraresolution : Par
+	"""Menu : Selects the resolution of the camera capture."""
+	sensingmode : Par
+	"""Menu : Selects betweem Standard and Fill mode."""
+	depthmode : Par
+	""" : Selects the depth computation mode of the camera."""
+	referenceframe : Par
+	"""Menu : Select between World and Camera reference frames for the Point Cloud pixels."""
+	par : parameter.zedTOP
+	"""Parameters of parameter.zedTOP"""
 	pass
 
 
