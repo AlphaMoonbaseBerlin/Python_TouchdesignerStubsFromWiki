@@ -1117,6 +1117,106 @@
                 "text": "Extra padding to add to the sides of the layout box, pushing the text inwards for alignment.",
                 "type": "Par",
                 "name": "textpaddingt"
+            },
+            {
+                "text": "Menu : Controls where text is generated from. Either from the 'Text' parameter, or a table DAT provided via the 'Specification DAT' parameter.",
+                "type": "Par",
+                "name": "mode"
+            },
+            {
+                "text": "StrMenu : Select the font to be used from the dropdown menu. Available fonts are those that have been registered with the operating system. There may be a delay when selecting fonts that have not been used before as the system creates the necessary intermediate files required for rendering.",
+                "type": "Par",
+                "name": "font"
+            },
+            {
+                "text": "The color for the font.",
+                "type": "Par",
+                "name": "fontcolorr"
+            },
+            {
+                "text": "The color for the font.",
+                "type": "Par",
+                "name": "fontcolorg"
+            },
+            {
+                "text": "The color for the font.",
+                "type": "Par",
+                "name": "fontcolorb"
+            },
+            {
+                "text": "The color for the font.",
+                "type": "Par",
+                "name": "fontcolorg"
+            },
+            {
+                "text": "The color for the font.",
+                "type": "Par",
+                "name": "fontcolorb"
+            },
+            {
+                "text": "Text is aligned and word-wrapped within a virtual layout box. This box is what is transformed by the various transform parameters, and then the text is aligned and laid out within that. The width and height units are the same units as the font size.",
+                "type": "Par",
+                "name": "layoutsizew"
+            },
+            {
+                "text": "Text is aligned and word-wrapped within a virtual layout box. This box is what is transformed by the various transform parameters, and then the text is aligned and laid out within that. The width and height units are the same units as the font size.",
+                "type": "Par",
+                "name": "layoutsizeh"
+            },
+            {
+                "text": "",
+                "type": "Par",
+                "name": "textpaddingl"
+            },
+            {
+                "text": "",
+                "type": "Par",
+                "name": "textpaddingr"
+            },
+            {
+                "text": "",
+                "type": "Par",
+                "name": "textpaddingb"
+            },
+            {
+                "text": "",
+                "type": "Par",
+                "name": "textpaddingt"
+            },
+            {
+                "text": "Menu : Controls the horizontal alignment of the text.",
+                "type": "Par",
+                "name": "alignx"
+            },
+            {
+                "text": "Menu : Controls the vertical alignment of the text.",
+                "type": "Par",
+                "name": "aligny"
+            },
+            {
+                "text": "Menu : Controls how the alignment is calculated for vertical alignment.",
+                "type": "Par",
+                "name": "alignymode"
+            },
+            {
+                "text": "Extra padding to add to the sides of the layout box, pushing the text inwards for alignment.",
+                "type": "Par",
+                "name": "textpaddingl"
+            },
+            {
+                "text": "Extra padding to add to the sides of the layout box, pushing the text inwards for alignment.",
+                "type": "Par",
+                "name": "textpaddingr"
+            },
+            {
+                "text": "Extra padding to add to the sides of the layout box, pushing the text inwards for alignment.",
+                "type": "Par",
+                "name": "textpaddingb"
+            },
+            {
+                "text": "Extra padding to add to the sides of the layout box, pushing the text inwards for alignment.",
+                "type": "Par",
+                "name": "textpaddingt"
             }
         ],
         "methods": [],
@@ -1130,7 +1230,7 @@
         "opLicense": "Non-Commercial",
         "opCategories": "",
         "short": "Renders text in 3D.",
-        "long": "The Geo Text COMP renders text in 3D. It does not read or generate a SOP as it does direct rendering using the [[Slug Library]] and can be lit and textured with any [[MAT]] material.\n\nYou can set fonts, colors, sizes, bold, italic, tracking, multi-lines like you can with the [[Text COMP]]. But because the Geo Text COMP doesn't have a boundary, width or height like the Text COMP, we substitute it with a layout box and the Layout Box parameters. The layout box has a width and height, and by default the bottom left of the layout box is placed at 0,0,0 in 3D space of the Geo Text COMP (\"object space\").  The Layout Box Anchor U and V let you put the center of the layout box at 0,0,0 by setting the anchors to .5, 5.\n\nThe layout box's size although you can't see it by default, is the Layout Box Size parameter.  With that you can right-justify or top-justify text in the layout box, and clip to the layout box.  Yu can also pad space aroud each side of the layout box.\n\nSee also the 2D equivalent [[Text COMP]]. See [[Text Formatting Codes]] for ways to override settings per-character.\n\n'''Render multiple strings transformed separately''': The Specification DAT and Specification CHOP allow for individual strings to be each positioned and styled independently in 3D. \n\nEvery row of the Spec DAT represents a \"block\" or \"text block\". Every Spec DAT contains a column named <code>text</code> which is the string that overrides the Text parameter.\n\nMost columns override a Geo Text COMP parameter, such as <code>text</code>, <code>tx</code> and <code>fontsize</code>. Some column names noted below have no corresponding parameter.\n\nThe Spec CHOP can also specify values per block. When including a Spec CHOP the number of Spec CHOP samples needs to be the same number of rows as the Spec DAT following the first column header. \n\nParameters that can be overrided include <code>fontsize</code>, <code>fontcolor</code>, tracking etc., plus all the layout box and alignment parameters. Font/bold/italic are supported as columns as they are separate fonts. \n\n'''Transforming text blocks''': The column or channel names can include <code>tx</code>, <code>ty</code>, <code>tz</code> and all the rotate and scale channels (which use the Transform Order parameter). \n\nA special column/channel called <code>append</code> can be used, when <code>append</code> is <code>1</code>, to position one block of text relative to the end of the previous block. Regular transforms are inherited by each appended text block. \n\nLocal transforms (<code>ltx</code>, <code>lrz</code>, etc), can be used to apply additional transforms to a block that are not inherited by appended blocks. If the special column/channel <code>localxform</code> is set to '<code>pre</code>', then the local transform is applied in world space before the inherited transforms are applied.\n\n'''Note''' - The Geo Text COMP uses '''blending/transparency''' to create the glyphs floating in space (Each glyph is a partially transparent rectangle), so to view  properly without the enclosing polygons that surround them, you need to ensure they are drawn after other geometry that they are sitting in-front of. This is usually due using the [[#Parameters_-_Render_Page|Draw Priority]] parameter on the 'Render' parameter page and making the value more negative than the Draw Priority of other objects. All things with the highest draw priority are drawn first, then all things with the same second higher draw priority are drawn second. If the priority is the same between two objects, then the order they are drawn is arbitrary and will possibly change. '''Note''': Text within a Spec DAT should be setup so things in the back are earlier in the table than things in the front. It will draw row-by-row from the Spec DAT.\n\nSee OP Snippets for further transform options - <code>relative</code> and <code>append</code>.\n\nThe Geo Text COMP is similar to the [[Text COMP]] which is a 2D [[Panel]]."
+        "long": "The Geo Text COMP renders text in 3D. It does not read or generate a SOP as it does direct rendering using the [[Slug Library]] and can be lit and textured with any [[MAT]] material, except the [[Line MAT]].\n\nYou can set fonts, colors, sizes, bold, italic, tracking, multi-lines like you can with the [[Text COMP]]. \n\nYou can also give the Geo Text COMP a Specification DAT which lets you separately 3D position, format and render a text string for each row of the DAT.\n\nBecause the Geo Text COMP doesn't have a boundary, width or height like the Text COMP, we substitute it with a layout box and the Layout Box parameters. The layout box has a width and height, and by default the bottom left of the layout box is placed at 0,0,0 in 3D space of the Geo Text COMP (\"object space\").  The Layout Box Anchor U and V let you put the center of the layout box at 0,0,0 by setting the anchors to .5, 5.\n\nThe dimensions of the layout box aren't visible by default, but are controlled by the Layout Box Size parameter. Using the align parameters, you can right-justify or top-justify text in the layout box, or clip to the layout box.  You can also padding space between the edge of the layout box and the text.\n\nSee also the 2D equivalent [[Text COMP]] and [[Text Formatting Codes]] for ways to override settings per-character.\n\n'''Render multiple strings transformed separately''': The Specification DAT and Specification CHOP allow for individual strings to be each positioned and styled independently in 3D. \n\nEvery row of the Spec DAT represents a \"block\" or \"text block\". Every Spec DAT contains a column named <code>text</code> which is the string that overrides the Text parameter.\n\nMost columns override a Geo Text COMP parameter, such as <code>text</code>, <code>tx</code> and <code>fontsize</code>. Some column names noted below have no corresponding parameter.\n\nThe Spec CHOP can also specify values per block. When including a Spec CHOP the number of Spec CHOP samples needs to be the same number of rows as the Spec DAT following the first column header. \n\nParameters that can be overrided include <code>fontsize</code>, <code>fontcolor</code>, tracking etc., plus all the layout box and alignment parameters. Font/bold/italic are not supported as columns as they are separate fonts. \n\n'''Transforming text blocks''': The column or channel names can include <code>tx</code>, <code>ty</code>, <code>tz</code> and all the rotate and scale channels (which use the Transform Order parameter). \n\nA special column/channel called <code>append</code> can be used with a value of <code>1</code> to position one block of text relative to the end of the previous block. Regular transforms are inherited by each appended text block. \n\nLocal transforms (<code>ltx</code>, <code>lrz</code>, etc), can be used to apply additional block transforms that do not affect transforms of following blocks. Furthermore, if the special column <code>localxform</code> is set to '<code>pre</code>', then the local transform is applied in world space before the inherited transforms are applied. If it is <code>post</code> (the default), it is transformed in the reference frame of the previous block.\n\nThe [[GeotextCOMP_Class|GeotextCOMP Class]] also has a member called <code>layoutText</code> that can be used to retrieve the 2D layout positions for all characters within a given piece of text. The positions include any applicable kerning, wrapping and alignment based on the current parameter settings of the Geo Text COMP. These values can be transformed or projected into 3D space and used to build a Spec DAT/CHOP to render the resulting text.\n\n'''Note''' - The Geo Text COMP uses '''blending/transparency''' to create the glyphs floating in space (each glyph is a partially transparent rectangle). So, to view properly without the enclosing polygons that surround them, you need to ensure they are drawn after other geometry that they are sitting in-front of. This is usually due using the [[#Parameters_-_Render_Page|Draw Priority]] parameter on the 'Render' parameter page and making the value more negative than the Draw Priority of other objects. All things with the highest draw priority are drawn first, then all things with the same second higher draw priority are drawn second. If the priority is the same between two objects, then the order they are drawn is arbitrary and will possibly change. '''Note''': Text within a Spec DAT should be setup so things in the back are earlier in the table than things in the front. It will draw row-by-row from the Spec DAT.\n\n'''Tip to render constant-size text facing the camera''': See [[OP Snippets]] for Geo Text COMP called \"better text beside 3D geo points\".\n\nSee OP Snippets for other transform examples.\n\nThe Geo Text COMP is similar to the [[Text COMP]] which is a 2D [[Panel]]."
     },
     "geometryCOMP": {
         "label": "geometryCOMP",
@@ -1154,7 +1254,7 @@
             {
                 "text": "TOP : This is the TOP that will be referenced by the above sampler name above it.\n\t\t\t\t\n'''Exposed by the + Button, texture sampling parameters''':\t\t\t\t\n\t\t\t\t\nRefer to the [[Texture Sampling Parameters]] article for more information on the parameters exposed by pressing the + button. The ''parameter'' prefix for each of the parameters is ''top[digit]''.",
                 "type": "Par",
-                "name": "top0"
+                "name": "top0extendu"
             },
             {
                 "text": "Menu : ",
@@ -1371,7 +1471,7 @@
             {
                 "text": "TOP : The path to a [[TOP]] used for the light's projector map.",
                 "type": "Par",
-                "name": "projmap"
+                "name": "projmapextendu"
             },
             {
                 "text": "Menu : Sets the extend conditions for the Projector Map texture.",
@@ -2701,7 +2801,7 @@
             {
                 "text": "Menu : Controls the dimensions of the output image and how the CHOP samples are arranged as pixels. This menu replaces the previous 'Crop Long Channels' and 'Fit to Square' parameters.",
                 "type": "Par",
-                "name": "layout"
+                "name": "activechannel"
             },
             {
                 "text": "If the current Image Layout results in more pixels than there are available samples in the input CHOP, the values specified here will be used to fill in the extra pixels. (All textures require full rows of pixels, in other words all rows of pixels have the same number of pixels.)",
@@ -4186,6 +4286,56 @@
         "label": "kinectazureTOP",
         "members": [
             {
+                "text": "Menu : The resolution of images captured by the color camera. Different resolutions may have different aspect ratios. Note: 4096 x 3072 is not supported at 30 FPS.",
+                "type": "Par",
+                "name": "colorres"
+            },
+            {
+                "text": "Menu : The depth mode controls which of the Kinect's two depth cameras (Wide or Narrow FOV) are used to produce the depth image and whether any 'binning' is used to process the data. In 'binned' modes, 2x2 blocks of pixels are combined to produce a filter, lower resolution image. Note: Body tracking is not supported when using the Passive IR depth mode.",
+                "type": "Par",
+                "name": "depthmode"
+            },
+            {
+                "text": "Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions.",
+                "type": "Par",
+                "name": "fps5"
+            },
+            {
+                "text": "Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions.",
+                "type": "Par",
+                "name": "fps15"
+            },
+            {
+                "text": "Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions.",
+                "type": "Par",
+                "name": "fps30"
+            },
+            {
+                "text": "Menu : Determines how the body tracking model is processed. The default mode runs mostly on the GPU (supports Nvidia, AMD and Intel), but this can also be switched to a CPU mode when a compatible GPU is not available.",
+                "type": "Par",
+                "name": "proccessingmode"
+            },
+            {
+                "text": "Menu : Used to indicate when the camera is mounted in a non-upright position. This can help improve body-tracking results.",
+                "type": "Par",
+                "name": "orientation"
+            },
+            {
+                "text": "Menu : A list of available image types to capture from the device and display in this TOP. All image types have a second version that is mapped (aligned) to the image space of the other camera so that color and depth image data can be matched. The resolution of the image is controlled by the Color Resolution or Depth Mode parameters depending on the type of image selected. Use a [[Kinect Azure Select TOP]] to access additional image types from the same camera.",
+                "type": "Par",
+                "name": "image"
+            },
+            {
+                "text": "Menu : Select the frequency of the power supply for use in the cameras noise cancellation system.",
+                "type": "Par",
+                "name": "powerfreq"
+            },
+            {
+                "text": "Menu : When using more than one Kinect Azure camera, this setting can be used to determine which unit is the master and which are subordinates.",
+                "type": "Par",
+                "name": "syncmode"
+            },
+            {
                 "text": "Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions.",
                 "type": "Par",
                 "name": "fps5"
@@ -4244,7 +4394,7 @@
         "opLabel": "Kinect Azure",
         "opClass": "kinectazureTOP_Class",
         "opFilter": "False",
-        "opLicense": "TouchDesigner Non-Commercial",
+        "opLicense": "Non-Commercial",
         "os": "Microsoft Windows 10 April 2018 or newer",
         "hardware": "An NVIDIA GEFORCE GTX 1070 or better graphics card is required to obtain efficient body tracking data from the camera, although a CPU-only mode can be enabled using the parameters.",
         "short": "The Kinect Azure TOP can be used to configure and capture data from a Microsoft Kinect Azure camera.",
@@ -4413,7 +4563,17 @@
             {
                 "text": "Menu : Select between Leap Motion V2 or V4/V5 SDKs for tracking. V5 offers the fastest and most stable tracking, V2 offers some legacy features like gestures.",
                 "type": "Par",
-                "name": "api"
+                "name": "v2"
+            },
+            {
+                "text": "Menu : Switches the device to '''H'''ead '''M'''ounted '''D'''isplay mode.",
+                "type": "Par",
+                "name": "hmd"
+            },
+            {
+                "text": "Menu : Select between Leap Motion V2 or V4/V5 SDKs for tracking. V5 offers the fastest and most stable tracking, V2 offers some legacy features like gestures.",
+                "type": "Par",
+                "name": "v2"
             },
             {
                 "text": "Menu : Switches the device to '''H'''ead '''M'''ounted '''D'''isplay mode.",
@@ -4430,7 +4590,7 @@
         "opLicense": "Non-Commercial",
         "opType": "leapmotion",
         "opFilter": "False",
-        "long": "The Leap Motion TOP gets the image from the [[Leap Motion]] controller's cameras. To enable this feature the option '''Allow Images''' must be turned on in the Leap Motion Control Panel.\n\t\t\nTo connect with the device you will need to install the Leap Motion software which is available here:\t\nhttps://developer.leapmotion.com/releases\n* API Version 5 Gemini - Download Gemini v5.6.1\n* API Version 4 Orion - Download Orion Beta v4.1.0\n* API Version 2 Tracking - Download Orion Beta v3.2.1\n\nYou will also need to set the Library Folder parameter to the location of the Leap SDK on your machine. See the parameter details below for more information.\n\n'''Tip:''' If using Gemini V5, the Leap Motion will only work in one orientation. By default the hands enter from the bottom of the camera view, though this can be changed in setting to invert the direction. This is an important distinction between Gemini V5 and the older V2/V4 APIs which could work in either orientation.\n\n'''Note:''' TouchDesigner does not include a license to use the Leap Motion hardware or software. Make sure to check with the [https://www.ultraleap.com/ UltraLeap website] regarding any applicable licenses that you may need for your project.\n\nSee also [[Leap Motion]], [[Leap Motion CHOP]]",
+        "long": "The Leap Motion TOP gets the image from the [[Leap Motion]] controller's cameras. To enable this feature the option '''Allow Images''' must be turned on in the Leap Motion Control Panel.\n\t\t\n==== Licensing for Leap Motion ====\nTouchDesigner does not include a license to use the Leap Motion hardware or software. Make sure to check with the [https://www.ultraleap.com/ UltraLeap website] regarding any applicable licenses that you may need for your project.\n\n==== Installation ====\nAs of TouchDesigner 2022, the Leap Motion library files are no longer included with the TouchDesigner installer. These files, along with the drivers, are available from the UltraLeap website here: https://developer.leapmotion.com/releases\n* API Version 5 Gemini - Download Gemini v5.6.1\n* API Version 4 Orion - Download Orion Beta v4.1.0\n* API Version 2 Tracking - Download Orion Beta v3.2.1\n\nDepending on your operating system, there are different instructions for installing the library:\n\n'''On Windows:''' You can use the Library Folder parameter to point to the location of the LeapC.dll (Orion/Gemini) or Leap.dll (Version 2/3) files on your system. The file is installed as part of the LeapSDK and the location may vary depending on the version and options selected during installation.\n\n'''On MacOS:''' Requires legacy Mac driver available [https://developer.leapmotion.com/releases/mac-2-3-1 here]. The libLeap.dylib file must be copied into a folder where TouchDesigner can find it (the Library folder parameter is not available on MacOS). The file is available in the LeapSDK/lib folder of the driver package downloaded from UltraLeap. The file can be copied into <code>usr/local/lib</code> so that it is available to all copies of TouchDesigner on the system, or it can be copied into the frameworks folder inside the package contents of a particular TouchDesigner app i.e. <code>TouchDesigner.app/contents/frameworks</code>.\n\nSee also [[Leap Motion]], [[Leap Motion CHOP]]",
         "short": "The Leap Motion TOP gets the image from the Leap Motion Controller's cameras.",
         "opCategories": ""
     },
@@ -4619,7 +4779,7 @@
             {
                 "text": "Menu : The wrapping method used when applying limits to the pixel values in the image.",
                 "type": "Par",
-                "name": "maxop"
+                "name": "minop"
             },
             {
                 "text": "Menu : The function used to quantize the pixel values in the output image.",
@@ -5104,6 +5264,86 @@
                 "text": "Menu : When on, if the Disk Read Timeout is reached TouchDesigner will use the latest available frame in place of the skipped frame.",
                 "type": "Par",
                 "name": "frametimeoutstrat"
+            },
+            {
+                "text": "Menu : Specifies the method used to play the movie, there are 3 options.",
+                "type": "Par",
+                "name": "playmode"
+            },
+            {
+                "text": "Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage).",
+                "type": "Par",
+                "name": "cuepointunit"
+            },
+            {
+                "text": "Menu : Customize the Cue parameter's behavior.",
+                "type": "Par",
+                "name": "cuebehavior"
+            },
+            {
+                "text": "Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage).",
+                "type": "Par",
+                "name": "indexunit"
+            },
+            {
+                "text": "Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage).",
+                "type": "Par",
+                "name": "loopcrossfadeunit"
+            },
+            {
+                "text": "Menu : This menu helps you determine how to treat the audio as the end of a movie approaches. This is needed because of all the cases of playing a movie, like when driving with an index, the TOP will not know if you intend to loop it or not.",
+                "type": "Par",
+                "name": "audioloop"
+            },
+            {
+                "text": "Menu : Determines how an image sequence is ordered.",
+                "type": "Par",
+                "name": "imageindexing"
+            },
+            {
+                "text": "Menu : For movies that are stored as fields, where each image is made of two images interleaved together. A 30-frame per second movie would contain 60 fields per second. For each image, the even scanlines of the first field are interleaved with the odd scanlines of the second field. The Movie File In TOP has several ways of dealing with this:",
+                "type": "Par",
+                "name": "deinterlace"
+            },
+            {
+                "text": "Menu : Where fields are extracted one field at a time, this will extract the Even field first by default, otehrwise it will extract the odd field first. The video industry has not standardized on one or the other.",
+                "type": "Par",
+                "name": "precedence"
+            },
+            {
+                "text": "Menu : Premultiplies the image.",
+                "type": "Par",
+                "name": "multalpha"
+            },
+            {
+                "text": "Menu : When the file can not be loaded for some reason, select what to display instead.",
+                "type": "Par",
+                "name": "loadingerrorimage"
+            },
+            {
+                "text": "Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage).",
+                "type": "Par",
+                "name": "tstartunit"
+            },
+            {
+                "text": "Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage).",
+                "type": "Par",
+                "name": "tendunit"
+            },
+            {
+                "text": "Menu : Determines how the Movie File In TOP handles movie positions that lie before the Trim Start position. For example, if Trim Start is set to 1, and the movie's current index is -10, the Extend Left menu determines how the movie position is calculated.",
+                "type": "Par",
+                "name": "textendleft"
+            },
+            {
+                "text": "Menu : Determines how the Movie File In TOP handles movie positions that lie after the Trim End position. For example, if Trim End is set to 20, and the movie's current index is 25, the Extend Right menu determines how the movie position is calculated.",
+                "type": "Par",
+                "name": "textendright"
+            },
+            {
+                "text": "Menu : When on, if the Disk Read Timeout is reached TouchDesigner will use the latest available frame in place of the skipped frame.",
+                "type": "Par",
+                "name": "frametimeoutstrat"
             }
         ],
         "methods": [],
@@ -5175,7 +5415,7 @@
             {
                 "text": "Menu : Select the EntropyMode to use for H.264.",
                 "type": "Par",
-                "name": "entropymode"
+                "name": "profile"
             }
         ],
         "methods": [],
@@ -5612,6 +5852,51 @@
     "flowTOP": {
         "label": "flowTOP",
         "members": [
+            {
+                "text": "The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume.",
+                "type": "Par",
+                "name": "simpositionx"
+            },
+            {
+                "text": "The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume.",
+                "type": "Par",
+                "name": "simpositiony"
+            },
+            {
+                "text": "The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume.",
+                "type": "Par",
+                "name": "simpositionz"
+            },
+            {
+                "text": "The size of the simulation volume in the world. The simulation cannot extend outside of the volume. Also controls the size of simulation blocks, so the total number of blocks in the volume stays the same. Smaller size blocks will require more blocks for the same size simulation. This increases accuracy but makes the simulation more taxing on the GPU as there are more blocks to calculate.",
+                "type": "Par",
+                "name": "simsizex"
+            },
+            {
+                "text": "The size of the simulation volume in the world. The simulation cannot extend outside of the volume. Also controls the size of simulation blocks, so the total number of blocks in the volume stays the same. Smaller size blocks will require more blocks for the same size simulation. This increases accuracy but makes the simulation more taxing on the GPU as there are more blocks to calculate.",
+                "type": "Par",
+                "name": "simsizey"
+            },
+            {
+                "text": "The size of the simulation volume in the world. The simulation cannot extend outside of the volume. Also controls the size of simulation blocks, so the total number of blocks in the volume stays the same. Smaller size blocks will require more blocks for the same size simulation. This increases accuracy but makes the simulation more taxing on the GPU as there are more blocks to calculate.",
+                "type": "Par",
+                "name": "simsizez"
+            },
+            {
+                "text": "Gravity direction for use with Buoyancy parameter, where amount controls strength of buoyancy force.",
+                "type": "Par",
+                "name": "gravityx"
+            },
+            {
+                "text": "Gravity direction for use with Buoyancy parameter, where amount controls strength of buoyancy force.",
+                "type": "Par",
+                "name": "gravityy"
+            },
+            {
+                "text": "Gravity direction for use with Buoyancy parameter, where amount controls strength of buoyancy force.",
+                "type": "Par",
+                "name": "gravityz"
+            },
             {
                 "text": "The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume.",
                 "type": "Par",
@@ -6928,7 +7213,7 @@
             {
                 "text": "TOP : This is the TOP that will be referenced by the above sampler name above it.",
                 "type": "Par",
-                "name": "top0"
+                "name": "top0extendu"
             },
             {
                 "text": "Menu : ",
@@ -7106,7 +7391,7 @@
             {
                 "text": "Menu : Format used to store data for each channel in the image (ie. R, G, B, and A). Refer to [[Pixel Formats]] for more information.",
                 "type": "Par",
-                "name": "format"
+                "name": ""
             },
             {
                 "text": "Menu : Specify what type of texture to create with the image output.",
@@ -7121,7 +7406,7 @@
             {
                 "text": "TOP : This is the TOP that will be referenced by the above sampler name above it.",
                 "type": "Par",
-                "name": "top0"
+                "name": "top0extendu"
             },
             {
                 "text": "Menu : ",
@@ -8451,6 +8736,41 @@
                 "text": "Menu : Controls how the image data is transfered between the GPU and the output card.",
                 "type": "Par",
                 "name": "transfermode"
+            },
+            {
+                "text": "Menu : Select the driver library to use.",
+                "type": "Par",
+                "name": "library"
+            },
+            {
+                "text": "StrMenu : A menu of available video devices to output to. Set the Library parameter above prior to selecting your device.",
+                "type": "Par",
+                "name": "device"
+            },
+            {
+                "text": "Menu : Set the pixel format of the output when possible (depends what type of device is used).\tData may be converted to YUV colorspace depending on what the device and settings require.",
+                "type": "Par",
+                "name": "outputpixelformat"
+            },
+            {
+                "text": "Menu : Set the color space of the data sent out, for supported devices.",
+                "type": "Par",
+                "name": "outputcolorspace"
+            },
+            {
+                "text": "Menu : On AJA devices what input to use as a reference source input.",
+                "type": "Par",
+                "name": "referencesource"
+            },
+            {
+                "text": "Menu : Describes the number of bits of information used for each sample.",
+                "type": "Par",
+                "name": "audiobitdepth"
+            },
+            {
+                "text": "Menu : Controls how the image data is transfered between the GPU and the output card.",
+                "type": "Par",
+                "name": "transfermode"
             }
         ],
         "methods": [],
@@ -8572,7 +8892,7 @@
             {
                 "text": "Toggle : Let the browser process play audio if the web page contains audio.  This option will restart the browser process.",
                 "type": "Par",
-                "name": "audio"
+                "name": "type"
             }
         ],
         "methods": [],
@@ -9182,7 +9502,7 @@
         "opLabel": "Audio VST",
         "opClass": "audiovstCHOP_Class",
         "opFilter": "True",
-        "opLicense": "TouchDesigner Non-Commercial",
+        "opLicense": "Non-Commercial",
         "opCategories": "",
         "short": "Loads VST3 Plugins.",
         "long": "The Audio VST CHOP loads VST3 Plugin files that generate (instruments) or process (filter) audio. See the [[VST]] overview.\n    \nThe plugin's parameters can be exposed and driven bi-directionally via a corresponding TouchDesigner parameter or the plugin's GUI control.  In order to get the full benefit of the bidirectional nature of the plugin parameters it is recommended to use [[Binding]] or a [[Bind CHOP]] when driving the parameter in TouchDesigner, rather than an expression or CHOP reference.\n\nPython calls let you [[AudiovstCHOP_Class|send MIDI messages]] to the plugin. And if the plugin generates MIDI, you can get and process the messages in the [[Docking|docked]] callbacks DAT.\n\nDepending on the plugin, the Audio VST CHOP takes up to 4 multi-channel inputs.\n    \nSee the discussion on which VST plugins work well with TouchDesigner - [https://derivative.ca/community-post/vst-plugin-testing/65712 VST Plugin Testing]. Also for a selection of free VSTs along with a useful set of affordable upgraded versions go here: https://hy-plugins.com.\n\n2 Free HY-Plugins are included with TouchDesigner and can be found using the Help > Browse Samples menu. This will open a file browser to the TouchDesigner application Samples folder which contains a VST3 folder holding one synthesizer and filter plugin for both Windows and MacOS. The Windows VST3 plugin files can be distinguished by their included \"64 Bit\" string.\n\nInstalled VST plugins are found in <code>C:Program Files/Common Files/VST</code> on Windows, and be <code>/Library/Audio/Plug-Ins/VST3</code> on macOS.\n\n'''Tip''': You can get detailed info about the VST plugin by attaching an [[Info DAT]] to the CHOP.\n\n[[VST]] is a trademark of Steinberg Media Technologies GmbH, registered in Europe and other countries."
@@ -10010,7 +10330,7 @@
         "subclasses": {},
         "inherits": [],
         "opFilter": "True",
-        "long": "'''DEPRECATED:''' use the [[Laser Device CHOP]] instead.\n    \nEtherDream is a laser controller. The EtherDream CHOP takes as input up to five channels interpreted as X and Y (horizontal and vertical) position values in the first 2 channels, and red, green and blue color values in the next 3 channels. It outputs the data to an [http://ether-dream.com/ EtherDream] device via a network connection. The EtherDream device is connected to a laser using an ILDA cable. The user can then control the image that the laser should output using the EtherDream CHOP. Applications of the EtherDream CHOP include displaying computer-generated shape animations or other special effects of a light show.\t\n\t\t\nThe EtherDream CHOP needs the IP address of the EtherDream device, which you can get from the output of an [[EtherDream DAT]].\t\t\n\t\t\nBlanking (all-off) occurs when the incoming RGB CHOP channels are all zero, or the Red Scale, Green Scale, and Blue Scale parameters are all zero.\t\t\n\t\t\nIt is sometimes helpful to have additional information with respect to the general state of the hardware, whether any warnings are generated by the connected devices, how well the EtherDream is receiving points, the point output rate, and the point buffer capacity. Such details can be seen by connecting the EtherDream CHOP to an [[Info CHOP]], and may be useful for troubleshooting display images.\t\t\n\t\t\nThe <code>maxrate</code> column of the EtherDream DAT indicates the maximum number of samples per second that can be sent to the EtherDream device, though in practice, most lasers are reflected into position by a set of mechanical reflectors, with their own mechanical characteristics.  As a result, attempting to quickly scan a square over a large area too quickly, for example, may result in a very curved corners as the physical components lag behind their target positions.\t\t\n\t\t\nLarge changes in RGB values from sample-to-sample will likely be visibly correct as lasers generally can switch on-off quickly.\t\t\n\t\t\nThe range of X and Y is typically -1 to +1, and the range of RGB is typically 0 to 1.\t\t\n\t\t\nIf <code>maxrate</code> is 100,000, and given that the CHOP takes time-sliced data, it is appropriate to send a time-sliced CHOP with a sample rate of up to 100,000 samples per second to the EtherDream CHOP.\t\t\n\t\t\nSee also: [[EtherDream DAT]], [[Laser CHOP]], and the [[Pattern CHOP]], [[Helios DAC CHOP]].",
+        "long": "EtherDream is a laser controller. The EtherDream CHOP takes as input up to five channels interpreted as X and Y (horizontal and vertical) position values in the first 2 channels, and red, green and blue color values in the next 3 channels. It outputs the data to an [http://ether-dream.com/ EtherDream] device via a network connection. The EtherDream device is connected to a laser using an ILDA cable. The user can then control the image that the laser should output using the EtherDream CHOP. Applications of the EtherDream CHOP include displaying computer-generated shape animations or other special effects of a light show.\t\n\t\t\nThe EtherDream CHOP needs the IP address of the EtherDream device, which you can get from the output of an [[EtherDream DAT]].\t\t\n\t\t\nBlanking (all-off) occurs when the incoming RGB CHOP channels are all zero, or the Red Scale, Green Scale, and Blue Scale parameters are all zero.\t\t\n\t\t\nIt is sometimes helpful to have additional information with respect to the general state of the hardware, whether any warnings are generated by the connected devices, how well the EtherDream is receiving points, the point output rate, and the point buffer capacity. Such details can be seen by connecting the EtherDream CHOP to an [[Info CHOP]], and may be useful for troubleshooting display images.\t\t\n\t\t\nThe <code>maxrate</code> column of the EtherDream DAT indicates the maximum number of samples per second that can be sent to the EtherDream device, though in practice, most lasers are reflected into position by a set of mechanical reflectors, with their own mechanical characteristics.  As a result, attempting to quickly scan a square over a large area too quickly, for example, may result in a very curved corners as the physical components lag behind their target positions.\t\t\n\t\t\nLarge changes in RGB values from sample-to-sample will likely be visibly correct as lasers generally can switch on-off quickly.\t\t\n\t\t\nThe range of X and Y is typically -1 to +1, and the range of RGB is typically 0 to 1.\t\t\n\t\t\nIf <code>maxrate</code> is 100,000, and given that the CHOP takes time-sliced data, it is appropriate to send a time-sliced CHOP with a sample rate of up to 100,000 samples per second to the EtherDream CHOP.\t\t\n\t\t\nSee also: [[EtherDream DAT]], [[Laser CHOP]], and the [[Pattern CHOP]], [[Helios DAC CHOP]].",
         "opLabel": "EtherDream",
         "opClass": "etherdreamCHOP_Class",
         "opType": "etherdream",
@@ -10378,7 +10698,7 @@
         "subclasses": {},
         "inherits": [],
         "opFilter": "True",
-        "long": "'''DEPRECATED:''' use the [[Laser Device CHOP]] instead.\n    \nHelios DAC is a laser controller. The Helios DAC CHOP takes as input up to five channels interpreted as X and Y (horizontal and vertical) position values in the first 2 channels, and red, green and blue color values in the next 3 channels. It outputs the data to a [http://pages.bitlasers.com/helios/ Helios DAC]. The Helios DAC device is connected to a laser using an ILDA cable. The user can then control the image that the laser should output using the Helios DAC CHOP. Applications of the Helios DAC CHOP include displaying computer-generated shape animations or other special effects of a light show.\t\n\t\t\nBlanking (all-off) occurs when the incoming RGB CHOP channels are all zero, or the Red Scale, Green Scale, and Blue Scale parameters are all zero.\t\t\n\t\t\nLarge changes in RGB values from sample-to-sample will likely be visibly correct as lasers generally can switch on-off quickly.\t\t\n\t\t\nThe range of X and Y is typically -1 to +1, and the range of RGB is typically 0 to 1.\n\n'''Note:''' The Helios DAC CHOP listens for any device changes on the system and will perform a Helios device re-scan when triggered. However, the re-scan can only be triggered if all Helios connections are closed, meaning all Helios DAC CHOPs are either deactivated or bypassed. To perform a Helios device re-scan with only a single Helios DAC CHOP, simply deactivate and reactivate the CHOP.\n\t\t\nSee also: [[EtherDream CHOP]], [[EtherDream DAT]], [[Laser CHOP]], and the [[Pattern CHOP]].",
+        "long": "Helios DAC is a laser controller. The Helios DAC CHOP takes as input up to five channels interpreted as X and Y (horizontal and vertical) position values in the first 2 channels, and red, green and blue color values in the next 3 channels. It outputs the data to a [http://pages.bitlasers.com/helios/ Helios DAC]. The Helios DAC device is connected to a laser using an ILDA cable. The user can then control the image that the laser should output using the Helios DAC CHOP. Applications of the Helios DAC CHOP include displaying computer-generated shape animations or other special effects of a light show.\t\n\t\t\nBlanking (all-off) occurs when the incoming RGB CHOP channels are all zero, or the Red Scale, Green Scale, and Blue Scale parameters are all zero.\t\t\n\t\t\nLarge changes in RGB values from sample-to-sample will likely be visibly correct as lasers generally can switch on-off quickly.\t\t\n\t\t\nThe range of X and Y is typically -1 to +1, and the range of RGB is typically 0 to 1.\n\n'''Note:''' The Helios DAC CHOP listens for any device changes on the system and will perform a Helios device re-scan when triggered. However, the re-scan can only be triggered if all Helios connections are closed, meaning all Helios DAC CHOPs are either deactivated or bypassed. To perform a Helios device re-scan with only a single Helios DAC CHOP, simply deactivate and reactivate the CHOP.\n\t\t\nSee also: [[EtherDream CHOP]], [[EtherDream DAT]], [[Laser CHOP]], and the [[Pattern CHOP]].",
         "opLabel": "Helios DAC",
         "opClass": "heliosdacCHOP_Class",
         "opType": "heliosdac",
@@ -10409,7 +10729,7 @@
             {
                 "text": "Menu : Select the device interface.",
                 "type": "Par",
-                "name": "interface"
+                "name": "output"
             },
             {
                 "text": "Menu : Outputs the scan data in either Polar or Cartesian coordinates.",
@@ -10903,7 +11223,7 @@
             {
                 "text": "Menu : Select between Leap Motion V2 or V4/V5 SDKs for tracking. V5 offers the fastest and most stable tracking, V2 offers some legacy features like gestures.",
                 "type": "Par",
-                "name": "api"
+                "name": "v2"
             },
             {
                 "text": "Menu : Switches the device to '''H'''ead '''M'''ounted '''D'''isplay mode.",
@@ -11889,7 +12209,7 @@
             {
                 "text": "Menu : Controls the range of motion of the skeleton values.",
                 "type": "Par",
-                "name": "skeletonrange"
+                "name": "output"
             }
         ],
         "methods": [],
@@ -12066,6 +12386,61 @@
     "patternCHOP": {
         "label": "patternCHOP",
         "members": [
+            {
+                "text": "Menu : The shape of one cycle of the pattern.",
+                "type": "Par",
+                "name": "wavetype"
+            },
+            {
+                "text": "Two parameters to multiply by a line from <code>taper1</code> at the start to <code>taper2</code> at the end. The default of (<code>1 1</code>) has no effect.",
+                "type": "Par",
+                "name": "taper1"
+            },
+            {
+                "text": "Two parameters to multiply by a line from <code>taper1</code> at the start to <code>taper2</code> at the end. The default of (<code>1 1</code>) has no effect.",
+                "type": "Par",
+                "name": "taper2"
+            },
+            {
+                "text": "A value at each From Range will become its corresponding To Range value.",
+                "type": "Par",
+                "name": "fromrange1"
+            },
+            {
+                "text": "A value at each From Range will become its corresponding To Range value.",
+                "type": "Par",
+                "name": "fromrange2"
+            },
+            {
+                "text": "A value at each From Range will become its corresponding To Range value.",
+                "type": "Par",
+                "name": "torange1"
+            },
+            {
+                "text": "A value at each From Range will become its corresponding To Range value.",
+                "type": "Par",
+                "name": "torange2"
+            },
+            {
+                "text": "Menu : A round-off menu to convert all numbers to integers.",
+                "type": "Par",
+                "name": "integer"
+            },
+            {
+                "text": "Menu : If an input CHOP is attached, it adopts the length and sample rate of the input CHOP, and",
+                "type": "Par",
+                "name": "combine"
+            },
+            {
+                "text": "Menu : The left right extend conditions (before/after range).",
+                "type": "Par",
+                "name": "left"
+            },
+            {
+                "text": "Menu : The right extend conditions (before/after range).",
+                "type": "Par",
+                "name": "right"
+            },
             {
                 "text": "Menu : The shape of one cycle of the pattern.",
                 "type": "Par",
@@ -12676,7 +13051,7 @@
             {
                 "text": "Pulse : Use this menu to select from some commonly used baud rates.",
                 "type": "Par",
-                "name": "baudmenu"
+                "name": "baudrate"
             },
             {
                 "text": "Menu : This parameter sets the number of data bits sent in each. Data bits are transmitted \"backwards\". Backwards refers to the order of transmission, which is from least significant bit (LSB) to most significant bit (MSB). To interpret the data bits, you must read from right to left.",
@@ -13023,6 +13398,16 @@
     "stypeoutCHOP": {
         "label": "stypeoutCHOP",
         "members": [
+            {
+                "text": "Menu : Selects the network protocol to use. Refer to the Network Protocols article for more information.",
+                "type": "Par",
+                "name": "protocol"
+            },
+            {
+                "text": "Menu : Determine how the packet number field is generated. The packet number generally increments by 1 each frame and loops from 255 to 0.",
+                "type": "Par",
+                "name": "packetnumber"
+            },
             {
                 "text": "Menu : Selects the network protocol to use. Refer to the Network Protocols article for more information.",
                 "type": "Par",
@@ -16977,7 +17362,7 @@
             {
                 "text": "Menu : Specify how to measure along splines / curves.",
                 "type": "Par",
-                "name": "space"
+                "name": "refinespace"
             },
             {
                 "text": " : Subdivide refines a primitive such that the subdivision causes a sharp discontinuity if ever displaced. In essence subdivide is equivalent to refine for polygons and Bziers, since any refinement causes a potential discontinuity. In the case of a NURBS it is equivalent to a maximum refinement (i.e. count = primitive basis order - 1).",
@@ -19898,7 +20283,7 @@
             {
                 "text": "TOP : Provides a TOP texture to use as a color map.",
                 "type": "Par",
-                "name": "colormap"
+                "name": "colormapextendu"
             },
             {
                 "text": "Menu : ",
@@ -19991,7 +20376,7 @@
             {
                 "text": "TOP : This is the TOP that will be referenced by the above sampler name above it.\t\n\t\t\t\t\n'''Exposed by the + Button, texture sampling parameters''':\t\t\t\t\n\t\t\t\t\nRefer to the [[Texture Sampling Parameters]] article for more information on the parameters exposed by pressing the + button. The ''parameter'' prefix for each of the parameters is ''top[digit]''.",
                 "type": "Par",
-                "name": "top0"
+                "name": "top0extendu"
             },
             {
                 "text": "Menu : ",
@@ -20214,7 +20599,7 @@
             {
                 "text": "rgb : Specifies the color value for the Vector at the Distance Far plane and beyond (farther from camera).",
                 "type": "Par",
-                "name": "vectorfarcolor"
+                "name": "vectorcolorfar"
             }
         ],
         "methods": [],
@@ -20236,42 +20621,42 @@
             {
                 "text": "Menu : This value is multiplied by the color value of the pixel that is being written to the Color-Buffer (also know as the Source Color).",
                 "type": "Par",
-                "name": "srcblend"
+                "name": ""
             },
             {
                 "text": "Menu : This value is multiplied by the color value of the pixel currently in the Color-Buffer (also known as the Destination Color).",
                 "type": "Par",
-                "name": "destblend"
+                "name": ""
             },
             {
                 "text": "Menu : This value is multiplied by the alpha value of the pixel that is being written to the Color-Buffer (also know as the Source Alpha).",
                 "type": "Par",
-                "name": "srcblenda"
+                "name": ""
             },
             {
                 "text": "Menu : This value is multiplied by the alpha value of the pixel currently in the Color-Buffer (also known as the Destination Alpha).",
                 "type": "Par",
-                "name": "destblenda"
+                "name": ""
             },
             {
                 "text": "Menu : The depth value of the pixel being drawn is compared to the depth value currently in the depth-buffer using this function. If the test passes then the pixel is drawn to the Frame-Buffer. If the test fails the pixel is discarded and no changes are made to the Frame-Buffer.",
                 "type": "Par",
-                "name": "depthfunc"
+                "name": ""
             },
             {
                 "text": "Menu : This menu works in conjunction with the Alpha Threshold parameter below in determining which pixels to keep based on their alpha value.",
                 "type": "Par",
-                "name": "alphafunc"
+                "name": ""
             },
             {
                 "text": "Menu : Enables and disables wire-frame rendering with the option of OpenGL Tesselated or Topology based wireframes.",
                 "type": "Par",
-                "name": "wireframe"
+                "name": ""
             },
             {
                 "text": "Menu : Selects which faces to render.",
                 "type": "Par",
-                "name": "cullface"
+                "name": ""
             }
         ],
         "methods": [],
@@ -20371,7 +20756,7 @@
             {
                 "text": "TOP : Clicking on the arrows to the right of the map field will open the [[Texture Sampling Parameters]] for Color Map.  The other Map parameters below will have their own Texture Sampling Parameters as well.",
                 "type": "Par",
-                "name": "basecolormap"
+                "name": "basecolormapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20411,7 +20796,7 @@
             {
                 "text": "TOP : Specifies a specular level map.",
                 "type": "Par",
-                "name": "specularlevelmap"
+                "name": "specularlevelmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20456,7 +20841,7 @@
             {
                 "text": "TOP : Specifies a metallic texture map. This is equivalent to the Metallic map in Substance Designer.",
                 "type": "Par",
-                "name": "metallicmap"
+                "name": "metalnessmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20501,7 +20886,7 @@
             {
                 "text": "TOP : Specifies a roughness texture map. This is equivalent to the Roughness map in Substance Designer.",
                 "type": "Par",
-                "name": "roughnessmap"
+                "name": "roughnessmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20546,7 +20931,7 @@
             {
                 "text": "TOP : Specifies a ambient occlusion texture map. This is equivalent to the Ambient Occlusion map in Substance Designer. Ambient Occlusion affects the contribution from the Environement Light COMP.",
                 "type": "Par",
-                "name": "ambientocclusionmap"
+                "name": "ambientocclusionmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20591,7 +20976,7 @@
             {
                 "text": "TOP : Uses a [[Normal Map TOP|Normal Map]] from TOPs to create a 'bump map' effect. Bump-mapping simulates bumps or wrinkles in a surface to give it a 3D depth effect. Your geometry must have tangent attributes created for this feature to work (T[4]). Create these using the [[Attribute Create SOP]].",
                 "type": "Par",
-                "name": "normalmap"
+                "name": "normalmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20631,7 +21016,7 @@
             {
                 "text": "TOP : Specifies a height texture map. This is equivalent to the Height map in Substance Designer. The height map is used in conjunction with the normal map to perform parallax mapping.",
                 "type": "Par",
-                "name": "heightmap"
+                "name": "heightmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20676,7 +21061,7 @@
             {
                 "text": "TOP : Specifies a TOP texture that is multiplied with the Emit color parameter of the material. The object must have texture coordinates. The alpha of this map is ignored.",
                 "type": "Par",
-                "name": "emitmap"
+                "name": "emitmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20716,7 +21101,7 @@
             {
                 "text": "TOP : This map multiplies the alpha of the object. It uses the red channel of the map, other channels are ignored.",
                 "type": "Par",
-                "name": "alphamap"
+                "name": "alphamapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20756,7 +21141,7 @@
             {
                 "text": "TOP : This map will multiple the calculated rim light color.",
                 "type": "Par",
-                "name": "rim1map"
+                "name": "rim1mapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20841,7 +21226,7 @@
             {
                 "text": "TOP : This map multiplies the <span class=\"tipTextMAT\">Darkness Emit Color</span>. This maps alpha is not used.",
                 "type": "Par",
-                "name": "darknessemitmap"
+                "name": "darknessemitmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -20983,7 +21368,7 @@
             {
                 "text": "TOP : Specifies a TOP texture that is multiplied by the results of all of the lighting calculations. The alpha of this map is used as a part of calculating the objects alpha.  Clicking on the arrows to the right of the map field will open the [[Texture Sampling Parameters]] for Color Map.  The other Map parameters below will have their own Texture Sampling Parameters as well.",
                 "type": "Par",
-                "name": "colormap"
+                "name": "colormapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21023,7 +21408,7 @@
             {
                 "text": "TOP : Uses a [[Normal Map TOP|Normal Map]] from TOPs to create a 'bump map' effect. Bump-mapping simulates bumps or wrinkles in a surface to give it a 3D depth effect. '''Your geometry must have tangent attributes created for this feature to work (T[4]). Create these using the [[Attribute Create SOP]].'''",
                 "type": "Par",
-                "name": "normalmap"
+                "name": "normalmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21063,7 +21448,7 @@
             {
                 "text": "TOP : Specifies a height texture map. The height map is used in conjunction with the normal map to perform parallax mapping.",
                 "type": "Par",
-                "name": "heightmap"
+                "name": "heightmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21108,7 +21493,7 @@
             {
                 "text": "TOP : Specifies a TOP that multiples the Diffuse Color. The object must have texture coordinates. The alpha of this map is ignored.",
                 "type": "Par",
-                "name": "diffusemap"
+                "name": "diffusemapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21148,7 +21533,7 @@
             {
                 "text": "TOP : Specifies a TOP texture that is multiplied with the Specular color parameter of the material. The object must have texture coordinates. The alpha of this map is ignored.",
                 "type": "Par",
-                "name": "specmap"
+                "name": "specmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21188,7 +21573,7 @@
             {
                 "text": "TOP : Specifies a TOP texture that is multiplied with the Emit color parameter of the material. The object must have texture coordinates. The alpha of this map is ignored.",
                 "type": "Par",
-                "name": "emitmap"
+                "name": "emitmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21228,7 +21613,7 @@
             {
                 "text": "TOP : Uses a TOP texture to define an environment map for the material. Environment mapping simulates an object reflecting its surroundings. The TOP defined in this parameter is the texture that will be reflected. The Env Map is added to whatever the normal lighting will be, so to make an object purely reflective turn the Diffuse and Specular parameters to 0. This input expects a sphere map. An example of a sphere map can be found [http://debevec.org/Probes/campus_probe.jpg here]. This input will also accept a cube map, created with the [[Cube Map TOP]] or the [[Render TOP]]'s Render Cube Map parameter.",
                 "type": "Par",
-                "name": "envmap"
+                "name": "envmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21303,7 +21688,7 @@
             {
                 "text": "TOP : This map multiplies the alpha of the object. It uses the red channel of the map, other channels are ignored.",
                 "type": "Par",
-                "name": "alphamap"
+                "name": "alphamapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21343,7 +21728,7 @@
             {
                 "text": "TOP : You can specify up to 4 textures for multi-texturing.",
                 "type": "Par",
-                "name": "texture1"
+                "name": "texture1mapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21383,7 +21768,7 @@
             {
                 "text": "TOP : You can specify up to 4 textures for multi-texturing.",
                 "type": "Par",
-                "name": "texture2"
+                "name": "texture2mapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21423,7 +21808,7 @@
             {
                 "text": "TOP : You can specify up to 4 textures for multi-texturing.",
                 "type": "Par",
-                "name": "texture3"
+                "name": "texture3mapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21463,7 +21848,7 @@
             {
                 "text": "TOP : You can specify up to 4 textures for multi-texturing.",
                 "type": "Par",
-                "name": "texture4"
+                "name": "texture4mapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21503,7 +21888,7 @@
             {
                 "text": "TOP : This map will multiple the calculated rim light color.",
                 "type": "Par",
-                "name": "rim1map"
+                "name": "rim1mapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21588,7 +21973,7 @@
             {
                 "text": "TOP : This map multiplies the <span class=\"tipTextMAT\">Darkness Emit Color</span>. This maps alpha is not used.",
                 "type": "Par",
-                "name": "darknessemitmap"
+                "name": "darknessemitmapextendu"
             },
             {
                 "text": "Menu : ",
@@ -21685,7 +22070,7 @@
             {
                 "text": "TOP : The color map to apply to the sprites. The Color Map will be multiplied by the color of the sprites. The Color Map parameter can also take 3D / 2D Texture Arrays (from the [[Texture 3D TOP]] for example), and the w texture coordinate will select the correct map from the array.\t\t\n\t\t\t\t\nThe final size of the point sprite is controlled by the pscale point attribute (if present) getting multiplied of the result of the next 6 parameters. There are two types of scale this MAT can apply, and they are blended using the Attenuate Point Scale parameter to create one final point scale (which is multiplied by pscale).",
                 "type": "Par",
-                "name": "colormap"
+                "name": "colormapextendu"
             },
             {
                 "text": "Menu : ",

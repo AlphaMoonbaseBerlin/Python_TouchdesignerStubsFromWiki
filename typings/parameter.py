@@ -479,6 +479,46 @@ class geotextCOMP():
 	"""Extra padding to add to the sides of the layout box, pushing the text inwards for alignment."""
 	textpaddingt : Par
 	"""Extra padding to add to the sides of the layout box, pushing the text inwards for alignment."""
+	mode : Par
+	"""Menu : Controls where text is generated from. Either from the 'Text' parameter, or a table DAT provided via the 'Specification DAT' parameter."""
+	font : Par
+	"""StrMenu : Select the font to be used from the dropdown menu. Available fonts are those that have been registered with the operating system. There may be a delay when selecting fonts that have not been used before as the system creates the necessary intermediate files required for rendering."""
+	fontcolorr : Par
+	"""The color for the font."""
+	fontcolorg : Par
+	"""The color for the font."""
+	fontcolorb : Par
+	"""The color for the font."""
+	fontcolorg : Par
+	"""The color for the font."""
+	fontcolorb : Par
+	"""The color for the font."""
+	layoutsizew : Par
+	"""Text is aligned and word-wrapped within a virtual layout box. This box is what is transformed by the various transform parameters, and then the text is aligned and laid out within that. The width and height units are the same units as the font size."""
+	layoutsizeh : Par
+	"""Text is aligned and word-wrapped within a virtual layout box. This box is what is transformed by the various transform parameters, and then the text is aligned and laid out within that. The width and height units are the same units as the font size."""
+	textpaddingl : Par
+	""""""
+	textpaddingr : Par
+	""""""
+	textpaddingb : Par
+	""""""
+	textpaddingt : Par
+	""""""
+	alignx : Par
+	"""Menu : Controls the horizontal alignment of the text."""
+	aligny : Par
+	"""Menu : Controls the vertical alignment of the text."""
+	alignymode : Par
+	"""Menu : Controls how the alignment is calculated for vertical alignment."""
+	textpaddingl : Par
+	"""Extra padding to add to the sides of the layout box, pushing the text inwards for alignment."""
+	textpaddingr : Par
+	"""Extra padding to add to the sides of the layout box, pushing the text inwards for alignment."""
+	textpaddingb : Par
+	"""Extra padding to add to the sides of the layout box, pushing the text inwards for alignment."""
+	textpaddingt : Par
+	"""Extra padding to add to the sides of the layout box, pushing the text inwards for alignment."""
 	par : parameter.geotextCOMP
 	"""Parameters of parameter.geotextCOMP"""
 	pass
@@ -493,7 +533,7 @@ class geometryCOMP():
 
 class glslCOMP():
 	"""glslCOMP"""
-	top0 : Par
+	top0extendu : Par
 	"""TOP : This is the TOP that will be referenced by the above sampler name above it.
 				
 '''Exposed by the + Button, texture sampling parameters''':				
@@ -584,7 +624,7 @@ class lightCOMP():
 	"""Menu : Specifies the type of light."""
 	projmaptype : Par
 	"""Menu : """
-	projmap : Par
+	projmapextendu : Par
 	"""TOP : The path to a [[TOP]] used for the light's projector map."""
 	projmapextendu : Par
 	"""Menu : Sets the extend conditions for the Projector Map texture."""
@@ -1122,7 +1162,7 @@ class choptoTOP():
 	"""choptoTOP"""
 	dataformat : Par
 	"""Menu : Determines how the input CHOP channels will be turned into an image. If the CHOP is missing channels required to provide all the data for a scanline, the extra channels are ignored."""
-	layout : Par
+	activechannel : Par
 	"""Menu : Controls the dimensions of the output image and how the CHOP samples are arranged as pixels. This menu replaces the previous 'Crop Long Channels' and 'Fit to Square' parameters."""
 	rgba1 : Par
 	"""If the current Image Layout results in more pixels than there are available samples in the input CHOP, the values specified here will be used to fill in the extra pixels. (All textures require full rows of pixels, in other words all rows of pixels have the same number of pixels.)"""
@@ -1732,6 +1772,26 @@ class kinectazureselectTOP():
 
 class kinectazureTOP():
 	"""kinectazureTOP"""
+	colorres : Par
+	"""Menu : The resolution of images captured by the color camera. Different resolutions may have different aspect ratios. Note: 4096 x 3072 is not supported at 30 FPS."""
+	depthmode : Par
+	"""Menu : The depth mode controls which of the Kinect's two depth cameras (Wide or Narrow FOV) are used to produce the depth image and whether any 'binning' is used to process the data. In 'binned' modes, 2x2 blocks of pixels are combined to produce a filter, lower resolution image. Note: Body tracking is not supported when using the Passive IR depth mode."""
+	fps5 : Par
+	"""Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions."""
+	fps15 : Par
+	"""Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions."""
+	fps30 : Par
+	"""Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions."""
+	proccessingmode : Par
+	"""Menu : Determines how the body tracking model is processed. The default mode runs mostly on the GPU (supports Nvidia, AMD and Intel), but this can also be switched to a CPU mode when a compatible GPU is not available."""
+	orientation : Par
+	"""Menu : Used to indicate when the camera is mounted in a non-upright position. This can help improve body-tracking results."""
+	image : Par
+	"""Menu : A list of available image types to capture from the device and display in this TOP. All image types have a second version that is mapped (aligned) to the image space of the other camera so that color and depth image data can be matched. The resolution of the image is controlled by the Color Resolution or Depth Mode parameters depending on the type of image selected. Use a [[Kinect Azure Select TOP]] to access additional image types from the same camera."""
+	powerfreq : Par
+	"""Menu : Select the frequency of the power supply for use in the cameras noise cancellation system."""
+	syncmode : Par
+	"""Menu : When using more than one Kinect Azure camera, this setting can be used to determine which unit is the master and which are subordinates."""
 	fps5 : Par
 	"""Controls the frame rate of both the color and depth cameras. Some higher camera resolutions are not supported when running at 30FPS. Lower framerates can produce brighter color images in low light conditions."""
 	fps15 : Par
@@ -1821,7 +1881,11 @@ class layoutTOP():
 
 class leapmotionTOP():
 	"""leapmotionTOP"""
-	api : Par
+	v2 : Par
+	"""Menu : Select between Leap Motion V2 or V4/V5 SDKs for tracking. V5 offers the fastest and most stable tracking, V2 offers some legacy features like gestures."""
+	hmd : Par
+	"""Menu : Switches the device to '''H'''ead '''M'''ounted '''D'''isplay mode."""
+	v2 : Par
 	"""Menu : Select between Leap Motion V2 or V4/V5 SDKs for tracking. V5 offers the fastest and most stable tracking, V2 offers some legacy features like gestures."""
 	hmd : Par
 	"""Menu : Switches the device to '''H'''ead '''M'''ounted '''D'''isplay mode."""
@@ -1904,7 +1968,7 @@ class limitTOP():
 	"""limitTOP"""
 	minop : Par
 	"""Menu : The wrapping method used when applying limits to the pixel values in the image."""
-	maxop : Par
+	minop : Par
 	"""Menu : The wrapping method used when applying limits to the pixel values in the image."""
 	quantvalue : Par
 	"""Menu : The function used to quantize the pixel values in the output image."""
@@ -2103,6 +2167,38 @@ class moviefileinTOP():
 	"""Menu : Determines how the Movie File In TOP handles movie positions that lie after the Trim End position. For example, if Trim End is set to 20, and the movie's current index is 25, the Extend Right menu determines how the movie position is calculated."""
 	frametimeoutstrat : Par
 	"""Menu : When on, if the Disk Read Timeout is reached TouchDesigner will use the latest available frame in place of the skipped frame."""
+	playmode : Par
+	"""Menu : Specifies the method used to play the movie, there are 3 options."""
+	cuepointunit : Par
+	"""Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage)."""
+	cuebehavior : Par
+	"""Menu : Customize the Cue parameter's behavior."""
+	indexunit : Par
+	"""Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage)."""
+	loopcrossfadeunit : Par
+	"""Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage)."""
+	audioloop : Par
+	"""Menu : This menu helps you determine how to treat the audio as the end of a movie approaches. This is needed because of all the cases of playing a movie, like when driving with an index, the TOP will not know if you intend to loop it or not."""
+	imageindexing : Par
+	"""Menu : Determines how an image sequence is ordered."""
+	deinterlace : Par
+	"""Menu : For movies that are stored as fields, where each image is made of two images interleaved together. A 30-frame per second movie would contain 60 fields per second. For each image, the even scanlines of the first field are interleaved with the odd scanlines of the second field. The Movie File In TOP has several ways of dealing with this:"""
+	precedence : Par
+	"""Menu : Where fields are extracted one field at a time, this will extract the Even field first by default, otehrwise it will extract the odd field first. The video industry has not standardized on one or the other."""
+	multalpha : Par
+	"""Menu : Premultiplies the image."""
+	loadingerrorimage : Par
+	"""Menu : When the file can not be loaded for some reason, select what to display instead."""
+	tstartunit : Par
+	"""Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage)."""
+	tendunit : Par
+	"""Menu : Select the units for this parameter from Index, Frames, Seconds, and Fraction (percentage)."""
+	textendleft : Par
+	"""Menu : Determines how the Movie File In TOP handles movie positions that lie before the Trim Start position. For example, if Trim Start is set to 1, and the movie's current index is -10, the Extend Left menu determines how the movie position is calculated."""
+	textendright : Par
+	"""Menu : Determines how the Movie File In TOP handles movie positions that lie after the Trim End position. For example, if Trim End is set to 20, and the movie's current index is 25, the Extend Right menu determines how the movie position is calculated."""
+	frametimeoutstrat : Par
+	"""Menu : When on, if the Disk Read Timeout is reached TouchDesigner will use the latest available frame in place of the skipped frame."""
 	par : parameter.moviefileinTOP
 	"""Parameters of parameter.moviefileinTOP"""
 	pass
@@ -2130,7 +2226,7 @@ class moviefileoutTOP():
 	"""Menu : Select between Constant or Variable bit rate, and regular or high quality bit rate modes."""
 	motionpredict : Par
 	"""Menu : This setting can effect the final size of the compressed video but depends greatly on the complexity of the scene being encoded. The menu entries refers to the distance between pixels (quarter distance, half distance, or full distance which is a full pixel) as the motion vector precision for motion estimation during video compression. Quarter pixel precision can increase the quality of the motion prediction signal over half pixel precision, and this can sometimes result in better overall size compression if the improved prediction signal can offset the additional bits it takes to encode the higher precision motion vectors."""
-	entropymode : Par
+	profile : Par
 	"""Menu : Select the EntropyMode to use for H.264."""
 	par : parameter.moviefileoutTOP
 	"""Parameters of parameter.moviefileoutTOP"""
@@ -2306,6 +2402,24 @@ class flexTOP():
 
 class flowTOP():
 	"""flowTOP"""
+	simpositionx : Par
+	"""The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume."""
+	simpositiony : Par
+	"""The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume."""
+	simpositionz : Par
+	"""The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume."""
+	simsizex : Par
+	"""The size of the simulation volume in the world. The simulation cannot extend outside of the volume. Also controls the size of simulation blocks, so the total number of blocks in the volume stays the same. Smaller size blocks will require more blocks for the same size simulation. This increases accuracy but makes the simulation more taxing on the GPU as there are more blocks to calculate."""
+	simsizey : Par
+	"""The size of the simulation volume in the world. The simulation cannot extend outside of the volume. Also controls the size of simulation blocks, so the total number of blocks in the volume stays the same. Smaller size blocks will require more blocks for the same size simulation. This increases accuracy but makes the simulation more taxing on the GPU as there are more blocks to calculate."""
+	simsizez : Par
+	"""The size of the simulation volume in the world. The simulation cannot extend outside of the volume. Also controls the size of simulation blocks, so the total number of blocks in the volume stays the same. Smaller size blocks will require more blocks for the same size simulation. This increases accuracy but makes the simulation more taxing on the GPU as there are more blocks to calculate."""
+	gravityx : Par
+	"""Gravity direction for use with Buoyancy parameter, where amount controls strength of buoyancy force."""
+	gravityy : Par
+	"""Gravity direction for use with Buoyancy parameter, where amount controls strength of buoyancy force."""
+	gravityz : Par
+	"""Gravity direction for use with Buoyancy parameter, where amount controls strength of buoyancy force."""
 	simpositionx : Par
 	"""The position of the simulation volume's center, in the world. The simulation cannot extend outside of the volume."""
 	simpositiony : Par
@@ -2834,7 +2948,7 @@ class renderpassTOP():
 	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
 	croptopunit : Par
 	"""Menu : Select the units for this parameter from Pixels, Fraction (0-1), Fraction Aspect (0-1 considering aspect ratio)."""
-	top0 : Par
+	top0extendu : Par
 	"""TOP : This is the TOP that will be referenced by the above sampler name above it."""
 	top0extendu : Par
 	"""Menu : """
@@ -2922,13 +3036,13 @@ Each pass is a full render, so each pass adds significant overhead."""
 	"""The resolution of the image output. This does not need to be the same as the resolution the main Render is doing."""
 	imageresh : Par
 	"""The resolution of the image output. This does not need to be the same as the resolution the main Render is doing."""
-	format : Par
+	 : Par
 	"""Menu : Format used to store data for each channel in the image (ie. R, G, B, and A). Refer to [[Pixel Formats]] for more information."""
 	imagetype : Par
 	"""Menu : Specify what type of texture to create with the image output."""
 	imageaccess : Par
 	"""Menu : Controls how the output textures will be accessed. If the textures will be read from (such as using values generated by other shader executions within the same frame), then the access should be changed to Read-Write instead of Write Only."""
-	top0 : Par
+	top0extendu : Par
 	"""TOP : This is the TOP that will be referenced by the above sampler name above it."""
 	top0extendu : Par
 	"""Menu : """
@@ -3493,6 +3607,20 @@ class videodeviceoutTOP():
 	"""Menu : Describes the number of bits of information used for each sample."""
 	transfermode : Par
 	"""Menu : Controls how the image data is transfered between the GPU and the output card."""
+	library : Par
+	"""Menu : Select the driver library to use."""
+	device : Par
+	"""StrMenu : A menu of available video devices to output to. Set the Library parameter above prior to selecting your device."""
+	outputpixelformat : Par
+	"""Menu : Set the pixel format of the output when possible (depends what type of device is used).	Data may be converted to YUV colorspace depending on what the device and settings require."""
+	outputcolorspace : Par
+	"""Menu : Set the color space of the data sent out, for supported devices."""
+	referencesource : Par
+	"""Menu : On AJA devices what input to use as a reference source input."""
+	audiobitdepth : Par
+	"""Menu : Describes the number of bits of information used for each sample."""
+	transfermode : Par
+	"""Menu : Controls how the image data is transfered between the GPU and the output card."""
 	par : parameter.videodeviceoutTOP
 	"""Parameters of parameter.videodeviceoutTOP"""
 	pass
@@ -3541,7 +3669,7 @@ class viosoTOP():
 
 class webrenderTOP():
 	"""webrenderTOP"""
-	audio : Par
+	type : Par
 	"""Toggle : Let the browser process play audio if the web page contains audio.  This option will restart the browser process."""
 	par : parameter.webrenderTOP
 	"""Parameters of parameter.webrenderTOP"""
@@ -4295,7 +4423,7 @@ class hogCHOP():
 
 class hokuyoCHOP():
 	"""hokuyoCHOP"""
-	interface : Par
+	output : Par
 	"""Menu : Select the device interface."""
 	output : Par
 	"""Menu : Outputs the scan data in either Polar or Cartesian coordinates."""
@@ -4499,7 +4627,7 @@ class laserdeviceCHOP():
 
 class leapmotionCHOP():
 	"""leapmotionCHOP"""
-	api : Par
+	v2 : Par
 	"""Menu : Select between Leap Motion V2 or V4/V5 SDKs for tracking. V5 offers the fastest and most stable tracking, V2 offers some legacy features like gestures."""
 	hmd : Par
 	"""Menu : Switches the device to '''H'''ead '''M'''ounted '''D'''isplay mode."""
@@ -4898,7 +5026,7 @@ class openvrCHOP():
 	"""openvrCHOP"""
 	output : Par
 	"""Menu : Controls what kind of category of data will be output from this node."""
-	skeletonrange : Par
+	output : Par
 	"""Menu : Controls the range of motion of the skeleton values."""
 	par : parameter.openvrCHOP
 	"""Parameters of parameter.openvrCHOP"""
@@ -4972,6 +5100,28 @@ class parameterCHOP():
 
 class patternCHOP():
 	"""patternCHOP"""
+	wavetype : Par
+	"""Menu : The shape of one cycle of the pattern."""
+	taper1 : Par
+	"""Two parameters to multiply by a line from <code>taper1</code> at the start to <code>taper2</code> at the end. The default of (<code>1 1</code>) has no effect."""
+	taper2 : Par
+	"""Two parameters to multiply by a line from <code>taper1</code> at the start to <code>taper2</code> at the end. The default of (<code>1 1</code>) has no effect."""
+	fromrange1 : Par
+	"""A value at each From Range will become its corresponding To Range value."""
+	fromrange2 : Par
+	"""A value at each From Range will become its corresponding To Range value."""
+	torange1 : Par
+	"""A value at each From Range will become its corresponding To Range value."""
+	torange2 : Par
+	"""A value at each From Range will become its corresponding To Range value."""
+	integer : Par
+	"""Menu : A round-off menu to convert all numbers to integers."""
+	combine : Par
+	"""Menu : If an input CHOP is attached, it adopts the length and sample rate of the input CHOP, and"""
+	left : Par
+	"""Menu : The left right extend conditions (before/after range)."""
+	right : Par
+	"""Menu : The right extend conditions (before/after range)."""
 	wavetype : Par
 	"""Menu : The shape of one cycle of the pattern."""
 	taper1 : Par
@@ -5224,7 +5374,7 @@ class serialCHOP():
 	"""Menu : The type of input transition to monitor."""
 	port : Par
 	"""StrMenu : Selects the COM port that the serial connection will use."""
-	baudmenu : Par
+	baudrate : Par
 	"""Pulse : Use this menu to select from some commonly used baud rates."""
 	databits : Par
 	"""Menu : This parameter sets the number of data bits sent in each. Data bits are transmitted "backwards". Backwards refers to the order of transmission, which is from least significant bit (LSB) to most significant bit (MSB). To interpret the data bits, you must read from right to left."""
@@ -5367,6 +5517,10 @@ class stypeCHOP():
 
 class stypeoutCHOP():
 	"""stypeoutCHOP"""
+	protocol : Par
+	"""Menu : Selects the network protocol to use. Refer to the Network Protocols article for more information."""
+	packetnumber : Par
+	"""Menu : Determine how the packet number field is generated. The packet number generally increments by 1 each frame and loops from 255 to 0."""
 	protocol : Par
 	"""Menu : Selects the network protocol to use. Refer to the Network Protocols article for more information."""
 	packetnumber : Par
@@ -7076,7 +7230,7 @@ class rectangleSOP():
 
 class refineSOP():
 	"""refineSOP"""
-	space : Par
+	refinespace : Par
 	"""Menu : Specify how to measure along splines / curves."""
 	subdivspace : Par
 	""" : Subdivide refines a primitive such that the subdivision causes a sharp discontinuity if ever displaced. In essence subdivide is equivalent to refine for polygons and Bziers, since any refinement causes a potential discontinuity. In the case of a NURBS it is equivalent to a maximum refinement (i.e. count = primitive basis order - 1)."""
@@ -8340,7 +8494,7 @@ class constantMAT():
 	"""The color of the light reflected from the material."""
 	colorb : Par
 	"""The color of the light reflected from the material."""
-	colormap : Par
+	colormapextendu : Par
 	"""TOP : Provides a TOP texture to use as a color map."""
 	colormapextendu : Par
 	"""Menu : """
@@ -8378,7 +8532,7 @@ class glslMAT():
 	"""Menu : The type of geometry that the Geometry Shader will output."""
 	lightingspace : Par
 	"""Menu : Allows lighting space switch from the current default World Space to legacy Camera Space which was used for TouchDesigner 088."""
-	top0 : Par
+	top0extendu : Par
 	"""TOP : This is the TOP that will be referenced by the above sampler name above it.	
 				
 '''Exposed by the + Button, texture sampling parameters''':				
@@ -8474,7 +8628,7 @@ class lineMAT():
 	"""Specifies the color value for the Vector at the Distance Near plane and any location closer to camera."""
 	vectornearcolorb : Par
 	"""Specifies the color value for the Vector at the Distance Near plane and any location closer to camera."""
-	vectorfarcolor : Par
+	vectorcolorfar : Par
 	"""rgb : Specifies the color value for the Vector at the Distance Far plane and beyond (farther from camera)."""
 	par : parameter.lineMAT
 	"""Parameters of parameter.lineMAT"""
@@ -8483,21 +8637,21 @@ class lineMAT():
 
 class NotSet():
 	"""NotSet"""
-	srcblend : Par
+	 : Par
 	"""Menu : This value is multiplied by the color value of the pixel that is being written to the Color-Buffer (also know as the Source Color)."""
-	destblend : Par
+	 : Par
 	"""Menu : This value is multiplied by the color value of the pixel currently in the Color-Buffer (also known as the Destination Color)."""
-	srcblenda : Par
+	 : Par
 	"""Menu : This value is multiplied by the alpha value of the pixel that is being written to the Color-Buffer (also know as the Source Alpha)."""
-	destblenda : Par
+	 : Par
 	"""Menu : This value is multiplied by the alpha value of the pixel currently in the Color-Buffer (also known as the Destination Alpha)."""
-	depthfunc : Par
+	 : Par
 	"""Menu : The depth value of the pixel being drawn is compared to the depth value currently in the depth-buffer using this function. If the test passes then the pixel is drawn to the Frame-Buffer. If the test fails the pixel is discarded and no changes are made to the Frame-Buffer."""
-	alphafunc : Par
+	 : Par
 	"""Menu : This menu works in conjunction with the Alpha Threshold parameter below in determining which pixels to keep based on their alpha value."""
-	wireframe : Par
+	 : Par
 	"""Menu : Enables and disables wire-frame rendering with the option of OpenGL Tesselated or Topology based wireframes."""
-	cullface : Par
+	 : Par
 	"""Menu : Selects which faces to render."""
 	par : parameter.NotSet
 	"""Parameters of parameter.NotSet"""
@@ -8542,7 +8696,7 @@ class pbrMAT():
 	"""Menu : Controls how the polygon's normal is used to light the front face of the polygon. For more information refer to the [[Two-Sided Lighting]] article."""
 	backfacelit : Par
 	"""Menu : Back Face's</span> <code>backfacelit</code> - Controls how the polygon's normal is used to light the back face of the polygon. For more information refer to the [[Two-Sided Lighting]] article."""
-	basecolormap : Par
+	basecolormapextendu : Par
 	"""TOP : Clicking on the arrows to the right of the map field will open the [[Texture Sampling Parameters]] for Color Map.  The other Map parameters below will have their own Texture Sampling Parameters as well."""
 	basecolormapextendu : Par
 	"""Menu : """
@@ -8558,7 +8712,7 @@ class pbrMAT():
 	"""Menu : """
 	basecolormapcoordinterp : Par
 	"""Menu : """
-	specularlevelmap : Par
+	specularlevelmapextendu : Par
 	"""TOP : Specifies a specular level map."""
 	specularlevelmapextendu : Par
 	"""Menu : """
@@ -8576,7 +8730,7 @@ class pbrMAT():
 	"""Menu : """
 	specularlevelmapchannelsource : Par
 	"""Menu : """
-	metallicmap : Par
+	metalnessmapextendu : Par
 	"""TOP : Specifies a metallic texture map. This is equivalent to the Metallic map in Substance Designer."""
 	metalnessmapextendu : Par
 	"""Menu : """
@@ -8594,7 +8748,7 @@ class pbrMAT():
 	"""Menu : """
 	metallicmapchannelsource : Par
 	"""Menu : """
-	roughnessmap : Par
+	roughnessmapextendu : Par
 	"""TOP : Specifies a roughness texture map. This is equivalent to the Roughness map in Substance Designer."""
 	roughnessmapextendu : Par
 	"""Menu : """
@@ -8612,7 +8766,7 @@ class pbrMAT():
 	"""Menu : """
 	roughnessmapchannelsource : Par
 	"""Menu : """
-	ambientocclusionmap : Par
+	ambientocclusionmapextendu : Par
 	"""TOP : Specifies a ambient occlusion texture map. This is equivalent to the Ambient Occlusion map in Substance Designer. Ambient Occlusion affects the contribution from the Environement Light COMP."""
 	ambientocclusionmapextendu : Par
 	"""Menu : """
@@ -8630,7 +8784,7 @@ class pbrMAT():
 	"""Menu : """
 	ambientocclusionmapchannelsource : Par
 	"""Menu : """
-	normalmap : Par
+	normalmapextendu : Par
 	"""TOP : Uses a [[Normal Map TOP|Normal Map]] from TOPs to create a 'bump map' effect. Bump-mapping simulates bumps or wrinkles in a surface to give it a 3D depth effect. Your geometry must have tangent attributes created for this feature to work (T[4]). Create these using the [[Attribute Create SOP]]."""
 	normalmapextendu : Par
 	"""Menu : """
@@ -8646,7 +8800,7 @@ class pbrMAT():
 	"""Menu : """
 	normalmapcoordinterp : Par
 	"""Menu : """
-	heightmap : Par
+	heightmapextendu : Par
 	"""TOP : Specifies a height texture map. This is equivalent to the Height map in Substance Designer. The height map is used in conjunction with the normal map to perform parallax mapping."""
 	heightmapextendu : Par
 	"""Menu : """
@@ -8664,7 +8818,7 @@ class pbrMAT():
 	"""Menu : """
 	heightmapchannelsource : Par
 	"""Menu : """
-	emitmap : Par
+	emitmapextendu : Par
 	"""TOP : Specifies a TOP texture that is multiplied with the Emit color parameter of the material. The object must have texture coordinates. The alpha of this map is ignored."""
 	emitmapextendu : Par
 	"""Menu : """
@@ -8680,7 +8834,7 @@ class pbrMAT():
 	"""Menu : """
 	emitmapcoordinterp : Par
 	"""Menu : """
-	alphamap : Par
+	alphamapextendu : Par
 	"""TOP : This map multiplies the alpha of the object. It uses the red channel of the map, other channels are ignored."""
 	alphamapextendu : Par
 	"""Menu : """
@@ -8696,7 +8850,7 @@ class pbrMAT():
 	"""Menu : """
 	alphamapcoordinterp : Par
 	"""Menu : """
-	rim1map : Par
+	rim1mapextendu : Par
 	"""TOP : This map will multiple the calculated rim light color."""
 	rim1mapextendu : Par
 	"""Menu : """
@@ -8730,7 +8884,7 @@ class pbrMAT():
 	"""The color that is used for areas that are in darkness."""
 	darknessemitcolorb : Par
 	"""The color that is used for areas that are in darkness."""
-	darknessemitmap : Par
+	darknessemitmapextendu : Par
 	"""TOP : This map multiplies the <span class="tipTextMAT">Darkness Emit Color</span>. This maps alpha is not used."""
 	darknessemitmapextendu : Par
 	"""Menu : """
@@ -8787,7 +8941,7 @@ class phongMAT():
 	"""Adds to the final color. Where there are point colors, finalcolor += Point Color * Constant Color. This behaves like there is ambient illumination of 1 1 1. It is not affected by textures or transparency."""
 	constantb : Par
 	"""Adds to the final color. Where there are point colors, finalcolor += Point Color * Constant Color. This behaves like there is ambient illumination of 1 1 1. It is not affected by textures or transparency."""
-	colormap : Par
+	colormapextendu : Par
 	"""TOP : Specifies a TOP texture that is multiplied by the results of all of the lighting calculations. The alpha of this map is used as a part of calculating the objects alpha.  Clicking on the arrows to the right of the map field will open the [[Texture Sampling Parameters]] for Color Map.  The other Map parameters below will have their own Texture Sampling Parameters as well."""
 	colormapextendu : Par
 	"""Menu : """
@@ -8803,7 +8957,7 @@ class phongMAT():
 	"""Menu : """
 	colormapcoordinterp : Par
 	"""Menu : """
-	normalmap : Par
+	normalmapextendu : Par
 	"""TOP : Uses a [[Normal Map TOP|Normal Map]] from TOPs to create a 'bump map' effect. Bump-mapping simulates bumps or wrinkles in a surface to give it a 3D depth effect. '''Your geometry must have tangent attributes created for this feature to work (T[4]). Create these using the [[Attribute Create SOP]].'''"""
 	normalmapextendu : Par
 	"""Menu : """
@@ -8819,7 +8973,7 @@ class phongMAT():
 	"""Menu : """
 	normalmapcoordinterp : Par
 	"""Menu : """
-	heightmap : Par
+	heightmapextendu : Par
 	"""TOP : Specifies a height texture map. The height map is used in conjunction with the normal map to perform parallax mapping."""
 	heightmapextendu : Par
 	"""Menu : """
@@ -8837,7 +8991,7 @@ class phongMAT():
 	"""Menu : """
 	heightmapchannelsource : Par
 	"""Menu : """
-	diffusemap : Par
+	diffusemapextendu : Par
 	"""TOP : Specifies a TOP that multiples the Diffuse Color. The object must have texture coordinates. The alpha of this map is ignored."""
 	diffusemapextendu : Par
 	"""Menu : """
@@ -8853,7 +9007,7 @@ class phongMAT():
 	"""Menu : """
 	diffusemapcoordinterp : Par
 	"""Menu : """
-	specmap : Par
+	specmapextendu : Par
 	"""TOP : Specifies a TOP texture that is multiplied with the Specular color parameter of the material. The object must have texture coordinates. The alpha of this map is ignored."""
 	specmapextendu : Par
 	"""Menu : """
@@ -8869,7 +9023,7 @@ class phongMAT():
 	"""Menu : """
 	specmapcoordinterp : Par
 	"""Menu : """
-	emitmap : Par
+	emitmapextendu : Par
 	"""TOP : Specifies a TOP texture that is multiplied with the Emit color parameter of the material. The object must have texture coordinates. The alpha of this map is ignored."""
 	emitmapextendu : Par
 	"""Menu : """
@@ -8885,7 +9039,7 @@ class phongMAT():
 	"""Menu : """
 	emitmapcoordinterp : Par
 	"""Menu : """
-	envmap : Par
+	envmapextendu : Par
 	"""TOP : Uses a TOP texture to define an environment map for the material. Environment mapping simulates an object reflecting its surroundings. The TOP defined in this parameter is the texture that will be reflected. The Env Map is added to whatever the normal lighting will be, so to make an object purely reflective turn the Diffuse and Specular parameters to 0. This input expects a sphere map. An example of a sphere map can be found [http://debevec.org/Probes/campus_probe.jpg here]. This input will also accept a cube map, created with the [[Cube Map TOP]] or the [[Render TOP]]'s Render Cube Map parameter."""
 	envmapextendu : Par
 	"""Menu : """
@@ -8915,7 +9069,7 @@ class phongMAT():
 	"""Menu : Controls how the polygon's normal is used to light the front face of the polygon. For more information refer to the [[Two-Sided Lighting]] article."""
 	backfacelit : Par
 	"""Menu : Controls how the polygon's normal is used to light the back face of the polygon. For more information refer to the [[Two-Sided Lighting]] article."""
-	alphamap : Par
+	alphamapextendu : Par
 	"""TOP : This map multiplies the alpha of the object. It uses the red channel of the map, other channels are ignored."""
 	alphamapextendu : Par
 	"""Menu : """
@@ -8931,7 +9085,7 @@ class phongMAT():
 	"""Menu : """
 	alphamapcoordinterp : Par
 	"""Menu : """
-	texture1 : Par
+	texture1mapextendu : Par
 	"""TOP : You can specify up to 4 textures for multi-texturing."""
 	texture1mapextendu : Par
 	"""Menu : """
@@ -8947,7 +9101,7 @@ class phongMAT():
 	"""Menu : Specifies which texture coordinate to use for the map."""
 	texture1coordinterp : Par
 	"""Menu : """
-	texture2 : Par
+	texture2mapextendu : Par
 	"""TOP : You can specify up to 4 textures for multi-texturing."""
 	texture2mapextendu : Par
 	"""Menu : """
@@ -8963,7 +9117,7 @@ class phongMAT():
 	"""Menu : Specifies which texture coordinate to use for the map."""
 	texture2coordinterp : Par
 	"""Menu : """
-	texture3 : Par
+	texture3mapextendu : Par
 	"""TOP : You can specify up to 4 textures for multi-texturing."""
 	texture3mapextendu : Par
 	"""Menu : """
@@ -8979,7 +9133,7 @@ class phongMAT():
 	"""Menu : Specifies which texture coordinate to use for the map."""
 	texture3coordinterp : Par
 	"""Menu : """
-	texture4 : Par
+	texture4mapextendu : Par
 	"""TOP : You can specify up to 4 textures for multi-texturing."""
 	texture4mapextendu : Par
 	"""Menu : """
@@ -8995,7 +9149,7 @@ class phongMAT():
 	"""Menu : Specifies which texture coordinate to use for the map."""
 	texture4coordnterp : Par
 	"""Menu : """
-	rim1map : Par
+	rim1mapextendu : Par
 	"""TOP : This map will multiple the calculated rim light color."""
 	rim1mapextendu : Par
 	"""Menu : """
@@ -9029,7 +9183,7 @@ class phongMAT():
 	"""The color that is used for areas that are in darkness."""
 	darknessemitcolorb : Par
 	"""The color that is used for areas that are in darkness."""
-	darknessemitmap : Par
+	darknessemitmapextendu : Par
 	"""TOP : This map multiplies the <span class="tipTextMAT">Darkness Emit Color</span>. This maps alpha is not used."""
 	darknessemitmapextendu : Par
 	"""Menu : """
@@ -9068,7 +9222,7 @@ class pointspriteMAT():
 	"""The color of the light reflected from the material."""
 	colorb : Par
 	"""The color of the light reflected from the material."""
-	colormap : Par
+	colormapextendu : Par
 	"""TOP : The color map to apply to the sprites. The Color Map will be multiplied by the color of the sprites. The Color Map parameter can also take 3D / 2D Texture Arrays (from the [[Texture 3D TOP]] for example), and the w texture coordinate will select the correct map from the array.		
 				
 The final size of the point sprite is controlled by the pscale point attribute (if present) getting multiplied of the result of the next 6 parameters. There are two types of scale this MAT can apply, and they are blended using the Attenuate Point Scale parameter to create one final point scale (which is multiplied by pscale)."""

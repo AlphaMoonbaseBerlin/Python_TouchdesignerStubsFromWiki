@@ -186,7 +186,7 @@ def createParDefinitionDict( definitions ):
         wikiObject = wikitextparser.parse( definition )
         className = ""
         classDict = defaultClassDict()
-
+        collectedParameters = []
         for template in wikiObject.templates:
             templateDict = templateToDict( template )
            
@@ -196,41 +196,43 @@ def createParDefinitionDict( definitions ):
                 className = templateDict["opClass"].split("_")[0]
                 classDict["label"] = className
                 classDict.update( templateDict )
-
+                
             if templateName == "ParameterPage":
                 pageParameters = stringToDictList( templateDict["items"])
                 
                 for parameter in pageParameters:
-                 
-                    className = className or f"{parameter.get('opType', '')}{parameter['opFamily']}"
-                        
                     if parameter is None: 
                         print("Parameter is None. FOR WHATEVER REASON!")
                         continue
                     class breakParsin (Exception):
                         pass
-                   
+
+                    className = className or f"{parameter.get('opType', '')}{parameter['opFamily']}"
+                    
+                        
                     try:
                         for parameterItem in stringToDictList(parameter.get("parItems", "")):
                             #if parameterItem.get("parName") == parameter.get("parName", ""):
                             if not parameterItem.get("itemName", "").startswith(parameter.get("parName", "")):
                                 raise breakParsin("No Valid Subitems")
-                            classDict["members"].append(
-                                {
+                            parameterName = parameterItem.get("itemName", "")
+                            collectedParameters.append({
                                     "text": parameter.get("parSummary", ""),
                                     "type": "Par",
-                                    "name": parameterItem.get("itemName", "")  
-                                }
-                            )
+                                    "name": parameterName
+                                })
                     except breakParsin:
-                        classDict["members"].append(
-                                {
+                        parameterName = parameterItem.get("parName", "")
+                        collectedParameters.append( {
                                     "text": f'{parameter.get("parType", "")} : {parameter.get("parSummary", "")}', 
                                     "type": "Par",
-                                    "name": parameter.get("parName", ""),
-                                }
-                            )
-                  
+                                    "name": parameterName,
+                                } )
+                    
+                    if className == "moviefileinTOP":
+                        print("moviefileinTOP", parameterName)
+        classDict = outputdict.get( className, classDict)
+        classDict["members"] = classDict["members"] + collectedParameters
         outputdict[className] = classDict
             
     #We will have to order this. The file gets large and pylance has issues making sense of the order.
