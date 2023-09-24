@@ -391,7 +391,7 @@ def main():
     operatorPages = fetchOperatorPages()
     operatorDefinition = fetchOperatorDocs( operatorPages )
     parameterDefinitionDicts = createParDefinitionDict( operatorDefinition )
-    writeParameterFile( parameterDefinitionDicts )
+    writeParameterFile( clearDefinitionDict( parameterDefinitionDicts) )
 
 if __name__ == "__main__":
     main()
