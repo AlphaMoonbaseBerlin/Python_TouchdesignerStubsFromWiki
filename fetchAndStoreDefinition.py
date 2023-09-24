@@ -209,28 +209,17 @@ def createParDefinitionDict( definitions ):
 
                     className = className or f"{parameter.get('opType', '')}{parameter['opFamily']}"
                     
-                        
-                    try:
-                        for parameterItem in stringToDictList(parameter.get("parItems", "")):
-                            #if parameterItem.get("parName") == parameter.get("parName", ""):
-                            if not parameterItem.get("itemName", "").startswith(parameter.get("parName", "")):
-                                raise breakParsin("No Valid Subitems")
-                            parameterName = parameterItem.get("itemName", "")
-                            collectedParameters.append({
-                                    "text": parameter.get("parSummary", ""),
-                                    "type": "Par",
-                                    "name": parameterName
-                                })
-                    except breakParsin:
-                        parameterName = parameterItem.get("parName", "")
-                        collectedParameters.append( {
+                    parameterName = parameter.get("parName", "")
+
+                    if not parameter.get("parType", ""):
+                        continue
+                    collectedParameters.append( {
                                     "text": f'{parameter.get("parType", "")} : {parameter.get("parSummary", "")}', 
                                     "type": "Par",
                                     "name": parameterName,
                                 } )
                     
-                    if className == "moviefileinTOP":
-                        print("moviefileinTOP", parameterName)
+                   
         classDict = outputdict.get( className, classDict)
         classDict["members"] = classDict["members"] + collectedParameters
         outputdict[className] = classDict
