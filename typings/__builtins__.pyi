@@ -1,5 +1,6 @@
 from td import *
 import parameter
+import parameterTypes
 class abletonlinkCHOP(CHOP,OP):
 	""""""
 	par : parameter.abletonlinkCHOP|parameter.CHOP|parameter.OP
@@ -248,7 +249,7 @@ class TextLine():
 	"""The index of the font that the glyph belongs to. Glyphs are not interchangable between fonts."""
 	text : str
 	"""The text for this line."""
-	origin : any
+	origin : tdu.Position
 	"""A tdu.Position object that gives the baseline origin of the line of text."""
 	lineWidth : float
 	"""The width of the format box of this line of text."""
@@ -298,19 +299,19 @@ for suffix.lower() in tdu.fileTypes['movie']:
 
 ```
 """
-	Matrix : any
+	Matrix : tdu.Matrix
 	"""The [[Matrix Class|Matrix]] definition class."""
-	Position : any
+	Position : tdu.Position
 	"""The [[Position Class|Position]] definition class."""
-	Vector : any
+	Vector : tdu.Vector
 	"""The [[Vector Class|Vector]] definition class."""
-	Quaternion : any
+	Quaternion : tdu.Quaternion
 	"""The [[Quaternion Class|Quaternion]] definition class."""
-	Color : any
+	Color : tdu.Color
 	"""The [[Color Class|Color]] definition class."""
-	Dependency : any
+	Dependency : tdu.Dependency
 	"""The [[Dependency Class|Dependency]] definition class."""
-	FileInfo : any
+	FileInfo : tdu.FileInfo
 	"""The FileInfo object takes a file path and has a few utility properties to provide additional information. It is derived from str, so will work as a Python string, but can be differentiated from a regular string by using ```isinstance(tdu.FileInfo)```.
 
 Utility properties include:
@@ -332,11 +333,11 @@ Utility properties include:
 * isFile: is a file in the file-system
 
 * baseName: the name of the final element in the path"""
-	ArcBall : any
+	ArcBall : tdu.ArcBall
 	"""The [[ArcBall Class|ArcBall]] definition class."""
-	Camera : any
+	Camera : tdu.Camera
 	"""The [[Camera Class|Camera]] definition class."""
-	debug : any
+	debug : module
 	"""Helper module for the builtin debug statement. [[Debug_module|Documentation.]]"""
 	def rand(self, seed) -> float: 
 		"""Return a random value in the range [0.0, 1.0) given the input seed value. That is, it will never return 1.0, but it may return 0.0. For a given seed, it will always return the same random number. The seed does not need to be a number. If the seed is not numeric, it resolves it to its string representation to produce a unique value. In the case of OPs for example, its string representation is a constant path. Thus one can produce a unique random value for each OP which remains the same for that OP each time you reload TouchDesigner.
@@ -684,9 +685,9 @@ sysinfo.ram
 	"""The system's current monitor resolution height."""
 	tfs : str
 	"""The path to the TFS directory."""
-	MIDIInputs : any
+	MIDIInputs : list of str
 	"""A list of all MIDI Input device names."""
-	MIDIOutputs : any
+	MIDIOutputs : list of str
 	"""A list of all MIDI Output device names."""
 	par : parameter.SysInfo
 	"""Parameters of parameter.SysInfo"""
@@ -701,7 +702,7 @@ class Segment():
 	"""The beginning point of the segment expressed in samples."""
 	beginSeconds : float
 	"""The beginning point of the segment expressed in seconds."""
-	custom : any
+	custom : oDict
 	"""Ordered dictionary of all the extra column values associated with the segment."""
 	cycle : bool
 	"""Whether or not the segment will repeat itself."""
@@ -727,7 +728,7 @@ class Segment():
 	"""The length portion of the segment expressed in seconds."""
 	maxCycles : int
 	"""The maximum number of repetitions."""
-	owner : any
+	owner : op
 	"""The OP to which this object belongs."""
 	row : int
 	"""Named tuple of all the parameter or column values describing the segment."""
@@ -992,7 +993,7 @@ class ProductEntry():
 	"""A class to interact with a dongle entry for a single dongle connected to the system."""
 	licenseType : int
 	"""Returns the license type for this product entry on the dongle."""
-	updateDate : any
+	updateDate : tuple(YYYY, MM, DD)
 	"""The date the product entry is valid until. Returns a tuple in the form (YYYY, MM, DD)."""
 	version : str
 	"""The version of TouchDesigner this dongle product entry is valid for."""
@@ -1129,7 +1130,7 @@ newV = v.copy()
 
 class ParGroupUnit():
 	"""The ParGroupUnit class describes a subclass of a [[ParGroup Class|ParGroup]] ending with a unit parameter. See also Custom ParGroup."""
-	unit : any
+	unit : par
 	"""The unit parameter in this ParGroupUnit object."""
 	par : parameter.ParGroupUnit
 	"""Parameters of parameter.ParGroupUnit"""
@@ -1172,7 +1173,7 @@ op('noise').parGroup.type.pulse(['random'], seconds=0.5) # pulse noise menu type
 
 class Panes():
 	"""The Panes class describes the list of all [[Pane Class|pane objects]].  It can be accessed from [[UI Class|ui.panes]]."""
-	current : any
+	current : td.Pane
 	"""The currently selected [[Pane Class|pane]]."""
 	def createFloating(self, type=PaneType.NETWORKEDITOR, name=None, maxWidth=1920, maxHeight=1080, monitorSpanWidth=0.9, monitorSpanHeight=0.9) -> any: 
 		"""Return a floating pane.
@@ -1306,11 +1307,11 @@ class OP():
 	"""Returns the beginning portion of the name occurring before any digits."""
 	passive : bool
 	"""If true, operator will not cook before its access methods are called.  To use a passive version of an operator n, use passive(n)."""
-	curPar : any
+	curPar : td.Par
 	"""The parameter currently being evaluated. Can be used in a parameter expression to reference itself."""
 	time : OP
 	"""[[timeCOMP Class|Time Component]] that defines the operator's time reference."""
-	ext : any
+	ext : class
 	"""The object to search for parent [[Extensions|extensions]].
 
 ```'python'
@@ -1321,7 +1322,7 @@ me.ext.MyClass
 
 ```
 """
-	mod : any
+	mod : mod
 	"""Get a [[MOD Class|module on demand]] object that searches for DAT modules relative to this operator."""
 	pages : list
 	"""A list of all built-in pages."""
@@ -1340,7 +1341,7 @@ n.parGroup['t']
 
 ```
 """
-	par : any
+	par : td.Par
 	"""An intermediate [[ParCollection Class|parameter collection]] object, from which a specific [[Par Class|parameter]] can be found.
 
 ```'python'
@@ -1357,15 +1358,15 @@ n.par['tx']
 """
 	builtinPars : list or par
 	"""A list of all [[Par Class|built-in parameters]]."""
-	customParGroups : any
+	customParGroups : list of parGroups
 	"""A list of all [[ParGroup Class|ParGroups]], where a ParGroup is a set of parameters all drawn on the same line of a dialog, sharing the same label."""
-	customPars : any
+	customPars : list of par
 	"""A list of all [[Par Class|custom parameters]]."""
 	customPages : list
 	"""A list of all [[Page Class|custom pages]]."""
 	customTuplets : list
 	"""A list of all parameter tuplets, where a tuplet is a set of parameters all drawn on the same line of a dialog, sharing the same label."""
-	replicator : any
+	replicator : OP or None
 	"""The [[replicatorCOMP Class|replicatorCOMP]] that created this operator, if any."""
 	storage : dict
 	"""[[Storage]] is dictionary associated with this operator. Values stored in this dictionary are persistent, and saved with the operator. The dictionary attribute is read only, but not its contents. Its contents may be manipulated directly with methods such as OP.fetch() or OP.store() described below, or examined with an [[Examine DAT]]."""
@@ -1390,7 +1391,7 @@ n.tags.add('darken')
 	"""Returns the number of children contained within the operator. Only [[COMP Class|component]] operators have children."""
 	numChildrenRecursive : int
 	"""Returns the number of operators contained recursively within this operator. Only [[COMP Class|component]] operators have children."""
-	op : any
+	op : OP or None
 	"""The operator finder object, for accessing operators through paths or shortcuts. '''Note:''' a version of this method that searches relative to '/' is also in the global [[td Module|td module]].
 
 
@@ -1511,7 +1512,7 @@ See also Parent Shortcut for more examples.</blockquote>"""
     
 
 '''Note:''' a version of this method that searches relative to the current operator is also in the global [[td Module]]."""
-	currentPage : any
+	currentPage : [[Page Class|Page]]
 	"""Get or set the currently displayed parameter page. It can be set by setting it to another page or a string label.
 
 ```'python'
@@ -1546,7 +1547,7 @@ n.currentPage = 'Common'
 	"""Get or set [[Docking|Show Docked Flag]]. This controls whether this node is visible or hidden when it is docked to another node."""
 	viewer : bool
 	"""Get or set [[Viewer Flag]]."""
-	color : any
+	color : tuple(r, g, b)
 	"""Get or set color value, expressed as a 3-tuple, representing its red, green, blue values. To convert between color spaces, use the built in colorsys module."""
 	comment : str
 	"""Get or set comment string."""
@@ -1986,7 +1987,7 @@ class VFSFile():
 	"""Get or set the name of the file. This name can include slashes but should not include leading slashes."""
 	size : int
 	"""Get the size of the file data."""
-	date : any
+	date : datetime
 	"""Get the modified date of the file in the form of a datetime Python object."""
 	virtualPath : str
 	"""Get the virtual path of the file. Returns a String formatted for fetching the file data from VFS in operators such as the Movie File In TOP. Format is ```vfs:<path to owner>:<filename>```."""
@@ -2099,9 +2100,9 @@ class Vertex():
 	"""The vertex position in its [[Prim Class|primitive]]."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
-	point : any
+	point : td.Point
 	"""Get or set the [[Point Class|point]] to which the vertex refers."""
-	prim : any
+	prim : td.Prim
 	"""The [[Prim Class|prim]] to which the vertex belongs."""
 	par : parameter.Vertex
 	"""Parameters of parameter.Vertex"""
@@ -2131,29 +2132,29 @@ ui.openMIDIDeviceMapper()
 """
 	clipboard : str
 	"""Get or set the operating system clipboard text contents."""
-	colors : any
+	colors : td.Colors
 	"""Access to the application [[Colors Class|colors]]."""
 	dpiBiCubicFilter : bool
 	"""Get or set the global DPI scale filtering mode of TouchDesigner windows. True means bi-cubic, False means linear."""
 	masterVolume : float
 	"""Get or set the master audio output volume. A value of 0 is no output, while a value of 1 is full output."""
-	options : any
+	options : td.Options
 	"""Access to the application [[Options Class|options]]."""
-	panes : any
+	panes : td.Panes
 	"""Access to the set of all [[Panes Class|panes]]."""
 	performMode : bool
 	"""Get or set [[Perform Mode]].  Set to True to go into Perform Mode, False to go into [[Designer Mode]]."""
-	preferences : any
+	preferences : td.Preferences
 	"""Access to the application [[Preferences Class|preferences]], which can also be access through the [[Preferences Dialog]]."""
 	redrawMainWindow : bool
 	"""Get or set whether the main window should redraw. The main window is either the main network editor, or the perform window."""
 	rolloverOp : OP
 	"""Operator currently under the mouse in a network editor."""
-	rolloverPar : any
+	rolloverPar : td.Par
 	"""Parameter currently under the mouse in a parameter dialog."""
-	rolloverPanel : any
+	rolloverPanel : panelCOMP
 	"""returns the latest panel to get a rollover event. Takes into account click through, depth order, and other panel settings."""
-	lastChopChannelSelected : any
+	lastChopChannelSelected : td.Par
 	"""Last [[Channel|CHOP channel]] selected via mouse."""
 	showPaletteBrowser : bool
 	"""Get or set display of the palette browser."""
@@ -2168,7 +2169,7 @@ ui.status = 'Operation Complete'
 
 ```
 """
-	undo : any
+	undo : td.Undo
 	"""Acess to application undo functions."""
 	windowWidth : int
 	"""Get the app window width."""
@@ -2659,9 +2660,9 @@ class videodeviceinTOP(TOP,OP):
 	""""""
 	isConnected : bool
 	"""True if any device is currently streaming to this operator.."""
-	inputSignalFormat : any
+	inputSignalFormat : string
 	"""If available for the current Library, returns a string for the input signal format. This string can be used to set the 'Signal Format' menu on the Video Device Out TOP."""
-	timecode : any
+	timecode : tdu.Timecode
 	"""If the device supports timecode, then returns a Timecode object for the latest received frame. see [[Timecode Class]]."""
 	par : parameter.videodeviceinTOP|parameter.TOP|parameter.OP
 	"""Parameters of parameter.videodeviceinTOP & parameter.TOP & parameter.OP"""
@@ -2774,11 +2775,11 @@ class td():
 	"""The td module contains all TouchDesigner related Python classes and utilities. All td module members and methods are imported when the application launches and are automatically available in scripts, expressions, and the textport.<br><br>For additional helpful Python classes and utilities not directly related to TouchDesigner, see the [[Tdu Module]]"""
 	me : OP
 	"""Reference to the current [[OP Class|operator]] that is being executed or evaluated. This can be used in parameter expressions, or DAT scripts."""
-	absTime : any
+	absTime : absTime
 	"""Reference to the [[AbsTime Class|AbsTime]] object."""
-	app : any
+	app : app
 	"""Reference to the [[App Class|application]] installation."""
-	ext : any
+	ext : ext
 	"""Reference to the extension searching object. See [[extensions]] for more information."""
 	families : dict
 	"""A dictionary containing a list of [[OP Class|operator]] types for each operator family. 
@@ -2793,11 +2794,11 @@ for a in families['SOP']:
 
 ```
 """
-	licenses : any
+	licenses : licenses
 	"""Reference to the currently installed [[Licenses Class|licences]]."""
-	mod : any
+	mod : mod
 	"""Reference to the [[MOD Class|Module On Demand]] object."""
-	monitors : any
+	monitors : monitors
 	"""Reference to the group of available [[Monitors Class|monitors]]."""
 	op : OP
 	"""The operator finder object, for accessing operators through paths or shortcuts. '''Note:''' a version of this method that searches relative to a specific operator is also in [[OP Class]].
@@ -2918,15 +2919,15 @@ See also Parent Shortcut for more examples."""
     
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]]."""
-	project : any
+	project : project
 	"""Reference to the [[Project Class|project session]]."""
 	root : OP
 	"""Reference to the topmost root [[OP Class|operator]]."""
-	runs : any
+	runs : runs
 	"""Reference to the [[Runs Class|runs]] object, which contains delayed executions."""
-	sysinfo : any
+	sysinfo : sysinfo
 	"""Reference to the [[SysInfo Class|system information]]."""
-	ui : any
+	ui : ui
 	"""Reference to the [[UI Class|ui options]]."""
 	def ops(self, pattern1, pattern2, *args, includeUtility=False) -> list: 
 		"""Returns a (possibly empty) list of OPs that match the patterns, relative to this OP.
@@ -3066,9 +3067,9 @@ class SOP(OP):
 	"""Get or set [[Compare Flag]]."""
 	template : bool
 	"""Get or set [[Template Flag]]."""
-	points : any
+	points : td.Points
 	"""The set of [[Points Class|points]] contained in this SOP."""
-	prims : any
+	prims : td.Prims
 	"""The set of [[Prims Class|primitives]] contained in this SOP."""
 	numPoints : int
 	"""The number of [[Points Class|points]] contained in this SOP."""
@@ -3076,23 +3077,23 @@ class SOP(OP):
 	"""The number of [[Vertex Class|vertices]] contained in all primitives within this SOP."""
 	numPrims : int
 	"""The number of [[Prims Class|primitivies]] contained in this SOP."""
-	pointAttribs : any
+	pointAttribs : td.Attributes
 	"""The set of point [[Attributes Class|attributes]] defined in this SOP."""
-	primAttribs : any
+	primAttribs : td.Attributes
 	"""The set of primitive [[Attributes Class|attributes]] defined in this SOP."""
-	vertexAttribs : any
+	vertexAttribs : td.Attributes
 	"""The set of vertex [[Attributes Class|attributes]] defined in this SOP."""
 	pointGroups : dict
 	"""Returns a dictionary of point [[Group Class|groups]] defined for this SOP."""
 	primGroups : dict
 	"""Returns a dictionary of primitive [[Group Class|groups]] defined for this SOP."""
-	center : any
+	center : tdu.Position
 	"""Get or set the barycentric coordinate of this operator's geometry. It is expressed as a [[Position Class|Position]]."""
-	min : any
+	min : tdu.Position
 	"""The minimum coordinates of this operator's geometry along each dimension, expressed as a [[Position Class|Position]]."""
-	max : any
+	max : tdu.Position
 	"""The maximum coordinates of this operator's geometry along each dimension, expressed as [[Position Class|Position]]."""
-	size : any
+	size : tdu.Position
 	"""The size of this operator's geometry along each dimension, expressed as a [[Position Class|Position]]."""
 	isSOP : bool
 	"""True if the operator is a SOP."""
@@ -3137,17 +3138,17 @@ class wireframeSOP(SOP,OP):
 
 class vertexSOP(SOP,OP):
 	""""""
-	inputColor : any
+	inputColor : tuple(r, g, b, a)
 	"""The current point or vertex color being evaluated, from the first input, or a default if not present, expressed as a 4-tuple."""
-	inputColor2 : any
+	inputColor2 : tuple(r, g, b, a)
 	"""The current point or vertex color being evaluated, from the second input, or a default if not present, expressed as a 4-tuple."""
-	inputNormal : any
+	inputNormal : tuple(n1, n2, n3)
 	"""The current point or vertex normal being evaluated, from the first input, or a default if not present, expressed as a 3-tuple."""
-	inputNormal2 : any
+	inputNormal2 : tuple(n1, n2, n3)
 	"""The current point or vertex normal being evaluated, from the second input, or a default if not present, expressed as a 3-tuple."""
-	inputTexture : any
+	inputTexture : tuple(u, v, w)
 	"""The current point or vertex texture being evaluated, from the first input, or a default if not present, expressed as a 3-tuple."""
-	inputTexture2 : any
+	inputTexture2 : tuple(u, v, w)
 	"""The current point or vertex texture being evaluated, from the second input, or a default if not present, expressed as a 3-tuple."""
 	inputVertex : Vertex
 	"""The current [[Vertex Class|vertex]] being evaluated, from the first input."""
@@ -3529,9 +3530,9 @@ class screengrabTOP(TOP,OP):
 
 class scalabledisplayTOP(TOP,OP):
 	""""""
-	cameraTransform : any
+	cameraTransform : tdu.Matrix
 	"""Gets the loaded camera transform [[Matrix Class|matrix]] for the configuration. This should be referenced in the 'Xform Matrix/CHOP/DAT' parameter of the [[Camera COMP]]."""
-	projection : any
+	projection : tdu.Matrix
 	"""Gets the loaded projection [[Matrix Class|matrix]] for the configuration. This should be referenced in the 'Proj Matrix/CHOP/DAT' parameter of the [[Camera COMP]], with the 'Projection' set to 'Custom Projection Matrix'."""
 	par : parameter.scalabledisplayTOP|parameter.TOP|parameter.OP
 	"""Parameters of parameter.scalabledisplayTOP & parameter.TOP & parameter.OP"""
@@ -3557,7 +3558,7 @@ td.run()
 """
 	active : bool
 	"""Get or set whether or not this script will execute once its target frame is reached."""
-	group : any
+	group : string
 	"""Get or set the group label associated with this script."""
 	isCell : bool
 	"""Returns true when the source is a [[Cell Class|cell]], from a Cell.run() call."""
@@ -3571,7 +3572,7 @@ td.run()
 	"""Get or set the remaining number of frames before the execution will occur."""
 	remainingMilliseconds : int
 	"""Get or set the remaining number of milliseconds before the execution will occur."""
-	source : any
+	source : [DAT, cell, string]
 	"""The source of the run. It will be either a [[DAT Class|DAT]], [[Cell Class|cell]], or string."""
 	def kill(self, ) -> None: 
 		"""Kill this run before it executes, and remove it from the global runs list, located in the [[td Module]]."""
@@ -3776,7 +3777,7 @@ project.realTime = False # turn off real time playback.
 	"""Callback for when an external tox file has been modified on disk."""
 	windowOnTop : bool
 	"""Get or set the window on top state."""
-	windowStartMode : any
+	windowStartMode : WindowStartMode
 	"""Get or set the window start mode.
 
 The mode is one of: ```WindowStartMode.AUTO</code>, <code>WindowStartMode.FULL</code>, <code>WindowStartMode.LEFT</code>, <code>WindowStartMode.RIGHT</code> or <code>WindowStartMode.CUSTOM```."""
@@ -3967,23 +3968,23 @@ for m in op('box1').prims:
 
 class Prim():
 	"""A Prim describes an instance to a single [[Primitive|geometry primitive]].  They are accessible through the [[SOP Class|SOP.prims]] member."""
-	center : any
+	center : tdu.Position
 	"""Get or set the barycentric coordinate of this primitive. It is expressed as a tdu.Position object."""
 	index : int
 	"""The primitive index in the list."""
-	normal : any
+	normal : tdu.Vector
 	"""The calculated normal vector of this primitive, expressed as a tdu.Vector object."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
 	weight : float
 	"""The associated weight of the primitive. Only certain primitives, such as those created by the [[Metaball SOP]] can modify this value from its default of 2.0."""
-	direction : any
+	direction : tdu.Vector
 	"""A normalized vector pointing from the centroid of the SOP to the centroid of this primitive."""
-	min : any
+	min : tdu.Position
 	"""The minimum coordinates of this primitive along each dimension, expressed as a tdu.Position object."""
-	max : any
+	max : tdu.Position
 	"""The maximum coordinates of this primitive along each dimension, expressed as a tdu.Position object."""
-	size : any
+	size : tdu.Position
 	"""The size of this primitive along each dimension, expressed as a tdu.Position object."""
 	def destroy(self, destroyPoints=True) -> None: 
 		"""Destroy and remove the actual primitive this object refers to. This operation is only valid when the primitive belongs to a [[scriptSOP Class|scriptSOP]]. Note: after this call, other existing Prim objects in this SOP may no longer be valid.
@@ -4054,7 +4055,7 @@ for m in op('box1').prims[5]:
 
 class primitiveSOP(SOP,OP):
 	""""""
-	inputColor : any
+	inputColor : tuple(r, g, b, a)
 	"""The current primitive color being evaluated or a default if not present, expressed as a 4-tuple."""
 	inputPrim : Prim
 	"""The current [[Prim Class|primitive]] being evaluated."""
@@ -4155,7 +4156,7 @@ class Point():
 	"""The point index in the list."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
-	P : any
+	P : td.AttributeData
 	"""The coordinates as [[AttributeData Class|AttributeData]]. Individual components can be read or written with the [] operator.
 
 ```python
@@ -4174,7 +4175,7 @@ point.P = (1,0,1)
 	"""Get or set y coordinate value. This is the same as P[1]."""
 	z : float
 	"""Get or set z coordinate value. This is the same as P[2]."""
-	normP : any
+	normP : tdu.Position
 	"""The normalized position of this point within the bounding box of the SOP. Will always be in the range [0,1]. Expressed as tdu.Position object."""
 	def destroy(self, ) -> None: 
 		"""Destroy and remove the actual point this object refers to. This operation is only valid when the primitive belongs to a [[scriptSOP Class|scriptSOP]]. Note: after this call, other existing Point objects in this SOP may no longer be valid."""
@@ -4186,21 +4187,21 @@ point.P = (1,0,1)
 
 class pointSOP(SOP,OP):
 	""""""
-	inputColor : any
+	inputColor : tuple(r, g, b, a)
 	"""The current point color being evaluated, from the first input, or a default if not present, expressed as a 4-tuple."""
-	inputColor2 : any
+	inputColor2 : tuple(r, g, b, a)
 	"""The current point color being evaluated, from the second input, or a default if not present, expressed as a 4-tuple."""
-	inputNormal : any
+	inputNormal : tuple(n1, n2, n3)
 	"""The current point normal being evaluated, from the first input, or a default if not present, expressed as a 3-tuple."""
-	inputNormal2 : any
+	inputNormal2 : tuple(n1, n2, n3)
 	"""The current point normal being evaluated, from the second input, or a default if not present, expressed as a 3-tuple."""
 	inputPoint : Point
 	"""The current [[Point Class|point]] being evaluated, from the first input."""
 	inputPoint2 : Point
 	"""The current [[Point Class|point]] being evaluated, from the second input."""
-	inputTexture : any
+	inputTexture : tuple(u, v, w)
 	"""The current point texture being evaluated, from the first input, or a default if not present, expressed as a 3-tuple."""
-	inputTexture2 : any
+	inputTexture2 : tuple(u, v, w)
 	"""The current point texture being evaluated, from the second input, or a default if not present, expressed as a 3-tuple."""
 	par : parameter.pointSOP|parameter.SOP|parameter.OP
 	"""Parameters of parameter.pointSOP & parameter.SOP & parameter.OP"""
@@ -4283,7 +4284,7 @@ class Par():
 	"""The Par class describes an instance of a single [[Parameter]]. See also [[Custom Parameters]]."""
 	valid : bool
 	"""True if the referenced parameter currently exists, False if it has been deleted."""
-	val : any
+	val : value
 	"""Get or set the constant value of the parameter only. To get the parameter's current value, regardless of the [[Parameter Mode]] (constant, expression, export or bound), use the <syntaxhighlight lang=python inline>eval()</syntaxhighlight> method described below.
 
 ```python
@@ -4334,11 +4335,11 @@ p.enableExpr = 'me.par.X.menuIndex == 5'
 
 ```
 """
-	exportOP : any
+	exportOP : OP or None
 	"""The [[OP Class|operator]] exporting to this parameter."""
-	exportSource : any
+	exportSource : Cell Channel or None
 	"""The object exporting to this parameter. Examples: [[Cell Class|Cell]], [[Channel Class|Channel]] or None."""
-	bindExpr : any
+	bindExpr : expression
 	"""Get or set an expression that returns a Parameter object. This can be used to bind this parameter's constant value to the referenced parameter.
 
 ```python
@@ -4347,7 +4348,7 @@ p.bindExpr = 'op('geo1').par.tx'
   
 
 Note the outside quotes, as bindExpr is an expression, not an object."""
-	bindMaster : any
+	bindMaster : OP or None
 	"""The object to which this parameter is bound to, possibly None."""
 	bindReferences : list
 	"""The (possibly empty) list of objects which bind to this parameter."""
@@ -4395,21 +4396,21 @@ Can only be set on [[Custom Parameters]]."""
 	"""Get or set the parameter's read only status. When ```True``` the parameter cannot be modified through the UI, only scripting."""
 	help : str
 	"""Get or set a custom parameter's help text. To see any parameter's help, rollover the parameter while holding the Alt key. For built-in parameters this can be used to get the parameter's help text."""
-	tuplet : any
+	tuplet : tuplet
 	"""The tuplet of parameters this parameter belongs to. A tuplet is typically a set of parameters sharing one line on a parameter dialog, example: Translate (x, y, z)."""
 	tupletName : str
 	"""The tuplet name of a parameter.  Example: The tuplet name of a (tx,ty,tz) translate parameter is t."""
-	parGroup : any
+	parGroup : tuplet
 	"""The [[ParGroup]] of parameters this parameter belongs to. A ParGroup is a set of parameters sharing one line on a parameter dialog with a common label, example: Translate (x, y, z).."""
-	min : any
+	min : value
 	"""Get or set the parameter's numerical minimum value. The parameter's value will be clamped at that minimum if clampMin = True. Can only be set on [[Custom Parameters]]."""
-	max : any
+	max : value
 	"""Get or set the parameter's numerical maximum value. The parameter's value will be clamped at that maximum if clampMax = True. Can only be set on [[Custom Parameters]]."""
 	clampMin : bool
 	"""Get or set the parameter's numerical clamping behavior. If set to clampMin = True, the parameter will clamp on the lower end at the value specified in min Can only be set on [[Custom Parameters]]."""
 	clampMax : bool
 	"""Get or set the parameter's numerical clamping behavior. If set to clampMax = True, the parameter will clamp on the upper end at the value specified in max Can only be set on [[Custom Parameters]]."""
-	default : any
+	default : value
 	"""Get or set the parameter's default value. Can only be set on [[Custom Parameters]].  Only one of default, defaultExpr can be set."""
 	defaultExpr : str
 	"""Get or set the parameter's default expression. Can only be set on [[Custom Parameters]].  Only one of default, defaultExpr can be set.
@@ -4434,11 +4435,11 @@ op('base1').par.Size.defaultExpr = 'me.time.frame'
 	"""Get or set the parameter's enable state. Can only be set on [[Custom Parameters]]."""
 	order : int
 	"""Get or set the parameter's position on the parameter page.  Can only be set on [[Custom Parameters]]."""
-	page : any
+	page : td.Page
 	"""Get or set the parameter page the custom parameter is part of. Can only be set on [[Custom Parameters]]."""
 	password : bool
 	"""Get or set the parameter's password mode. When True all text is rendered as asterisks. Can only be set on Custom string, int or float parameters. [[Custom Parameters]]."""
-	mode : any
+	mode : ParMode
 	"""Get or set the parameter's evaluation mode.
 
 ```python
@@ -4453,7 +4454,7 @@ op('geo1').par.tx.mode = ParMode.EXPRESSION
 The mode is one of:  ```ParMode.CONSTANT</code>, <code>ParMode.EXPRESSION</code>, or <code>ParMode.EXPORT</code>, or <code>ParMode.BIND```.
 
 See [[Parameter_Dialog#Working_with_Parameter_Modes]] for more information."""
-	prevMode : any
+	prevMode : ParMode
 	"""The parameter's previous evaluation mode."""
 	menuNames : list
 	"""Get or set a list of all possible menu choice names. In the case of non menu parameters, None is returned. Can only be set on [[Custom Parameters]]."""
@@ -4640,7 +4641,7 @@ For a list of available panel values, see: [[Panel Value]]."""
 	"""The name of the panel value. See [[Panel Value]] for the list of possible names. name is a string."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
-	val : any
+	val : value
 	"""Get or set the panel value."""
 	valid : bool
 	"""True if the referenced panel value currently exists, False if it has been deleted."""
@@ -5182,7 +5183,7 @@ op('base1').parGroup.Size.defaultExpr = ('me.time.frame', 'me.time.frame', 'me.t
 """
 	enable : bool
 	"""Get or set the parameter's enable state. Can only be set on Custom Parameters."""
-	enableExpr : any
+	enableExpr : string
 	"""Get or set an expression that controls the enable state for this parameter group.
 
 ```python
@@ -5197,7 +5198,7 @@ p.enableExpr = 'me.par.X.menuIndex == 5'
 Note the outside quotes, as this is an expression, not an object."""
 	exportOP : tuple
 	"""The operators exporting to this parameter."""
-	exportSource : any
+	exportSource : tuple of cell, channel or None
 	"""The objects exporting to this parameter. Examples: Cell, Channel or None."""
 	expr : tuple
 	"""Get or set the non-evaluated expressions only. To get the parameter's current values, regardless of the Parameter Mode (constant, expression, export or bound), use the eval() method described below.
@@ -5216,7 +5217,7 @@ op('geo1').parGroup.t.expr = ('absTime.frame', 'absTime.frame', 'absTime.frame')
 When setting this member, the parameter will also be placed in expression mode. See mode member below.
 
 '''NOTE:''' For convenience, the expression is placed in double-quotes so you can safely put in expressions containing single quotes. 'a' and 'a' have the same effect of enclosing strings in python."""
-	help : any
+	help : string
 	"""Get or set a custom parameter's help text. To see any parameter's help, rollover the parameter while holding the Alt key."""
 	isDefault : bool
 	"""True when the parameter value, expression and mode are in their default settings."""
@@ -5242,7 +5243,7 @@ When setting this member, the parameter will also be placed in expression mode. 
 	"""True for string parameters."""
 	isToggle : bool
 	"""True for toggle parameters."""
-	label : any
+	label : string
 	"""Get or set the parameter's label.
 
 ```python
@@ -5282,7 +5283,7 @@ op('geo1').parGroup.t.mode = (ParMode.EXPRESSION, ParMode.EXPRESSION, ParMode.EX
 The modes are one of:  ```ParMode.CONSTANT</code>, <code>ParMode.EXPRESSION</code>, or <code>ParMode.EXPORT</code>, or <code>ParMode.BIND```.
 
 See [[Parameter_Dialog#Working_with_Parameter_Modes]] for more information."""
-	name : any
+	name : string
 	"""Get or set the parameter's unique name.
 
 <syntaxhighlight lang=python
@@ -5316,7 +5317,7 @@ Can only be set on Custom Parameters."""
 	"""The set of sequential parameter blocks this parameter belongs to, or None."""
 	startSection : bool
 	"""Get or set the parameter's separator status. When True a visible separator is drawn between this parameter and the ones preceding it. Can only be set on Custom Parameters."""
-	style : any
+	style : string
 	"""Describes the behavior and contents of the custom parameter. Example 'Float', 'Int', 'Pulse', 'XYZ', etc."""
 	subLabel : tuple
 	"""Returns the names of the sub-label."""
@@ -5621,9 +5622,9 @@ m = tdu.Matrix([1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16])
 You can also get transformation and projection matrices from [[ObjectCOMP Class|Object COMP]] and [[CameraCOMP Class|Camera COMP]] by using the various methods such as ```transform(), pretransform(), projection()```."""
 	vals : float
 	"""Get or set the set of Matrix values."""
-	rows : any
+	rows : list of lists
 	"""The list of Matrix rows, each a list of values."""
-	cols : any
+	cols : list of lists
 	"""The list of Matrix columns, each a list of values."""
 	def transpose(self, ) -> None: 
 		"""Transpose the values in the matrix.
@@ -5978,11 +5979,11 @@ given cell, use ```listCOMP.displayAttribs[row, col]```."""
 
 class ListAttribute():
 	"""The ListAttribute class describes an attribute defining a cell or set of cells in a [[listCOMP Class|List Component]]."""
-	bgColor : any
+	bgColor : tuple(r,g,b,a)
 	"""Get or set background color."""
-	bottomBorderInColor : any
+	bottomBorderInColor : tuple(r,g,b,a)
 	"""Get or set inside bottom color."""
-	bottomBorderOutColor : any
+	bottomBorderOutColor : tuple(r,g,b,a)
 	"""Get or set outside bottom color."""
 	colStretch : bool
 	"""Get or set column stretchiness. When True, colWidth specifies minimum width."""
@@ -5994,7 +5995,7 @@ class ListAttribute():
 	"""Get or set whether or not contents are editable. When True, contents can be edited by clicking on the cell."""
 	focus : bool
 	"""Returns True if the cell/row/column/table is currently being edited."""
-	fontFile : any
+	fontFile : string
 	"""Get or set font file. VFS embedded files supported as well."""
 	fontBold : bool
 	"""Get or set whether or not text is rendered in bold font."""
@@ -6010,15 +6011,15 @@ class ListAttribute():
 	"""Get or set text size units. When True size is in points, when False it is in pixels."""
 	help : str
 	"""Get or set help string when rolling over the cell."""
-	leftBorderInColor : any
+	leftBorderInColor : tuple(r,g,b,a)
 	"""Get or set inside left color."""
-	leftBorderOutColor : any
+	leftBorderOutColor : tuple(r,g,b,a)
 	"""Get or set outside left color."""
 	radio : bool
 	"""Returns true if the mouse last selected the cell/row/column/table."""
-	rightBorderInColor : any
+	rightBorderInColor : tuple(r,g,b,a)
 	"""Get or set inside right color."""
-	rightBorderOutColor : any
+	rightBorderOutColor : tuple(r,g,b,a)
 	"""Get or set outside right color."""
 	rollover : bool
 	"""Returns true if the mouse is currently over the cell/row/column/table."""
@@ -6032,19 +6033,19 @@ class ListAttribute():
 	"""Returns true if the mouse is currently pressed over the cell/row/column/table."""
 	text : str
 	"""Get or set contents."""
-	textColor : any
+	textColor : tuple(r,g,b,a)
 	"""Get or set text color.  Color values must be a tuple with four numeric entries corrresponding to red, green, blue, alpha ie:  (0.3, 06, 0.1, 1.0)"""
-	textJustify : any
+	textJustify : JustifyType
 	"""Get or set text justification. Value is one of: JustifyType.TOPLEFT, JustifyType.TOPCENTER, JustifyType.TOPRIGHT, JustifyType.CENTERLEFT, JustifyType.CENTER, JustifyType.CENTERRIGHT, JustifyType.BOTTOMLEFT, JustifyType.BOTTOMCENTER, JustifyType.BOTTOMRIGHT"""
 	textOffsetX : float
 	"""Get or set horizontal text offset."""
 	textOffsetY : float
 	"""Get or set vertical text offset."""
-	top : any
+	top : op
 	"""Get or set background image [[TOP Class|TOP]]."""
-	topBorderInColor : any
+	topBorderInColor : tuple(r,g,b,a)
 	"""Get or set inside top color."""
-	topBorderOutColor : any
+	topBorderOutColor : tuple(r,g,b,a)
 	"""Get or set outside top color."""
 	wordWrap : bool
 	"""Get or set word wrapping."""
@@ -6102,7 +6103,7 @@ class License():
 	"""True if the license has been remotely disabled."""
 	key : str
 	"""The key sequence."""
-	remoteDisableDate : any
+	remoteDisableDate : tuple(year, month, date)
 	"""The date the license was remotely disabled, expressed as a tuple (year, month, day)."""
 	status : int
 	"""The numeric status code. Negative values indicate the license is not applicable to the current application. A value of zero indicates it does."""
@@ -6112,7 +6113,7 @@ class License():
 	"""The system code associated with this license."""
 	type : str
 	"""The license type, e.g. some products being 'Pro', 'Non-Commercial', 'Commercial'. See also app.product in [[App Class]]"""
-	updateExpiryDate : any
+	updateExpiryDate : tuple(year, month, day)
 	"""The date updates for this license expires, expressed as a tuple (year, month, day)."""
 	version : int
 	"""The numeric license version."""
@@ -6243,9 +6244,9 @@ class Dependency():
 	"""A '''[[Dependency]]''' object is a value that automatically causes any expression referencing it to update when the dependency value has changed.  These objects eliminate the need to manually force cook operators referencing values in [[Extensions]] or [[OP_Class#Storage|Storage]] for example.
 
 For information about dependencies in mutable objects (lists, dicts, sets), see '''[[TDStoreTools#Deeply_Dependable_Collections|Deeply Dependable Collections]]'''"""
-	val : any
+	val : value
 	"""The value associated with this object. Referencing this value in an expression will cause the operator to become dependent on its value. Setting this value will cause those operators to be recooked as necessary."""
-	peekVal : any
+	peekVal : value
 	"""This returns the same value as .val but does not create a dependency on the value."""
 	callbacks : list
 	"""A modifiable list of functions. When the Dependency object is modified, it calls each function on the list. Each function is called with a single argument which is a dictionary containing the following:
@@ -6290,7 +6291,7 @@ class debug():
 
 
 You can use the [[Palette:debugControl|debugControl]] component in the palette to set up ```debug``` behavior without using Python."""
-	style : any
+	style : types.SimpleNamespace
 	"""A namespace containing information about how to process ```debug``` statements. This data is not meant to be changed directly. Instead, use the setStyle function below."""
 	def debug(self, *args) -> None: 
 		"""Print all args and extra debug info (default is DAT and line number) to texport. To change behavior, use the [[Palette:debugControl|debugControl]] component or setStyle function (below).<br>'''TIP: Always use ```debug</code> instead of <code>print``` when debugging Python scripts.'''"""
@@ -6347,7 +6348,7 @@ class CUDAMemoryShape():
 	"""Get/Set the height in pixels of the memory."""
 	numComps : int
 	"""Get/Set the number of color components per pixel of the memory."""
-	dataType : any
+	dataType : numpy data type
 	"""Get/Set the data type of each color component, as a numpy data type. E.g numpy.uint8, numpy.float32. Note that for uint8 data types, the channel ordering will be BGRA for 4 component textures. It will be RGBA however for other data types."""
 	par : parameter.CUDAMemoryShape
 	"""Parameters of parameter.CUDAMemoryShape"""
@@ -6356,7 +6357,7 @@ class CUDAMemoryShape():
 
 class CUDAMemory():
 	"""Holds a reference to CUDA memory. The CUDA memory will be deallocated when this class is destructed."""
-	ptr : any
+	ptr : memory address
 	"""Returns the raw memory pointer address for the CUDA memory."""
 	size : int
 	"""Returns the size of the CUDA Memory, in bytes."""
@@ -6645,7 +6646,7 @@ The [[DAT Class]] offers many ways of accessing its individual cells.
 	"""The numeric column of the cell."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
-	val : any
+	val : value
 	"""Get or set the cell contents, which are always stored as a string value."""
 	def run(self, endFrame=False, fromOP=None, asParameter=False, group=None, delayFrames=0, delayMilliSeconds=0, delayRef=me, arg1, arg2, *args) -> any: 
 		"""[[Run Class|Run]] the contents of the cell as a script, returning a Run object which can be used to optionally modify its execution.
@@ -6690,11 +6691,11 @@ d = c.offset(-1, 2)  # one row up, two columns right of cell C
 
 class Camera():
 	"""Helper class that maintains a 3D position and orientation for a camera and provides multiple methods for manipulating the camera's position and direction. This class is used for the [[Palette:camera|viewportCamera]] palette component."""
-	dir : any
+	dir : tdu.Position
 	"""Get or set the direction of the camera as a vector that points towards the target. Up is considered to be (0,1,0)."""
-	pivot : any
+	pivot : tdu.Position
 	"""Get or set the 3D point in space where the camera will pivot around or towards."""
-	position : any
+	position : tdu.Position
 	"""Get or set the 3D point in space where the camera is located."""
 	def blendCamera(self, targetCamera, blendFactor) -> any: 
 		"""Returns a camera that is blended with the given camera using the blendFactor. The camera position is blended using linear interpolation, while the rotation is blended using spherical linear interpolation.
@@ -6753,13 +6754,13 @@ The [[Actor COMP]] has a list of all its bodies."""
 	"""The index of this Body in its [[Actor COMP]] (owner)."""
 	owner : OP
 	"""The [[Actor COMP]] to which this body belongs."""
-	rotate : any
+	rotate : tdu.Vector
 	"""Get or set the body's rotation in world space."""
-	translate : any
+	translate : tdu.Position
 	"""Get or set the body's translation in world space."""
-	angularVelocity : any
+	angularVelocity : tdu.Vector
 	"""Get or set the body's angular velocity."""
-	linearVelocity : any
+	linearVelocity : tdu.Vector
 	"""Get or set the body's linear velocity."""
 	def applyImpulseForce(self, force, relPos=None) -> None: 
 		"""Applies impulse force to a body in a Bullet simulation.
@@ -6932,9 +6933,9 @@ n = scriptOP.primAttribs.create('custom2', 1 )
 
 class AttributeData():
 	"""An AttributeData contains specific geometric [[Attribute]] values, associated with a [[Prim Class]], [[Point Class]], or [[Vertex Class]].  Each value of the attribute must be of the same type, and can be one of float, string or integer.  For example, a point or vertex normal attribute data, consists of 3 float values."""
-	owner : any
+	owner : op
 	"""The [[OP Class|OP]] to which this object belongs."""
-	val : any
+	val : value
 	"""The set of values contained within this object.  Dependent on the type of attribute, it may return a float, integer, string, tuple, [[Position Class|Position]], or [[Vector Class|Vector]].  For example Normal attribute data is expressed as a [[Vector Class|Vector]], while [[Position Class|Position]] attribute data is expressed as a Position."""
 	par : parameter.AttributeData
 	"""Parameters of parameter.AttributeData"""
@@ -6953,9 +6954,9 @@ Lists of attributes for the [[SOP Class|SOP]] are described with the [[Attribute
 	"""The name of this attribute."""
 	size : int
 	"""The number of values associated with this attribute. For example, a normal attribute has a size of 3."""
-	type : any
+	type : type object
 	"""The type associated with this attribute: float, integer or string."""
-	default : any
+	default : value
 	"""The default values associated with this attribute. Dependent on the type of attribute, it may return a float, integer, string, tuple, [[Position Class|Position]], or [[Vector Class|Vector]]."""
 	def destroy(self, ) -> None: 
 		"""Destroy the attribute referenced by this object.
@@ -7128,7 +7129,7 @@ class App():
 	"""Installation folder containing the binaries."""
 	build : str
 	"""Application build number."""
-	compileDate : any
+	compileDate : tuple(year, month, day)
 	"""The date the application was compiled, expressed as a tuple (year, month, day)."""
 	configFolder : str
 	"""Installation folder containing configuration files."""
@@ -7997,7 +7998,7 @@ class timerCHOP(CHOP,OP):
 	"""Get the cumulative time expressed in samples. See ```.cumulativeSeconds```."""
 	cumulativeSeconds : float
 	"""Get the cumulative time expressed in seconds. It counts from 0 when you Start. Unlike ```.runningSeconds```, it is slowed/sped by the Speed parameter, and paused by the Play parameter. It continues to increase if there is any looping, jumping or scrubbing around."""
-	cumulativeTimecode : any
+	cumulativeTimecode : tdu.Timecode
 	"""Get the cumulative time as a Timecode Object. See [[Timecode Class]]. See ```.cumulativeSeconds```."""
 	masterFrames : int
 	"""Get or set the master time expressed in frames. 0-based. See ```.masterSeconds```."""
@@ -8011,7 +8012,7 @@ class timerCHOP(CHOP,OP):
 	"""Get or set the master time expressed in seconds. It counts from 0 when you Start, ```.masterSeconds</code> is slowed/sped by the Speed parameter, and paused by the Play parameter. It jumps to the appropriate time when you scrub. This is the main clock in the Timer CHOP and can be set directly using python (<code>OP.masterSeconds = ''val''</code>), or use the <code>.goTo()``` function which has more options. When multi-segments are specified to the Timer CHOP, it reflects the time as if you ran through the segments without interrupting it. If in any segment Cycle is on and Cycle Limit is off, it calculates as if the cycle runs only once."""
 	masterFraction : float
 	"""Get or set the master time expressed in fractional form. See ```.masterSeconds```."""
-	masterTimecode : any
+	masterTimecode : tdu.Timecode
 	"""Get or set the master time expressed as a Timecode Object. See [[Timecode Class]]. See ```.masterSeconds```."""
 	cycle : float
 	"""Get or set the cycle index of the current segment."""
@@ -8025,7 +8026,7 @@ class timerCHOP(CHOP,OP):
 	"""Get the playing time expressed in samples. See ```.playingSeconds```."""
 	playingSeconds : float
 	"""Get the playing time expressed in seconds. It counts from 0 when you Start. it is unaffected by the Speed parameter, but unlike ```.runningSeconds```, it is paused by the Play parameter. It continues to increase if there is any looping, jumping or scrubbing around."""
-	playingTimecode : any
+	playingTimecode : tdu.Timecode
 	"""Get the playing time as a Timecode Object. See [[Timecode Class]]. See ```.playingSeconds```."""
 	runningFraction : float
 	"""Get the running time index expressed in fractional form. See ```.runningSeconds```. This will be an estimate as the actual length is approximated on start."""
@@ -8039,7 +8040,7 @@ class timerCHOP(CHOP,OP):
 	"""Get the running time index expressed in samples. See ```.runningSeconds```."""
 	runningSeconds : float
 	"""Get the running time expressed in seconds. It keeps counting up after Start and is not affected by changing the Speed or pausing Play or scrubbing. It is basically the 'wall clock' after pressing Start. (You normally don't set the value, use ```.masterSeconds```.)  It doesn't reset to 0 until you Initialize or Start again."""
-	runningTimecode : any
+	runningTimecode : tdu.Timecode
 	"""Get the running time index as a Timecode Object. See [[Timecode Class]]. See ```.runningSeconds```."""
 	runningLengthFrames : float
 	"""Get the running length expressed in frames."""
@@ -8047,13 +8048,13 @@ class timerCHOP(CHOP,OP):
 	"""Get the running length expressed in samples."""
 	runningLengthSeconds : float
 	"""Get the running length expressed in seconds."""
-	runningLengthTimecode : any
+	runningLengthTimecode : tdu.Timecode
 	"""Get the running length as a Timecode Object. See [[Timecode Class]]."""
 	segment : float
 	"""Get or set the segment index."""
 	segments : list
 	"""Get the list of segments."""
-	timecode : any
+	timecode : tdu.Timecode
 	"""Get the master timecode. See [[Timecode Class]]."""
 	def goToNextSegment(self, ) -> None: 
 		"""Jump to the next segment. Equivalent to pulsing the Go to Next Segment parameter on the Segments Page."""
@@ -8091,7 +8092,7 @@ class timerCHOP(CHOP,OP):
 
 class timelineCHOP(CHOP,OP):
 	""""""
-	timecode : any
+	timecode : tdu.Timecode
 	"""Get a Timecode object for the timecode data representation of the current timeline frame. See [[Timecode Class]]."""
 	par : parameter.timelineCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.timelineCHOP & parameter.CHOP & parameter.OP"""
@@ -8114,7 +8115,7 @@ class syncoutCHOP(CHOP,OP):
 
 class syncinCHOP(CHOP,OP):
 	""""""
-	timecode : any
+	timecode : tdu.Timecode
 	"""Get a Timecode object for the timecode data representation of the last received index. See [[Timecode Class]]."""
 	par : parameter.syncinCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.syncinCHOP & parameter.CHOP & parameter.OP"""
@@ -9153,7 +9154,7 @@ class mathCHOP(CHOP,OP):
 
 class ltcoutCHOP(CHOP,OP):
 	""""""
-	timecode : any
+	timecode : tdu.Timecode
 	"""Get a Timecode object for the timecode data representation of the LTC Out CHOP. See [[Timecode Class]]."""
 	par : parameter.ltcoutCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.ltcoutCHOP & parameter.CHOP & parameter.OP"""
@@ -9162,7 +9163,7 @@ class ltcoutCHOP(CHOP,OP):
 
 class ltcinCHOP(CHOP,OP):
 	""""""
-	timecode : any
+	timecode : tdu.Timecode
 	"""Get a Timecode object for the timecode data representation of the LTC In CHOP. See [[Timecode Class]]."""
 	par : parameter.ltcinCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.ltcinCHOP & parameter.CHOP & parameter.OP"""
@@ -9476,7 +9477,7 @@ class dmxoutCHOP(CHOP,OP):
 
 class dmxinCHOP(CHOP,OP):
 	""""""
-	timecode : any
+	timecode : tdu.Timecode
 	"""Get a Timecode object for the last ArtTimeCode packet received. See [[Timecode Class]]."""
 	par : parameter.dmxinCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.dmxinCHOP & parameter.CHOP & parameter.OP"""
@@ -9501,11 +9502,11 @@ class delayCHOP(CHOP,OP):
 
 class dattoCHOP(CHOP,OP):
 	""""""
-	inputCell : any
+	inputCell : td.Cell
 	"""The current input [[Cell Class|cell]] being evaluated. From the [[Cell Class|cell]] you can get its row, column and value. e.g. me.inputCell.val or use the specific members listed below."""
-	inputCol : any
+	inputCol : td.Col
 	"""The current input colunn being evaluated."""
-	inputRow : any
+	inputRow : td.Row
 	"""The current input row being evaluated."""
 	inputTable : OP
 	"""The current input [[DAT Class|DAT]] being evaluated."""
@@ -9573,7 +9574,7 @@ class compositeCHOP(CHOP,OP):
 
 class clockCHOP(CHOP,OP):
 	""""""
-	timecode : any
+	timecode : tdu.Timecode
 	"""'Get a Timecode object representation of the hour, minute, second, and msec components.'"""
 	par : parameter.clockCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.clockCHOP & parameter.CHOP & parameter.OP"""
@@ -9701,27 +9702,27 @@ class clipSOP(SOP,OP):
 
 class COMP(OP):
 	"""A COMP describes a reference to a [[Component]] operator."""
-	extensions : any
+	extensions : List
 	"""A list of [[Extensions|extensions]] attached to this component."""
-	extensionsReady : any
+	extensionsReady : Bool
 	"""True unless the extensions are currently compiling. Can be used to avoid accessing promoted members prematurely during an extension initialization function."""
-	internalOPs : any
+	internalOPs : Dict
 	"""A dictionary of [[Internal_Operators|internal operator shortcuts]] found in this component. See also [[OP_Class#General|OP.iop]]"""
-	internalPars : any
+	internalPars : Dict
 	"""A dictionary of [[Internal_Parameters|internal parameters shortcuts]] found in this component. See also [[OP_Class#General|OP.ipar]]"""
-	clones : any
+	clones : List
 	"""A list of all [[COMP Class|components]] cloned to this component."""
-	componentCloneImmune : any
+	componentCloneImmune : Bool
 	"""Get or set [[Immune Flag|component clone Immune flag]]. This works together with the cloneImmune member of the [[OP_Class]]. When componentCloneImmune is True, everything inside the clone is [[immune]]. When componentCloneImmune is False, it uses the [[OP_Class]] cloneImmune member to determine if just the component is immune (its parameters etc, but not the component's network inside)."""
-	vfs : any
+	vfs : vfs
 	"""An intermediate [[VFS Class|VFS object]] from which embedded [[VFSFile Class|VFSFile objects]] can be accessed. For more information see [[Virtual File System]]."""
-	dirty : any
+	dirty : Bool
 	"""True if the contents of the component need to be saved."""
-	externalTimeStamp : any
+	externalTimeStamp : Time
 	"""Time stamp of the external tox file when it was last saved or loaded."""
 	currentChild : OP
 	"""The child [[OP Class|operator]] that is currently selected. To make an operator current, use its own [[OP Class#Common Flags|OP.current]] method."""
-	selectedChildren : any
+	selectedChildren : List
 	"""The list of currently selected [[OP Class|children]]. To change an individual operator's selection state, use its own [[OP Class#Common Flags|OP.selected]] method."""
 	cpuCookTime : float
 	"""Duration of the last measured cook in CPU time (in milliseconds)."""
@@ -9731,33 +9732,33 @@ class COMP(OP):
 	"""The absolute frame on which childrenCookTime is based."""
 	gpuMemory : int
 	"""The amount of GPU memory this OP is using, in bytes."""
-	pickable : any
+	pickable : Bool
 	"""Get or set [[Pickable Flag|pickable flag]]."""
-	utility : any
+	utility : Bool
 	"""Get or set utility flag."""
-	isCOMP : any
+	isCOMP : Bool
 	"""True if the operator is a component."""
-	isPrivate : any
+	isPrivate : Bool
 	"""True if the the component contents cannot be directly viewed."""
-	isPrivacyActive : any
+	isPrivacyActive : Bool
 	"""True if the component is private, and privacy is active. When inactive the contents can be temporarily viewed."""
-	isPrivacyLicensed : any
+	isPrivacyLicensed : Bool
 	"""True if the component is private and if the required CodeMeter license is present to run it."""
 	privacyFirmCode : int
 	"""The CodeMeter firm code needed to use this private component. 0 if this component is not private using a CodeMeter dongle."""
 	privacyProductCode : int
 	"""The CodeMeter product code needed to use this private component. 0 if this component is not private using a CodeMeter dongle."""
-	privacyDeveloperName : any
+	privacyDeveloperName : string
 	"""The name of the developer of this private component."""
-	privacyDeveloperEmail : any
+	privacyDeveloperEmail : string
 	"""The email of the developer of this private component."""
-	inputCOMPs : any
+	inputCOMPs : List
 	"""List of input [[COMP Class|components]] to this component through its top connector."""
-	inputCOMPConnectors : any
+	inputCOMPConnectors : List
 	"""List of input [[Connector Class|connectors]] (on the top) associated with this component."""
-	outputCOMPs : any
+	outputCOMPs : List
 	"""List of output [[COMP Class|components]] from this component through its bottom connector."""
-	outputCOMPConnectors : any
+	outputCOMPConnectors : List
 	"""List of output [[Connector Class|connectors]] (on the bottom) associated with this component."""
 	def create(self, opType, name, initialize=True) -> OP: 
 		"""Create a new node of the given type, inside this component. If ```name</code> is supplied the new node will use that name, or the next numbered name if its already in use.  opType can be a specific type object, example <code>waveCHOP</code>, or it can be a string <code>'waveCHOP'</code>.  If given an actual instance of a node <code>n</code>, these can be accessed via <code>type(n)</code> and <code>n.OPType``` respectively.
@@ -10210,7 +10211,7 @@ class PanelCOMP(COMP,OP):
 	"""The PanelCOMP describes an instance of a [[Panel Component]]. The state is represented by [[Panel Value|Panel Values]].
 
 This class inherits from the COMP Class."""
-	panel : any
+	panel : td.Panel
 	"""The [[Panel Class|Panel]] from which [[Panel Value|Panel Values]] and the [[PanelValue Class]] may be accessed. (The second form is usually sufficient.)
 
 ```python
@@ -10513,11 +10514,11 @@ class Pane():
 	"""Get or set the pane name."""
 	ratio : float
 	"""Get or set the split proportion of the pane, if the pane was previously split."""
-	bottomLeft : any
+	bottomLeft : tuple(x,y,u,v)
 	"""The coordinates of the bottom left corner, expressed in both pixels and uv offsets, in a named tuple."""
-	topRight : any
+	topRight : tuple(x,y,u,v)
 	"""The coordinates of the top right corner, expressed in both pixels and uv offsets, in a named tuple."""
-	type : any
+	type : PaneType
 	"""The enumerated type of the pane. Example: NetworkEditor.
 
 The enumeration is called PaneType and consists of:
@@ -10594,9 +10595,9 @@ class ObjectCOMP(COMP,OP):
 	"""This class inherits from the COMP class.
 
 It is the parent class of these subclasses."""
-	localTransform : any
+	localTransform : tdu.Matrix
 	"""The current local transform of the Object. This is the combination of both the parameters from the Xform and Pre-Xform page, without taking into account any parent or constraint transforms. See also [[Matrix Class]], [[Position Class]] and [[Vector Class]]."""
-	worldTransform : any
+	worldTransform : tdu.Matrix
 	"""The current world transform of the Object."""
 	def transform(self, ) -> any: 
 		"""Gets the current transform of the Object as defined by the Translate, Rotate, Scale and Pivot parameters on the Xform page."""
@@ -10689,7 +10690,7 @@ class nullCOMP(ObjectCOMP,COMP,OP):
 
 class listCOMP(PanelCOMP,COMP,OP):
 	""""""
-	attribs : any
+	attribs : td.ListAttribute
 	"""The table [[ListAttribute Class|attributes]]. The members of these attributes can be directly written to / updated with new values. Any row/col or cell attributes defined will override these values. Define global per-table attributes here.
 
 ```python
@@ -10702,7 +10703,7 @@ n.tableAttribs.bgColor = (0,0.3,0,1) #dark green background
 
 ```
 """
-	colAttribs : any
+	colAttribs : td.ListAttributes
 	"""The set of row [[ListAttributes Class|attributes]]. Accessed by row index.  The members of these attributes can be directly written to / updated with new values and take priority over any attribute members defined a the table level.
 
 ```python
@@ -10715,7 +10716,7 @@ n.colAttribs[4].bgColor = (0,0.6,0,1) #highlight entire column in bright green
 
 ```
 """
-	rowAttribs : any
+	rowAttribs : td.ListAttributes
 	"""The set of row [[ListAttributes Class|attributes]]. Accessed by row index. The members of these attributes can be directly written to / updated with new values and take priority over any attribute members defined a the table level.
 
 ```python
@@ -10726,7 +10727,7 @@ n.rowAttribs[3].rowHeight = 50
 
 ```
 """
-	cellAttribs : any
+	cellAttribs : td.ListAttributes
 	"""The set of cell [[ListAttributes Class|attributes]]. Accessed by row and column. The members of these attributes can be directly written to / updated with new values and take priority over any attribute members defined at the row/col or table level.
 
 ```python
@@ -10739,7 +10740,7 @@ n.cellAttribs[3,4].bgColor = (0.5,0,0,1) #highlight this cell red
 
 ```
 """
-	displayAttribs : any
+	displayAttribs : td.ListAttributes
 	"""The set of attributes actually displayed in the cell. They are a combination of the cell/row/col/table attributes described above. Accessed by row and column.  When combining attributes, cell attributes take priority over row and column attributes, which themselves take priority over table attributes.
 
 ```python
@@ -10762,11 +10763,11 @@ n.displayAttribs[3,4].bgColor #the resulting background color for this specific 
 	"""The currently selected column."""
 	selectRow : int
 	"""The currently selected row."""
-	selectionBorderColor : any
+	selectionBorderColor : tuple(r, g, b, a)
 	"""Get or set the border color for the separate selection, expressed as a 4-tuple, representing its red, green, blue and alpha value."""
-	selectionColor : any
+	selectionColor : tuple(r, g, b, a)
 	"""Get or set the background color for the separate selection, expressed as a 4-tuple, representing its red, green, blue and alpha value."""
-	selections : any
+	selections : [(startrow, startcol, endrow, endcol), (startrow, startcol, endrow, endcol), ..]
 	"""Get or set the row and column coordinates for separate selection formatting, expressed as a list of 4-tuples, each representing startrow, startcol, endrow, endcol."""
 	dragRow : int
 	"""The currently dragged row."""
@@ -11050,7 +11051,7 @@ class DAT(OP):
 	"""A [[DAT]] describes a reference to a DAT operator."""
 	export : bool
 	"""Get or set [[Export Flag]]"""
-	module : any
+	module : module
 	"""Retrieve the contents of the DAT as a module. This allows for functions in the module to be called directly. E.g n.module.function(arg1, arg2)"""
 	numRows : int
 	"""Number of rows in the DAT table."""
@@ -11669,7 +11670,7 @@ class tableDAT(DAT,OP):
 	"""Current row index for Table expressions."""
 	subCol : int
 	"""Current col index for Table expressions."""
-	fillName : any
+	fillName : string
 	"""Current header name for Table expressions."""
 	par : parameter.tableDAT|parameter.DAT|parameter.OP
 	"""Parameters of parameter.tableDAT & parameter.DAT & parameter.OP"""
@@ -11687,9 +11688,9 @@ class substituteDAT(DAT,OP):
 	""""""
 	inputCell : Cell
 	"""The current input [[Cell Class|cell]] being evaluated. From the [[Cell Class|cell]] you can get its row, column and value. e.g. me.inputCell.val or use the specific members listed below."""
-	inputCol : any
+	inputCol : Col
 	"""The current input colunn being evaluated."""
-	inputRow : any
+	inputRow : Row
 	"""The current input row being evaluated."""
 	inputTable : OP
 	"""The current input [[DAT Class|DAT]] being evaluated.
@@ -11768,9 +11769,9 @@ class selectDAT(DAT,OP):
 	""""""
 	inputCell : Cell
 	"""The current input [[Cell Class|cell]] being evaluated. From the [[Cell Class|cell]] you can get its row, column and value. e.g. me.inputCell.val or use the specific members listed below."""
-	inputCol : any
+	inputCol : Col
 	"""The current input column being evaluated."""
-	inputRow : any
+	inputRow : Row
 	"""The current input row being evaluated."""
 	inputTable : OP
 	"""The current input [[DAT Class|DAT]] being evaluated.
@@ -12788,7 +12789,7 @@ class moviefileinTOP(TOP,OP):
 	"""The actual current index of the movie, disregarding trimming and other options."""
 	trueNumImages : float
 	"""The actual number of images contained in the movie, not affected by trimming."""
-	timecode : any
+	timecode : tdu.Timecode
 	"""Get a Timecode object for the timecode data representation of the true current index of the movie. See [[Timecode Class]]."""
 	def findHeader(self, key) -> any: 
 		"""Returns the value of the header with the given key. This method will return a blank string if the header is not found.

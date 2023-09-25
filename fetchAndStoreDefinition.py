@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import wikitextparser
 import utils
+
+
 # Generic DataFetching
 def fetchCategoryNames(label):
     cacheFile = Path(f"cache/{label}NamesCache.json")
@@ -66,7 +68,7 @@ def fetchItems(label, items):
     )
     return result
 
-#parameterFetching
+#####parameterFetching
 def fetchOperatorPages():
     families = ["COMPs", "TOPs", "CHOPs", "SOPs", "DATs", "MATs"]
     outputList = []
@@ -77,9 +79,10 @@ def fetchOperatorPages():
 def fetchOperatorDocs( items ):
     return fetchItems( "OperatorDocs", items )
 
-#ClassFetching
+#####ClassFetching
 def fetchClassPages():
     return [ item for item in fetchCategoryNames( "Python_Reference" ) if not item["title"].startswith("Experimental") ]
+
 def fetchClassDefinitions( items ):
     return fetchItems("Python_Reference", items)
 
@@ -93,7 +96,9 @@ def stringToDictList( wikiString):
     
 def templateToDict( template ):
     return { argument.name : argument.value.strip() for argument in template.arguments }
-#data creation
+
+#####data creation
+### Classes
 def defaultClassDict( label = ""):
     return {
             "label" : label or "NotSet",
@@ -174,6 +179,54 @@ def createClassDefinitionDict( definitions ):
 def dictGetUnion( dictionary, *args):
     return dictionary.get(*args[0], dictGetUnion(dictionary, *args[1:]))
 
+### Parameter
+def defaultParameterDict():
+    return {
+        "text": "", 
+        "type": "",
+        "name": "",
+        "items" : []
+    }
+
+parameterExpander = {
+    "Default" : [ { "suffix" : "", "type" : "any"}],
+    "Float" : [ { "suffix" : "", "type" : "float" } ],
+    "OP"    : [ {"suffix" : "", "type" : "OP"}],
+    "Int"   : [ { "suffix" : "", "type" : "int" } ],
+    "Str"   : [ { "suffix" : "", "type" : "str" } ],
+    "XYZ"   : [ { "suffix" : "x", "type" : "float" }, 
+               { "suffix" : "y", "type" : "float" },
+                { "suffix" : "z", "type" : "float" } ],
+    "RGB"   : [ { "suffix" : "r", "type" : "float" }, 
+               { "suffix" : "g", "type" : "float" },
+                { "suffix" : "b", "type" : "float" } ],
+    "RGBA"   : [ { "suffix" : "r", "type" : "float" }, 
+               { "suffix" : "g", "type" : "float" },
+                { "suffix" : "b", "type" : "float" },
+                 { "suffix" : "a", "type" : "float" } ],
+    "Menu"  : [{ "suffix" : "", "type" : "str" } ],
+    "XY"   : [ { "suffix" : "x", "type" : "float" }, 
+               { "suffix" : "y", "type" : "float" }],
+    "WH"   : [ { "suffix" : "w", "type" : "float" }, 
+               { "suffix" : "h", "type" : "float" }],
+    "Toggle" : [{ "suffix" : "", "type" : "bool" }],
+    "File" : [{ "suffix" : "", "type" : "str" }]
+}
+
+def createParTypeDefinitionDict():
+    outputDict = {}
+    for key, value in parameterExpander.items():
+        parTypeClassDict = defaultClassDict()
+        parTypeClassDict["label"] = f"{key}Par"
+        parTypeClassDict["inherits"] = ["Par"]
+        parTypeClassDict["members"] = [{
+                "text": "Read or set the value.",
+                "type": value[0]["type"],
+                "name": "val"     
+            }]
+        outputDict[f"{key}Par"] = parTypeClassDict
+    return outputDict
+
 def createParDefinitionDict( definitions ):
     cacheFile = Path("cache/parDefinitionDictCache.json")
 
@@ -186,7 +239,7 @@ def createParDefinitionDict( definitions ):
         wikiObject = wikitextparser.parse( definition )
         className = ""
         classDict = defaultClassDict()
-        collectedParameters = []
+        collectedParameters = {}
         for template in wikiObject.templates:
             templateDict = templateToDict( template )
            
@@ -204,24 +257,28 @@ def createParDefinitionDict( definitions ):
                     if parameter is None: 
                         print("Parameter is None. FOR WHATEVER REASON!")
                         continue
-                    class breakParsin (Exception):
-                        pass
-
-                    className = className or f"{parameter.get('opType', '')}{parameter['opFamily']}"
+                    parameterType = parameter.get("parType", "Default")
                     
-                    parameterName = parameter.get("parName", "")
+                    expandedPrameterDef = parameterExpander.get( parameterType, parameterExpander["Default"] )
+                    for expanded in expandedPrameterDef :
+                        
+                        className       = className or f"{parameter.get('opType', '')}{parameter['opFamily']}"
+                        parameterName   = parameter.get("parName", "")
+                        itemName        = parameter.get("itemName", "")
+                        expandedName    = f"{parameterName}{expanded['suffix']}"
 
-                    if not parameter.get("parType", ""):
-                        continue
-                    collectedParameters.append( {
-                                    "text": f'{parameter.get("parType", "")} : {parameter.get("parSummary", "")}', 
-                                    "type": "Par",
-                                    "name": parameterName,
-                                } )
+                        if not parameter.get("parType", ""):
+                            continue
+                        parameterDict = collectedParameters.setdefault(expandedName, defaultParameterDict() )
+                        parameterDict["text"] = f'{parameter.get("parType", "")} : {parameter.get("parSummary", "")}' 
+                        parameterDict["type"] = f"{parameterType}Par"
+                        parameterDict["name"] = expandedName
+                    
+   
                     
                    
         classDict = outputdict.get( className, classDict)
-        classDict["members"] = classDict["members"] + collectedParameters
+        classDict["members"] = classDict["members"] + list( collectedParameters.values() )
         outputdict[className] = classDict
             
     #We will have to order this. The file gets large and pylance has issues making sense of the order.
@@ -231,7 +288,7 @@ def createParDefinitionDict( definitions ):
     )
     return outputdict
 
-#data handling
+#####data handling
 def sortClassDefinitionDicts( defnitions:dict):
     sortedList = []
     for key, value in defnitions.items():
@@ -258,7 +315,8 @@ def clearDefinitionDict( definitionDict):
             try:
                 eval( member["type"] ) is type
             except:
-                member["type"] = "any"
+                #member["type"] = "any"
+                pass
 
         for method in classDefinition["methods"]:
             method["text"] = wikiToMD( method["text"] )
@@ -288,7 +346,7 @@ def wikiToMD( text ):
     return text
 import re
 
-#datawriting
+#####datawriting
 def writeClassAsModuleToFile( element, fileHandler, depth = 0):
     for member in element["members"]:
         writeMemberToFile( member, fileHandler )
@@ -355,7 +413,17 @@ def writeBultinFile(definitionDict):
     with builtinsFileHandler.open("wt") as builtinsFile:
         builtinsFile.write("from td import *\n")
         builtinsFile.write("import parameter\n")
+        builtinsFile.write("import parameterTypes\n")
+        for element in definitionDict.values():
+            if not "label" in element:
+                continue
+            writeClassToFile( element, builtinsFile)
 
+def writeParameterTypeFile( definitionDict):
+    builtinsFileHandler = Path("typings", "parameterTypes.py")
+    builtinsFileHandler.parent.mkdir( parents=True, exist_ok=True)
+    
+    with builtinsFileHandler.open("wt") as builtinsFile:
         for element in definitionDict.values():
             if not "label" in element:
                 continue
@@ -366,6 +434,7 @@ def writeParameterFile(definitionDict):
     builtinsFileHandler.parent.mkdir( parents=True, exist_ok=True)
     
     with builtinsFileHandler.open("wt") as builtinsFile:
+        builtinsFile.write("from parameterTypes import *\n")
         for element in definitionDict.values():
             if not "label" in element:
                 continue
@@ -392,7 +461,7 @@ def main():
     operatorDefinition = fetchOperatorDocs( operatorPages )
     parameterDefinitionDicts = createParDefinitionDict( operatorDefinition )
     writeParameterFile( clearDefinitionDict( parameterDefinitionDicts) )
-
+    writeParameterTypeFile( createParTypeDefinitionDict() )
 if __name__ == "__main__":
     main()
         

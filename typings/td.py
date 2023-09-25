@@ -1,10 +1,10 @@
 me : OP
 """Reference to the current [[OP Class|operator]] that is being executed or evaluated. This can be used in parameter expressions, or DAT scripts."""
-absTime : any
+absTime : absTime
 """Reference to the [[AbsTime Class|AbsTime]] object."""
-app : any
+app : app
 """Reference to the [[App Class|application]] installation."""
-ext : any
+ext : ext
 """Reference to the extension searching object. See [[extensions]] for more information."""
 families : dict
 """A dictionary containing a list of [[OP Class|operator]] types for each operator family. 
@@ -19,11 +19,11 @@ for a in families['SOP']:
 
 ```
 """
-licenses : any
+licenses : licenses
 """Reference to the currently installed [[Licenses Class|licences]]."""
-mod : any
+mod : mod
 """Reference to the [[MOD Class|Module On Demand]] object."""
-monitors : any
+monitors : monitors
 """Reference to the group of available [[Monitors Class|monitors]]."""
 op : OP
 """The operator finder object, for accessing operators through paths or shortcuts. '''Note:''' a version of this method that searches relative to a specific operator is also in [[OP Class]].
@@ -144,15 +144,15 @@ ipar : OP
     
 
 '''Note:''' a version of this method that searches from a specific operator is also in [[OP Class]]."""
-project : any
+project : project
 """Reference to the [[Project Class|project session]]."""
 root : OP
 """Reference to the topmost root [[OP Class|operator]]."""
-runs : any
+runs : runs
 """Reference to the [[Runs Class|runs]] object, which contains delayed executions."""
-sysinfo : any
+sysinfo : sysinfo
 """Reference to the [[SysInfo Class|system information]]."""
-ui : any
+ui : ui
 """Reference to the [[UI Class|ui options]]."""
 def ops(pattern1, pattern2, *args, includeUtility=False) -> list: 
 	"""Returns a (possibly empty) list of OPs that match the patterns, relative to this OP.
