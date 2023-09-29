@@ -209,6 +209,7 @@ parameterExpander = {
                 { "suffix" : "b", "type" : "float" },
                  { "suffix" : "a", "type" : "float" } ],
     "Menu"  : [{ "suffix" : "", "type" : "str" } ],
+    "StrMenu"  : [{ "suffix" : "", "type" : "str" } ],
     "XY"   : [ { "suffix" : "x", "type" : "float" }, 
                { "suffix" : "y", "type" : "float" }],
     "WH"   : [ { "suffix" : "w", "type" : "float" }, 
@@ -262,35 +263,50 @@ def createParDefinitionDict( definitions ):
                     if parameter is None: 
                         print("Parameter is None. FOR WHATEVER REASON!")
                         continue
+
+                    #So we are fetching the paameterType. 
+                    if parameter.get("itemName", ""): continue
                     parameterType = parameter.get("parType", "Default")
-                    
                     expandedPrameterDef = parameterExpander.get( parameterType, parameterExpander["Default"] )
+                    parameterTypeString = f"{parameterType}Par"
+                    
                     for expanded in expandedPrameterDef :
                         
                         className       = className or f"{parameter.get('opType', '')}{parameter['opFamily']}"
                         parameterName   = parameter.get("parName", "")
-                        itemName        = parameter.get("itemName", "")
+                        
                         expandedName    = f"{parameterName}{expanded['suffix']}"
+                        
+                        if parameterType in ("Menu", "StrMenu"):
+                            
+                            menuClassName = f"{className}{expandedName}{parameterType}"
+                            subclassObject = defaultClassDict( label = menuClassName )
+                            subclassObject["inherits"] = [f"{parameterType}Par"]
+                            items = [ f"\"{item['itemName']}\"" for item in stringToDictList( parameter.get("parItems", "") ) ] or ['"*"']
+                            
+                            subclassObject["members"].append({
+                                "text" : "Set the menuValue",
+                                "type" : f"Literal[{','.join(items)}]",
+                                "name" : "val"
+                            })
+                            
+                            parameterTypeString = menuClassName
+                            outputdict[menuClassName] = subclassObject
 
-                        if not parameter.get("parType", ""):
-                            continue
                         parameterDict = collectedParameters.setdefault(expandedName, defaultParameterDict() )
                         parameterDict["text"] = f'{parameter.get("parType", "")} : {parameter.get("parSummary", "")}' 
-                        parameterDict["type"] = f"{parameterType}Par"
+                        parameterDict["type"] = parameterTypeString
                         parameterDict["name"] = expandedName
-                    
-   
-                    
-                   
+            
         classDict = outputdict.get( className, classDict)
         classDict["members"] = classDict["members"] + list( collectedParameters.values() )
         outputdict[className] = classDict
             
     #We will have to order this. The file gets large and pylance has issues making sense of the order.
 
-    cacheFile.write_text(
-        json.dumps( outputdict, indent=4, cls=utils.SetEncoder )
-    )
+    #cacheFile.write_text(
+    #    json.dumps( outputdict, indent=4, cls=utils.SetEncoder )
+    #)
     return outputdict
 
 #####data handling
@@ -305,12 +321,13 @@ def sortClassDefinitionDicts( defnitions:dict):
                 continue
             if foundIndex > keyIndex: keyIndex = foundIndex
         #if we cannot find anything but have inheritance, move to the bac!
-        keyIndex = (keyIndex or len(sortedList)*bool(value["inherits"])) + 1
+        keyIndex = (keyIndex or len(sortedList) * bool(value["inherits"])) + 1
         print("Inserting", key, "at", keyIndex)
         sortedList.insert(keyIndex, key)
     for key in sortedList:
         defnitions[key]["inherits"] = defnitions[key]["inherits"]
     return {key : defnitions[key] for key in sortedList}
+
 def clearDefinitionDict( definitionDict):
     for classDefinition in definitionDict.values():
         classDefinition["summary"] = wikiToMD( classDefinition.get("summary", "") )
@@ -425,14 +442,14 @@ def writeBultinFile(definitionDict):
             writeClassToFile( element, builtinsFile)
 
 def writeParameterTypeFile( definitionDict):
-    builtinsFileHandler = Path("typings", "parameterTypes.py")
-    builtinsFileHandler.parent.mkdir( parents=True, exist_ok=True)
+    parameterFileHandler = Path("typings", "parameterTypes.py")
+    parameterFileHandler.parent.mkdir( parents=True, exist_ok=True)
     
-    with builtinsFileHandler.open("wt") as builtinsFile:
+    with parameterFileHandler.open("wt") as parameterFile:
         for element in definitionDict.values():
             if not "label" in element:
                 continue
-            writeClassToFile( element, builtinsFile)
+            writeClassToFile( element, parameterFile)
 
 def writeParameterFile(definitionDict):
     builtinsFileHandler = Path("typings", "parameter.py")
@@ -440,6 +457,7 @@ def writeParameterFile(definitionDict):
     
     with builtinsFileHandler.open("wt") as builtinsFile:
         builtinsFile.write("from parameterTypes import *\n")
+        builtinsFile.write("from typing import Literal\n")
         for element in definitionDict.values():
             if not "label" in element:
                 continue

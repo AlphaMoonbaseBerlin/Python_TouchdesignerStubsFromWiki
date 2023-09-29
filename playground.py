@@ -1,3 +1,4 @@
-myOperator:transformTOP = op("movefilein1")
-myOperator.preload()
-myOperator.par.premultrgbbyalpha.val = "adj"
+myOperator :moviefileinTOP = op("helloworld")
+myOperator.par.cuebehavior.val
+moviefileinTOP.par.file.bind
+myOperator.play(1, True)
