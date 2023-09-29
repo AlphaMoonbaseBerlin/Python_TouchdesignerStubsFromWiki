@@ -192,6 +192,10 @@ parameterExpander = {
     "Default" : [ { "suffix" : "", "type" : "any"}],
     "Float" : [ { "suffix" : "", "type" : "float" } ],
     "OP"    : [ {"suffix" : "", "type" : "OP"}],
+    "CHOP"    : [ {"suffix" : "", "type" : "CHOP"}],
+    "COMP"    : [ {"suffix" : "", "type" : "COMP"}],
+    "TOP"    : [ {"suffix" : "", "type" : "TOP"}],
+    "MAT"    : [ {"suffix" : "", "type" : "MAT"}],
     "Int"   : [ { "suffix" : "", "type" : "int" } ],
     "Str"   : [ { "suffix" : "", "type" : "str" } ],
     "XYZ"   : [ { "suffix" : "x", "type" : "float" }, 
@@ -210,7 +214,8 @@ parameterExpander = {
     "WH"   : [ { "suffix" : "w", "type" : "float" }, 
                { "suffix" : "h", "type" : "float" }],
     "Toggle" : [{ "suffix" : "", "type" : "bool" }],
-    "File" : [{ "suffix" : "", "type" : "str" }]
+    "File" : [{ "suffix" : "", "type" : "str" }],
+    "Folder" : [{ "suffix" : "", "type" : "str" }],
 }
 
 def createParTypeDefinitionDict():
