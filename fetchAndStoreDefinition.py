@@ -156,7 +156,13 @@ def createClassDefinitionDict( definitions ):
                 classDict["methods"].append(templateDict)
         
         pathName = className.split(".")
-
+        #Adding default parameters!
+        parameters = [f"parameter.{classDict['label']}"] + [f"parameter.{inherit}" for inherit in classDict["inherits"]]
+        classDict["members"].append( {
+                "text": f"Parameters of { ' & '.join( parameters )}",
+                "type": "|".join( parameters),
+                "name": "par"
+        })
         if len(pathName) <= 1:
             outputdict[className] = classDict
         else:
@@ -413,15 +419,7 @@ def writeClassToFile( element, fileHandler, depth = 0):
     for method in element["methods"]:
         method["call"] = makeClassCall( method["call"] )
         writeMethodToFile( method, fileHandler, depth=depth+1)
-    parameters = [f"parameter.{element['label']}"] + [f"parameter.{inherit}" for inherit in element["inherits"]]
-    writeMemberToFile(
-        {
-                "text": f"Parameters of { ' & '.join( parameters )}",
-                "type": "|".join( parameters),
-                "name": "par"
-        }, 
-        fileHandler, depth = depth + 1    )
-
+   
 
     for subclass in element["subclasses"].values():
         writeClassToFile(subclass, fileHandler, depth=depth+1)
