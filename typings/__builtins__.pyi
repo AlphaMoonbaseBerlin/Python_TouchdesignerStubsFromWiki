@@ -41,6 +41,8 @@ v3[2] = 1		# same as v3.z
 	"""Gets or sets the Y component of the vector."""
 	z : float
 	"""Gets or sets the Z component of the vector."""
+	par : parameter.Vector
+	"""Parameters of parameter.Vector"""
 	def angle(self, vec) -> float: 
 		"""Returns the angel (in degrees) between the current vector and specified vector (vec).
 
@@ -192,8 +194,6 @@ v.reflect(v2)
 
 ```"""
 		pass
-	par : parameter.Vector
-	"""Parameters of parameter.Vector"""
 	pass
 
 
@@ -207,6 +207,8 @@ class Undo():
 	"""Is undo enabled or not."""
 	undoStack : list
 	"""A list of names for undo operations available."""
+	par : parameter.Undo
+	"""Parameters of parameter.Undo"""
 	def startBlock(self, name, enable=True) -> None: 
 		"""Start a named undo block."""
 		pass
@@ -229,8 +231,6 @@ class Undo():
 	def endBlock(self, ) -> None: 
 		"""Terminate an undo block."""
 		pass
-	par : parameter.Undo
-	"""Parameters of parameter.Undo"""
 	pass
 
 
@@ -339,6 +339,8 @@ Utility properties include:
 	"""The [[Camera Class|Camera]] definition class."""
 	debug : module
 	"""Helper module for the builtin debug statement. [[Debug_module|Documentation.]]"""
+	par : parameter.tdu
+	"""Parameters of parameter.tdu"""
 	def rand(self, seed) -> float: 
 		"""Return a random value in the range [0.0, 1.0) given the input seed value. That is, it will never return 1.0, but it may return 0.0. For a given seed, it will always return the same random number. The seed does not need to be a number. If the seed is not numeric, it resolves it to its string representation to produce a unique value. In the case of OPs for example, its string representation is a constant path. Thus one can produce a unique random value for each OP which remains the same for that OP each time you reload TouchDesigner.
 
@@ -575,88 +577,6 @@ Generally you will use this in the menuSource field in the Component Editor as f
 
 ```"""
 		pass
-	par : parameter.tdu
-	"""Parameters of parameter.tdu"""
-	class Timecode():
-		"""The Timecode class holds a timecode value.
-* str (Optional) - Initializes the Timecode object from a Timecode formatted String: ie. hh:mm:ss:ff or hh:mm:ss.ff	
-* fps - (Keyword, Optional) Initialize the Timecode object with the specified fps. If not specified it will be initialized with the rate of the local time.
-* hour - (Keyword, Optional) Specify the hour. Should be left blank if a String arg is provided. 0 by default.
-* minute - (Keyword, Optional) Specify the minute. Should be left blank if a String arg is provided. 0 by default.
-* second - (Keyword, Optional) Specify the second. Should be left blank if a String arg is provided. 0 by default.
-* frame - (Keyword, Optional) Specify the frame. Should be left blank if a String arg is provided. 0 by default.
-* negative - (Keyword, Optional) Specify whether the Timecode is negative. Should be left blank if a String arg is provided. False by default.
-* smpte - (Keyword, Optional) Specify whether the Timecode is SMPTE standard. True by default.
-<syntaxhighlight lang=python>
-t = tdu.Timecode() # 00:00:00:00 with fps=me.time.rate	
-t2 = tdu.Timecode('01:11:11:15', fps=30) # 01:11:11:15 with fps=30
-t3 = tdu.Timecode(frame=185, fps=30) # 00:00:06:05 with fps=30
-t4 = tdu.Timecode(hour=1, minute=2, second=3, frame=4, negative=True, fps=30) # -01:02:03:04 with fps=30
-</syntaxhighlight>"""
-		countdown : tdu.Timecode
-		"""Return a Timecode Object of the difference between the length and the current time. If a custom length is not specified then it will use a default: 23:59:59:ff for SMPTE and 99:59:59:ff."""
-		dropFrame : bool
-		"""True if the Timecode is drop-frame, False otherwise."""
-		fps : float
-		"""Get or set the framerate (in frames per second) of the Timecode."""
-		frame : int
-		"""The Timecode frame: 0 to fps-1"""
-		hour : int
-		"""The Timecode hour: 0 to 99 if non-SMPTE, 0 to 23 otherwise."""
-		minute : int
-		"""The Timecode minute: 0 to 59."""
-		second : int
-		"""The Timecode second: 0 to 59."""
-		negative : bool
-		"""True if the Timecode is negative, and False otherwise. Always False if the Timecode is following SMPTE standard."""
-		smpte : bool
-		"""True if the Timecode is SMPTE standard, and False otherwise. SMPTE Timecodes cannot be negative and cannot exceed 24 hours."""
-		text : string
-		"""Get the text format of the Timecode."""
-		totalFrames : int
-		"""The total number of Timecode frames, which is calculated from the hour, minute, second, frame values. Whether or not the Timecode is drop frame will also affect the value."""
-		totalSeconds : float
-		"""The total number of Timecode seconds, which is calculated from the hour, minute, second, frame values. Whether or not the Timecode is drop frame will also affect the value."""
-		def setComponents(self, hour, minute, second, frame, negative=False, fps=None) -> None: 
-			"""Set the Timecode from individual time components.
-* hour - The new hour value.
-* minute - The new minute value.
-* second - The new second value.
-* frame - The new frame value.
-* negative (Keyword, Optional) - Whether the new Timecode is negative, False by default.
-* fps (Keyword, Optional) - The Timecode's FPS. If not specified then the FPS will not change.
-<syntaxhighlight lang=python>
-n.setComponents(12, 22, 33, 45, negative=True, fps=60) -> new Timecode will be -12:22:33:45.
-</syntaxhighlight>"""
-			pass
-		def setString(self, timecodeStr, fps=None) -> None: 
-			"""Set the Timecode from a string formated as [-]hh:mm:ss:ff.
-* timecodeStr - The string in the format: [-]hh:mm:ss:ff.
-* fps (Keyword, Optional) - The Timecode's FPS. If not specified then the FPS will not change.
-<syntaxhighlight lang=python>
-n.setString('01:01:00:00', fps=60)
-</syntaxhighlight>"""
-			pass
-		def setTotalFrames(self, totalFrames, fps=None) -> None: 
-			"""Set the Timecode to a single integer value representing the new total frames.
-* totalFrames - The new total frame value.
-* fps (Keyword, Optional) - The Timecode's FPS. If not specified then the FPS will not change.
-<syntaxhighlight lang=python>
-n.setTotalFrames(120, fps=60) # new Timecode will be 00:00:02:00
-</syntaxhighlight>"""
-			pass
-		def setLength(self, length) -> None: 
-			"""Set Timecode to a custom length. Useful in conjunction with countdown.
-* length - The new length, either a total frame value or a Timecode Object. Must be above 0.
-<syntaxhighlight lang=python>
-n.setLength(600) # sets the length to 10 seconds for a Timecode with 60 FPS.
-</syntaxhighlight>"""
-			pass
-		par : parameter.Timecode
-		"""Parameters of parameter.Timecode"""
-		pass	
-
-
 	pass
 
 
@@ -819,6 +739,8 @@ See also [[Transform CHOP]] which accepts, manipulates and outputs quaternions a
 	"""Get or set the z component of the quaternion."""
 	w : float
 	"""Get or set the w component of the quaternion."""
+	par : parameter.Quaternion
+	"""Parameters of parameter.Quaternion"""
 	def lerp(self, q2, factor) -> any: 
 		"""Returns the linear interpolation of the quaternion with another quaternion and an interpolation factor.
 
@@ -984,8 +906,6 @@ q1 * = q2
 
 ```"""
 		pass
-	par : parameter.Quaternion
-	"""Parameters of parameter.Quaternion"""
 	pass
 
 
@@ -1006,6 +926,8 @@ class Preferences():
 	"""The Preferences class describes the set of configurable preferences that are retained between sessions. It can be accessed with the ui.preferences object or through the [[Dialogs:Preferences_Dialog|Preferences Dialog]]."""
 	defaults : dict
 	"""A dictionary of preferences with their default values."""
+	par : parameter.Preferences
+	"""Parameters of parameter.Preferences"""
 	def save(self, ) -> None: 
 		"""Save preference values to disk.  Unless saved, changes to preferences will be lost, next time application is started."""
 		pass
@@ -1052,8 +974,6 @@ for p in ui.preferences:
 
 ```"""
 		pass
-	par : parameter.Preferences
-	"""Parameters of parameter.Preferences"""
 	pass
 
 
@@ -1086,6 +1006,8 @@ p3 = tdu.Position(values)
 	"""Gets or sets the Y component of the position."""
 	z : float
 	"""Gets or sets the Z component of the position."""
+	par : parameter.Position
+	"""Parameters of parameter.Position"""
 	def translate(self, x, y, z) -> None: 
 		"""Translates the position by the specified values.
 
@@ -1123,8 +1045,6 @@ newV = v.copy()
 
 ```"""
 		pass
-	par : parameter.Position
-	"""Parameters of parameter.Position"""
 	pass
 
 
@@ -1139,6 +1059,8 @@ class ParGroupUnit():
 
 class ParGroupPulse():
 	"""The ParGroupPulse class describes a subclass of a ParGroup ending with a pulse parameter. See also Custom ParGroup."""
+	par : parameter.ParGroupPulse
+	"""Parameters of parameter.ParGroupPulse"""
 	def pulse(self, value, frames=nframes, seconds=nseconds) -> None: 
 		"""Pulsing sets a parameter to the specific value, cooks the operator, then restores the parameter to its previous value.
 
@@ -1166,8 +1088,6 @@ op('noise').parGroup.type.pulse(['random'], seconds=0.5) # pulse noise menu type
 
 ```"""
 		pass
-	par : parameter.ParGroupPulse
-	"""Parameters of parameter.ParGroupPulse"""
 	pass
 
 
@@ -1175,6 +1095,8 @@ class Panes():
 	"""The Panes class describes the list of all [[Pane Class|pane objects]].  It can be accessed from [[UI Class|ui.panes]]."""
 	current : td.Pane
 	"""The currently selected [[Pane Class|pane]]."""
+	par : parameter.Panes
+	"""Parameters of parameter.Panes"""
 	def createFloating(self, type=PaneType.NETWORKEDITOR, name=None, maxWidth=1920, maxHeight=1080, monitorSpanWidth=0.9, monitorSpanHeight=0.9) -> any: 
 		"""Return a floating pane.
 
@@ -1239,13 +1161,13 @@ for n in ui.panes:
 
 ```"""
 		pass
-	par : parameter.Panes
-	"""Parameters of parameter.Panes"""
 	pass
 
 
 class Options():
 	"""The Options class describes the set of configurable UI options.  It can be accessed with the ui.options object."""
+	par : parameter.Options
+	"""Parameters of parameter.Options"""
 	def resetToDefaults(self, ) -> None: 
 		"""Reset all options to their default values."""
 		pass
@@ -1286,8 +1208,6 @@ for n in ui.options:
 
 ```"""
 		pass
-	par : parameter.Options
-	"""Parameters of parameter.Options"""
 	pass
 
 
@@ -1653,6 +1573,8 @@ n.currentPage = 'Common'
 	"""True if the operators is a [[TOP]]."""
 	licenseType : str
 	"""Type of [[License Class|License]] required for the operator."""
+	par : parameter.OP
+	"""Parameters of parameter.OP"""
 	def pars(self, pattern) -> list: 
 		"""Returns a (possibly empty) list of [[Par Class|parameter objects]] that match the pattern.
 
@@ -1976,8 +1898,6 @@ n.unstoreStartupValue('sales* ') # removes all entries from this OPs storage sta
 	def __setstate__(self, ) -> dict: 
 		"""Reads the dictionary to update persistent details about the object, suitable for unpickling and deep copies."""
 		pass
-	par : parameter.OP
-	"""Parameters of parameter.OP"""
 	pass
 
 
@@ -1997,6 +1917,8 @@ class VFSFile():
 	"""Get the OP owner."""
 	byteArray : bytearray
 	"""Get or set the file data as a bytearray."""
+	par : parameter.VFSFile
+	"""Parameters of parameter.VFSFile"""
 	def destroy(self, ) -> None: 
 		"""Destroys the file in VFS referenced by this object."""
 		pass
@@ -2005,8 +1927,6 @@ class VFSFile():
 
 * folder - The folder on disk to export the file to."""
 		pass
-	par : parameter.VFSFile
-	"""Parameters of parameter.VFSFile"""
 	pass
 
 
@@ -2014,6 +1934,8 @@ class VFS():
 	"""The VFS Class describes a COMP's [[Virtual File System|Virtual File System]]. <br>To access a virtual file in any operator's file parameter, use the virtual path format: ```vfs:<path to comp>:<filename>```. <br>[[VFSFile_Class]] does the file operators."""
 	owner : OP
 	"""Get the OP owner."""
+	par : parameter.VFS
+	"""Parameters of parameter.VFS"""
 	def [name] -> VFSFile: 
 		"""[[VFSFile Class|VFS Files]] may be easily accessed using the [] syntax.
 
@@ -2089,8 +2011,6 @@ for f in op('base1').vfs:
 
 ```"""
 		pass
-	par : parameter.VFS
-	"""Parameters of parameter.VFS"""
 	pass
 
 
@@ -2179,6 +2099,8 @@ ui.status = 'Operation Complete'
 	"""Get the app window X position."""
 	windowY : int
 	"""Get the app window Y position."""
+	par : parameter.UI
+	"""Parameters of parameter.UI"""
 	def copyOPs(self, listOfOPs) -> None: 
 		"""Copy a list of operators to the operator clipboard. All operators must be children of the same component.
 
@@ -2410,8 +2332,6 @@ See also: [[App Class|App.version]]"""
 	def findEditDAT(self, filename) -> any: 
 		"""Given an external filename, finds the corresponding DAT thats update from this filename if any.."""
 		pass
-	par : parameter.UI
-	"""Parameters of parameter.UI"""
 	pass
 
 
@@ -2435,6 +2355,8 @@ class TOP(OP):
 	"""The current cooking pass iteration, beginning at 0. The total can be set with the 'Passes' parameter on the operator's common page."""
 	isTOP : bool
 	"""True if the operators is a TOP."""
+	par : parameter.TOP|parameter.OP
+	"""Parameters of parameter.TOP & parameter.OP"""
 	def sample(self, x=None,y=None,z=None,u=None,v=None,w=None) -> any: 
 		"""Returns a 4-tuple representing the color value at the specified texture location. One horizontal and one vertical component must be specified. Note that this is a very expensive operation currently. It will always stall the graphics pipeline if the TOP is currently queued to get updated, and then downloads the entire texture (not just the requested pixel). Use this for debugging and non-realtime workflows only.
 
@@ -2518,8 +2440,6 @@ arr = n.saveByteArray('.exr', metadata=[ ('my_key', 'my_value'), ('author_name',
 	def cudaMemory(self, ) -> CUDAMemory: 
 		"""Copies the contents of the TOP to a newly allocated block of raw CUDA memory. The CUDA memory will be deallocated when the returned [[CUDAMemory_Class|CUDAMemory]] object is deallocated. Ensure you keep a reference to the returned object around as long as you are using it."""
 		pass
-	par : parameter.TOP|parameter.OP
-	"""Parameters of parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2534,6 +2454,8 @@ class webrenderTOP(TOP,OP):
 	""""""
 	loaded : bool
 	"""The loaded state of the current webpage."""
+	par : parameter.webrenderTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.webrenderTOP & parameter.TOP & parameter.OP"""
 	def interactMouse(self, u, v, leftClick=0, middleClick=0, rightClick=0, left=False, middle=False, right=False, wheel=0, pixels=False) -> None: 
 		"""Send mouse clicks, rollovers, moves and drags to the webpage.
 
@@ -2600,8 +2522,6 @@ op('webrender1').sendString('TouchDesigner')  # sends the string TouchDesigner
 
 ```"""
 		pass
-	par : parameter.webrenderTOP|parameter.TOP|parameter.OP
-	"""Parameters of parameter.webrenderTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2639,13 +2559,13 @@ class videostreaminTOP(TOP,OP):
 	"""Height of the movie, in pixels."""
 	videoWidth : int
 	"""Width of the movie, in pixels."""
+	par : parameter.videostreaminTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.videostreaminTOP & parameter.TOP & parameter.OP"""
 	def unload(self, cacheMemory=False) -> None: 
 		"""Unloads the video stream and frees it's memory usage. The stream will open again next time it cooks, so make sure nothing is still using it to keep it closed.
 
 * cacheMemory - (Keyword, Optional) If True the memory (textures, upload buffers) of the movie will be cached for use by another movie later on. Useful if you are opening/closing many movies with the same codec and resolution."""
 		pass
-	par : parameter.videostreaminTOP|parameter.TOP|parameter.OP
-	"""Parameters of parameter.videostreaminTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2662,8 +2582,6 @@ class videodeviceinTOP(TOP,OP):
 	"""True if any device is currently streaming to this operator.."""
 	inputSignalFormat : string
 	"""If available for the current Library, returns a string for the input signal format. This string can be used to set the 'Signal Format' menu on the Video Device Out TOP."""
-	timecode : tdu.Timecode
-	"""If the device supports timecode, then returns a Timecode object for the latest received frame. see [[Timecode Class]]."""
 	par : parameter.videodeviceinTOP|parameter.TOP|parameter.OP
 	"""Parameters of parameter.videodeviceinTOP & parameter.TOP & parameter.OP"""
 	pass
@@ -2753,6 +2671,8 @@ class textTOP(TOP,OP):
 	"""The x height of the font, as described by the font's metrics. This is usually the height of a lower case x."""
 	lineGap : float
 	"""The suggested gap between lines, as described by the font's metrics."""
+	par : parameter.textTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.textTOP & parameter.TOP & parameter.OP"""
 	def fontSupportsChars(self, str) -> bool: 
 		"""Returns True if every character maps to a glyph. This doesn't mean the font supports the language in all cases. Glyphs that come from ligatures etc. may still be missing from the font.
 
@@ -2766,8 +2686,6 @@ class textTOP(TOP,OP):
 	def lines(self, ) -> any: 
 		"""Returns a list of [[TextLine Class]] objects. This list of lines is formed after operations such as word-wrap have been applied."""
 		pass
-	par : parameter.textTOP|parameter.TOP|parameter.OP
-	"""Parameters of parameter.textTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -2929,6 +2847,8 @@ See also Parent Shortcut for more examples."""
 	"""Reference to the [[SysInfo Class|system information]]."""
 	ui : ui
 	"""Reference to the [[UI Class|ui options]]."""
+	par : parameter.td
+	"""Parameters of parameter.td"""
 	def ops(self, pattern1, pattern2, *args, includeUtility=False) -> list: 
 		"""Returns a (possibly empty) list of OPs that match the patterns, relative to this OP.
 
@@ -3000,8 +2920,6 @@ v = fetchStamp('sides', 3)
 	def clear(self, ) -> None: 
 		"""Clear the textport of all text."""
 		pass
-	par : parameter.td
-	"""Parameters of parameter.td"""
 	pass
 
 
@@ -3097,6 +3015,8 @@ class SOP(OP):
 	"""The size of this operator's geometry along each dimension, expressed as a [[Position Class|Position]]."""
 	isSOP : bool
 	"""True if the operator is a SOP."""
+	par : parameter.SOP|parameter.OP
+	"""Parameters of parameter.SOP & parameter.OP"""
 	def computeBounds(self, ) -> Bounds: 
 		"""Returns an object with the bounds, center and size of the SOP's geometry. Keywords can be used to check if the correct render or display flags are set."""
 		pass
@@ -3117,8 +3037,6 @@ n.save('output.bgeo')  #alternate format compatible with some other modelling pa
 
 ```"""
 		pass
-	par : parameter.SOP|parameter.OP
-	"""Parameters of parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3238,6 +3156,8 @@ class textSOP(SOP,OP):
 	"""The suggested gap between lines, as described by the font's metrics."""
 	numGlyphs : int
 	"""The number of glyphs that were generated. Note that this isn't nessesarily the number of characters (code points) in the original string."""
+	par : parameter.textSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.textSOP & parameter.SOP & parameter.OP"""
 	def fontSupportsChars(self, str) -> bool: 
 		"""Returns True if every character maps to a glyph. This doesn't mean the font supports the language in all cases. Glyphs that come from ligatures etc. may still be missing from the font.
 
@@ -3246,8 +3166,6 @@ class textSOP(SOP,OP):
 	def lines(self, ) -> any: 
 		"""Get the number of lines of the outputted text, after operations such as word-wrap have been applied."""
 		pass
-	par : parameter.textSOP|parameter.SOP|parameter.OP
-	"""Parameters of parameter.textSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3416,6 +3334,8 @@ class selectSOP(SOP,OP):
 
 class scriptSOP(SOP,OP):
 	""""""
+	par : parameter.scriptSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.scriptSOP & parameter.SOP & parameter.OP"""
 	def clear(self, ) -> None: 
 		"""Remove all geometry."""
 		pass
@@ -3509,8 +3429,6 @@ scriptOp.sortCustomPages('Definition','Controls')
 
 ```"""
 		pass
-	par : parameter.scriptSOP|parameter.SOP|parameter.OP
-	"""Parameters of parameter.scriptSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -3574,11 +3492,11 @@ td.run()
 	"""Get or set the remaining number of milliseconds before the execution will occur."""
 	source : [DAT, cell, string]
 	"""The source of the run. It will be either a [[DAT Class|DAT]], [[Cell Class|cell]], or string."""
+	par : parameter.Run
+	"""Parameters of parameter.Run"""
 	def kill(self, ) -> None: 
 		"""Kill this run before it executes, and remove it from the global runs list, located in the [[td Module]]."""
 		pass
-	par : parameter.Run
-	"""Parameters of parameter.Run"""
 	pass
 
 
@@ -3797,6 +3715,8 @@ The mode is one of: ```WindowStartMode.AUTO</code>, <code>WindowStartMode.FULL</
 	"""Get or set the perform window path."""
 	resetAudioOnDeviceChange : bool
 	"""Get or set whether audio devices momentarily reset when devices are added or removed to the system."""
+	par : parameter.Project
+	"""Parameters of parameter.Project"""
 	def load(self, path) -> None: 
 		"""Load a specific .toe file from disk.
 
@@ -3910,8 +3830,6 @@ print(project.pythonStack())
 
 ```"""
 		pass
-	par : parameter.Project
-	"""Parameters of parameter.Project"""
 	pass
 
 
@@ -3926,6 +3844,8 @@ class Prims():
 	"""The Prims class describes the set of [[Prim Class|prim objects]] (primitives) owned by one [[SOP Class|SOP]]."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
+	par : parameter.Prims
+	"""Parameters of parameter.Prims"""
 	def len(self, Prims) -> int: 
 		"""Returns the total number of prims.
 
@@ -3961,8 +3881,6 @@ for m in op('box1').prims:
 
 ```"""
 		pass
-	par : parameter.Prims
-	"""Parameters of parameter.Prims"""
 	pass
 
 
@@ -3986,6 +3904,8 @@ class Prim():
 	"""The maximum coordinates of this primitive along each dimension, expressed as a tdu.Position object."""
 	size : tdu.Position
 	"""The size of this primitive along each dimension, expressed as a tdu.Position object."""
+	par : parameter.Prim
+	"""Parameters of parameter.Prim"""
 	def destroy(self, destroyPoints=True) -> None: 
 		"""Destroy and remove the actual primitive this object refers to. This operation is only valid when the primitive belongs to a [[scriptSOP Class|scriptSOP]]. Note: after this call, other existing Prim objects in this SOP may no longer be valid.
 
@@ -4048,8 +3968,6 @@ for m in op('box1').prims[5]:
 
 ```"""
 		pass
-	par : parameter.Prim
-	"""Parameters of parameter.Prim"""
 	pass
 
 
@@ -4110,6 +4028,8 @@ class Points():
 	"""The Points class describes the set of [[Point Class|point objects]] owned by one [[SOP Class|SOP]]."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
+	par : parameter.Points
+	"""Parameters of parameter.Points"""
 	def len(self, Points) -> int: 
 		"""Returns the total number of points.
 
@@ -4145,8 +4065,6 @@ for m in op('box1').points:
 
 ```"""
 		pass
-	par : parameter.Points
-	"""Parameters of parameter.Points"""
 	pass
 
 
@@ -4177,11 +4095,11 @@ point.P = (1,0,1)
 	"""Get or set z coordinate value. This is the same as P[2]."""
 	normP : tdu.Position
 	"""The normalized position of this point within the bounding box of the SOP. Will always be in the range [0,1]. Expressed as tdu.Position object."""
+	par : parameter.Point
+	"""Parameters of parameter.Point"""
 	def destroy(self, ) -> None: 
 		"""Destroy and remove the actual point this object refers to. This operation is only valid when the primitive belongs to a [[scriptSOP Class|scriptSOP]]. Note: after this call, other existing Point objects in this SOP may no longer be valid."""
 		pass
-	par : parameter.Point
-	"""Parameters of parameter.Point"""
 	pass
 
 
@@ -4229,23 +4147,23 @@ class Peer():
 	"""The network address associated with the peer."""
 	hostname : str
 	"""The network hostname associated with the peer."""
+	par : parameter.Peer
+	"""Parameters of parameter.Peer"""
 	def close(self, ) -> bool: 
 		"""Close the peer connection. Returns True if successful. Closing a peer can be useful when implementing HTML server protocols for example."""
 		pass
-	par : parameter.Peer
-	"""Parameters of parameter.Peer"""
 	pass
 
 
 class particleSOP(SOP,OP):
 	""""""
+	par : parameter.particleSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.particleSOP & parameter.SOP & parameter.OP"""
 	def createParticles(self, num) -> any: 
 		"""Creates a number of particles without advancing the particle simulation. Returns a list of points, where each point describes a particle. Point attributes (v, life, N, etc.) can be used to modify these or any existing particles.
 
 *  num - The number of particles to create.'"""
 		pass
-	par : parameter.particleSOP|parameter.SOP|parameter.OP
-	"""Parameters of parameter.particleSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -4262,6 +4180,8 @@ class ParCollection():
 	"""The ParCollection class can be used to access [[Par Class|Parameters]]. To access a parameter you need to use its internal name, which you can obtain by hovering your mouse over the parameter name, and looking at the popup that will come up. See also [[Par Class]]. An operator's instance of this can be found in ```OP.par```."""
 	owner : OP
 	"""The [[OP Class|OP]] to which this object belongs."""
+	par : parameter.ParCollection
+	"""Parameters of parameter.ParCollection"""
 	def [name] -> Par: 
 		"""[[Par Class|Parameters]] may be easily accessed using the [] subscript and assignment operators.
 
@@ -4275,8 +4195,6 @@ p = op('base1').par['Myfloat5']
 
 ```"""
 		pass
-	par : parameter.ParCollection
-	"""Parameters of parameter.ParCollection"""
 	pass
 
 
@@ -4524,6 +4442,8 @@ SetInfo(dat=type:textDAT path:/text1, function='<module>', line=1, frame=300061,
 	"""True for toggle parameters."""
 	style : str
 	"""Describes the behavior and contents of the custom parameter. Example ```'Float'</code>, <code>'Int'</code>, <code>'Pulse'</code>, <code>'XYZ'```, etc."""
+	par : parameter.Par
+	"""Parameters of parameter.Par"""
 	def copy(self, Par) -> None: 
 		"""Copy the specified [[Par Class|parameter]].
 
@@ -4626,8 +4546,6 @@ op('noise').par.type.pulse('random', seconds=0.5) #pulse noise meny type for hal
 	def destroy(self, ) -> None: 
 		"""Destroy the parameter referenced by this Par. An exception will be raised if the parameter has already been destroyed. Only custom and sequential parameters can be destroyed.  Destroying a sequential parameter will destroy its entire block. Note: When any parameter is destroyed, any existing parameter objects will be invalid and should be re-fetched."""
 		pass
-	par : parameter.Par
-	"""Parameters of parameter.Par"""
 	pass
 
 
@@ -4721,6 +4639,8 @@ for p in pages:
 	"""The numeric index of this page."""
 	isCustom : bool
 	"""Boolean for whether this page is custom or not."""
+	par : parameter.Page
+	"""Parameters of parameter.Page"""
 	def appendOP(self, name, label=None, order=None, replace=True) -> ParGroup: 
 		"""Create a node reference type [[Par Class|parameter]]. This parameter will accept references to any operator.
 
@@ -5128,8 +5048,6 @@ page.sort('Speed','Color','Value')
 
 ```"""
 		pass
-	par : parameter.Page
-	"""Parameters of parameter.Page"""
 	pass
 
 
@@ -5346,6 +5264,8 @@ To set a menu value by its index, use the menuIndex member as described below.""
 	"""True if the referenced parameter currently exists, False if it has been deleted."""
 	index : int
 	"""The parameter's order in the list."""
+	par : parameter.ParGroup
+	"""Parameters of parameter.ParGroup"""
 	def copy(self, ParGroup) -> None: 
 		"""Copy the specified parameter.
 
@@ -5407,8 +5327,6 @@ newlist = op('geo1').parGroup.t.pars('t?')
 
 ```"""
 		pass
-	par : parameter.ParGroup
-	"""Parameters of parameter.ParGroup"""
 	pass
 
 
@@ -5506,14 +5424,14 @@ for m in monitors:
 	"""The topmost position of the combined monitor area, measured in pixels."""
 	bottom : int
 	"""The bottommost position of the combined monitor area, measured in pixels."""
+	par : parameter.Monitors
+	"""Parameters of parameter.Monitors"""
 	def locate(self, x,y) -> any: 
 		"""Return the [[Monitor Class|monitor]] at the specified mouse coordinates, or None."""
 		pass
 	def refresh(self, ) -> None: 
 		"""Causes the application to behave as if a monitor device has changed. [[Monitors DAT]] and other sources will be updated. This is typically done automatically by the operating system, but in special cases can be triggered manually with this method."""
 		pass
-	par : parameter.Monitors
-	"""Parameters of parameter.Monitors"""
 	pass
 
 
@@ -5626,6 +5544,8 @@ You can also get transformation and projection matrices from [[ObjectCOMP Class|
 	"""The list of Matrix rows, each a list of values."""
 	cols : list of lists
 	"""The list of Matrix columns, each a list of values."""
+	par : parameter.Matrix
+	"""Parameters of parameter.Matrix"""
 	def transpose(self, ) -> None: 
 		"""Transpose the values in the matrix.
 
@@ -5920,8 +5840,6 @@ newP = M *  p
 
 ```"""
 		pass
-	par : parameter.Matrix
-	"""Parameters of parameter.Matrix"""
 	pass
 
 
@@ -6085,11 +6003,11 @@ for l in licenses:
 	"""When True, the application is running with a Non-Commercial license. It is recommended to use this and isPro over the type method."""
 	type : str
 	"""The highest ranking license type of all installed licenses, some products being 'Pro', 'Non-Commercial', 'Commercial'. See also app.product in [[App Class]]."""
+	par : parameter.Licenses
+	"""Parameters of parameter.Licenses"""
 	def install(self, key) -> bool: 
 		"""Install a [[License Class|license]] with the specified key.  Returns True if successful."""
 		pass
-	par : parameter.Licenses
-	"""Parameters of parameter.Licenses"""
 	pass
 
 
@@ -6134,6 +6052,8 @@ A Group can be created with the [[Group SOP]] or using the <syntaxhighlight lang
 	"""Set/gets the group name."""
 	owner : OP
 	"""Gets the owner of this group."""
+	par : parameter.Group
+	"""Parameters of parameter.Group"""
 	def add(self, Point or Prim or int) -> None: 
 		"""Adds a point/primitive to this group. The point or primitive to be added can be specified by a point, primitive object or the index of a point or primitive object."""
 		pass
@@ -6143,8 +6063,6 @@ A Group can be created with the [[Group SOP]] or using the <syntaxhighlight lang
 	def destroy(self, ) -> None: 
 		"""Destroys the current point/primitive group."""
 		pass
-	par : parameter.Group
-	"""Parameters of parameter.Group"""
 	pass
 
 
@@ -6196,6 +6114,8 @@ for d in dongles:
 
 ```
 """
+	par : parameter.DongleList
+	"""Parameters of parameter.DongleList"""
 	def refreshDongles(self, ) -> None: 
 		"""Refreshes the list of dongles connected to the system and their product codes."""
 		pass
@@ -6220,8 +6140,6 @@ for d in dongles:
 	def productCodeInstalled(self, ) -> bool: 
 		"""Returns True if the provided product code is installed on any of the connected dongles."""
 		pass
-	par : parameter.DongleList
-	"""Parameters of parameter.DongleList"""
 	pass
 
 
@@ -6229,14 +6147,14 @@ class Dongle():
 	"""A class to interact with a single dongle connected to the system."""
 	serialNumber : str
 	"""Dongle Serial Number."""
+	par : parameter.Dongle
+	"""Parameters of parameter.Dongle"""
 	def applyUpdate(self, str) -> None: 
 		"""Takes an update as a string and applies it to the dongle."""
 		pass
 	def createUpdateContext(self, ) -> str: 
 		"""Returns a string which is the remote programming update context for the dongle."""
 		pass
-	par : parameter.Dongle
-	"""Parameters of parameter.Dongle"""
 	pass
 
 
@@ -6260,6 +6178,8 @@ For information about dependencies in mutable objects (lists, dicts, sets), see 
 	"""A list of [[OP Class|operators]] currently dependent on the object."""
 	listAttributes : list
 	"""A list of [[ListAttribute Class|list attributes]] currently dependent on the object."""
+	par : parameter.Dependency
+	"""Parameters of parameter.Dependency"""
 	def modified(self, ) -> None: 
 		"""This call is needed when changing not the value itself, but a subcomponent. For example, if Dependency.val is a dictionary, setting any of the members will not notify the dependent operators. A call to modified is necessary."""
 		pass
@@ -6280,8 +6200,6 @@ print(dep[2]) # prints 'g'. The index to the list works directly on the dependen
 
 ```"""
 		pass
-	par : parameter.Dependency
-	"""Parameters of parameter.Dependency"""
 	pass
 
 
@@ -6293,10 +6211,12 @@ class debug():
 You can use the [[Palette:debugControl|debugControl]] component in the palette to set up ```debug``` behavior without using Python."""
 	style : types.SimpleNamespace
 	"""A namespace containing information about how to process ```debug``` statements. This data is not meant to be changed directly. Instead, use the setStyle function below."""
+	par : parameter.debug
+	"""Parameters of parameter.debug"""
 	def debug(self, *args) -> None: 
 		"""Print all args and extra debug info (default is DAT and line number) to texport. To change behavior, use the [[Palette:debugControl|debugControl]] component or setStyle function (below).<br>'''TIP: Always use ```debug</code> instead of <code>print``` when debugging Python scripts.'''"""
 		pass
-	def setStyle(self, printStyle=None, showDAT=None, showFunction=None, showLineNo=None, timeStamp=' ', suppress=None, formatOverride=None, functionOverride=None) -> None: 
+	def setStyle(self, printStyle=None, showDAT=None, showFunction=None, showLineNo=None, suppress=None, formatOverride=None, functionOverride=None) -> None: 
 		"""Set the style for the built in TD debug function. Any arguments passed as None will leave that feature unchanged.
 
 
@@ -6319,8 +6239,6 @@ You can use the [[Palette:debugControl|debugControl]] component in the palette t
 
 :```suppress```: if True, suppress (don't print) any debug calls
 
-:```timeStamp```: [https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes Python time format code].
-
 :```formatOverride```: overrides the default message that debug prints. You can use {0}, {1}, and {2} for DAT, function, and line number
 
 :```functionOverride```: overrides the builtin TD debug function. This function will be called with all arguments from any debug calls in your project. Set to False to remove override."""
@@ -6335,8 +6253,6 @@ behavior, use the [[Palette:debugControl|debugControl]] component or setStyle fu
 
 change behavior, use the [[Palette:debugControl|debugControl]] component or setStyle function (above). This is a utility function for building custom debug systems."""
 		pass
-	par : parameter.debug
-	"""Parameters of parameter.debug"""
 	pass
 
 
@@ -6390,6 +6306,8 @@ Connections between components can be accessed through the [[COMP Class#Connecti
 	"""The list of [[Connector Class|connector objects]] connected to this object."""
 	description : str
 	"""A description for this connection. Example: 'Color Image'."""
+	par : parameter.Connector
+	"""Parameters of parameter.Connector"""
 	def connect(self, target) -> None: 
 		"""Wire this connector to a target location. The target may be an [[OP Class|operator]] or another connector.
 
@@ -6444,13 +6362,13 @@ op('geo2').inputCOMPConnectors[0].disconnect()
 
 ```"""
 		pass
-	par : parameter.Connector
-	"""Parameters of parameter.Connector"""
 	pass
 
 
 class Colors():
 	"""The Colors Class describes the application colors.  It can be accessed from the global [[UI Class|ui]] object."""
+	par : parameter.Colors
+	"""Parameters of parameter.Colors"""
 	def resetToDefaults(self, ) -> None: 
 		"""Set the colors to their default values."""
 		pass
@@ -6493,8 +6411,6 @@ for n in ui.colors:
 
 ```"""
 		pass
-	par : parameter.Colors
-	"""Parameters of parameter.Colors"""
 	pass
 
 
@@ -6525,14 +6441,14 @@ green = v3[1] # access individual elements by index. Same as v3.g
 	"""Gets or sets the blue component of the color."""
 	a : float
 	"""Gets or sets the alpha component of the color."""
+	par : parameter.Color
+	"""Parameters of parameter.Color"""
 	def [index] -> float: 
 		"""Sample values may be accessed from a Color using the [] subscript operator."""
 		pass
 	def copy(self, ) -> Color: 
 		"""Returns a new color that is a copy of the color."""
 		pass
-	par : parameter.Color
-	"""Parameters of parameter.Color"""
 	pass
 
 
@@ -6567,6 +6483,8 @@ See [[Working with CHOPs in Python]] for more examples of how to use this class.
 	"""The (possibly empty) list of [[Par Class|parameters]] this channel currently exports to."""
 	vals : list
 	"""Get or set the full list of [[Channel Class|Channel]] values. Modifying [[Channel Class|Channel]] values can only be done in Python within a [[scriptCHOP Class|Script CHOP]]."""
+	par : parameter.Channel
+	"""Parameters of parameter.Channel"""
 	def [index] -> float: 
 		"""Sample values may be easily accessed from a Channel using the [] subscript operator.
 
@@ -6623,8 +6541,6 @@ Note: after this call, other existing Channel objects in this CHOP may no longer
 
 *  numpyArray - The NumPy Array to copy. Must be shape(n), where n is the sample length of the CHOP. The data type must be float32. Modifying Channel values can only be done in Python within a [[Script CHOP]]."""
 		pass
-	par : parameter.Channel
-	"""Parameters of parameter.Channel"""
 	pass
 
 
@@ -6648,6 +6564,8 @@ The [[DAT Class]] offers many ways of accessing its individual cells.
 	"""The [[OP Class|OP]] to which this object belongs."""
 	val : value
 	"""Get or set the cell contents, which are always stored as a string value."""
+	par : parameter.Cell
+	"""Parameters of parameter.Cell"""
 	def run(self, endFrame=False, fromOP=None, asParameter=False, group=None, delayFrames=0, delayMilliSeconds=0, delayRef=me, arg1, arg2, *args) -> any: 
 		"""[[Run Class|Run]] the contents of the cell as a script, returning a Run object which can be used to optionally modify its execution.
 
@@ -6684,8 +6602,6 @@ d = c.offset(-1, 2)  # one row up, two columns right of cell C
 
 ```"""
 		pass
-	par : parameter.Cell
-	"""Parameters of parameter.Cell"""
 	pass
 
 
@@ -6697,6 +6613,8 @@ class Camera():
 	"""Get or set the 3D point in space where the camera will pivot around or towards."""
 	position : tdu.Position
 	"""Get or set the 3D point in space where the camera is located."""
+	par : parameter.Camera
+	"""Parameters of parameter.Camera"""
 	def blendCamera(self, targetCamera, blendFactor) -> any: 
 		"""Returns a camera that is blended with the given camera using the blendFactor. The camera position is blended using linear interpolation, while the rotation is blended using spherical linear interpolation.
 
@@ -6734,8 +6652,6 @@ class Camera():
 	def walk(self, ) -> None: 
 		"""Move the camera forward/back along in the ZX plane and rotate around its position."""
 		pass
-	par : parameter.Camera
-	"""Parameters of parameter.Camera"""
 	pass
 
 
@@ -6762,6 +6678,8 @@ The [[Actor COMP]] has a list of all its bodies."""
 	"""Get or set the body's angular velocity."""
 	linearVelocity : tdu.Vector
 	"""Get or set the body's linear velocity."""
+	par : parameter.Body
+	"""Parameters of parameter.Body"""
 	def applyImpulseForce(self, force, relPos=None) -> None: 
 		"""Applies impulse force to a body in a Bullet simulation.
 
@@ -6786,8 +6704,6 @@ The [[Actor COMP]] has a list of all its bodies."""
 
 * relPos (Keyword, Optional) - If specified, applies the force at the relative position, otherwise applied at (0,0,0)."""
 		pass
-	par : parameter.Body
-	"""Parameters of parameter.Body"""
 	pass
 
 
@@ -6837,6 +6753,8 @@ The members and methods below allow modification of the Bezier in a modelling co
 	"""Returns a list of segments, where each segment is a list of [[Vertex Class|vertices]]."""
 	tangents : list
 	"""Returns the tangents as a list of [[Vertex Class|vertex]] pairs."""
+	par : parameter.Bezier
+	"""Parameters of parameter.Bezier"""
 	def insertAnchor(self, u) -> Vertex: 
 		"""inserts anchor at given position (u from 0..1) and returns anchor vertex."""
 		pass
@@ -6856,8 +6774,6 @@ Returns final anchor vertex.
 	def deleteAnchor(self, anchorIndex) -> None: 
 		"""Deletes the anchor and its neighbouring tangents."""
 		pass
-	par : parameter.Bezier
-	"""Parameters of parameter.Bezier"""
 	pass
 
 
@@ -6872,6 +6788,8 @@ class Attributes():
 	"""An Attributes object describes a set of [[Prim Class|Prim]] Class, [[Point Class|Point]] Class, or [[Vertex Class]] [[Attribute|attributes]], contained within a [[SOP Class|SOP]]."""
 	owner : any
 	"""The [[OP Class|OP]] to which this object belongs."""
+	par : parameter.Attributes
+	"""Parameters of parameter.Attributes"""
 	def [name] -> Attribute: 
 		"""[[Attribute Class|Attributes]] can be accessed using the [] subscript operator.
 
@@ -6926,8 +6844,6 @@ n = scriptOP.primAttribs.create('custom2', 1 )
 
 ```"""
 		pass
-	par : parameter.Attributes
-	"""Parameters of parameter.Attributes"""
 	pass
 
 
@@ -6958,6 +6874,8 @@ Lists of attributes for the [[SOP Class|SOP]] are described with the [[Attribute
 	"""The type associated with this attribute: float, integer or string."""
 	default : value
 	"""The default values associated with this attribute. Dependent on the type of attribute, it may return a float, integer, string, tuple, [[Position Class|Position]], or [[Vector Class|Vector]]."""
+	par : parameter.Attribute
+	"""Parameters of parameter.Attribute"""
 	def destroy(self, ) -> None: 
 		"""Destroy the attribute referenced by this object.
 
@@ -6969,8 +6887,6 @@ n = scriptOP.pointAttribs['N'].destroy()
 
 ```"""
 		pass
-	par : parameter.Attribute
-	"""Parameters of parameter.Attribute"""
 	pass
 
 
@@ -6985,6 +6901,8 @@ a = tdu.ArcBall(forCamera=False)
 
 ```
 """
+	par : parameter.ArcBall
+	"""Parameters of parameter.ArcBall"""
 	def beginPan(self, u, v) -> None: 
 		"""Begin a pan at at the given u and v.
 
@@ -7112,8 +7030,6 @@ m.identity()
 
 ```"""
 		pass
-	par : parameter.ArcBall
-	"""Parameters of parameter.ArcBall"""
 	pass
 
 
@@ -7176,6 +7092,8 @@ app.power = False #turn off the power button.
 	"""Application version number."""
 	windowColorBits : int
 	"""The number of color bits per color channel the TouchDesigner window is running at. By default this will be 8-bits per channel, but can be increased to 10-bits by settings env var TOUCH_10_BIT_COLOR=1. Only works on displays that support 10-bit color."""
+	par : parameter.App
+	"""Parameters of parameter.App"""
 	def addNonCommercialLimit(self, password) -> None: 
 		"""Limits the application to operate at non-commercial license level. Multiple calls can be made, but each can be undone with a  matching removeNonCommercialLimit(password).  If the password is blank the operation cannot be undone. (See also [[Licenses Class|licenses.disablePro]]) member.
 
@@ -7236,8 +7154,6 @@ app.removeResolutionLimit('secret123')
 
 ```"""
 		pass
-	par : parameter.App
-	"""Parameters of parameter.App"""
 	pass
 
 
@@ -7349,6 +7265,8 @@ class angleCHOP(CHOP,OP):
 
 class animationCOMP(COMP,OP):
 	""""""
+	par : parameter.animationCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.animationCOMP & parameter.COMP & parameter.OP"""
 	def setKeyframe(self, position, channel='*', value=None, function=None) -> None: 
 		"""Add or set a keyframe in an animation channel.
 
@@ -7379,8 +7297,6 @@ n.deleteKeyframe(75, channel='tz') # modify specific keyframe
 
 ```"""
 		pass
-	par : parameter.animationCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.animationCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -7513,6 +7429,8 @@ class audioparaeqCHOP(CHOP,OP):
 
 class audioplayCHOP(CHOP,OP):
 	""""""
+	par : parameter.audioplayCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.audioplayCHOP & parameter.CHOP & parameter.OP"""
 	def play(self, index, start=True, loop=False,  delaySeconds=0.0, pan=None, rolloff=None, volume=None, fadeSeconds=0.0) -> None: 
 		"""Trigger the playing of audio samples specified in an [[Audio Play CHOP]].
 
@@ -7535,8 +7453,6 @@ class audioplayCHOP(CHOP,OP):
 
 * index - (Optional) The index of the audio sample to play, or all if not specified."""
 		pass
-	par : parameter.audioplayCHOP|parameter.CHOP|parameter.OP
-	"""Parameters of parameter.audioplayCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7675,6 +7591,8 @@ class bridgeSOP(SOP,OP):
 
 class buttonCOMP(PanelCOMP,COMP,OP):
 	""""""
+	par : parameter.buttonCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.buttonCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def click(self, val, clickCount=1, force=False, left=False, middle=False, right=False) -> None: 
 		"""Simulate a mouse click of a button panel.
 
@@ -7686,8 +7604,6 @@ class buttonCOMP(PanelCOMP,COMP,OP):
 
 * left,middle,right - (Keyword, Optional) Set to True to override the default mouse buttons used. When none are set, the left mouse button is pressed, and the other buttons released."""
 		pass
-	par : parameter.buttonCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.buttonCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -7721,6 +7637,8 @@ class camerablendCOMP(ObjectCOMP,COMP,OP):
 
 class cameraCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.cameraCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.cameraCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	def projectionInverse(self, x, y) -> any: 
 		"""Returns the inverse projection matrix for the camera, given the X and Y aspect. In general these would be set to the width and height of your render.
 
@@ -7735,8 +7653,6 @@ class cameraCOMP(ObjectCOMP,COMP,OP):
 
 * y - The vertical aspect ratio."""
 		pass
-	par : parameter.cameraCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.cameraCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -7795,6 +7711,8 @@ class CHOP(OP):
 	"""Number of times the export mapping information has changed."""
 	isCHOP : bool
 	"""True if the operator is a CHOP."""
+	par : parameter.CHOP|parameter.OP
+	"""Parameters of parameter.CHOP & parameter.OP"""
 	def [nameOrIndex] -> Channel: 
 		"""[[Channel Class|Channels]] may be easily accessed from a CHOP using the [] subscript operator.
 
@@ -7894,8 +7812,6 @@ n.save('output.aiff')  #supported audio format
 
 ```"""
 		pass
-	par : parameter.CHOP|parameter.OP
-	"""Parameters of parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -7998,8 +7914,8 @@ class timerCHOP(CHOP,OP):
 	"""Get the cumulative time expressed in samples. See ```.cumulativeSeconds```."""
 	cumulativeSeconds : float
 	"""Get the cumulative time expressed in seconds. It counts from 0 when you Start. Unlike ```.runningSeconds```, it is slowed/sped by the Speed parameter, and paused by the Play parameter. It continues to increase if there is any looping, jumping or scrubbing around."""
-	cumulativeTimecode : tdu.Timecode
-	"""Get the cumulative time as a Timecode Object. See [[Timecode Class]]. See ```.cumulativeSeconds```."""
+	cumulativeTimecode : str
+	"""Get the cumulative time as a timecode in the form 00:00:00.00. See ```.cumulativeSeconds```."""
 	masterFrames : int
 	"""Get or set the master time expressed in frames. 0-based. See ```.masterSeconds```."""
 	masterFrame : int
@@ -8012,8 +7928,8 @@ class timerCHOP(CHOP,OP):
 	"""Get or set the master time expressed in seconds. It counts from 0 when you Start, ```.masterSeconds</code> is slowed/sped by the Speed parameter, and paused by the Play parameter. It jumps to the appropriate time when you scrub. This is the main clock in the Timer CHOP and can be set directly using python (<code>OP.masterSeconds = ''val''</code>), or use the <code>.goTo()``` function which has more options. When multi-segments are specified to the Timer CHOP, it reflects the time as if you ran through the segments without interrupting it. If in any segment Cycle is on and Cycle Limit is off, it calculates as if the cycle runs only once."""
 	masterFraction : float
 	"""Get or set the master time expressed in fractional form. See ```.masterSeconds```."""
-	masterTimecode : tdu.Timecode
-	"""Get or set the master time expressed as a Timecode Object. See [[Timecode Class]]. See ```.masterSeconds```."""
+	masterTimecode : str
+	"""Get or set the master time expressed as a timecode in the form 00:00:00.00. See ```.masterSeconds```."""
 	cycle : float
 	"""Get or set the cycle index of the current segment."""
 	fraction : float
@@ -8026,8 +7942,8 @@ class timerCHOP(CHOP,OP):
 	"""Get the playing time expressed in samples. See ```.playingSeconds```."""
 	playingSeconds : float
 	"""Get the playing time expressed in seconds. It counts from 0 when you Start. it is unaffected by the Speed parameter, but unlike ```.runningSeconds```, it is paused by the Play parameter. It continues to increase if there is any looping, jumping or scrubbing around."""
-	playingTimecode : tdu.Timecode
-	"""Get the playing time as a Timecode Object. See [[Timecode Class]]. See ```.playingSeconds```."""
+	playingTimecode : str
+	"""Get the playing time as a timecode in the form 00:00:00.00. See ```.playingSeconds```."""
 	runningFraction : float
 	"""Get the running time index expressed in fractional form. See ```.runningSeconds```. This will be an estimate as the actual length is approximated on start."""
 	runningFrames : float
@@ -8040,22 +7956,22 @@ class timerCHOP(CHOP,OP):
 	"""Get the running time index expressed in samples. See ```.runningSeconds```."""
 	runningSeconds : float
 	"""Get the running time expressed in seconds. It keeps counting up after Start and is not affected by changing the Speed or pausing Play or scrubbing. It is basically the 'wall clock' after pressing Start. (You normally don't set the value, use ```.masterSeconds```.)  It doesn't reset to 0 until you Initialize or Start again."""
-	runningTimecode : tdu.Timecode
-	"""Get the running time index as a Timecode Object. See [[Timecode Class]]. See ```.runningSeconds```."""
+	runningTimecode : str
+	"""Get the running time index as a timecode in the form 00:00:00.00. See ```.runningSeconds```."""
 	runningLengthFrames : float
 	"""Get the running length expressed in frames."""
 	runningLengthSamples : float
 	"""Get the running length expressed in samples."""
 	runningLengthSeconds : float
 	"""Get the running length expressed in seconds."""
-	runningLengthTimecode : tdu.Timecode
-	"""Get the running length as a Timecode Object. See [[Timecode Class]]."""
+	runningLengthTimecode : str
+	"""Get the running length as a timecode in the form 00:00:00.00."""
 	segment : float
 	"""Get or set the segment index."""
 	segments : list
 	"""Get the list of segments."""
-	timecode : tdu.Timecode
-	"""Get the master timecode. See [[Timecode Class]]."""
+	par : parameter.timerCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.timerCHOP & parameter.CHOP & parameter.OP"""
 	def goToNextSegment(self, ) -> None: 
 		"""Jump to the next segment. Equivalent to pulsing the Go to Next Segment parameter on the Segments Page."""
 		pass
@@ -8085,15 +8001,11 @@ class timerCHOP(CHOP,OP):
 	def lastCycle(self, ) -> None: 
 		"""Sets the current cycle to be the last cycle of the current segment. Equivalent to pulsing the Exit at End of Cycle parameter on the Timer Page."""
 		pass
-	par : parameter.timerCHOP|parameter.CHOP|parameter.OP
-	"""Parameters of parameter.timerCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
 class timelineCHOP(CHOP,OP):
 	""""""
-	timecode : tdu.Timecode
-	"""Get a Timecode object for the timecode data representation of the current timeline frame. See [[Timecode Class]]."""
 	par : parameter.timelineCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.timelineCHOP & parameter.CHOP & parameter.OP"""
 	pass
@@ -8115,8 +8027,6 @@ class syncoutCHOP(CHOP,OP):
 
 class syncinCHOP(CHOP,OP):
 	""""""
-	timecode : tdu.Timecode
-	"""Get a Timecode object for the timecode data representation of the last received index. See [[Timecode Class]]."""
 	par : parameter.syncinCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.syncinCHOP & parameter.CHOP & parameter.OP"""
 	pass
@@ -8248,6 +8158,8 @@ class scriptCHOP(CHOP,OP):
 	""""""
 	timeSliceDefault : bool
 	"""Get the default [[Time Slice]] for the [[Script CHOP]]. Equal to the first input's ```isTimeSlice```."""
+	par : parameter.scriptCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.scriptCHOP & parameter.CHOP & parameter.OP"""
 	def copyNumpyArray(self, numpyArray, baseName='chan') -> None: 
 		"""Copies the contents of the numpyArray into the CHOP.
 
@@ -8301,8 +8213,6 @@ c = n.appendChan('velocity')
 
 ```"""
 		pass
-	par : parameter.scriptCHOP|parameter.CHOP|parameter.OP
-	"""Parameters of parameter.scriptCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8456,6 +8366,8 @@ class oscinCHOP(CHOP,OP):
 
 class openvrCHOP(CHOP,OP):
 	""""""
+	par : parameter.openvrCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.openvrCHOP & parameter.CHOP & parameter.OP"""
 	def triggerHapticPulse(self, controllerIndex, analogIndex, durationMilliseconds) -> None: 
 		"""Triggers a haptic/vibration pulse on the given controller/analog index for the specified number of milliseconds.
 
@@ -8465,8 +8377,6 @@ class openvrCHOP(CHOP,OP):
 
 * durationMilliSeconds - The length of the feedback in milliseconds. Anything equal to or above 4ms does not seem to work with current hardware."""
 		pass
-	par : parameter.openvrCHOP|parameter.CHOP|parameter.OP
-	"""Parameters of parameter.openvrCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -8532,6 +8442,8 @@ class mouseinCHOP(CHOP,OP):
 
 class midioutCHOP(CHOP,OP):
 	""""""
+	par : parameter.midioutCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.midioutCHOP & parameter.CHOP & parameter.OP"""
 	def send(self, message1, message2, *args) -> None: 
 		"""Send a sequence of bytes through this CHOP.
 
@@ -9115,8 +9027,6 @@ n.sendPortamentoControl(1,112)
 
 ```"""
 		pass
-	par : parameter.midioutCHOP|parameter.CHOP|parameter.OP
-	"""Parameters of parameter.midioutCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -9154,8 +9064,6 @@ class mathCHOP(CHOP,OP):
 
 class ltcoutCHOP(CHOP,OP):
 	""""""
-	timecode : tdu.Timecode
-	"""Get a Timecode object for the timecode data representation of the LTC Out CHOP. See [[Timecode Class]]."""
 	par : parameter.ltcoutCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.ltcoutCHOP & parameter.CHOP & parameter.OP"""
 	pass
@@ -9163,8 +9071,6 @@ class ltcoutCHOP(CHOP,OP):
 
 class ltcinCHOP(CHOP,OP):
 	""""""
-	timecode : tdu.Timecode
-	"""Get a Timecode object for the timecode data representation of the LTC In CHOP. See [[Timecode Class]]."""
 	par : parameter.ltcinCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.ltcinCHOP & parameter.CHOP & parameter.OP"""
 	pass
@@ -9411,6 +9317,8 @@ class expressionCHOP(CHOP,OP):
 
 class eventCHOP(CHOP,OP):
 	""""""
+	par : parameter.eventCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.eventCHOP & parameter.CHOP & parameter.OP"""
 	def releaseEvent(self, id) -> int: 
 		"""Manually release an event created with createEvent(hold=True) method above.
 
@@ -9447,8 +9355,6 @@ Returns the id of the created particle.
 
 *  speed - (Optional) If not specified, read from parameter."""
 		pass
-	par : parameter.eventCHOP|parameter.CHOP|parameter.OP
-	"""Parameters of parameter.eventCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -9477,8 +9383,6 @@ class dmxoutCHOP(CHOP,OP):
 
 class dmxinCHOP(CHOP,OP):
 	""""""
-	timecode : tdu.Timecode
-	"""Get a Timecode object for the last ArtTimeCode packet received. See [[Timecode Class]]."""
 	par : parameter.dmxinCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.dmxinCHOP & parameter.CHOP & parameter.OP"""
 	pass
@@ -9574,8 +9478,6 @@ class compositeCHOP(CHOP,OP):
 
 class clockCHOP(CHOP,OP):
 	""""""
-	timecode : tdu.Timecode
-	"""'Get a Timecode object representation of the hour, minute, second, and msec components.'"""
 	par : parameter.clockCHOP|parameter.CHOP|parameter.OP
 	"""Parameters of parameter.clockCHOP & parameter.CHOP & parameter.OP"""
 	pass
@@ -9618,6 +9520,8 @@ class clipblenderCHOP(CHOP,OP):
 	"""The time the transition will start."""
 	triggerClip : OP
 	"""The clip ."""
+	par : parameter.clipblenderCHOP|parameter.CHOP|parameter.OP
+	"""Parameters of parameter.clipblenderCHOP & parameter.CHOP & parameter.OP"""
 	def trigger(self, clipCHOP, waitEnd=False) -> None: 
 		"""Trigger the next clip in sequence.
 
@@ -9625,8 +9529,6 @@ class clipblenderCHOP(CHOP,OP):
 
 * waitEnd - When True, wait until the end of the current clip before triggering."""
 		pass
-	par : parameter.clipblenderCHOP|parameter.CHOP|parameter.OP
-	"""Parameters of parameter.clipblenderCHOP & parameter.CHOP & parameter.OP"""
 	pass
 
 
@@ -9760,6 +9662,8 @@ class COMP(OP):
 	"""List of output [[COMP Class|components]] from this component through its bottom connector."""
 	outputCOMPConnectors : List
 	"""List of output [[Connector Class|connectors]] (on the bottom) associated with this component."""
+	par : parameter.COMP|parameter.OP
+	"""Parameters of parameter.COMP & parameter.OP"""
 	def create(self, opType, name, initialize=True) -> OP: 
 		"""Create a new node of the given type, inside this component. If ```name</code> is supplied the new node will use that name, or the next numbered name if its already in use.  opType can be a specific type object, example <code>waveCHOP</code>, or it can be a string <code>'waveCHOP'</code>.  If given an actual instance of a node <code>n</code>, these can be accessed via <code>type(n)</code> and <code>n.OPType``` respectively.
 
@@ -10120,8 +10024,6 @@ a = n.vars('A* ', 'B* ')
 
 ```"""
 		pass
-	par : parameter.COMP|parameter.OP
-	"""Parameters of parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10151,6 +10053,8 @@ class windowCOMP(COMP,OP):
 	"""Width of windows contents. Ignores borders if they are present. Expressed in points or pixels, depending on the 'DPI Scaling' parameter setting."""
 	contentHeight : int
 	"""Height of windows contents. Ignores borders if they are present. Expressed in points or pixels, depending on the 'DPI Scaling' parameter setting."""
+	par : parameter.windowCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.windowCOMP & parameter.COMP & parameter.OP"""
 	def setForeground(self, ) -> bool: 
 		"""Activates the window, sets it to the foregound and other visual cues. Sets focus and increases process priority.
 
@@ -10158,8 +10062,6 @@ Can only be called by a foreground process, or a child of a foreground process.
 
 Returns true if successful."""
 		pass
-	par : parameter.windowCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.windowCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10244,6 +10146,8 @@ v = op('button1').panel.u
 	"""The panel's width adjusted by margins, as measured in pixels."""
 	marginHeight : int
 	"""The panel's height adjusted by margins, as measured in pixels."""
+	par : parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def panelParent(self, n) -> any: 
 		"""The nth panel parent of this operator.  If n not specified, returns the panel parent. If n = 2, returns the parent of the parent, etc. If no panel parent exists at that level, None is returned.  A panel parent is the panel wired to the input of this operator, or if that does not exist, the panel containing this operator.
 
@@ -10374,13 +10278,13 @@ op('container1').interactStatus  # list the current hover over a slider and 2 to
 
 * moveMouse - (Keyword, Optional) If set to True, the mouse will be moved to the component as well."""
 		pass
-	par : parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class tableCOMP(PanelCOMP,COMP,OP):
 	""""""
+	par : parameter.tableCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.tableCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def getRowFromID(self, id) -> int: 
 		"""Return the table row value, given a cell ID.
 
@@ -10441,13 +10345,13 @@ op('table1').select(0, 5) # row 0, column 5, do not select all text
 
 ```"""
 		pass
-	par : parameter.tableCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.tableCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class sliderCOMP(PanelCOMP,COMP,OP):
 	""""""
+	par : parameter.sliderCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.sliderCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def click(self, uOrV, v, clickCount=1, force=False, left=False, middle=False, right=False, vOnly=False) -> None: 
 		"""Simulate a mouse click of the slider.
 
@@ -10477,8 +10381,6 @@ op('slider3').click(0.4, vOnly=True) #Update just V on a 2D slider.
 
 ```"""
 		pass
-	par : parameter.sliderCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.sliderCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10538,6 +10440,8 @@ The enumeration is called PaneType and consists of:
 * PaneType.PARAMETERS
 
 * PaneType.TEXTPORT"""
+	par : parameter.Pane
+	"""Parameters of parameter.Pane"""
 	def changeType(self, paneType) -> any: 
 		"""Change the pane to the specified type.  Will return a new Pane object that represents the Pane. After being called, the current Pane instance will no longer be valid.
 
@@ -10574,20 +10478,18 @@ p = p.changeType(PaneType.TOPVIEWER)  # note: must re-assign p to new object.
 	def tearAway(self, ) -> bool: 
 		"""Detach the pane into a floating window. Returns True if successful."""
 		pass
-	par : parameter.Pane
-	"""Parameters of parameter.Pane"""
 	pass
 
 
 class opviewerCOMP(PanelCOMP,COMP,OP):
 	""""""
+	par : parameter.opviewerCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.opviewerCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def isViewable(self, path) -> bool: 
 		"""Returns true if this operator can view the specified operator without recursion issues.'
 
 * path - Path to the specfied operator. An operator can be supplied as well."""
 		pass
-	par : parameter.opviewerCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.opviewerCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10599,6 +10501,8 @@ It is the parent class of these subclasses."""
 	"""The current local transform of the Object. This is the combination of both the parameters from the Xform and Pre-Xform page, without taking into account any parent or constraint transforms. See also [[Matrix Class]], [[Position Class]] and [[Vector Class]]."""
 	worldTransform : tdu.Matrix
 	"""The current world transform of the Object."""
+	par : parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	def transform(self, ) -> any: 
 		"""Gets the current transform of the Object as defined by the Translate, Rotate, Scale and Pivot parameters on the Xform page."""
 		pass
@@ -10662,8 +10566,6 @@ It is the parent class of these subclasses."""
 
 * animationFolder - (Keyword, Optional) Animation (.bchan) files will be created in this folder. If this option is missing, animation won't be imported."""
 		pass
-	par : parameter.ObjectCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10773,6 +10675,8 @@ n.displayAttribs[3,4].bgColor #the resulting background color for this specific 
 	"""The currently dragged row."""
 	dragCol : int
 	"""The currently dragged column."""
+	par : parameter.listCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.listCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def scroll(self, row, col) -> None: 
 		"""Scroll List component to the row and column specified.
 
@@ -10788,13 +10692,13 @@ n.displayAttribs[3,4].bgColor #the resulting background color for this specific 
 	def reset(self, ) -> None: 
 		"""Reset the list by running its initialize callbacks."""
 		pass
-	par : parameter.listCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.listCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class lightCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.lightCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.lightCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	def projectionInverse(self, x, y) -> any: 
 		"""Returns the inverse projection matrix for the light's view, given the X and Y aspect. In general these would be set to the width and height of your render.
 
@@ -10817,8 +10721,6 @@ newlist = op('geo1').pars('t?', 'r?', 's?') # translate/rotate/scale parameters
 
 ```"""
 		pass
-	par : parameter.lightCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.lightCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10831,6 +10733,8 @@ class handleCOMP(ObjectCOMP,COMP,OP):
 
 class geometryCOMP(ObjectCOMP,COMP,OP):
 	""""""
+	par : parameter.geometryCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.geometryCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	def computeBounds(self, display=True, render=True, selected=False, recurse=True) -> any: 
 		"""Calculate the bounding box of the child geometry of this component.
 
@@ -10854,20 +10758,18 @@ print(a.min.x)
 
 ```"""
 		pass
-	par : parameter.geometryCOMP|parameter.ObjectCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.geometryCOMP & parameter.ObjectCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
 class fieldCOMP(PanelCOMP,COMP,OP):
 	""""""
+	par : parameter.fieldCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.fieldCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def setKeyboardFocus(self, selectAll=False) -> None: 
 		"""Set keyboard focus.
 
 * selectAll - (Keyword, Optional) If True, then all text will be selected."""
 		pass
-	par : parameter.fieldCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.fieldCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -10880,6 +10782,8 @@ class environmentlightCOMP(ObjectCOMP,COMP,OP):
 
 class containerCOMP(PanelCOMP,COMP,OP):
 	""""""
+	par : parameter.containerCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
+	"""Parameters of parameter.containerCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	def click(self, u, v, clickCount=1, force=False, left=False, middle=False, right=False, group=None) -> None: 
 		"""Simulate a mouse click on a container panel at a specific location.
 
@@ -10924,8 +10828,6 @@ op('container1').clickChild(2) # Click the third child panel inside a container.
 
 ```"""
 		pass
-	par : parameter.containerCOMP|parameter.PanelCOMP|parameter.COMP|parameter.OP
-	"""Parameters of parameter.containerCOMP & parameter.PanelCOMP & parameter.COMP & parameter.OP"""
 	pass
 
 
@@ -11073,6 +10975,8 @@ class DAT(OP):
 	"""Local dictionary used during python execution of scripts in this DAT. The dictionary attribute is read only, but not its contents. Its contents may be manipulated directly with scripts, or with an [[Examine DAT]]."""
 	jsonObject : dict
 	"""Parses the DAT as json and returns a python object."""
+	par : parameter.DAT|parameter.OP
+	"""Parameters of parameter.DAT & parameter.OP"""
 	def run(self, arg1, arg2, *args, endFrame=False, fromOP=None, asParameter=False, group=None, delayFrames=0, delayMilliSeconds=0, delayRef=me) -> any: 
 		"""[[Run Class|Run]] the contents of the DAT as a script, returning a Run object which can be used to optionally modify its execution.
 
@@ -11472,8 +11376,6 @@ for c in op('table1').cols():
 
 ```"""
 		pass
-	par : parameter.DAT|parameter.OP
-	"""Parameters of parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11486,6 +11388,8 @@ class xmlDAT(DAT,OP):
 
 class websocketDAT(DAT,OP):
 	""""""
+	par : parameter.websocketDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.websocketDAT & parameter.DAT & parameter.OP"""
 	def sendText(self, message) -> int: 
 		"""Send a text frame over the WebSocket connection.  Returns the number of bytes sent in the message, or a negative value on error.
 
@@ -11538,8 +11442,6 @@ n = n.sendBinary( 23, 'TYPE', 255, 12, 0x34, b'\\x01\\x00\\x02\\x00\\x03\\x00\\x
 
 ```"""
 		pass
-	par : parameter.websocketDAT|parameter.DAT|parameter.OP
-	"""Parameters of parameter.websocketDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11629,6 +11531,8 @@ class textDAT(DAT,OP):
 
 class tcpipDAT(DAT,OP):
 	""""""
+	par : parameter.tcpipDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.tcpipDAT & parameter.DAT & parameter.OP"""
 	def sendBytes(self, message1, message2, *args) -> int: 
 		"""Send one or more sequence of bytes. No terminators are appended.
 
@@ -11659,8 +11563,6 @@ n.send('Hello', 'World',  terminator='\r\n') # send two strings with windows sty
 
 ```"""
 		pass
-	par : parameter.tcpipDAT|parameter.DAT|parameter.OP
-	"""Parameters of parameter.tcpipDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11730,6 +11632,8 @@ class soptoDAT(DAT,OP):
 
 class serialDAT(DAT,OP):
 	""""""
+	par : parameter.serialDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.serialDAT & parameter.DAT & parameter.OP"""
 	def sendBytes(self, message1, message2, *args) -> int: 
 		"""Send one or more sequence of bytes. No terminators are appended.
 
@@ -11760,8 +11664,6 @@ n.send('Hello', 'World',  terminator='\r\n') #send two strings with windows styl
 
 ```"""
 		pass
-	par : parameter.serialDAT|parameter.DAT|parameter.OP
-	"""Parameters of parameter.serialDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11797,6 +11699,8 @@ me.inputCell.offset(0, -1) #alternative syntax for previous column
 
 class scriptDAT(DAT,OP):
 	""""""
+	par : parameter.scriptDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.scriptDAT & parameter.DAT & parameter.OP"""
 	def appendCustomPage(self, name) -> Page: 
 		"""Add a new [[Page Class|page]] of custom parameters. See [[Page Class]] for more details.
 
@@ -11824,8 +11728,6 @@ scriptOp.sortCustomPages('Definition','Controls')
 
 ```"""
 		pass
-	par : parameter.scriptDAT|parameter.DAT|parameter.OP
-	"""Parameters of parameter.scriptDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -11910,6 +11812,8 @@ class mqttclientDAT(DAT,OP):
 	""""""
 	isConnected : bool
 	"""Return True if connected to a broker, and False if not."""
+	par : parameter.mqttclientDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.mqttclientDAT & parameter.DAT & parameter.OP"""
 	def publish(self, topic, payload, qos=0, retain=False) -> None: 
 		"""Publish content to a specific topic.
 
@@ -11957,8 +11861,6 @@ n.unsubscribe('weather')
 
 ```"""
 		pass
-	par : parameter.mqttclientDAT|parameter.DAT|parameter.OP
-	"""Parameters of parameter.mqttclientDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -12042,6 +11944,8 @@ class fileoutDAT(DAT,OP):
 	""""""
 	writeCount : int
 	"""The number of times data has been written. This can be used to create an incrementing filename."""
+	par : parameter.fileoutDAT|parameter.DAT|parameter.OP
+	"""Parameters of parameter.fileoutDAT & parameter.DAT & parameter.OP"""
 	def sendBytes(self, message1, message2, *args) -> int: 
 		"""Write one or more sequence of bytes. No terminators are appended.
 
@@ -12072,8 +11976,6 @@ n.send('Hello', 'World',  terminator='\r\n') # send two strings with windows sty
 
 ```"""
 		pass
-	par : parameter.fileoutDAT|parameter.DAT|parameter.OP
-	"""Parameters of parameter.fileoutDAT & parameter.DAT & parameter.OP"""
 	pass
 
 
@@ -12667,6 +12569,8 @@ class mirrorTOP(TOP,OP):
 
 class modelSOP(SOP,OP):
 	""""""
+	par : parameter.modelSOP|parameter.SOP|parameter.OP
+	"""Parameters of parameter.modelSOP & parameter.SOP & parameter.OP"""
 	def appendPoint(self, ) -> Point: 
 		"""Append a [[Point Class|point]] to this SOP. The appended point will be returned."""
 		pass
@@ -12727,8 +12631,6 @@ n.appendBezier(7) #open, cubic, 7 vertices, or 2 spans
 
 *  sop - The SOP to copy geometry from. Geometry currently in this SOP will be removed."""
 		pass
-	par : parameter.modelSOP|parameter.SOP|parameter.OP
-	"""Parameters of parameter.modelSOP & parameter.SOP & parameter.OP"""
 	pass
 
 
@@ -12789,8 +12691,8 @@ class moviefileinTOP(TOP,OP):
 	"""The actual current index of the movie, disregarding trimming and other options."""
 	trueNumImages : float
 	"""The actual number of images contained in the movie, not affected by trimming."""
-	timecode : tdu.Timecode
-	"""Get a Timecode object for the timecode data representation of the true current index of the movie. See [[Timecode Class]]."""
+	par : parameter.moviefileinTOP|parameter.TOP|parameter.OP
+	"""Parameters of parameter.moviefileinTOP & parameter.TOP & parameter.OP"""
 	def findHeader(self, key) -> any: 
 		"""Returns the value of the header with the given key. This method will return a blank string if the header is not found.
 
@@ -12811,8 +12713,6 @@ class moviefileinTOP(TOP,OP):
 
 * index - (Optional) If specified the movie will be opened at the specified frame index. If not, then the movie will be opened at the index specified by its parameters."""
 		pass
-	par : parameter.moviefileinTOP|parameter.TOP|parameter.OP
-	"""Parameters of parameter.moviefileinTOP & parameter.TOP & parameter.OP"""
 	pass
 
 
@@ -12876,6 +12776,8 @@ class NetworkEditor(Pane):
 	"""Get or set the y coordinate of the network editor area, where 1 unit = 1 pixel when zoom = 1."""
 	zoom : float
 	"""Get or set the zoom factor of the network editor area, where a zoom factor of 1 draws each node at its unscaled resolution."""
+	par : parameter.NetworkEditor|parameter.Pane
+	"""Parameters of parameter.NetworkEditor & parameter.Pane"""
 	def fitWidth(self, width) -> None: 
 		"""Fit the network area to specified width, specified in node units.  This affects the zoom factor.
 
@@ -12927,8 +12829,6 @@ p.home(zoom=True)
 
 * undoName - Describes the [[Undo]] operation."""
 		pass
-	par : parameter.NetworkEditor|parameter.Pane
-	"""Parameters of parameter.NetworkEditor & parameter.Pane"""
 	pass
 
 

@@ -7,7 +7,7 @@ import utils
 
 # Generic DataFetching
 def fetchCategoryNames(label):
-    cacheFile = Path(f"cache/{label}NamesCache.json")
+    cacheFile = Path(f"cache/fetch/{label}NamesCache.json")
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
     
@@ -40,7 +40,7 @@ def fetchCategoryNames(label):
     return items
 
 def fetchItems(label, items):
-    cacheFile = Path(f"cache/{label}DefinitionCache.json")
+    cacheFile = Path(f"cache/fetch/{label}DefinitionCache.json")
 
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
@@ -105,7 +105,8 @@ def defaultClassDict( label = ""):
             "members" : [],
             "methods" : [],
             "subclasses" : {},
-            "inherits": []
+            "inherits": [],
+            "category" : ""
              }
 
 def deepTemplateToDict( potentialWikiString:str):
@@ -227,6 +228,7 @@ parameterExpander = {
 
 def createParTypeDefinitionDict():
     outputDict = {}
+    #outputDict["Generic"] 
     for key, value in parameterExpander.items():
         parTypeClassDict = defaultClassDict()
         parTypeClassDict["label"] = f"{key}Par"
