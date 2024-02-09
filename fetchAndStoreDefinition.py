@@ -8,6 +8,7 @@ import utils
 # Generic DataFetching
 def fetchCategoryNames(label):
     cacheFile = Path(f"cache/fetch/{label}NamesCache.json")
+    cacheFile.parent.mkdir( parents=True, exist_ok=True)
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
     
@@ -41,9 +42,10 @@ def fetchCategoryNames(label):
 
 def fetchItems(label, items):
     cacheFile = Path(f"cache/fetch/{label}DefinitionCache.json")
-
+    cacheFile.parent.mkdir( parents=True, exist_ok=True)
     if cacheFile.is_file(): 
         return json.loads( cacheFile.read_text() )
+    
     result = []
     for item in items:
         params = {
@@ -86,7 +88,7 @@ def fetchClassPages():
 def fetchClassDefinitions( items ):
     return fetchItems("Python_Reference", items)
 
-def stringToDictList( wikiString):
+def stringToDictList( wikiString ):
     try:
         return [ templateToDict( template ) for template in 
                     wikitextparser.parse( wikiString ).templates ]
@@ -146,6 +148,10 @@ def createClassDefinitionDict( definitions ):
             if templateName == "OPClassSummary":
                 classDict["label"] = f"{templateDict['OPtype']}{templateDict['OPfamily']}"
                 className = f"{templateDict['OPtype']}{templateDict['OPfamily']}"
+
+                # janky fix for some COMP classes having COMP in their OPtype for no reason ¯\_(ツ)_/¯
+                classDict["label"] = classDict["label"].replace("COMPCOMP", "COMP")
+                className = className.replace("COMPCOMP", "COMP")
             
             if templateName == "ClassInheritance":
                # print(f"Class Inheriteance for { className } from {templateDict['class']}")
@@ -470,9 +476,40 @@ def writeTDModule(definitionDict):
     with builtinsFileHandler.open("wt") as builtinsFile:
         writeClassAsModuleToFile( definitionDict["td"], builtinsFile )
 
+def addMissingClassPage(classPages, className):
+    if not any(classPage["title"] == className for classPage in classPages):
+        classPages.append({
+            # seems like it's not being used anywhere down the road
+            "pageid": -1, 
+            "ns": 0,
+            "title": f"{className} Class" 
+        })
+    return classPages
+
+# multiple COMP classes missing from https://docs.derivative.ca/api.php?...&cmtitle=Category:Python_Reference result
+def addMissingClassPages(classPages):
+    missingClasses = [
+        "GeotextCOMP",
+        "FbxCOMP",
+        "UsdCOMP",
+        "GlslCOMP",
+        "TextCOMP",
+        "WidgetCOMP",
+        "EngineCOMP",
+        "AnnotateCOMP",
+        "ConstraintCOMP",
+        "ActorCOMP",
+        "BulletsolverCOMP",
+        "ForceCOMP"
+    ]
+    for className in missingClasses:
+        classPages = addMissingClassPage(classPages, className)
+    return classPages
            
 def main():
     classPages = fetchClassPages()
+    classPages = addMissingClassPages( classPages )
+
     classDefinitions = fetchClassDefinitions( classPages )
     classDefinitionDicts = createClassDefinitionDict(  classDefinitions ) 
     cleanedClassDefinitionDict = clearDefinitionDict( classDefinitionDicts )
