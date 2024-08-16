@@ -1,4 +1,5 @@
-# Python_TouchdesignerStubsFromWiki
+# ARCHIVED Python_TouchdesignerStubsFromWiki
+## This repo is archived. The functionaity will be released in the next release for TD.
 This allows you to use native typehints for your touchdesigner scripts. 
 Download the typings folder and unpack them in the root of your project.
 Open the root directory in code and use as usual.
